@@ -19,3 +19,5 @@ Imports: bookdown,
     here
 Suggests: devtools,
     git2r
+URL: https://github.com/jmlondon/berchukHaulout
+BugReports: https://github.com/jmlondon/berchukHaulout/issues
