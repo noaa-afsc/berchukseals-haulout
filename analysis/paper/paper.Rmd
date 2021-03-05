@@ -524,7 +524,7 @@ southern ice edge in the Bering Sea [@conn2014mee].
 
 ```{r wxCovMap, include=TRUE, fig.height = 5.5, fig.id="wxCovMap", fig.cap="Example spatial distribution of weather covariates across the study region for 2012 May 05. The NARR was used to predict weather covariates for each hour in a percent dry timeline record."}
 
-load(file = here::here('data/cov_means_daily.Rdata'))
+load(file = here::here('data/cov_means_daily_2102.Rdata'))
 grid_plot <- cov_means_daily %>% filter(year == 2012,
                            yday == 125) %>%
   inner_join(grid.sf, by = 'cell') %>%
