@@ -1,0 +1,392 @@
+---
+title: "Creating Haul-out Timeline Input Data"
+description: |
+  document the processing of the 'raw' telemetry data into a usable 
+  data structure for downstream analysis procedures
+author:
+  - name: Josh M. London 
+    url: https://github.com/jmlondon
+    orcid_id: 0000-0003-0645-5666
+    affiliation: NOAA Alaska Fisheries Science Center
+date: "`r Sys.Date()`"
+output: 
+  distill::distill_article:
+    theme: theme.css
+params:
+   make_data: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(conflicted)
+library(rmarkdown)
+library(odbc)
+library(DBI)
+library(dplyr)
+conflict_prefer("filter", "dplyr")
+conflict_prefer("selec", "dplyr")
+library(dbplyr)
+library(pingr)
+library(keyringr)
+library(lubridate)
+conflict_prefer("month","lubridate")
+library(sf)
+library(glue)
+library(tibble)
+library(tidyr)
+library(purrr)
+library(forcats)
+library(gt)
+library(here)
+library(ggplot2)
+```
+
+## Introduction
+
+The focus of this document is not to analyze the data, but instead to document the
+processing of the 'raw' telemetry data into a usable data structure for downstream
+analysis procedures in support of the manuscript *\<insert manuscript title here\>*. The
+key focus of this step is to merge separate data streams for estimated seal locations,
+observed seal haul-out behavior (in the form of percent-dry timelines), and capture
+details into a single table ready for ingestion to the PostgreSQL database. This table
+should, generally, provide hourly percent-dry records for each seal along with reasonable
+location estimates. We will rely on a separate process within the database for, then,
+assigning reanalysis weather covariates to each record in this spatial time series.
+
+## Workflow
+
+This process is managed with a `make_data.R` script. We rely on a series of functions to
+pull data from the database and, then, tidy and merge into our needed data structure. We
+will briefly describe each functional step below. Each function can be examined in detail
+by opening the corresponding R file within the R directory.
+
+```{r}
+if (params$make_data) {
+source(here::here('analysis/scripts/get_data/make_data.R'))
+} else {
+  load(here::here('data/locs_sf.Rdata'))
+  load(here::here('data/timeline_data.Rdata'))
+  load(here::here('data/tbl_percent_locs.Rdata'))
+}
+```
+
+### `get_timeline_data()`
+
+This is a relatively simple pull and merge of telemetry data from the PEP PostgreSQL
+database. The focus is on the *percent_dry* timeline data and joining those records with
+additional details regarding seal species, age, sex, etc. We also filter the data to only
+include records for *Bearded seals*, *Ribbon seals*, and *Spotted seals*. Also, only
+records from March, April, May, June, and July are retained. The last step is to create a
+*unique_day* column that represents the unique combination of year and day-of-year. Since
+we will be calculating daily location averages, this field will be crucial for properly
+joining the timeline data with those locations.
+
+The final data structure:
+
+```{r}
+glimpse(timeline_data)
+```
+
+### `get_locs_sf()`
+
+This is also a simple pull and merge of telemetry data from PostgreSQL database. The focus
+here is on location estimates. As such, we rely on the `sf::read_sf()` function and a
+custom query:
+
+``` {.sql}
+SELECT  deployid,
+        locs_dt,
+        type,
+        quality,
+        error_radius,
+        geom
+FROM telem.geo_wc_locs_qa
+```
+
+After this query, the process is similar to the `get_timeline_data()` function. We merge
+with the additional details (e.g. seal species, age, sex) and filter to only include our
+months of interest (March, April, May, June). Note we also calculate the *unique_day*
+field that will become the basis for our location averaging.
+
+The final data structure:
+
+```{r}
+glimpse(locs_sf)
+```
+
+### `create_db_input_data()`
+
+This is the workhorse function for this part of our workflow. We need to accomplish a few
+key objectives with this function:
+
+1.  determine an appropriate error radius value for each location record
+
+    1.  for records with only Argos location quality, use standard error values
+
+    2.  for records with error_radius values, prefer over Argos location quality values
+
+2.  transform the geographic coordinates to the *LAEA Bering Sea* / *EPSG:3571* projection
+
+3.  calculate a weighted mean daily x and y coordinate where the weights are
+    error_radius\^-1
+
+4.  full join of the timeline and daily location records
+
+5.  fill any missing coordinates with the most recent known daily location
+
+6.  write the result back to the PEP PostgreSQL database
+
+Our data represents deployments across several years and differing data formats for Argos
+locations. Only the newer (since \~2010) deployments provide an record-specific estimate
+of error radius (also, error ellipse information but we are simplifying the approach here
+and just using radius). Earlier deployments only provide the location quality values
+
+The following table represents our map of Argos location quality values to estimated error
+radius (in meters).
+
+```{r}
+tribble(
+    ~quality, ~error_radius,
+    "3", 250,
+    "2", 500,
+    "1", 1500,
+    "0", 2500,
+    "A", 2500,
+    "B", 2500
+  ) 
+```
+
+Once we have an error radius value for each record, we can proceed to transform our
+spatial coordinates from geographic (latitude, longitude) into an equal-area projection
+appropriate for the Bering Sea. We chose the LAEA Bering Sea (espg:3571) projection. This
+transforms our spatial coordinates into units of meters and allows for a straightforward
+calculation of daily mean coordinates. Since we have our error radius information, we can
+take a more thorough approach to calculation of our daily mean and apply the inverse of
+the error radius value as a weight to our mean calculation.
+
+At this point, we have two tables: daily, weighted mean locations and hourly percent-dry
+values. A full join of these two tables based on seal identification (i.e. *speno*) and
+the *unique_day* provides an full table of all timeline records and, where there is a
+matching daily mean location, spatial estimates of seal location. In more than a few
+cases, there are observed percent-dry data without a corresponding location for that same
+day. In these situations, the previously known location is carried forward to fill in the
+unknown days.
+
+## Data
+
+First, the table structure:
+
+```{r}
+glimpse(db_input_data)
+```
+
+Nothing unexpected here. The key is that this dataset is a Simple Features Collection with
+each record represented by a geospatial point. This geometry along with the haul-out
+date-time data will allow us to properly link these records with spatially explicit
+weather covariates.
+
+Next, let's summarize the number deployments for each species by age and sex along with
+the number of seal hours represented. This table allows us to compare the spread and
+amount of data for each with our expectations.
+
+```{r}
+db_input_data %>% 
+  st_set_geometry(NULL) %>% 
+  mutate(age = dplyr::case_when(
+      age == "YEARLING" ~ "SUBADULT",
+      TRUE ~ age
+    ),
+    sex = dplyr::case_when(
+      sex == "F" ~ "Female",
+      sex == "M" ~ "Male",
+      TRUE ~ sex
+    )) %>% 
+  mutate(age = fct_relevel(age, "PUP","YOUNG OF YEAR","SUBADULT","ADULT")) %>%  
+  dplyr::mutate(data_year = lubridate::year(haulout_dt)) %>% 
+  dplyr::group_by(speno,data_year,species, sex, age) %>% 
+  dplyr::summarise(min_dt = min(haulout_dt),
+            max_dt = max(haulout_dt),
+            n_days = difftime(max_dt, min_dt, units = "days"),
+            n_hours = n()
+  ) %>% 
+  dplyr::select(-c("min_dt","max_dt")) %>% 
+  dplyr::group_by(species, sex, age) %>% 
+  dplyr::summarise(
+    n = n(),
+    seal_hours = sum(n_hours)
+  ) %>% 
+  dplyr::mutate(
+    deploy_stats = glue::glue("{n} ({seal_hours} seal hours)")
+  ) %>% 
+  dplyr::select(-c("n","seal_hours")) %>% 
+  tidyr::pivot_wider(names_from = age, values_from = c(deploy_stats)) %>% 
+  group_by(species) %>% 
+  gt(rowname_col = "sex") %>% 
+  tab_header(
+    title = "Summary of bio-logger deployment data across seal 
+  species, sex, and age classification during the months of March, April, May, 
+  and June.",
+    subtitle = "total seal hours represents the sum of available data across all
+  seals"
+  ) %>% 
+  tab_options(
+    table.border.top.width = px(0),
+    heading.title.font.size = px(16),
+    column_labels.border.top.width = 3,
+    column_labels.border.top.color = "black",
+    column_labels.border.bottom.width = 3,
+    column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black",
+    table.border.bottom.width = px(0),
+    table.width = pct(100),
+    table.background.color = "white",
+    row_group.border.top.color = "black",
+    row_group.border.bottom.width = px(0)
+  ) %>% 
+  tab_style(
+    style = list(
+      # remove horizontal lines
+      cell_borders(
+        sides = c("top", "bottom", "right"),
+        weight = px(0)
+      )),
+      #do this for all columns and rows
+    locations = list(cells_body(
+      columns = everything(),
+      rows = everything()),
+    cells_stub())
+    ) %>% 
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+      ),
+    locations = cells_row_groups()
+  )
+```
+
+It's also helpful to visually examine the temporal spread of the data to make sure it
+meets our expectations and to identify any temporal limits we might need to consider
+during the analysis process.
+
+```{r, fig.height=6.5, fig.width=8}
+seal_hours_tbl <- db_input_data %>% 
+  sf::st_set_geometry(NULL) %>% 
+  dplyr::mutate(wkofyr = lubridate::epiweek(haulout_dt),
+                dayofwk = lubridate::wday(haulout_dt, label = TRUE, abbr = TRUE) %>% 
+                  forcats::fct_rev()
+  ) %>% 
+  dplyr::group_by(species, wkofyr, dayofwk) %>% 
+  dplyr::count()
+
+ggplot(data = seal_hours_tbl) + 
+  geom_point(aes(x = wkofyr, y = dayofwk, color = n, size = n)) +
+  scale_color_distiller(palette = "Blues", direction = 1) +
+  scale_x_continuous(breaks = c(13,18,23),
+                     labels = c("April", "May", "June")) +
+  guides(color = "none",
+         size = guide_legend(override.aes = list(color = "#3182bd"),
+                             title.position = "bottom",
+                             title.hjust = 0.5)) +
+  facet_grid(species ~ .
+             # labeller=labeller(species = c(Eb = "Bearded",
+             #                               Hf = "Ribbon",
+             #                               Pl = "Spotted"))
+             ) + 
+  theme_minimal(12) + 
+  theme(axis.text.y = element_blank(),
+        panel.grid = element_blank()) +
+  theme(plot.title.position = "plot") +
+  theme(legend.position = "bottom") +
+  labs(x = "", y = "day of week", color = "seal-hours",
+       size = "seal hours") +
+  ggtitle("Distribution in seal-hours of haul-out behavior data",
+          subtitle = "collated across years (2005-2017)")
+```
+
+lastly, let's plot a map of our data so we can get a sense of the geographic distribution
+for each species
+
+```{r}
+haulout_locs <- db_input_data %>% 
+  filter(lubridate::hour(haulout_dt) == 12)
+
+hexgrid <- sf::st_make_grid(st_bbox(haulout_locs) %>% st_as_sfc(), cellsize = 50*1000,
+                            what = "polygons", square = FALSE) 
+hexgrid <- st_sf(index = 1:length(lengths(hexgrid)), hexgrid)
+
+hexbin <- st_join(haulout_locs, hexgrid, join = st_intersects) %>% 
+  group_by(species)
+
+locs_count <- hexgrid %>%
+  left_join(
+    count(hexbin, index) %>%
+      as_tibble() %>%
+      dplyr::select(index, ct=n)
+  ) %>% drop_na()
+
+
+ggplot() +
+  geom_sf(
+    data = locs_count, size = 0.125,
+    aes(fill = ct)
+  ) +
+  scale_fill_viridis_c(
+    option = "magma", 
+    trans = "log10", aesthetics = "fill",
+    name = "# locations"
+  )
+
+```
+
+We can see that there are two locations well outside the study area. these are likely a
+result of very poor quality Argos locations and the averaging used to calculate daily
+locations for this analysis. We can remove these by filtering based on the speno
+(*PL2018_1002*) and the two dates (*2018-06-04* and *2018-06-06*).
+
+```{r}
+haulout_locs <- db_input_data %>% 
+  filter(lubridate::hour(haulout_dt) == 12,
+         speno != 'PL2018_1002' & !lubridate::date(haulout_dt) %in% c('2018-06-04','2018-06-06'))
+         
+
+hexgrid <- sf::st_make_grid(st_bbox(haulout_locs) %>% st_as_sfc(), cellsize = 50*1000,
+                            what = "polygons", square = FALSE) 
+hexgrid <- st_sf(index = 1:length(lengths(hexgrid)), hexgrid)
+
+hexbin <- st_join(haulout_locs, hexgrid, join = st_intersects)
+
+locs_count <- hexgrid %>%
+  left_join(
+    count(hexbin, index, species) %>%
+      as_tibble() %>%
+      dplyr::select(species, index, ct=n)
+  ) %>% drop_na()
+```
+
+With the erroneous locations removed, we can plot the distribution of haulout locations
+for each of our three species
+
+```{r, fig.height=3, fig.width=8}
+library("rnaturalearth")
+library("rnaturalearthdata")
+library(ggspatial)
+
+world <- ne_countries(scale = "medium", returnclass = "sf") %>% 
+  sf::st_transform(st_crs(locs_count))
+
+ggplot() +
+  annotation_spatial(world) +
+  layer_spatial(
+    data = locs_count, size = 0.125,
+    aes(fill = ct)
+  ) +
+  scale_fill_viridis_c(
+    option = "magma", 
+    trans = "log10", aesthetics = "fill",
+    name = "# locations"
+  ) + facet_grid(~ species)
+```
+
+
+

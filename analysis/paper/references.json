@@ -1,0 +1,1367 @@
+[
+    {
+        "id": "bengtson2004pb",
+        "type": "article-journal",
+        "container-title": "Polar Biology",
+        "ISSN": "0722-4060",
+        "issue": "6",
+        "journalAbbreviation": "Polar Biology",
+        "page": "344-349",
+        "title": "Seasonal haulout patterns of crabeater seals (Lobodon carcinophaga)",
+        "volume": "27",
+        "author": [
+            {
+                "family": "Bengtson",
+                "given": "John L"
+            },
+            {
+                "family": "Cameron",
+                "given": "Michael F"
+            }
+        ],
+        "issued": {
+            "date-parts": [
+                [
+                    "2004"
+                ]
+            ]
+        }
+    },
+    {
+        "id": "bengtson2005pb",
+        "type": "article-journal",
+        "container-title": "Polar Biology",
+        "ISSN": "0722-4060",
+        "issue": "11",
+        "journalAbbreviation": "Polar Biology",
+        "page": "833-845",
+        "title": "Ringed and bearded seal densities in the eastern Chukchi Sea, 1999–2000",
+        "volume": "28",
+        "author": [
+            {
+                "family": "Bengtson",
+                "given": "John L"
+            },
+            {
+                "family": "Hiruki-Raring",
+                "given": "Lisa M"
+            },
+            {
+                "family": "Simpkins",
+                "given": "Michael A"
+            },
+            {
+                "family": "Boveng",
+                "given": "Peter L"
+            }
+        ],
+        "issued": {
+            "date-parts": [
+                [
+                    "2005"
+                ]
+            ]
+        }
+    },
+    {
+        "id": "conn2014mee",
+        "type": "article-journal",
+        "container-title": "Methods in Ecology and Evolution",
+        "DOI": "10.1111/2041-210X.12127",
+        "ISSN": "2041210X",
+        "issue": "12",
+        "language": "en",
+        "page": "1280-1293",
+        "source": "DOI.org (Crossref)",
+        "title": "Estimating multispecies abundance using automated detection systems: ice-associated seals in the Bering Sea",
+        "title-short": "Estimating multispecies abundance using automated detection systems",
+        "URL": "http://doi.wiley.com/10.1111/2041-210X.12127",
+        "volume": "5",
+        "author": [
+            {
+                "family": "Conn",
+                "given": "Paul B."
+            },
+            {
+                "family": "Ver Hoef",
+                "given": "Jay M."
+            },
+            {
+                "family": "McClintock",
+                "given": "Brett T."
+            },
+            {
+                "family": "Moreland",
+                "given": "Erin E."
+            },
+            {
+                "family": "London",
+                "given": "Josh M."
+            },
+            {
+                "family": "Cameron",
+                "given": "Michael F."
+            },
+            {
+                "family": "Dahle",
+                "given": "Shawn P."
+            },
+            {
+                "family": "Boveng",
+                "given": "Peter L."
+            }
+        ],
+        "editor": [
+            {
+                "family": "Francis",
+                "given": "Charles"
+            }
+        ],
+        "accessed": {
+            "date-parts": [
+                [
+                    "2019",
+                    4,
+                    11
+                ]
+            ]
+        },
+        "issued": {
+            "date-parts": [
+                [
+                    "2014",
+                    12
+                ]
+            ]
+        }
+    },
+    {
+        "id": "reder2003pb",
+        "type": "article-journal",
+        "abstract": "Haulout behaviour of harbour seals, living at the northern limit of their distributional range on Svalbard, Norway, was investigated from June to August 2000 using a combination of low-tide counts performed during boat surveys, hourly counts through 12- or 24-h cycles at specific haulout sites, and telemetric data from 37 VHF-tagged seals. The largest aggregations of seals were found at Skarvnes, a site where numbers increased steadily through the summer, reaching a peak during the moulting period in August. At this site, season/date, time of day, tidal state and temperature all significantly influenced the number of animals ashore. At the second most frequented haulout site, at Sørøya, season/date, time of day, temperature and cloud cover significantly affected the number of seals using the site. Pups were found predominantly at Sørøya (7.8 pups±6.3 SD, N=53 counts); they were less common at Skarvnes (1.0 pups±0.2 SD, N=95 counts). Haulout patterns varied by age and sex class in accordance with the demands of lactation, mating and moult. Our limited data on mother-pup pairs suggest that they are closely associated during the nursing period, spending approximately 50% of their time hauled out together. Post lactation, most adult females left haulout areas for periods of up to several days. The haulout behaviour of adult males suggested that they adjusted their behaviour to follow female distribution and movement patterns during the breeding period. Most juveniles and adults of both sexes stayed ashore for prolonged periods during moulting, which took place first in juveniles, then in adult females and finally in adult males. The results of our study show that the basic haulout behaviour patterns of harbour seals at Svalbard are similar to this species’ behaviour at lower latitudes.",
+        "container-title": "Polar Biology",
+        "DOI": "10.1007/s00300-003-0557-1",
+        "ISSN": "1432-2056",
+        "issue": "1",
+        "journalAbbreviation": "Polar Biol",
+        "language": "en",
+        "page": "6-16",
+        "source": "Springer Link",
+        "title": "Haulout behaviour of High Arctic harbour seals (Phoca vitulina vitulina) in Svalbard, Norway",
+        "URL": "https://doi.org/10.1007/s00300-003-0557-1",
+        "volume": "27",
+        "author": [
+            {
+                "family": "Reder",
+                "given": "S."
+            },
+            {
+                "family": "Lydersen",
+                "given": "C."
+            },
+            {
+                "family": "Arnold",
+                "given": "W."
+            },
+            {
+                "family": "Kovacs",
+                "given": "K. M."
+            }
+        ],
+        "accessed": {
+            "date-parts": [
+                [
+                    "2019",
+                    4,
+                    11
+                ]
+            ]
+        },
+        "issued": {
+            "date-parts": [
+                [
+                    "2003",
+                    12,
+                    1
+                ]
+            ]
+        }
+    },
+    {
+        "id": "trukhanova2018ee",
+        "type": "article-journal",
+        "abstract": "Knowledge of life-history parameters is frequently lacking in many species and populations, often because they are cryptic or logistically challenging to study, but also because life-history parameters can be difficult to estimate with adequate precision. We suggest using hierarchical Bayesian analysis (HBA) to analyze variation in life-history parameters among related species, with prior variance components representing shared taxonomy, phenotypic plasticity, and observation error. We develop such a framework to analyze U-shaped natural mortality patterns typical of mammalian life history from a variety of sparse datasets. Using 39 datasets from seals in the family Phocidae, we analyzed 16 models with different formulations for natural morality, specifically the amount of taxonomic and data-level variance components (subfamily, species, study, and dataset levels) included in mortality hazard parameters. The highest-ranked model according to DIC included subfamily-, species-, and dataset-level parameter variance components and resulted in typical U-shaped hazard functions for the 11 seal species in the study. Species with little data had survival schedules shrunken to the mean. We suggest that evolutionary and population ecologists consider employing HBA to quantify variation in life-history parameters. This approach can be useful for increasing the precision of estimates resulting from a collection of (often sparse) datasets, and for producing prior distributions for populations missing life-history data.",
+        "container-title": "Ecology and Evolution",
+        "DOI": "10.1002/ece3.4522",
+        "ISSN": "2045-7758",
+        "issue": "21",
+        "language": "en",
+        "page": "10530-10541",
+        "source": "Wiley Online Library",
+        "title": "Taxonomy-based hierarchical analysis of natural mortality: polar and subpolar phocid seals",
+        "title-short": "Taxonomy-based hierarchical analysis of natural mortality",
+        "URL": "https://onlinelibrary.wiley.com/doi/abs/10.1002/ece3.4522",
+        "volume": "8",
+        "author": [
+            {
+                "family": "Trukhanova",
+                "given": "Irina S."
+            },
+            {
+                "family": "Conn",
+                "given": "Paul B."
+            },
+            {
+                "family": "Boveng",
+                "given": "Peter L."
+            }
+        ],
+        "accessed": {
+            "date-parts": [
+                [
+                    "2019",
+                    4,
+                    11
+                ]
+            ]
+        },
+        "issued": {
+            "date-parts": [
+                [
+                    "2018"
+                ]
+            ]
+        }
+    },
+    {
+        "id": "udevitz2009cjz",
+        "type": "article-journal",
+        "abstract": "Understanding haul-out behavior of ice-associated pinnipeds is essential for designing and interpreting population surveys and for assessing effects of potential changes in their ice environments. We used satellite-linked transmitters to obtain sequential information about location and haul-out state for Pacific walruses, Odobenus rosmarus divergens (Illiger, 1815), in the Bering Sea during April of 2004, 2005, and 2006. We used these data in a generalized mixed model of haul-out bout durations and a hierarchical Bayesian model of haul-out probabilities to assess factors related to walrus haul-out behavior, and provide the first predictive model of walrus haul-out behavior in sea ice habitat. Average haul-out bout duration was 9 h, but durations of haul-out bouts tended to increase with durations of preceding in-water bouts. On average, tagged walruses spent only about 17% of their time hauled out on sea ice. Probability of being hauled out decreased with wind speed, increased with temperature, and follow..., Il est essentiel de comprendre le comportement d’échouerie chez les pinnipèdes associés aux glaces pour planifier et interpréter les inventaires démographiques et pour évaluer les effets des changements potentiels dans leurs environnements glacials. Nous avons utilisé des émetteurs reliés aux satellites pour obtenir des informations séquentielles sur la position et l’état d’échouerie de morses du Pacifique (Odobenus rosmarus divergens (Illiger, 1815)) dans la mer de Béring en avril 2004, 2005 et 2006. Ces données utilisées dans un modèle de mélange généralisé de durée des épisodes d’échouerie et un modèle hiérarchique bayésien des probabilités d’échouerie nous servent à évaluer les facteurs reliés aux comportement d’échouerie chez les morses et à mettre au point le premier modèle prédictif sur le comportement d’échouerie chez les morses dans un habitat de glace de mer. Les morses marqués passent en moyenne 9 h par épisode d’échouerie, mais les durées des périodes d’échouerie ont tendance à s’allonger en f...",
+        "container-title": "Canadian Journal of Zoology",
+        "DOI": "10.1139/Z09-098",
+        "ISSN": "0008-4301",
+        "issue": "12",
+        "journalAbbreviation": "Can. J. Zool.",
+        "page": "1111-1128",
+        "source": "NRC Research Press",
+        "title": "Modeling haul-out behavior of walruses in Bering Sea ice",
+        "URL": "https://www.nrcresearchpress.com/doi/full/10.1139/Z09-098",
+        "volume": "87",
+        "author": [
+            {
+                "family": "Udevitz",
+                "given": "Mark S."
+            },
+            {
+                "family": "Jay",
+                "given": "Chadwick V."
+            },
+            {
+                "family": "Fischbach",
+                "given": "Anthony S."
+            },
+            {
+                "family": "Garlich-Miller",
+                "given": "Joel L."
+            }
+        ],
+        "accessed": {
+            "date-parts": [
+                [
+                    "2019",
+                    4,
+                    11
+                ]
+            ]
+        },
+        "issued": {
+            "date-parts": [
+                [
+                    "2009",
+                    11,
+                    17
+                ]
+            ]
+        }
+    },
+    {
+        "id": "verhoef2014sm",
+        "type": "article-journal",
+        "abstract": "Estimating the abundance of seals inhabiting sea ice is complicated because the areas are large, the ice area and distribution may change rapidly, and it is impractical to detect and count a (typically unknown) portion of the population that is in the water, rather than hauled out on the ice. We propose a method for resolving these issues by using a series of daily estimates that are imprecise by themselves, but yield an acceptable estimate when they are combined. Population surveys of spotted seals, ribbon seals and bearded seals were conducted over 279,880 km2 of the Bering Sea between 13 April and 26 May 2007. During that period, the sea-ice conditions and spatial distribution of seals changed dramatically. We surveyed 2748 km2 using line transect methods from a helicopter deployed from the US Coast Guard icebreaker Healy. Corrections for incomplete availability of seals used a generalized linear mixed model for seal haul-out probability using sensors on seals with data transmitted by satellite. We accounted for incomplete detection through standard distance-sampling methods along with a double-observer model. The availability and detection models were combined in a data model for local abundance in space and time. To accommodate the shifting ice and seal movements, we then developed a hierarchical spatially-autocorrelated regression model using remotely sensed sea ice concentration data to predict abundance at each survey date. While abundance estimation was very imprecise for each date, we were able to combine them to obtain good estimates of overall population abundance even though the population was spatially dynamic. The proposed hierarchical model combined submodels and accounted for their sources of uncertainty. Spotted seals were most abundant within the study area (233,700, 95% CI 137,300–793,100), followed by bearded seals (61,800, 95% CI 34,900–171,600) and ribbon seals (61,100, 95% CI 35,200–189,300).",
+        "collection-title": "Modern Statistical Methods in Ecology",
+        "container-title": "Statistical Methodology",
+        "DOI": "10.1016/j.stamet.2013.03.001",
+        "ISSN": "1572-3127",
+        "journalAbbreviation": "Statistical Methodology",
+        "page": "46-66",
+        "source": "ScienceDirect",
+        "title": "A spatial hierarchical model for abundance of three ice-associated seal species in the eastern Bering Sea",
+        "URL": "http://www.sciencedirect.com/science/article/pii/S1572312713000282",
+        "volume": "17",
+        "author": [
+            {
+                "family": "Ver Hoef",
+                "given": "Jay M."
+            },
+            {
+                "family": "Cameron",
+                "given": "Michael F."
+            },
+            {
+                "family": "Boveng",
+                "given": "Peter L."
+            },
+            {
+                "family": "London",
+                "given": "Josh M."
+            },
+            {
+                "family": "Moreland",
+                "given": "Erin E."
+            }
+        ],
+        "accessed": {
+            "date-parts": [
+                [
+                    "2019",
+                    4,
+                    11
+                ]
+            ]
+        },
+        "issued": {
+            "date-parts": [
+                [
+                    "2014",
+                    3,
+                    1
+                ]
+            ]
+        }
+    },
+    {
+        "id": "verhoef2010cs",
+        "type": "article-journal",
+        "abstract": "This paper considers ways to increase computational speed in generalized linear mixed pseudo-models for the case of many repeated measurements on subjects. We obtain linearly increasing computing time with number of observations, as opposed to O(n 3) increasing computing time using numerical optimization. We also find a surprising result; that incomplete optimization for covariance parameters within the larger parameter estimation algorithm actually decreases time to convergence. After comparing various computing algorithms and choosing the best one, we fit a generalized linear mixed model to a binary time series data set with over 100 fixed effects, 50 random effects, and approximately 1.5 × 105 observations.",
+        "container-title": "Computational Statistics",
+        "DOI": "10.1007/s00180-009-0160-1",
+        "ISSN": "1613-9658",
+        "issue": "1",
+        "journalAbbreviation": "Comput Stat",
+        "language": "en",
+        "page": "39-55",
+        "source": "Springer Link",
+        "title": "Fast computing of some generalized linear mixed pseudo-models with temporal autocorrelation",
+        "URL": "https://doi.org/10.1007/s00180-009-0160-1",
+        "volume": "25",
+        "author": [
+            {
+                "family": "Ver Hoef",
+                "given": "Jay M."
+            },
+            {
+                "family": "London",
+                "given": "Josh M."
+            },
+            {
+                "family": "Boveng",
+                "given": "Peter L."
+            }
+        ],
+        "accessed": {
+            "date-parts": [
+                [
+                    "2019",
+                    4,
+                    11
+                ]
+            ]
+        },
+        "issued": {
+            "date-parts": [
+                [
+                    "2010",
+                    3,
+                    1
+                ]
+            ]
+        }
+    },
+    {
+        "id": "meier2014rg",
+        "type": "article-journal",
+        "container-title": "Reviews of Geophysics",
+        "ISSN": "1944-9208",
+        "issue": "3",
+        "language": "en",
+        "page": "185-217",
+        "source": "agupubs.onlinelibrary.wiley.com",
+        "title": "Arctic sea ice in transformation: A review of recent observed changes and impacts on biology and human activity",
+        "title-short": "Arctic sea ice in transformation",
+        "URL": "https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/2013RG000431",
+        "volume": "52",
+        "author": [
+            {
+                "family": "Meier",
+                "given": "Walter N."
+            },
+            {
+                "family": "Hovelsrud",
+                "given": "Greta K."
+            },
+            {
+                "family": "Oort",
+                "given": "Bob E. H.",
+                "dropping-particle": "van"
+            },
+            {
+                "family": "Key",
+                "given": "Jeffrey R."
+            },
+            {
+                "family": "Kovacs",
+                "given": "Kit M."
+            },
+            {
+                "family": "Michel",
+                "given": "Christine"
+            },
+            {
+                "family": "Haas",
+                "given": "Christian"
+            },
+            {
+                "family": "Granskog",
+                "given": "Mats A."
+            },
+            {
+                "family": "Gerland",
+                "given": "Sebastian"
+            },
+            {
+                "family": "Perovich",
+                "given": "Donald K."
+            },
+            {
+                "family": "Makshtas",
+                "given": "Alexander"
+            },
+            {
+                "family": "Reist",
+                "given": "James D."
+            }
+        ],
+        "accessed": {
+            "date-parts": [
+                [
+                    "2019",
+                    6,
+                    4
+                ]
+            ]
+        },
+        "issued": {
+            "date-parts": [
+                [
+                    "2014",
+                    9,
+                    1
+                ]
+            ]
+        }
+    },
+    {
+        "id": "kelly2010",
+        "type": "article-journal",
+        "abstract": "by B.P. Kelly, J.L. Bengtson, P.L. Boveng, M.F. Cameron, S.P. Dahle, J.K. Jansen, E.A. Logerwell, J.E. Overland, C.L. Sabine, G.T. Waring, and J.M. Wilder.",
+        "archive_location": "noaa:3762",
+        "collection-title": "NOAA technical memorandum NMFS-AFSC ; 212",
+        "title": "Status review of the ringed seal (Phoca hispida)",
+        "URL": "https://repository.library.noaa.gov/view/noaa/3762",
+        "editor": [
+            {
+                "literal": "Alaska Fisheries Science Center (U.S.)"
+            }
+        ],
+        "author": [
+            {
+                "family": "Kelly",
+                "given": "Brendan Patrick"
+            },
+            {
+                "family": "Bengtson",
+                "given": "John L."
+            },
+            {
+                "family": "Boveng",
+                "given": "Peter Laurens"
+            },
+            {
+                "family": "Cameron",
+                "given": "Michael Foley"
+            },
+            {
+                "family": "Dahle",
+                "given": "Shawn Patrick"
+            },
+            {
+                "family": "Jansen",
+                "given": "J. K. (John Kevin)"
+            },
+            {
+                "family": "Logerwell",
+                "given": "E. A. (Elizabeth A.)"
+            },
+            {
+                "family": "Overland",
+                "given": "James E."
+            },
+            {
+                "family": "Sabine",
+                "given": "Christopher L."
+            },
+            {
+                "family": "Waring",
+                "given": "Gordon T."
+            },
+            {
+                "family": "Wilder",
+                "given": "J. M."
+            }
+        ],
+        "issued": {
+            "date-parts": [
+                [
+                    "2010"
+                ]
+            ]
+        }
+    },
+    {
+        "id": "cameron2010a",
+        "type": "article-journal",
+        "abstract": "by M.F. Cameron, J. L. Bengtson, P.L. Boveng, J.K. Jansen, B.P. Kelly, S.P. Dahle, E.A. Logerwell, J.E. Overland, C.L. Sabine, G.T. Waring, and J.M. Wilder.",
+        "archive_location": "noaa:3761",
+        "collection-title": "NOAA technical memorandum NMFS-AFSC ; 211",
+        "title": "Status review of the bearded seal (Erignathus barbatus)",
+        "URL": "https://repository.library.noaa.gov/view/noaa/3761",
+        "editor": [
+            {
+                "literal": "Alaska Fisheries Science Center (U.S.)"
+            }
+        ],
+        "author": [
+            {
+                "family": "Cameron",
+                "given": "Michael Foley"
+            },
+            {
+                "family": "Bengtson",
+                "given": "John L."
+            },
+            {
+                "family": "Boveng",
+                "given": "Peter Laurens"
+            },
+            {
+                "family": "Jansen",
+                "given": "J. K. (John Kevin)"
+            },
+            {
+                "family": "Kelly",
+                "given": "Brendan Patrick"
+            },
+            {
+                "family": "Dahle",
+                "given": "Shawn Patrick"
+            },
+            {
+                "family": "Logerwell",
+                "given": "E. A. (Elizabeth A.)"
+            },
+            {
+                "family": "Overland",
+                "given": "James E."
+            },
+            {
+                "family": "Sabine",
+                "given": "Christopher L."
+            },
+            {
+                "family": "Waring",
+                "given": "Gordon T."
+            },
+            {
+                "family": "Wilder",
+                "given": "J. M."
+            }
+        ],
+        "issued": {
+            "date-parts": [
+                [
+                    "2010"
+                ]
+            ]
+        }
+    },
+    {
+        "id": "boveng2013",
+        "type": "article-journal",
+        "abstract": "\"This status review is intended to be a compilation of the best available information concerning the status of ribbon seals (Histriophoca fasciata), including the past, present, and future threats to this species. It is an update to a previous review (Boveng et al. 2008) conducted in response to a petition filed by the Center for Biological Diversity to list the ribbon seal as threatened or endangered under the U.S. Endangered Species Act (ESA), primarily due to concern about threats to this species' habitat from climate warming and loss of sea ice. This update was compiled by a National Oceanic and Atmospheric Administration (NOAA) biological review team (BRT) under a settlement agreement with the Center for Biological Diversity on August 30, 2011, in which NMFS agreed to apply a modified approach to analyzing extinction risk in the 'foreseeable future', and incorporate new information that has become available since the previous review\"--Executive summary.",
+        "archive_location": "noaa:4451",
+        "collection-title": "NOAA technical memorandum NMFS-AFSC ; 255",
+        "title": "Status review of the ribbon seal (Histriophoca fasciata)",
+        "URL": "https://repository.library.noaa.gov/view/noaa/4451",
+        "editor": [
+            {
+                "literal": "Alaska Fisheries Science Center (U.S.)"
+            }
+        ],
+        "author": [
+            {
+                "family": "Boveng",
+                "given": "Peter Laurens"
+            },
+            {
+                "family": "Bengtson",
+                "given": "John L."
+            },
+            {
+                "family": "Cameron",
+                "given": "Michael Foley"
+            },
+            {
+                "family": "Dahle",
+                "given": "Shawn Patrick"
+            },
+            {
+                "family": "Logerwell",
+                "given": "E. A. (Elizabeth A.)"
+            },
+            {
+                "family": "London",
+                "given": "Josh M."
+            },
+            {
+                "family": "Overland",
+                "given": "James E."
+            },
+            {
+                "family": "Sterling",
+                "given": "Jeremy T."
+            },
+            {
+                "family": "Stevenson",
+                "given": "Duane E.",
+                "suffix": "1970-"
+            },
+            {
+                "family": "Taylor",
+                "given": "Barbara Louise",
+                "suffix": "1954-"
+            },
+            {
+                "family": "Ziel",
+                "given": "Heather Lee",
+                "suffix": "1974-"
+            }
+        ],
+        "issued": {
+            "date-parts": [
+                [
+                    "2013"
+                ]
+            ]
+        }
+    },
+    {
+        "id": "boveng2009a",
+        "type": "article-journal",
+        "abstract": "by P.L. Boveng, J.L. Bengtson, T.W. Buckley, M.F. Cameron, S.P. Dahle, B.P. Kelly, B.A. Megrey, J.E. Overland, and N.J. Williamson.",
+        "archive_location": "noaa:3671",
+        "collection-title": "NOAA technical memorandum NMFS-AFSC ; 200",
+        "title": "Status review of the spotted seal (Phoca largha)",
+        "URL": "https://repository.library.noaa.gov/view/noaa/3671",
+        "editor": [
+            {
+                "literal": "Alaska Fisheries Science Center (U.S.)"
+            }
+        ],
+        "author": [
+            {
+                "family": "Boveng",
+                "given": "Peter Laurens"
+            },
+            {
+                "family": "Bengtson",
+                "given": "John L."
+            },
+            {
+                "family": "Buckley",
+                "given": "Troy William"
+            },
+            {
+                "family": "Cameron",
+                "given": "Michael Foley"
+            },
+            {
+                "family": "Dahle",
+                "given": "Shawn Patrick"
+            },
+            {
+                "family": "Kelly",
+                "given": "Brendan Patrick"
+            },
+            {
+                "family": "Megrey",
+                "given": "Bernard A."
+            },
+            {
+                "family": "Overland",
+                "given": "James E."
+            },
+            {
+                "family": "Williamson",
+                "given": "Neal J."
+            }
+        ],
+        "issued": {
+            "date-parts": [
+                [
+                    "2009"
+                ]
+            ]
+        }
+    },
+    {
+        "id": "perpinan2012jss",
+        "type": "article-journal",
+        "abstract": "The solaR package allows for reproducible research both for photovoltaics (PV) systems performance and solar radiation. It includes a set of classes, methods and functions to calculate the sun geometry and the solar radiation incident on a photovoltaic generator and to simulate the performance of several applications of the photovoltaic energy. This package performs the whole calculation procedure from both daily and intradaily global horizontal irradiation to the final productivity of grid-connected PV systems and water pumping PV systems.\n\nIt is designed using a set of S4 classes whose core is a group of slots with multivariate time series. The classes share a variety of methods to access the information and several visualization methods. In addition, the package provides a tool for the visual statistical analysis of the performance of a large PV plant composed of several systems.\n\nAlthough solaR is primarily designed for time series associated to a location defined by its latitude/longitude values and the temperature and irradiation conditions, it can be easily combined with spatial packages for space-time analysis.",
+        "container-title": "Journal of Statistical Software",
+        "issue": "9",
+        "page": "1–32",
+        "title": "solaR: Solar Radiation and Photovoltaic Systems with R",
+        "URL": "http://www.jstatsoft.org/v50/i09/",
+        "volume": "50",
+        "author": [
+            {
+                "family": "Perpiñán",
+                "given": "Oscar"
+            }
+        ],
+        "issued": {
+            "date-parts": [
+                [
+                    "2012"
+                ]
+            ]
+        }
+    },
+    {
+        "id": "rcoreteam2019",
+        "type": "book",
+        "event-place": "Vienna, Austria",
+        "publisher": "R Foundation for Statistical Computing",
+        "publisher-place": "Vienna, Austria",
+        "title": "R: A Language and Environment for Statistical Computing",
+        "URL": "https://www.R-project.org/",
+        "author": [
+            {
+                "literal": "R Core Team"
+            }
+        ],
+        "issued": {
+            "date-parts": [
+                [
+                    "2019"
+                ]
+            ]
+        }
+    },
+    {
+        "id": "mesinger2006bams",
+        "type": "article-journal",
+        "abstract": "In 1997, during the late stages of production of NCEP–NCAR Global Reanalysis (GR), exploration of a regional reanalysis project was suggested by the GR project's Advisory Committee, “particularly if the RDAS [Regional Data Assimilation System] is significantly better than the global reanalysis at capturing the regional hydrological cycle, the diurnal cycle and other important features of weather and climate variability.” Following a 6-yr development and production effort, NCEP's North American Regional Reanalysis (NARR) project was completed in 2004, and data are now available to the scientific community. Along with the use of the NCEP Eta model and its Data Assimilation System (at 32-km–45-layer resolution with 3-hourly output), the hallmarks of the NARR are the incorporation of hourly assimilation of precipitation, which leverages a comprehensive precipitation analysis effort, the use of a recent version of the Noah land surface model, and the use of numerous other datasets that are additional or improved compared to the GR. Following the practice applied to NCEP's GR, the 25-yr NARR retrospective production period (1979–2003) is augmented by the construction and daily execution of a system for near-real-time continuation of the NARR, known as the Regional Climate Data Assimilation System (R-CDAS). Highlights of the NARR results are presented: precipitation over the continental United States (CONUS), which is seen to be very near the ingested analyzed precipitation; fits of tropospheric temperatures and winds to rawinsonde observations; and fits of 2-m temperatures and 10-m winds to surface station observations. The aforementioned fits are compared to those of the NCEP–Department of Energy (DOE) Global Reanalysis (GR2). Not only have the expectations cited above been fully met, but very substantial improvements in the accuracy of temperatures and winds compared to that of GR2 are achieved throughout the troposphere. Finally, the numerous datasets produced are outlined and information is provided on the data archiving and present data availability.",
+        "container-title": "Bulletin of the American Meteorological Society",
+        "DOI": "10.1175/BAMS-87-3-343",
+        "ISSN": "0003-0007",
+        "issue": "3",
+        "journalAbbreviation": "Bull. Amer. Meteor. Soc.",
+        "page": "343-360",
+        "source": "journals.ametsoc.org (Atypon)",
+        "title": "North American Regional Reanalysis",
+        "URL": "https://journals.ametsoc.org/doi/abs/10.1175/BAMS-87-3-343",
+        "volume": "87",
+        "author": [
+            {
+                "family": "Mesinger",
+                "given": "Fedor"
+            },
+            {
+                "family": "DiMego",
+                "given": "Geoff"
+            },
+            {
+                "family": "Kalnay",
+                "given": "Eugenia"
+            },
+            {
+                "family": "Mitchell",
+                "given": "Kenneth"
+            },
+            {
+                "family": "Shafran",
+                "given": "Perry C."
+            },
+            {
+                "family": "Ebisuzaki",
+                "given": "Wesley"
+            },
+            {
+                "family": "Jović",
+                "given": "Dušan"
+            },
+            {
+                "family": "Woollen",
+                "given": "Jack"
+            },
+            {
+                "family": "Rogers",
+                "given": "Eric"
+            },
+            {
+                "family": "Berbery",
+                "given": "Ernesto H."
+            },
+            {
+                "family": "Ek",
+                "given": "Michael B."
+            },
+            {
+                "family": "Fan",
+                "given": "Yun"
+            },
+            {
+                "family": "Grumbine",
+                "given": "Robert"
+            },
+            {
+                "family": "Higgins",
+                "given": "Wayne"
+            },
+            {
+                "family": "Li",
+                "given": "Hong"
+            },
+            {
+                "family": "Lin",
+                "given": "Ying"
+            },
+            {
+                "family": "Manikin",
+                "given": "Geoff"
+            },
+            {
+                "family": "Parrish",
+                "given": "David"
+            },
+            {
+                "family": "Shi",
+                "given": "Wei"
+            }
+        ],
+        "accessed": {
+            "date-parts": [
+                [
+                    "2019",
+                    6,
+                    10
+                ]
+            ]
+        },
+        "issued": {
+            "date-parts": [
+                [
+                    "2006",
+                    3,
+                    1
+                ]
+            ]
+        }
+    },
+    {
+        "id": "cavalieri1996",
+        "type": "article-journal",
+        "DOI": "10.5067/8gq8lzqvl0vl",
+        "source": "DOI.org (Datacite)",
+        "title": "Sea Ice Concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS Passive Microwave Data, Version 1",
+        "URL": "http://nsidc.org/data/NSIDC-0051/versions/1",
+        "author": [
+            {
+                "family": "Cavalieri",
+                "given": "Donald"
+            }
+        ],
+        "accessed": {
+            "date-parts": [
+                [
+                    "2019",
+                    6,
+                    11
+                ]
+            ]
+        },
+        "issued": {
+            "date-parts": [
+                [
+                    "1996"
+                ]
+            ]
+        }
+    },
+    {
+        "id": "london2012posf",
+        "type": "article-journal",
+        "abstract": "The goal of this study was to model haul-out behavior of harbor seals (Phoca vitulina) in the Hood Canal region of Washington State with respect to changes in physiological, environmental, and temporal covariates. Previous research has provided a solid understanding of seal haul-out behavior. Here, we expand on that work using a generalized linear mixed model (GLMM) with temporal autocorrelation and a large dataset. Our dataset included behavioral haul-out records from archival and VHF radio tag deployments on 25 individual seals representing 61,430 seal hours. A novel application for increased computational efficiency allowed us to examine this large dataset with a GLMM that appropriately accounts for temporal autocorellation. We found significant relationships with the covariates hour of day, day of year, minutes from high tide and year. Additionally, there was a significant effect of the interaction term hour of day : day of year. This interaction term demonstrated that seals are more likely to haul out during nighttime hours in August and September, but then switch to predominantly daylight haul-out patterns in October and November. We attribute this change in behavior to an effect of human disturbance levels. This study also examined a unique ecological event to determine the role of increased killer whale (Orcinus orca) predation on haul-out behavior. In 2003 and 2005 these harbor seals were exposed to unprecedented levels of killer whale predation and results show an overall increase in haul-out probability after exposure to killer whales. The outcome of this study will be integral to understanding any changes in population abundance as a result of increased killer whale predation.",
+        "container-title": "PLoS One; San Francisco",
+        "DOI": "http://dx.doi.org/10.1371/journal.pone.0038180",
+        "issue": "6",
+        "language": "English",
+        "page": "e38180",
+        "source": "ProQuest",
+        "title": "Haul-Out Behavior of Harbor Seals (Phoca vitulina) in Hood Canal, Washington",
+        "URL": "https://search.proquest.com/docview/1326186868/abstract/7E5DD288549E42D5PQ/1",
+        "volume": "7",
+        "author": [
+            {
+                "family": "London",
+                "given": "Josh M."
+            },
+            {
+                "family": "Ver Hoef",
+                "given": "Jay M."
+            },
+            {
+                "family": "Jeffries",
+                "given": "Steven J."
+            },
+            {
+                "family": "Lance",
+                "given": "Monique M."
+            },
+            {
+                "family": "Boveng",
+                "given": "Peter L."
+            }
+        ],
+        "accessed": {
+            "date-parts": [
+                [
+                    "2019",
+                    6,
+                    12
+                ]
+            ]
+        },
+        "issued": {
+            "date-parts": [
+                [
+                    "2012",
+                    6
+                ]
+            ]
+        }
+    },
+    {
+        "id": "fedoseev2000",
+        "type": "book",
+        "ISBN": "5-93692-023-2",
+        "publisher": "Center for Russian Environmental Policy",
+        "title": "Population biology of ice-associated forms of seals and their role in the northern Pacific ecosystems",
+        "author": [
+            {
+                "family": "Fedoseev",
+                "given": "Gennadiĭ Aleksandrovich"
+            }
+        ],
+        "issued": {
+            "date-parts": [
+                [
+                    "2000"
+                ]
+            ]
+        }
+    },
+    {
+        "id": "kwok2018erl",
+        "type": "article-journal",
+        "abstract": "Large-scale changes in Arctic sea ice thickness, volume and multiyear sea ice (MYI) coverage with available measurements from submarine sonars, satellite altimeters (ICESat and CryoSat-2), and satellite scatterometers are summarized. The submarine record spans the period between 1958 and 2000, the satellite altimeter records between 2003 and 2018, and the scatterometer records between 1999 and 2017. Regional changes in ice thickness (since 1958) and within the data release area of the Arctic Ocean, previously reported by Kwok and Rothrock (2009 Geophys. Res. Lett. 36 L15501), have been updated to include the 8 years of CryoSat-2 (CS-2) retrievals. Between the pre-1990 submarine period (1958–1976) and the CS-2 period (2011–2018) the average thickness near the end of the melt season, in six regions, decreased by 2.0 m or some 66% over six decades. Within the data release area (∼38% of the Arctic Ocean) of submarine ice draft, the thinning of ∼1.75 m in winter since 1980 (maximum thickness of 3.64 m in the regression analysis) has not changed significantly; the mean thickness over the CS-2 period is ∼2 m. The 15 year satellite record depicts losses in sea ice volume at 2870 km3/decade and 5130 km3/decade in winter (February–March) and fall (October–November), respectively: more moderate trends compared to the sharp decreases over the ICESat period, where the losses were weighted by record-setting melt in 2007. Over the scatterometer record (1999–2017), the Arctic has lost more than 2 × 106 km2 of MYI—a decrease of more than 50%; MYI now covers less than one-third of the Arctic Ocean. Independent MYI coverage and volume records co-vary in time, the MYI area anomalies explain ∼85% of the variance in the anomalies in Arctic sea ice volume. If losses of MYI continue, Arctic thickness/volume will be controlled by seasonal ice, suggesting that the thickness/volume trends will be more moderate (as seen here) but more sensitive to climate forcing.",
+        "container-title": "Environmental Research Letters",
+        "DOI": "10.1088/1748-9326/aae3ec",
+        "ISSN": "1748-9326",
+        "issue": "10",
+        "journalAbbreviation": "Environ. Res. Lett.",
+        "language": "en",
+        "note": "publisher: IOP Publishing",
+        "page": "105005",
+        "source": "Institute of Physics",
+        "title": "Arctic sea ice thickness, volume, and multiyear ice coverage: losses and coupled variability (1958–2018)",
+        "title-short": "Arctic sea ice thickness, volume, and multiyear ice coverage",
+        "URL": "https://doi.org/10.1088%2F1748-9326%2Faae3ec",
+        "volume": "13",
+        "author": [
+            {
+                "family": "Kwok",
+                "given": "R."
+            }
+        ],
+        "accessed": {
+            "date-parts": [
+                [
+                    "2020",
+                    10,
+                    6
+                ]
+            ]
+        },
+        "issued": {
+            "date-parts": [
+                [
+                    "2018",
+                    10
+                ]
+            ]
+        }
+    },
+    {
+        "id": "wang2017dsrpitsio",
+        "type": "article-journal",
+        "abstract": "With the sea-ice cover in the Arctic fast declining, changes to the timing of sea-ice break-up and freeze-up is an urgent economic, social, and scientific concern. Based on daily sea-ice concentration data we assess three variables: the dates of sea-ice break-up and freeze-up, and the annual sea-ice duration in the Pacific Arctic. The simulation results from the coupled Atmosphere-Ocean General Circulation Models from phase 5 of the Coupled Model Intercomparison Project (CMIP5) are the source for this study. Compared with observations, CMIP5 models simulate all three variables well. The length of sea-ice duration is shrinking, with the strongest trend occurring for the period 1990-2014; this downward trend is projected to continue at least through mid-century by the CMIP5 models. Comparisons made at eight Chukchi Sea mooring sites and eight Distributed Biological Observatory (DBO) regions show consistent results. The 30-year averaged trend for annual sea-ice duration in the southern Chukchi Sea is projected to be -0.68 (-0.74) days/year to -1.20 (-1.17) days/year for 2015-2044 under RCP8.5 (RCP4.5) emissions scenarios. This is equivalent to a reduction of 20-36 days in the annual sea-ice duration. A similar negative trend is also found at all eight DBO regions. The reduction in annual sea-ice duration will include both earlier break-up dates and later freeze-up dates. However, models project that a later freeze-up contributes more than earlier break-up to the overall shortening of annual sea-ice duration. Around the Bering Strait area, future changes are the smallest, with less than 20 days change in duration during the next 30 years. In contrast, up to a 60-day reduction of the sea-ice duration in the East Siberian, Chukchi and Beaufort Seas is projected near the middle of the 21st century, when averaged over the period of 2030-2044.",
+        "container-title": "Deep Sea Research Part II: Topical Studies in Oceanography",
+        "DOI": "10.1016/j.dsr2.2017.11.017",
+        "journalAbbreviation": "Deep Sea Research Part II: Topical Studies in Oceanography",
+        "source": "ResearchGate",
+        "title": "Sea-ice cover timing in the Pacific Arctic: The present and projections to mid-century by selected CMIP5 models",
+        "title-short": "Sea-ice cover timing in the Pacific Arctic",
+        "author": [
+            {
+                "family": "Wang",
+                "given": "Muyin"
+            },
+            {
+                "family": "Yang",
+                "given": "Qiong"
+            },
+            {
+                "family": "Overland",
+                "given": "James"
+            },
+            {
+                "family": "Stabeno",
+                "given": "Phyllis"
+            }
+        ],
+        "issued": {
+            "date-parts": [
+                [
+                    "2017",
+                    12,
+                    1
+                ]
+            ]
+        }
+    },
+    {
+        "DOI": "10.1002/ece3.6302",
+        "ISSN": "2045-7758",
+        "author": [
+            {
+                "family": "Von Duyke",
+                "given": "Andrew L."
+            },
+            {
+                "family": "Douglas",
+                "given": "David C."
+            },
+            {
+                "family": "Herreman",
+                "given": "Jason K."
+            },
+            {
+                "family": "Crawford",
+                "given": "Justin A."
+            }
+        ],
+        "container-title": "Ecology and Evolution",
+        "id": "vonduyke2020ee",
+        "issue": "n/a",
+        "issued": {
+            "date-parts": [
+                [
+                    2020,
+                    5,
+                    5
+                ]
+            ]
+        },
+        "key": "DMLV7N4G",
+        "libraryid": "2",
+        "page": "1-22",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Ringed seal (<i>Pusa hispida</i>) seasonal movements, diving, and haul-out behavior in the Beaufort, Chukchi, and Bering Seas (2011–2017)",
+        "type": "article-journal",
+        "volume": "00"
+    },
+    {
+        "DOI": "10.1007/s00300-020-02710-6",
+        "ISSN": "1432-2056",
+        "URL": "https://doi.org/10.1007/s00300-020-02710-6",
+        "author": [
+            {
+                "family": "Olnes",
+                "given": "J."
+            },
+            {
+                "family": "Crawford",
+                "given": "J."
+            },
+            {
+                "family": "Citta",
+                "given": "J. J."
+            },
+            {
+                "family": "Druckenmiller",
+                "given": "M. L."
+            },
+            {
+                "family": "Von Duyke",
+                "given": "A. L."
+            },
+            {
+                "family": "Quakenbush",
+                "given": "L."
+            }
+        ],
+        "container-title": "Polar Biology",
+        "id": "olnes2020pb",
+        "issued": {
+            "date-parts": [
+                [
+                    2020,
+                    7,
+                    8
+                ]
+            ]
+        },
+        "key": "A53745C7",
+        "libraryid": "2",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Movement, diving, and haul-out behaviors of juvenile bearded seals in the Bering, Chukchi and Beaufort seas, 2014–2018",
+        "type": "article-journal"
+    },
+    {
+        "DOI": "10.1038/s41558-020-0695-2",
+        "ISSN": "1758-6798",
+        "author": [
+            {
+                "family": "Huntington",
+                "given": "Henry P."
+            },
+            {
+                "family": "Danielson",
+                "given": "Seth L."
+            },
+            {
+                "family": "Wiese",
+                "given": "Francis K."
+            },
+            {
+                "family": "Baker",
+                "given": "Matthew"
+            },
+            {
+                "family": "Boveng",
+                "given": "Peter"
+            },
+            {
+                "family": "Citta",
+                "given": "John J."
+            },
+            {
+                "family": "De Robertis",
+                "given": "Alex"
+            },
+            {
+                "family": "Dickson",
+                "given": "Danielle M. S."
+            },
+            {
+                "family": "Farley",
+                "given": "Ed"
+            },
+            {
+                "family": "George",
+                "given": "J. Craighead"
+            },
+            {
+                "family": "Iken",
+                "given": "Katrin"
+            },
+            {
+                "family": "Kimmel",
+                "given": "David G."
+            },
+            {
+                "family": "Kuletz",
+                "given": "Kathy"
+            },
+            {
+                "family": "Ladd",
+                "given": "Carol"
+            },
+            {
+                "family": "Levine",
+                "given": "Robert"
+            },
+            {
+                "family": "Quakenbush",
+                "given": "Lori"
+            },
+            {
+                "family": "Stabeno",
+                "given": "Phyllis"
+            },
+            {
+                "family": "Stafford",
+                "given": "Kathleen M."
+            },
+            {
+                "family": "Stockwell",
+                "given": "Dean"
+            },
+            {
+                "family": "Wilson",
+                "given": "Chris"
+            }
+        ],
+        "container-title": "Nature Climate Change",
+        "id": "huntington2020ncc",
+        "issued": {
+            "date-parts": [
+                [
+                    2020,
+                    2,
+                    24
+                ]
+            ]
+        },
+        "key": "BEUFTGYI",
+        "libraryid": "2",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Evidence suggests potential transformation of the Pacific Arctic ecosystem is underway",
+        "type": "article-journal"
+    },
+    {
+        "author": [
+            {
+                "family": "Burns",
+                "given": "John J."
+            }
+        ],
+        "id": "burns1981",
+        "issued": {
+            "date-parts": [
+                [
+                    1981
+                ]
+            ]
+        },
+        "key": "IZ9HVTNH",
+        "language": "English",
+        "libraryid": "2",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Ribbon seal (<i>Phoca fasciata</i>)",
+        "type": "personal_communication"
+    },
+    {
+        "author": [
+            {
+                "family": "Burns",
+                "given": "John J."
+            }
+        ],
+        "container-title": "Encyclopedia of Marine Mammals",
+        "edition": "Second",
+        "editor": [
+            {
+                "family": "William F. Perrin"
+            },
+            {
+                "family": "Bernd Würsig"
+            },
+            {
+                "family": "J. G. M. Thewissen"
+            }
+        ],
+        "id": "burns2009",
+        "issued": {
+            "date-parts": [
+                [
+                    2009
+                ]
+            ]
+        },
+        "key": "XBL6NLCD",
+        "libraryid": "2",
+        "page": "533-542",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "publisher": "Academic Press",
+        "publisher-place": "New York, NY",
+        "title": "Harbor Seal and Spotted Seal (<i>Phoca vitulina and P. largha</i>)",
+        "type": "chapter"
+    },
+    {
+        "DOI": "10.1371/journal.pone.0038180",
+        "author": [
+            {
+                "family": "London",
+                "given": "Josh M."
+            },
+            {
+                "family": "Ver Hoef",
+                "given": "Jay M."
+            },
+            {
+                "family": "Jeffries",
+                "given": "Steven J."
+            },
+            {
+                "family": "Lance",
+                "given": "Monique M."
+            },
+            {
+                "family": "Boveng",
+                "given": "Peter L."
+            }
+        ],
+        "container-title": "PLoS ONE",
+        "id": "london2012",
+        "issue": "6",
+        "issued": {
+            "date-parts": [
+                [
+                    2012,
+                    6,
+                    18
+                ]
+            ]
+        },
+        "key": "E43XNSHD",
+        "libraryid": "2",
+        "page": "e38180",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Haul-out behavior of harbor seals (<i>Phoca vitulina</i>) in Hood Canal, Washington",
+        "type": "article-journal",
+        "volume": "7"
+    }
+]
