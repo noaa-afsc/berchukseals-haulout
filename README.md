@@ -3,7 +3,7 @@
 <!-- badges: start -->
 
 [![Launch Rstudio
-Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jmlondon/berchukHaulout/master?urlpath=rstudio)
+Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jmlondon/berchukHaulout/main?urlpath=rstudio)
 <!-- badges: end -->
 
 # berchukHaulout

@@ -15,7 +15,7 @@ Title <- "Haul-out behavior and aerial survey detectability of seals in the Beri
 ```
 
 <!-- badges: start -->
-[![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jmlondon/berchukHaulout/master?urlpath=rstudio)
+[![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jmlondon/berchukHaulout/main?urlpath=rstudio)
 <!-- badges: end -->
 
 # berchukHaulout
