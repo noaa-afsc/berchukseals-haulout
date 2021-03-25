@@ -30,10 +30,10 @@ cov_means <- tbl(con, in_schema("base","tbl_analysis_grid_cov_wx")) %>%
             wind = sqrt(mean(rast_uwnd, na.rm=TRUE)^2 + mean(rast_vwnd, na.rm=TRUE)^2)
             )
 
-cov_means_daily <- tbl(con, in_schema("base","tbl_analysis_grid_cov_wx")) %>%
+cov_means_daily_2012 <- tbl(con, in_schema("base","tbl_analysis_grid_cov_wx")) %>%
   filter(cell %in% !!grid.sf$cell) %>%
   filter(month(fdatetime_range_start) %in% c(3,4,5,6,7),
-         year(fdatetime_range_start) != '2004') %>%
+         year(fdatetime_range_start) == '2012') %>%
   group_by(year = year(fdatetime_range_start),
            yday = yday(fdatetime_range_start),
            cell) %>%
@@ -46,8 +46,8 @@ cov_means_daily <- tbl(con, in_schema("base","tbl_analysis_grid_cov_wx")) %>%
 
 cov_means <- cov_means %>% collect()
 save(cov_means, file = here::here('data/cov_means.Rdata'))
-cov_means_daily <- cov_means_daily %>% collect()
-save(cov_means_daily, file = here::here('data/cov_means_daily.Rdata'))
+cov_means_daily <- cov_means_daily_2012 %>% collect()
+save(cov_means_daily_2012, file = here::here('data/cov_means_daily_2012.Rdata'))
 
 
 

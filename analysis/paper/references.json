@@ -1363,5 +1363,48 @@
         "title": "Haul-out behavior of harbor seals (<i>Phoca vitulina</i>) in Hood Canal, Washington",
         "type": "article-journal",
         "volume": "7"
+    },
+    {
+        "DOI": "10.1007/s00300-016-1938-6",
+        "ISSN": "0722-4060, 1432-2056",
+        "URL": "http://link.springer.com/10.1007/s00300-016-1938-6",
+        "accessed": {
+            "date-parts": []
+        },
+        "author": [
+            {
+                "family": "Perry",
+                "given": "Elizabeth A."
+            },
+            {
+                "family": "Stenson",
+                "given": "Garry B."
+            },
+            {
+                "family": "Buren",
+                "given": "Alejandro D."
+            }
+        ],
+        "container-title": "Polar Biology",
+        "container-title-short": "Polar Biol",
+        "id": "perry2017",
+        "issue": "1",
+        "issued": {
+            "date-parts": [
+                [
+                    2017,
+                    1
+                ]
+            ]
+        },
+        "key": "WTH5LA3L",
+        "language": "en",
+        "libraryid": "2",
+        "page": "151-160",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "source": "DOI.org (Crossref)",
+        "title": "Attendance and nursing patterns of harp seals in the harsh environment of the northwest Atlantic",
+        "type": "article-journal",
+        "volume": "40"
     }
 ]
