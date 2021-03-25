@@ -1,5 +1,10 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- badges: start -->
+
+[![Launch Rstudio
+Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jmlondon/berchukHaulout/master?urlpath=rstudio)
+<!-- badges: end -->
 
 # berchukHaulout
 
@@ -34,10 +39,9 @@ installed on your computer the [R
 software](https://cloud.r-project.org/) itself and optionally [RStudio
 Desktop](https://rstudio.com/products/rstudio/download/).
 
-The simplest way (*not yet enabled*) to explore the text, code and data
-is to click on
-[binder](https://mybinder.org/v2/gh///master?urlpath=rstudio) to open an
-instance of RStudio in your browser, which will have the compendium
-files ready to work with. Binder uses rocker-project.org Docker images
-to ensure a consistent and reproducible computational environment. These
-Docker images can also be used locally.
+The simplest way to explore the text, code and data is to click on
+[binder](https://mybinder.org/v2/gh/jmlondon/berchukHaulout/master?urlpath=rstudio)
+to open an instance of RStudio in your browser, which will have the
+compendium files ready to work with. Binder uses rocker-project.org
+Docker images to ensure a consistent and reproducible computational
+environment. These Docker images can also be used locally.
