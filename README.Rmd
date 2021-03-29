@@ -19,10 +19,14 @@ Title <- "Haul-out behavior and aerial survey detectability of seals in the Beri
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4638221.svg)](https://doi.org/10.5281/zenodo.4638221)
 <!-- badges: end -->
 
-# berchukHaulout
+## Haul-out behavior and aerial survey detectability of seals in the Bering and Chukchi seas
+Josh M. London^1^,✉, Paul B. Conn^1^, Stacie K. Hardy^1^, Erin L. Richmond^1^, Jay M. Ver Hoef^1^, Irina S. Trukhanova^1^, Michael F. Cameron^1^, and Peter L. Boveng^1^
+1 Marine Mammal Laboratory, Alaska Fisheries Science Center, NOAA Fisheries, Seattle, Washington, USA
+✉ Correspondence: Josh M. London <josh.london@noaa.gov>
 
-This repository contains the data and code for our paper:
-*Haul-out behavior and aerial survey detectability of seals in the Bering and Chukchi seas*
+This repository contains the research compendium in support of the above titled paper.
+The manuscript is currently in preparation and the text, code, analysis, and results
+are under active development.
 
 ## Contents
 
@@ -58,7 +62,3 @@ environment. These Docker images can also be used locally.
 ### NOAA README
 
 This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
-
-### NOAA License
-
-Software code created by U.S. Government employees is not subject to copyright in the United States (17 U.S.C. §105). The United States/Department of Commerce reserve all rights to seek and obtain copyright protection in countries other than the United States for Software authored in its entirety by the Department of Commerce. To this end, the Department of Commerce hereby grants to Recipient a royalty-free, nonexclusive license to use, copy, and create derivative works of the Software outside of the United States.
