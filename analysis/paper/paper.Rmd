@@ -66,9 +66,9 @@ temperatures were higher. Haul-out propensity increased through March and April,
 in May and early June before declining again. The timing and frequency of haul-out events
 also varied based on species and age-sex class. For ribbon and spotted seals, models with
 year effects were highly supported, indicating that the timing and magnitude of haul-out
-behavior varied among years. There was no support linking the variability in haul-out
-timing to annual sea ice extent. Our analysis also emphasizes the importance of accounting
-for weather factors affecting haul-out behavior when interpreting the number of seals
+behavior varied among years. However, we did not find evidence that haul-out
+timing was linked annual sea ice extent. Our analysis emphasizes the importance of accounting
+for variation in haul-out behavior when interpreting the number of seals
 counted in aerial surveys.
 
 keywords: availability; generalized linear mixed pseudo-model; haul-out behavior;
@@ -203,7 +203,7 @@ misclassification, and possible disturbance of seals by aircraft [@conn2014mee;
 In this study, we use data from fifteen years of bio-logger records in a comprehensive
 investigation of haul-out behavior by three ice-associated seals in the Bering and Chukchi
 Seas. We focused our effort on bearded, spotted, and ribbon seals and do not include
-ringed seals the analysis. Ringed seals are unique in their use of snow lairs in the
+ringed seals in the analysis. Ringed seals are unique in their use of snow lairs in the
 spring months and they warrant a separate study that includes additional environmental
 covariates such as the onset of snow melt and snow depth. Our goals are threefold. First,
 we wish to establish baseline estimates for the chronology of haul-out behavior in the
@@ -319,7 +319,7 @@ during the annual molt and limits the effective length of haul-out timelines.
 Additionally, sensors attached to the head or dorsal region are often dry while the seal
 is at the surface and can slightly bias the percent-dry values recorded by the device. For
 this study, in cases where both tag types were deployed, percent dry observations from the
-flipper tag were usually preferred. Sex and age class were determined at the time of
+flipper tag were preferred. Sex and age class were determined at the time of
 deployment by experts in the field. Seals determined to be less than one year were
 classified as young of the year. subadults are those seals likely greater than one year of
 age but not yet sexually mature. Adults are likely sexually mature and older than
@@ -381,7 +381,7 @@ During molt, seals (and their attached bio-loggers) spend more time out of the w
 more data is transmitted. Molt timing also impacts when many deployments end as any tags
 adhered to the hair will fall off.
 
-```{r seal-hours-calendar, fig.height = 4.75, include=TRUE, fig.id = "dataCal", fig.cap="Distribution of of haul-out behavior data from 1 March to 15 July for each species. The higher density of data from May and June coincides with peak molting when seals (and their attached bio-loggers) are more likely hauled out. Additionally, a majority of deployments started in April and May. Data were collated across all years between 2005 and 2020."}
+```{r seal-hours-calendar, fig.height = 4.75, include=TRUE, fig.id = "dataCal", fig.cap="Distribution of haul-out behavior data from 1 March to 15 July for each species. The higher density of data from May and June coincides with peak molting when seals (and their attached bio-loggers) are more likely hauled out. Additionally, a majority of deployments started in April and May. Data were collated across all years between 2005 and 2020."}
 ggplot(data = seal_hours_tbl) + 
   geom_point(aes(x = wkofyr, y = dayofwk, color = n, size = n), stroke = 0, shape = 15) +
   scale_size(range = c(1,4.35)) +
@@ -442,7 +442,7 @@ p
 ```
 
 Of key interest in this study is the relationship between haul-out behavior and a variety
-of environmental covariates that vary with space and time. We explored use of a movement
+of environmental covariates that vary with space and time. We explored the use of a movement
 model to predict locations at specific times. However, the sparse nature of data from some
 tags, especially those mounted to the rear flipper, resulted in poor modeling performance
 or convergence issues. For this study, we calculated a weighted average daily location
@@ -587,7 +587,7 @@ p_temp2 <- ggplot() +
 ```
 
 Notably missing from this list of explanatory variables is any spatial-temporal
-representation of sea ice concentration, area, or extent. This may seem counter-intuitive
+representation of sea ice concentration, area, or extent. This may seem counterintuitive
 when modeling the haul-out behavior of seal species with such a close association to sea
 ice. Seals haul out in the presence of sea ice and we could assess the local concentration
 of sea ice during these events. However, seals also spend time in the water away from sea
@@ -597,14 +597,13 @@ next known haul-out event? Or, the closest sea ice concentration available? With
 meaningful means to associate a sea ice covariate with the seal throughout the duration of
 the observation record, such parameters are not viable for inclusion in this model.
 
-We did explore whether the annual variation in spring sea ice extent in the Bering Sea
-influences the peak timing of seal haul-out behavior. For this, all sea ice concentration
+We did explore whether the annual variation in maximum spring sea ice extent in the Bering
+Sea influences the seasonal peak of seal haul-out behavior. In particular, we used sea ice
+concentration data from the Nimbus-7 SMMR and DMSP SSM/I-SSMIS Passive Microwave Dataset,
+Version 1 [@cavalieri1996] to calculate maximum sea ice extent. All sea ice concentration
 grid cells (25 km^2^) in the study area with greater than 15% concentration were summed to
-get total sea ice extent for each day between 15 February and 15 July across all years
-(`r min(lubridate::year(dat.sf$haulout_dt))`-`r max(lubridate::year(dat.sf$haulout_dt))`).
-The maximum sea ice extent for each year was determined from this calculation. We obtained
-sea ice concentration data from the Nimbus-7 SMMR and DMSP SSM/I-SSMIS Passive Microwave
-Dataset, Version 1 [@cavalieri1996].
+get total sea ice extent for each day between 15 February and 15 July across all years.
+Maximum spring sea ice extent was simply the largest daily value for each year.
 
 ```{r tblCovariates, include=TRUE, tab.id = "tblCovariates", tab.cap = "Explanatory covariates used in analyses of binary haul-out records for ice-associated seals."}
 covariate_tbl <- tibble::tribble(
@@ -617,7 +616,7 @@ covariate_tbl <- tibble::tribble(
   "Linear, quadratic, and cubic effects of day-of-year were modeled",
   "Precip", "Continuous", "NARR", 
   "Convective precipitation (kg/m2)",
-  "Pressure", "Continuos", "NARR", 
+  "Pressure", "Continuous", "NARR", 
   "Atmospheric pressure at sea level (kPa)",
   "Temp", "Continuous", "NARR",
   "Air temperatures predicted at 2m above the earth’s surface",
@@ -672,7 +671,7 @@ effects of day-of-year to represent seasonal changes in behavior. However, unlik
 models for harbor seals [@london2012] and ice-associated seals [@verhoef2014sm], which
 treated hour-of-day as a 24-level categorical variable to capture diurnal cycles, we
 adopted a continuous formulation based on Fourier series that provides a flexible model
-while preserving the inherit circularity needed for time-of-day effects (i.e., hour 0
+while preserving the inherent circularity needed for time-of-day effects (i.e., hour 0
 should be equal to hour 24). It also represents hour-of-day with 6 variables, which is a
 considerable reduction when compared to a 24 variable model, especially when fitting
 models with interactions between hour-of-day and other variables (e.g., age-sex class,
@@ -689,7 +688,7 @@ where $H_t$ gives the effect for solar hour $t$ and $α_{ij}$ for $i$ = 1, 2, or
 For the second set of models examining inter-annual variation in sea ice use, we fitted
 models with year by day-of-year interactions. However, in this case we only included
 year$\times$day and year$\times$day2, omitting the main effects of year as well as
-year$\times$day3 interactions as models with the latter effects were numerically unstable.
+year$\times$day3 interactions because models with the latter effects were numerically unstable.
 However, the modeled interactions were sufficient to allow shifts in haul-out
 distribution, as one can show mathematically that a simple horizontal shift in timing of
 haul-out distributions does not affect the main effects or cubic terms in a polynomial
@@ -708,15 +707,14 @@ if (params$run_models) {
 
 A typical model fitting exercise would also include a model selection process. However,
 AIC (and similar criteria) is not suitable when using pseudo-likelihoods. After fitting
-GLMPM models, we used "type III" F-tests to calculate p-values [@verhoef2010cs] and rely
-on those insights to evaluate model performance and important terms. We also produced
-predictions of haul-out behavior as a function of influential predictors (e.g. solar hour,
-day-of-year, age-sex). Weather covariates for these predictions were based on daily or
-hourly (GAM) smoothed weather covariate values across the study region. Such predictions
-were then used to develop haul-out probability surfaces, explore marginal effects of
-weather covariates, and determine annual peaks in haul-out activity. The timing of peak
-haul-out behavior was further used to regress against the annual maximum sea ice extent in
-the study region.
+GLMPM models, we used "type III" F-tests to calculate p-values [@verhoef2010cs] to
+evaluate model performance and important terms. We also produced predictions of haul-out
+behavior as a function of influential predictors (e.g. solar hour, day-of-year, age-sex).
+Weather covariates for these predictions were based on daily or hourly smoothed weather
+covariate values across the study region. Such predictions were then used to develop
+haul-out probability surfaces, explore marginal effects of weather covariates, and
+determine annual peaks in haul-out activity. The timing of peak haul-out behavior was
+further used to regress against the annual maximum sea ice extent in the study region.
 
 ## Stable stage distributions
 
