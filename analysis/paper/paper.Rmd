@@ -47,28 +47,28 @@ params:
 Ice-associated seals rely on sea ice for a variety of activities, including breeding,
 molting, pupping, and resting. In the Arctic, many of these activities occur in spring and
 early summer (April-June) as sea ice begins to melt and retreat northward. Rapid
-acceleration of climate change in Arctic ecosystems is thus of concern as the quantity and
-quality of suitable habitat is forecast to decrease. In this paper, we use data collected
-from satellite-linked telemetry tags deployed between 2005 and 2020 to investigate the
-seasonal timing and environmental factors affecting sea ice use by seals (specifically,
-bearded, ribbon, and spotted seals) in the Bering, and Chukchi seas. In addition to
-providing baseline data on phenology, these data also allow us to refine availability
-estimates needed to accurately estimate abundance from aerial survey counts of seals
-basking on ice (i.e., to correct for the proportion of animals that are in the water while
-surveys are conducted). Using generalized linear mixed pseudo-models to properly account
-for temporal autocorrelation, we fit models with a variety of covariates (e.g.,
-day-of-year, solar hour, age-sex class, wind speed, barometric pressure, temperature,
-precipitation) to examine their ability to explain variation in hourly haul-out records.
-We found evidence for strong diurnal and within season patterns in haul-out behavior, as
-well as strong weather effects (particularly wind and temperature). In general, seals were
-more likely to rest on ice in the middle of the day and when wind speed was low and
-temperatures were higher. Haul-out propensity increased through March and April, peaking
-in May and early June before declining again. The timing and frequency of haul-out events
-also varied based on species and age-sex class. For ribbon and spotted seals, models with
-year effects were highly supported, indicating that the timing and magnitude of haul-out
-behavior varied among years. However, we did not find evidence that haul-out
-timing was linked annual sea ice extent. Our analysis emphasizes the importance of accounting
-for variation in haul-out behavior when interpreting the number of seals
+acceleration of climate change in Arctic ecosystems is therefore of concern as the
+quantity and quality of suitable habitat is forecast to decrease. In this paper, we use
+data collected from satellite-linked bio-loggers deployed between 2005 and 2020 to
+investigate the seasonal timing and environmental factors affecting sea ice use by seals
+(specifically, bearded, ribbon, and spotted seals) in the Bering and Chukchi seas. In
+addition to providing baseline data on phenology, these data also allow us to refine
+availability estimates needed to accurately estimate abundance from aerial survey counts
+of seals basking on ice (i.e., to correct for the proportion of animals that are in the
+water while surveys are conducted). Using generalized linear mixed pseudo-models to
+properly account for temporal autocorrelation, we fit models with a variety of covariates
+(e.g., day-of-year, solar hour, age-sex class, wind speed, barometric pressure,
+temperature, precipitation) to examine their ability to explain variation in hourly
+haul-out records. We found evidence for strong diurnal and within season patterns in
+haul-out behavior, as well as strong weather effects (particularly wind and temperature).
+In general, seals were more likely to rest on ice in the middle of the day and when wind
+speed was low and temperatures were higher. Haul-out propensity increased through March
+and April, peaking in May and early June before declining again. The timing and frequency
+of haul-out events also varied based on species and age-sex class. For ribbon and spotted
+seals, models with year effects were highly supported, indicating that the timing and
+magnitude of haul-out behavior varied among years. However, we did not find evidence that
+haul-out timing was linked annual sea ice extent. Our analysis emphasizes the importance
+of accounting for variation in haul-out behavior when interpreting the number of seals
 counted in aerial surveys.
 
 keywords: availability; generalized linear mixed pseudo-model; haul-out behavior;
@@ -168,10 +168,10 @@ much larger sample sizes. Olnes et al. [-@olnes2020pb] showed that the proportio
 bearded seals spent hauled out progressively increased through spring and summer. And, Ver
 Hoef et al. [-@verhoef2014sm] found haul-out probabilities increased gradually starting in
 March and peaking in May and June for bearded, ribbon, and spotted seals. However, their
-primary focus was estimating seal abundance, and like a subsequent analysis by Conn et al.
-[-@conn2014mee], they did not attempt to separately analyze haul-out schedules for
-different age and sex classes (although initial models with sex and age as fixed effects
-were insignificant at p = 0.05; [@verhoef2014sm]).
+primary focus was to develop a correction factor for estimating seal abundance, and like a
+subsequent analysis by Conn et al. [-@conn2014mee], they did not attempt to separately
+analyze haul-out schedules for different age and sex classes (although initial models with
+sex and age as fixed effects were insignificant at p = 0.05; [@verhoef2014sm]).
 
 Several authors have used logistic regression-style analyses to estimate the probability
 of sea ice use from data garnered from bio-loggers. In these models, haul-out
@@ -189,15 +189,15 @@ satellite tags.
 Ultimately, knowledge of trends in phenology and abundance (or life history surrogates
 such as survival and recruitment) will be necessary to make credible quantitative
 predictions about the effects of the climate crisis on the abundance and distribution of
-Arctic seal populations. Before we can construct a trend, however, we first need credible
-data points. Several studies have contributed estimates of the distribution and abundance
-of ice-associated seal species in the Arctic using aerial surveys (e.g.,
-[@bengtson2005pb], [@conn2014mee], and [@verhoef2014sm]). Such studies are conducted over
-very large areas and estimation of absolute abundance requires making inference about
-numerous nuisance processes affecting the observation of seals on ice. This includes
-availability (only seals basking on ice are available to be counted), detection
-probability (observers or automated detection systems may miss some seals on ice), species
-misclassification, and possible disturbance of seals by aircraft [@conn2014mee;
+Arctic seal populations. Before we can construct a trend, however, we first require a
+baseline. Several studies have contributed estimates of the distribution and abundance of
+ice-associated seal species in the Arctic using aerial surveys (e.g., [@bengtson2005pb],
+[@conn2014mee], and [@verhoef2014sm]). Such studies are conducted over very large areas
+and estimation of absolute abundance requires making inference about numerous nuisance
+processes affecting the observation of seals on ice. This includes availability (only
+seals basking on ice are available to be counted), detection probability (observers or
+automated detection systems may miss some seals on ice), species misclassification, and
+possible disturbance of seals by aircraft [@conn2014mee;
 @verhoef2014sm].
 
 In this study, we use data from fifteen years of bio-logger records in a comprehensive
@@ -321,9 +321,9 @@ is at the surface and can slightly bias the percent-dry values recorded by the d
 this study, in cases where both tag types were deployed, percent dry observations from the
 flipper tag were preferred. Sex and age class were determined at the time of
 deployment by experts in the field. Seals determined to be less than one year were
-classified as young of the year. subadults are those seals likely greater than one year of
+classified as young-of-the-year. subadults are those seals likely greater than one year of
 age but not yet sexually mature. Adults are likely sexually mature and older than
-approximately four years. For those tags deployed on young of the year and transmitting
+approximately four years. For those tags deployed on young-of-the-year and transmitting
 into the next year, the age class was advanced to subadult on March 1 of the following
 year. Table \@ref(tab:tblDeploy) provides a summary of these deployments and data received
 from them.
@@ -368,7 +368,7 @@ seal_hours_tbl <- dat.sf %>%
 
 Tags that fall off due to molt or mortality and remain on ice or land can still send data
 to satellites and we did not want to include data from these tags in our analyses. As
-such, start and end times of each deployment were made by experts who examined several
+such, start and end times of each deployment were identified by experts who examined several
 simultaneous data streams (e.g., tag locations and dive behavior) to determine when tags
 ceased providing data consistent with seal behavior. Sensor readings outside of these
 start and end times were discarded prior to analysis. After approximately 9 months, a few
@@ -405,7 +405,7 @@ ggplot(data = seal_hours_tbl) +
 Haul-out behavior data was recorded and transmitted via the Argos satellite network as
 hourly percent-dry timelines. For each hour of a day, the wet/dry sensor was polled by the
 tag firmware every few seconds and a percent of the hour in a dry state was calculated
-(\@ref(fig:examplePlot)). Each data transmission message consisted of a complete 24-hour
+(Figure \@ref(fig:examplePlot)). Each data transmission message consisted of a complete 24-hour
 record. Tags were deployed and programmed in a manner to maximize data transmission during
 the spring pupping and molting period. However, not all days during the deployment were
 successfully transmitted. This is due to a variety of factors including satellite
@@ -496,7 +496,7 @@ ggplot() +
 
 ## Explanatory variables
 
-In addition to sex and age class (non-dependent *young of the year*, sexually immature
+In addition to sex and age class (non-dependent *young-of-the-year*, sexually immature
 *subadults*, and mature *adults*), we gathered additional variables that might help
 explain variation in haul-out probabilities. These included day-of-year (for seasonal
 effects) and solar hour (for diurnal effects). Solar hour was calculated using the {solaR}
@@ -509,7 +509,7 @@ Environmental Prediction [@mesinger2006bams]. The NARR model assimilates observa
 data to produce a long-term picture of weather over North America. Numerous weather
 variables are made available across the region 8 times daily. For this study, NARR weather
 values were subset to the extent of our study area over the Bering and Chukchi Seas at
-3-hr intervals based on a grid resolution of 32 km (1024 sq. km) The following
+3-hr intervals based on the native grid resolution of 32 km (1024 sq. km). The following
 meteorological variables were interpolated and assigned to seal locations using a bilinear
 method: 1) air temperature at 2m above the earth's surface, 2) wind consisting of
 northerly and easterly vector components converted to wind speed using the Euclidean norm,
@@ -602,7 +602,7 @@ Sea influences the seasonal peak of seal haul-out behavior. In particular, we us
 concentration data from the Nimbus-7 SMMR and DMSP SSM/I-SSMIS Passive Microwave Dataset,
 Version 1 [@cavalieri1996] to calculate maximum sea ice extent. All sea ice concentration
 grid cells (25 km^2^) in the study area with greater than 15% concentration were summed to
-get total sea ice extent for each day between 15 February and 15 July across all years.
+get the total sea ice extent for each day between 15 February and 15 July across all years.
 Maximum spring sea ice extent was simply the largest daily value for each year.
 
 ```{r tblCovariates, include=TRUE, tab.id = "tblCovariates", tab.cap = "Explanatory covariates used in analyses of binary haul-out records for ice-associated seals."}
@@ -758,7 +758,7 @@ reported by Fedoseev [-@fedoseev2000] for seals in the western Bering Sea to for
 Leslie matrices Ai for each species i. Stable age distributions
 $v_i={v\_i0,v\_i1,⋯,v\_iA}$ were then determined by normalizing the dominant eigenvector
 of $A_i$ so that they summed to one . Given a stable age distribution, we calculated the
-proportion of the population by sex and stage (young of the year: 0-1 year; subadult: at
+proportion of the population by sex and stage (young-of-the-year: 0-1 year; subadult: at
 least one year but sexually immature; adult: sexually mature) using data on sexual
 maturity from Fedoseev [-@fedoseev2000]. In particular, the expected proportion of the
 population that are sex $s$ and young-of-year was set as $\pi_{i,s,yoy}=0.5v_i0$, while
@@ -888,7 +888,7 @@ Ribbon seals show a pattern of gradually increasing haul-out probability in Apri
 peaks in May for subadults and in June for adults. The behavior is clearly centered around
 local solar noon and expands to other hours later in the season as seals enter their
 molting period. Subadults showed an earlier start and more intense haul-out activity in
-April and May. The young of the year records begin after weaning and the model predictions
+April and May. The young-of-the-year records begin after weaning and the model predictions
 demonstrate the ontogeny of in-water activities (e.g. diving, foraging) in May. Adult
 females have a more protracted season compared to males and more time spent resting in
 June and July. The model suggests adult male ribbon seals complete their molt by the end
@@ -1032,7 +1032,7 @@ spotted_newdata <- spotted_newdata %>%
 
 Compared to ribbon seals, spotted seals showed a longer spring haul-out season that is
 less intensely centered on solar noon. Adults of both sexes spend considerable time in
-April and May resting on the ice. As with ribbon seals, the young of the year records
+April and May resting on the ice. As with ribbon seals, the young-of-the-year records
 begin after weaning and the model predictions demonstrate the ontogeny of in-water
 activities (e.g. diving, foraging) in May.
 
@@ -1694,21 +1694,21 @@ still need to lookup details of which org contributed which data). Authors, plea
 add your contribution statement below
 :::
 
-*Josh M. London:*
+*Josh M. London:* led field work, conceptualization, methodology, formal analysis, code development, writing of original draft, visualization, review, revisions, and corresponding author
 
-*Paul B. Conn:*
+*Paul B. Conn:* conceptualization, methodology, formal analysis, code development, writing of original draft, review, and revisions
 
-*Stacie K. Hardy:*
+*Stacie K. Hardy:* field work, methodology, data curation, validation, review, and revisions
 
-*Erin L. Richmond:*
+*Erin L. Richmond:* data curation, conceptualization, methodology, review, and revisions
 
-*Jay M. Ver Hoef:*
+*Jay M. Ver Hoef:* field work, conceptualization, methodology, code development, review, and revisions
 
-*Irina S. Trukhanova:*
+*Irina S. Trukhanova:* conceptualization, formal analysis, code development, review, and revisions
 
-*Michael F. Cameron:*
+*Michael F. Cameron:* led field work, project administration, methodology, review, and revisions
 
-*Peter L. Boveng:*
+*Peter L. Boveng:* led field work, supervision, project administration, conceptualization, methodology, review, and revisions
 
 
 # Data Availability
