@@ -1657,7 +1657,7 @@ concurrently which requires considerably more personnel and money. One possible 
 is to estimate a "shift" parameter within models for aerial survey counts that allow the
 peak of haul-out distributions to be adjusted earlier or later in the year based on the
 frequency of counts observed over time. Regardless, researchers should anticipate there
-being some un-modeled heterogeneity in availability probability present in abundance
+being some unmodeled heterogeneity in availability probability present in abundance
 estimates obtained from aerial surveys. This may make trend detection difficult, as one
 will not know if moderate differences in abundance estimates are attributable to changes
 in abundance or changes in haul-out frequencies.
@@ -1694,21 +1694,21 @@ still need to lookup details of which org contributed which data). Authors, plea
 add your contribution statement below
 :::
 
-*Josh M. London:* led field work, conceptualization, methodology, formal analysis, code development, writing of original draft, visualization, review, revisions, and corresponding author
+**Josh M. London:** led field work, conceptualization, methodology, formal analysis, code development, writing of original draft, visualization, review, revisions, and corresponding author
 
-*Paul B. Conn:* conceptualization, methodology, formal analysis, code development, writing of original draft, review, and revisions
+**Paul B. Conn:** conceptualization, methodology, formal analysis, code development, writing of original draft, review, and revisions
 
-*Stacie K. Hardy:* field work, methodology, data curation, validation, review, and revisions
+**Stacie K. Hardy:** field work, methodology, data curation, validation, review, and revisions
 
-*Erin L. Richmond:* data curation, conceptualization, methodology, review, and revisions
+**Erin L. Richmond:** data curation, conceptualization, methodology, review, and revisions
 
-*Jay M. Ver Hoef:* field work, conceptualization, methodology, code development, review, and revisions
+**Jay M. Ver Hoef:** field work, conceptualization, methodology, code development, review, and revisions
 
-*Irina S. Trukhanova:* conceptualization, formal analysis, code development, review, and revisions
+**Irina S. Trukhanova:** conceptualization, formal analysis, code development, review, and revisions
 
-*Michael F. Cameron:* led field work, project administration, methodology, review, and revisions
+**Michael F. Cameron:** led field work, project administration, methodology, review, and revisions
 
-*Peter L. Boveng:* led field work, supervision, project administration, conceptualization, methodology, review, and revisions
+**Peter L. Boveng:** led field work, supervision, project administration, conceptualization, methodology, review, and revisions
 
 
 # Data Availability
@@ -1724,12 +1724,20 @@ traditional range of the Inpuiaq and Yupik people. And, we would like to acknowl
 thank them as the original stewards of these ecosystems. The deployment of bio-logging
 devices used in this study were often done in collaboration with Alaska Native
 communities. We would like to especially acknowledge the communities of Kotzebue,
-Utqiagvik, and Ulguniq.
+Utqiagvik, and Ulguniq and the following individuals: James Adams, Jeff Barger, David
+Barr, Wendell Booth, Tom Jones, Frank Garfield, Brenda Goodwin, Henry Goodwin, John
+Goodwin, Pearl Goodwin, Willie Goodwin, Brett Kirk, Noah Naylor, Virgil Naylor Jr., Virgil
+Naylor Sr., Dan Savetilik, Allen Stone, and Randy Toshavik from Kotzebue, Alaska; Billy
+Adams, Mary-Ellen Ahmaogak, James Aiken, Tim Aiken, Sarah Coburn, Jason Herreman, Howard
+Kittick, Gilbert Leavitt, Isaac Leavitt, J.R. Leavitt, Enoch Oktollik, Shawn Oktollik,
+Stacey Osborn, Fred Rexford, Chuck Schaeffer, Ross Schaeffer, Bob Shears, and Joe Skin
+from the North Slope Borough, Alaska;
 
-We are grateful for the assistance in catching and sampling seals by Michelle Barbieri,
-Gavin Brady, Cynthia Christman, Shawn Dahle, Stacy DiRocco, Deb Fauquier, Shannon
-Fitzgerald, Tracey Goldstein, Jeff Harris, Markus Horning, John Goodwin, John Jansen,
-Shawn Johnson, Charles Littnan, Erin Moreland, Lorrie Rea, Dan Savetilik, and Dave
+We are grateful for the assistance in catching and sampling seals by James Bailey,
+Michelle Barbieri, John Bengtson, Gavin Brady, Vladamir Burkanov, Cynthia Christman, Shawn
+Dahle, Rob Delong, Stacy DiRocco, Deb Fauquier, Shannon Fitzgerald, Kathy Frost, Scott
+Gende, Tracey Goldstein, Jeff Harris, Markus Horning, John Jansen, Shawn Johnson, Charles
+Littnan, Lloyd Lowry, Erin Moreland, Lorrie Rea, Gay Sheffield, Brent Stewart, and Dave
 Withrow. We also appreciate the commitment to science and safety by all officers and crew
 of the NOAA Ship Oscar Dyson, the NOAA Ship MacArthur II, and the RV Thomas G. Thompson.
 
