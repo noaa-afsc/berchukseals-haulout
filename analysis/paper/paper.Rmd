@@ -134,9 +134,9 @@ The global climate crisis is causing considerable reduction in Arctic sea ice ex
 volume, and seasonal presence [@kwok2018erl; @meier2014rg; @wang2017dsrpitsio]. These
 changes have ripple effects on Arctic ecosystems, taxa, and the human communities who live
 in the region [@huntington2020ncc]. Such disruptions are a particular cause of concern for
-ice-associated seals (ringed, bearded, spotted, and ribbon seals) which depend on spring
+ice-associated seals (ringed, bearded, spotted, and ribbon seals) that depend on spring
 and early summer sea ice (March-June) in the Bering and Chukchi seas as a platform for
-important functions such as pupping, nursing, breeding, and molting [@boveng2009a;
+important functions, such as pupping, nursing, breeding, and molting [@boveng2009a;
 @boveng2013; @cameron2010a; @kelly2010]. Limited data and large knowledge gaps prevent our
 ability to make definitive predictions about the ultimate effects of changes in sea ice on
 the behavior, abundance, and distribution of these seals. Knowledge about biological
@@ -149,9 +149,9 @@ habitat have had, or will have, on seal densities.
 
 For ice-associated seals, haul out is tightly linked with sea ice. Ribbon seals rest out
 of the water almost exclusively on sea ice and are mostly pelagic outside the spring
-pupping, breeding, and molting season [@burns1981]. While spotted and bearded seals do
+pupping, breeding, and molting season [@burns1981]. While spotted and bearded seals
 rest on beaches during ice-free months, they strongly prefer sea ice as a resting platform
-during the spring and early summer [@burns2009]. The very remote nature of the Bering and
+during the spring and early summer [@burns2009]. The remote nature of the Bering and
 Chukchi seas mean direct observation of seal behavior is limited. Bio-logging devices are,
 thus, especially useful tools for collecting key information on movement and haul-out
 behavior for these species. Records of time spent out of the water provide valuable data
@@ -200,12 +200,12 @@ automated detection systems may miss some seals on ice), species misclassificati
 possible disturbance of seals by aircraft [@conn2014mee;
 @verhoef2014sm].
 
-In this study, we use data from fifteen years of bio-logger records in a comprehensive
-investigation of haul-out behavior by three ice-associated seals in the Bering and Chukchi
+In this study, we use data from 15 years of bio-logger records in a comprehensive
+investigation of haul-out behavior by 3 ice-associated seals in the Bering and Chukchi
 Seas. We focused our effort on bearded, spotted, and ribbon seals and do not include
 ringed seals in the analysis. Ringed seals are unique in their use of snow lairs in the
-spring months and they warrant a separate study that includes additional environmental
-covariates such as the onset of snow melt and snow depth. Our goals are threefold. First,
+spring months, and they warrant a separate study that includes additional environmental
+covariates, such as the onset of snow melt and snow depth. Our goals are threefold. First,
 we wish to establish baseline estimates for the chronology of haul-out behavior in the
 critical spring season for each species across different age and sex classes. Second, we
 wish to refine estimates of haul-out availability corrections for aerial surveys in order
@@ -315,16 +315,16 @@ family of tags developed by Wildlife Computers (Redmond, Washington, USA) and ei
 adhered to the hair on the seal or attached to the rear flipper inter-digital webbing. The
 use of bio-loggers adhered to the back or head provide some benefits over flipper mounted
 devices (e.g. increased satellite transmittal rates, locations at sea) but these are lost
-during the annual molt and limits the effective length of haul-out timelines.
+during the annual molt, which limits the effective length of haul-out timelines.
 Additionally, sensors attached to the head or dorsal region are often dry while the seal
 is at the surface and can slightly bias the percent-dry values recorded by the device. For
 this study, in cases where both tag types were deployed, percent dry observations from the
 flipper tag were preferred. Sex and age class were determined at the time of
 deployment by experts in the field. Seals determined to be less than one year were
-classified as young-of-the-year. subadults are those seals likely greater than one year of
+classified as young-of-the-year. Subadults are those seals likely greater than one year of
 age but not yet sexually mature. Adults are likely sexually mature and older than
 approximately four years. For those tags deployed on young-of-the-year and transmitting
-into the next year, the age class was advanced to subadult on March 1 of the following
+into the next year, the age class was advanced to subadult on 1 March of the following
 year. Table \@ref(tab:tblDeploy) provides a summary of these deployments and data received
 from them.
 
@@ -343,7 +343,7 @@ deploy_tbl %>%
   tidyr::pivot_wider(names_from = age, values_from = c(deploy_stats)) %>% 
   dplyr::ungroup() %>% 
   dplyr::rename(Species = species, Sex = sex, `Young of Year` = `YOUNG OF YEAR`,
-                `subadult` = SUBADULT, Adult = ADULT) %>% 
+                `Subadult` = SUBADULT, Adult = ADULT) %>% 
   flextable() %>% 
   add_header(`Young of Year` = "Age Class",
    `subadult` = "Age Class", Adult = "Age Class",
@@ -367,18 +367,18 @@ seal_hours_tbl <- dat.sf %>%
 ```
 
 Tags that fall off due to molt or mortality and remain on ice or land can still send data
-to satellites and we did not want to include data from these tags in our analyses. As
-such, start and end times of each deployment were identified by experts who examined several
-simultaneous data streams (e.g., tag locations and dive behavior) to determine when tags
-ceased providing data consistent with seal behavior. Sensor readings outside of these
-start and end times were discarded prior to analysis. After approximately 9 months, a few
-(7) devices deployed on the rear flipper of bearded seals reported implausible sensor
-data. All data after the first instance of unrealistic values were censored from this
-analysis. Figure \@ref(fig:dataCal) shows a calendar distribution of these data across the
-study season for each species. Observations are concentrated in the months of May and June
-due to the timing of deployment (April and May) and the timing of molt (May and June).
-During molt, seals (and their attached bio-loggers) spend more time out of the water and
-more data is transmitted. Molt timing also impacts when many deployments end as any tags
+to satellites, and we did not want to include data from these tags in our analyses. As
+such, start and end times of each deployment were identified by experts who examined
+several simultaneous data streams (e.g., tag locations and dive behavior) to determine
+when tags ceased providing data consistent with seal behavior. Sensor readings outside of
+these start and end times were discarded prior to analysis. After approximately 9 months,
+7 devices deployed on the rear flipper of bearded seals reported implausible sensor data.
+All data after the first instance of unrealistic values were censored from this analysis.
+Figure \@ref(fig:dataCal) shows a calendar distribution of these data across the study
+season for each species. Observations are concentrated in the months of May and June due
+to the timing of deployment (April and May) and the timing of molt (May and June). During
+molt, seals (and their attached bio-loggers) spend more time out of the water and more
+data is transmitted. Molt timing also impacts when many deployments end as any tags
 adhered to the hair will fall off.
 
 ```{r seal-hours-calendar, fig.height = 4.75, include=TRUE, fig.id = "dataCal", fig.cap="Distribution of haul-out behavior data from 1 March to 15 July for each species. The higher density of data from May and June coincides with peak molting when seals (and their attached bio-loggers) are more likely hauled out. Additionally, a majority of deployments started in April and May. Data were collated across all years between 2005 and 2020."}
@@ -407,7 +407,7 @@ hourly percent-dry timelines. For each hour of a day, the wet/dry sensor was pol
 tag firmware every few seconds and a percent of the hour in a dry state was calculated
 (Figure \@ref(fig:examplePlot)). Each data transmission message consisted of a complete 24-hour
 record. Tags were deployed and programmed in a manner to maximize data transmission during
-the spring pupping and molting period. However, not all days during the deployment were
+the spring pupping and molting period, however, not all days during the deployment were
 successfully transmitted. This is due to a variety of factors including satellite
 coverage, tag availability (i.e. tags mounted to the rear flipper are not available to the
 surface while the seal is at sea), tag performance, duty cycling, and extra-terrestrial
@@ -448,7 +448,7 @@ tags, especially those mounted to the rear flipper, resulted in poor modeling pe
 or convergence issues. For this study, we calculated a weighted average daily location
 where the inverse of the estimated Argos location error was used for the weight. Any days
 where haul-out observations were present without any location data were filled from the
-last calculated daily location and any days where the location intersected with land were
+last calculated daily location, and any days where the location intersected with land were
 removed from the dataset. Figure \@ref(fig:dataMap) shows the spatial distribution of
 available haul-out behavior data for each species across the study area.
 
@@ -517,19 +517,19 @@ northerly and easterly vector components converted to wind speed using the Eucli
 \@ref(tab:tblCovariates)).
 
 Models for all species include the following effects: day-of-year, solar hour,
-temperature, wind speed, barometric pressure, precipitation, and wind chill (represented
-by a wind $\times$ temperature interaction; [@udevitz2009cjz]), together with day-of-year
-and time of day interactions to permit diurnal patterns to change throughout the year).
+temperature, wind speed, barometric pressure, precipitation, wind chill (represented
+by a wind $\times$ temperature interaction [@udevitz2009cjz]), and day-of-year
+and time of day interactions to permit diurnal patterns to change throughout the year.
 Spotted and ribbon seal models included age-sex class and interactions between day-of-year
 and age-sex class, but we omitted these from bearded seal models due to poor
-representation of age-sex classes (Table \@ref(tab:tblDeploy)). Bearded seal models did
-include a latitudinal effect (and an interaction with day-of-year) since bearded seals
+representation of age-sex classes (Table \@ref(tab:tblDeploy)). Bearded seal models
+included a latitudinal effect (and an interaction with day-of-year), since bearded seals
 occupy a substantial range and we were interested in possible differences in the timing of
 haul-out behavior along a latitudinal gradient. We omitted the latitudinal effect from
 ribbon and spotted seal models since, during the spring, these species are most prevalent
 near the southern ice edge in the Bering Sea [@conn2014mee].
 
-```{r wxCovMap, include=TRUE, fig.height = 5.5, fig.id="wxCovMap", fig.cap="Example spatial distribution of weather covariates across the study region for 2012 May 05. The NARR was used to predict weather covariates for each hour in a percent dry timeline record."}
+```{r wxCovMap, include=TRUE, fig.height = 5.5, fig.id="wxCovMap", fig.cap="Example spatial distribution of weather covariates across the study region for 05 May 2012. The NARR was used to predict weather covariates for each hour in a percent dry timeline record."}
 
 load(file = here::here('data/cov_means_daily_2012.Rdata'))
 grid_plot <- cov_means_daily_2012 %>% filter(year == 2012,
@@ -589,7 +589,7 @@ p_temp2 <- ggplot() +
 Notably missing from this list of explanatory variables is any spatial-temporal
 representation of sea ice concentration, area, or extent. This may seem counterintuitive
 when modeling the haul-out behavior of seal species with such a close association to sea
-ice. Seals haul out in the presence of sea ice and we could assess the local concentration
+ice; seals haul out in the presence of sea ice and we could assess the local concentration
 of sea ice during these events. However, seals also spend time in the water away from sea
 ice. Thus, the challenge is how best to associate that seal's at-sea behavior with a sea
 ice concentration. Would it be the concentration at the last known haul-out event? The
@@ -597,7 +597,7 @@ next known haul-out event? Or, the closest sea ice concentration available? With
 meaningful means to associate a sea ice covariate with the seal throughout the duration of
 the observation record, such parameters are not viable for inclusion in this model.
 
-We did explore whether the annual variation in maximum spring sea ice extent in the Bering
+We explored whether the annual variation in maximum spring sea ice extent in the Bering
 Sea influences the seasonal peak of seal haul-out behavior. In particular, we used sea ice
 concentration data from the Nimbus-7 SMMR and DMSP SSM/I-SSMIS Passive Microwave Dataset,
 Version 1 [@cavalieri1996] to calculate maximum sea ice extent. All sea ice concentration
@@ -663,7 +663,7 @@ model that predicted average haul-out behavior as a function of demographic,
 environmental, seasonal, and diurnal effects. Second, for ribbon and spotted seals (which
 had considerably more data than bearded seals), we fitted models that included all the
 effects from the first model, but also permitted annual variation in haul-out timing. This
-second class of models was used to examine whether haul-out patterns varied by year, and
+second class of models was used to examine whether haul-out patterns varied by year and
 to determine the annual timing of apparent peaks in haul-out behavior.
 
 We followed Ver Hoef et al. [-@verhoef2014sm] in using linear, quadratic, and cubic
@@ -732,15 +732,16 @@ probabilities are related to sex- and age-class, and if there are tangible diffe
 between the age- and sex-structure of the telemetered sample and that of the population,
 correction factors computed in this way may lead to biased abundance estimates.
 
-To determine how much of a potential problem this is for our data, we compared estimates
-of haul-out probabilities that (1) ignored sex- and age-structure, and (2) accounted for
-sex- and age-structure, adjusting for the relative proportion of seals in each sex- and
-age-class. To simplify comparisons, we fitted two additional GLMPMs to ribbon and spotted
-seal haul-out datasets. In the first model, we expressed haul-out probabilities as a
-function of solar hour and day-of-year. In the second, we also included effects of sex-age
-class and sex-age interactions with solar hour and day-of-year. To adjust for the
-proportion of seals in each age class, we calculated a predicted population-averaged
-haul-out probability at solar noon as a function of day-of-year ($t$) as
+To determine how much of a potential problem this is within our data, we compared
+estimates of haul-out probabilities that (1) ignored sex- and age-structure and (2)
+accounted for sex- and age-structure, adjusting for the relative proportion of seals in
+each sex- and age-class. To simplify comparisons, we fitted two additional GLMPMs to
+ribbon and spotted seal haul-out datasets. In the first model, we expressed haul-out
+probabilities as a function of solar hour and day-of-year. In the second model, we also
+included effects of sex-age class and sex-age interactions with solar hour and
+day-of-year. To adjust for the proportion of seals in each age class, we calculated a
+predicted population-averaged haul-out probability at solar noon as a function of
+day-of-year ($t$) as
 
 $$
 \widetilde{p_t}=\sum_{s}\sum_{a}{\omega_{s,a}{\hat{p}}_{s,a,t}}
@@ -751,14 +752,14 @@ $s$. Typically, we do not know $\omega_{s,a}$ exactly, but can use information a
 likely mortality and reproductive schedules of seals to approximate $\omega_{s,a}$ using
 stable stage distributions calculated from matrix population models ().
 
-To calculate plausible values for $\omega_{s,a}$ we obtained natural mortality predictions
+To calculate plausible values for $\omega_{s,a}$, we obtained natural mortality predictions
 from a hierarchical meta-analysis of phocid natural mortality [@trukhanova2018ee]. We then
 assumed a 50/50 sex ratio at birth, 1 pup per litter, and reproductive schedules as
 reported by Fedoseev [-@fedoseev2000] for seals in the western Bering Sea to formulate
 Leslie matrices Ai for each species i. Stable age distributions
 $v_i={v\_i0,v\_i1,⋯,v\_iA}$ were then determined by normalizing the dominant eigenvector
 of $A_i$ so that they summed to one . Given a stable age distribution, we calculated the
-proportion of the population by sex and stage (young-of-the-year: 0-1 year; subadult: at
+proportion of the population by sex and stage (young-of-the-year: <1 year; subadult: at
 least one year but sexually immature; adult: sexually mature) using data on sexual
 maturity from Fedoseev [-@fedoseev2000]. In particular, the expected proportion of the
 population that are sex $s$ and young-of-year was set as $\pi_{i,s,yoy}=0.5v_i0$, while
@@ -950,13 +951,13 @@ bearded_type3 <- setNames(split(bearded_type3,
 ```
 
 The haul-out probability for ribbon seals was strongly influenced by each of the weather
-covariates included within the model except precipitation. The impact of temperature
+covariates included within the model except precipitation. The impacts of temperature
 ($F_{`r paste(ribbon_type3$temp2$Num.df, ribbon_type3$temp2$Den.df, sep=",")`}$ = 
 `r ribbon_type3$temp2$F.value`; $p$ = `r ribbon_type3$temp2$Prob.F`), wind
 ($F_{`r paste(ribbon_type3$wind$Num.df, ribbon_type3$wind$Den.df, sep=",")`}$ = 
 `r ribbon_type3$wind$F.value`; $p$ = `r ribbon_type3$wind$Prob.F`), and barometric pressure
 ($F_{`r paste(ribbon_type3$pressure$Num.df, ribbon_type3$pressure$Den.df, sep=",")`}$ = 
-`r ribbon_type3$pressure$F.value`; $p$ = `r ribbon_type3$pressure$Prob.F`) was especially
+`r ribbon_type3$pressure$F.value`; $p$ = `r ribbon_type3$pressure$Prob.F`) were especially
 noticeable as ribbon seals were less likely to haul out at higher winds and lower pressure
 values and more likely to be on the ice when temperatures were relatively warm. Wind chill
 ($F_{`r paste(ribbon_type3$temp2_wind$Num.df, ribbon_type3$temp2_wind$Den.df, sep=",")`}$ 
@@ -1378,13 +1379,13 @@ spotted_year_type3 <- setNames(split(spotted_year_type3,
 
 The second set of models that included annual variation in haul-out patterns uncovered
 significant contributions for linear and quadratic interactions between day and year in
-both ribbon seals (day:year,
+both ribbon seals (day $\times$ year,
 $F_{`r paste(ribbon_year_type3$day_year$Num.df, ribbon_year_type3$day_year$Den.df, sep=",")`}$ = 
 `r ribbon_year_type3$day_year$F.value`; $p$ = `r ribbon_year_type3$day_year$Prob.F`;
 day^2^:year,
 $F_{`r paste(ribbon_year_type3$day2_year$Num.df, ribbon_year_type3$day2_year$Den.df, sep=",")`}$ = 
 `r ribbon_year_type3$day2_year$F.value`; $p$ = `r ribbon_year_type3$day2_year$Prob.F`) and
-spotted seals (day:year,
+spotted seals (day $\times$ year,
 $F_{`r paste(spotted_year_type3$day_year$Num.df, spotted_year_type3$day_year$Den.df, sep=",")`}$ = 
 `r spotted_year_type3$day_year$F.value`; $p$ = `r spotted_year_type3$day_year$Prob.F`;
 day^2^:year,
@@ -1398,7 +1399,7 @@ any years where only one deployment in a species + age-sex group was present, th
 still some years where the pattern shown is informed by a small number of tags that may
 not represent population level processes.
 
-```{r annualHO, fig.height = 5.5, include=TRUE, fig.id = "annualHO", fig.cap="Annual variability in the timing of peak haul-out probability for ribbon and spotted seals across 10 years. Predictions are shown for local solar noon and under smoothed weather conditions. Only those groups (age-sex + year) that included observations from more than one seal are shown. Additionally, any groups where the underlying data started after 01-June or ended before 01-May are not included."}
+```{r annualHO, fig.height = 5.5, include=TRUE, fig.id = "annualHO", fig.cap="Annual variability in the timing of peak haul-out probability for ribbon and spotted seals across 10 years. Predictions are shown for local solar noon and under smoothed weather conditions. Only those groups (age-sex + year) that included observations from more than one seal are shown. Additionally, any groups where the underlying data started after 1 June or ended before 1 May are not included."}
 select_groups <- fit_ribbon_year$dataset %>%
   filter(age_sex != "YOUNG OF YEAR") %>%
   group_by(age_sex, year) %>%
@@ -1499,8 +1500,8 @@ pl_subadult <- models %>% filter(species == "Spotted seal" & age_sex == "SUBADUL
 
 The timing of peak haul-out probability for ribbon and spotted seals appeared to have only
 a limited to no relationship with the amount of yearly maximum sea ice extent. Adult
-female and subadult spotted seals show a negative trend line but no indication that the
-observed trend is meaningful (spotted seal adult female: $R^{2}$ =
+female and subadult spotted seals show a negative trend line, but there is no indication
+that the observed trend is meaningful (spotted seal adult female: $R^{2}$ =
 `r pl_adultF$r.squared`, $p$ = `r pl_adultF$p.value`; spotted seal subadults: $R^{2}$ =
 `r pl_subadult$r.squared`, $p$ = `r pl_subadult$p.value`). For ribbon seals and adult male
 spotted seals, $p$-values were substantially larger than 0.05 (ribbon seal adult females;
@@ -1556,10 +1557,10 @@ tagged sample.
 In this paper, we modeled data from bio-logging sensors deployed on bearded, spotted, and
 ribbon seals to examine factors affecting haul-out behavior on sea ice in the Bering and
 Chukchi seas. Our analysis shows seals use sea ice progressively more throughout the
-spring, and with peak use near mid-May to early June before declining again. This pattern
+spring, with peak use near mid-May to early June before declining again. This pattern
 aligns well with what has been previously documented and confirms our bio-logging
-deployments are likely capturing population level behavioral patterns. Seals
-preferentially haul out on ice shortly after solar noon which coincides with the daily
+deployments are likely capturing population-level behavioral patterns. Seals
+preferentially haul out on ice shortly after solar noon, which coincides with the daily
 period of maximum solar radiation. The association of daily peak haul-out behavior with
 mid to later solar hours is commonly noted in pinnipeds and allows seals to maximize
 absorption of solar radiation. Interestingly, bearded seals appear to have two peaks in
@@ -1583,20 +1584,20 @@ all species except bearded seals because of low sample size. While both ribbon a
 seals exhibited a unimodal diel haul-out pattern generally centered around local solar
 noon, there were key differences across species, age, and sex that match expectations
 given what we know of their ecological behavior. Spotted seals are known to form triads
-during the breeding season where a female and dependent pup are accompanied on the ice by
-a suitor male. The male is waiting for the female to wean the pup and enter estrus and
-fending off any other males that may be interested. Triad formation results in both males
+during the breeding season, where a female and dependent pup are accompanied on the ice by
+a suitor male. The male waits for the female to wean the pup and enter estrus and
+fends off any other males that may be interested. Triad formation results in both males
 and females spending a large portion of the day hauled out on ice and a protracted spring
 haul-out season for both sexes. Since breeding occurs in the water, females may also be
-less inclined to venture out for foraging trips while still nursing the pup. We can see a
-clear reflection of this in the predicted haul-out behavior with both males and females
-exhibiting a broad distribution of time out of the water throughout the solar day and the
-season. Ribbon seals are not known to form triads and our model predicts a progression of
+less inclined to venture out for foraging trips while still nursing the pup. We see this
+reflected in the predicted haul-out behavior, with both males and females exhibiting a
+broad distribution of time out of the water throughout the solar day and the season.
+Ribbon seals are not known to form triads and our model predicts a progression of
 increased haul-out behavior with females starting earlier in the season than males.
 Notably, female ribbon seals spend a large portion of the day in the water during the
 pupping period and aligns with the hypothesis that ribbon seal females continue foraging
 while nursing. In the case of both ribbon and spotted seals, subadults are the first to
-begin meaningful haul-out behavior and reflects a typical phocid pattern where subadults
+begin meaningful haul-out behavior and reflect a typical phocid pattern where subadults
 molt first as they do not have any reproductive constraints.
 
 ::: {custom-style="comment"}
@@ -1608,8 +1609,8 @@ lactating harp seals: <https://doi.org/10.1006/anbe.1993.1312>
 We also investigated the influence of environmental covariates on haul-out probabilities,
 including wind speed, temperature, barometric pressure, precipitation, and wind chill.
 These have been investigated for walrus (e.g. Udevitz et al. [@udevitz2009cjz]), but to
-our knowledge have never been investigated for ice-associated seals. Ribbon seals seem to
-be the most influenced by weather with wind, temperature, barometric pressure, and
+our knowledge have never been investigated for ice-associated seals. Ribbon seals seemed to
+be the most influenced by weather, with wind, temperature, barometric pressure, and
 precipitation all being important components of the model. Spotted seals were most
 affected by wind and barometric pressures. And, for bearded seals, the model indicated
 wind and temperature had the greatest impact. In general, and as might be expected, seals
@@ -1640,7 +1641,7 @@ several of these studies allowed haul-out probabilities to vary by day-of-year a
 time-of-day, previous correction factors have not accounted for variability between years,
 different weather conditions, and the age-sex class of the sample. In this paper, we have
 shown that there can be considerable differences in the number of seals hauled out on ice
-based on these factors. We thus recommend that future abundance analyses employ correction
+based on these factors. We recommend that future abundance analyses employ correction
 factors that account for these factors. For instance, it is relatively straightforward to
 obtain weather reanalysis products for times and locations that are surveyed and to
 construct a relevant correction factor based on predictions of GMPMs. Further, one can
@@ -1670,7 +1671,7 @@ where maximums corresponded to times near solar noon in mid-late May. Applying m
 ignore age, sex, and year effects, these probabilities were 0.38, 0.72, and 0.60,
 respectively, under the current analysis framework. Our current estimates reflect
 increased sample sizes in terms of number of animals, but also improvements to the way
-data are prepared prior to analysis. 
+data were prepared prior to analysis. 
 
 We focused this paper on haul-out behavior of bearded, ribbon, and spotted seals. Ringed
 seals are also present in the Bering and Chukchi Seas but exhibit qualitatively different
