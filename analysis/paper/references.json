@@ -1406,5 +1406,73 @@
         "title": "Attendance and nursing patterns of harp seals in the harsh environment of the northwest Atlantic",
         "type": "article-journal",
         "volume": "40"
+    },
+    {
+        "DOI": "10.1007/s13571-017-0130-5",
+        "ISSN": "0976-8386",
+        "URL": "http://dx.doi.org/10.1007/s13571-017-0130-5",
+        "author": [
+            {
+                "family": "Ten Eyck",
+                "given": "Patrick"
+            },
+            {
+                "family": "Cavanaugh",
+                "given": "Joseph E."
+            }
+        ],
+        "container-title": "Sankhya B",
+        "container-title-short": "Sankhya B",
+        "id": "teneyck2017",
+        "is-referenced-by-count": "0",
+        "issue": "1",
+        "issued": {
+            "date-parts": [
+                [
+                    2017,
+                    3,
+                    22
+                ]
+            ]
+        },
+        "language": "en",
+        "member": "297",
+        "page": "98-122",
+        "prefix": "10.1007",
+        "providerkey": "doi",
+        "publisher": "Springer Science and Business Media LLC",
+        "reference-count": "32",
+        "references-count": "32",
+        "score": "1",
+        "source": "Crossref",
+        "title": "An Alternate Approach to Pseudo-Likelihood Model Selection in the Generalized Linear Mixed Modeling Framework",
+        "type": "article-journal",
+        "update-policy": "http://dx.doi.org/10.1007/springer_crossmark_policy",
+        "volume": "80"
+    },
+    {
+        "URL": "https://www.R-project.org/",
+        "author": [
+            {
+                "family": "R Core Team"
+            }
+        ],
+        "genre": "manual",
+        "id": "rcoreteam2021",
+        "issued": {
+            "date-parts": [
+                [
+                    2021
+                ]
+            ]
+        },
+        "key": "STEYUJCA",
+        "libraryid": "2",
+        "note": "tex.organization: R Foundation for Statistical Computing",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "publisher-place": "Vienna, Austria",
+        "tex.organization": "R",
+        "title": "R: A language and environment for statistical computing",
+        "type": "report"
     }
 ]
