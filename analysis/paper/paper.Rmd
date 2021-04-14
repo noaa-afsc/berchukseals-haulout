@@ -393,12 +393,14 @@ ggplot(data = seal_hours_tbl) +
   scale_color_gradient(low = "#6baed6", high = "#08306b") +
   scale_x_continuous(breaks = c(13,18,23,27),
                      labels = c("April", "May", "June", "July")) +
+  #scale_y_discrete(labels = c("Sat","","","Wed","","","Sun"))+
   guides(color = "none",
         size = guide_legend(override.aes = list(color = "#2171b5"),
                             title.position = "bottom", title.hjust = 0.5)
         ) +
   facet_grid(species ~ .) + 
-  theme(axis.text.y = element_blank(),
+  theme(
+        axis.text.y = element_blank(),
         panel.grid = element_blank(),
         legend.position = "bottom") +
   labs(x = "", y = "day of week", color = "seal-hours",
