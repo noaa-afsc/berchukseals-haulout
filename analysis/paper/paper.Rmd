@@ -621,20 +621,20 @@ years. Maximum spring sea ice extent was simply the largest daily value for each
 covariate_tbl <- tibble::tribble(
   ~Covariate, ~Type, ~Source, ~Description,
   "Age-sex class",   "Categorical", "Field Assessment", 
-  "Classes included young-of-the-year, subadult, adult male and adult female. Young-of-the-year tags surviving past 1 March of the next year were treated as subadult in subsequent years.",
+  "young-of-the-year, subadult, adult male and adult female",
   "Hour", "Continuous; Fourier basis", "Bio-logger", 
-  "Local solar hour using 6 variables of a Fourier-series basis to allow circularity, flexibility, and dimension reduction ",
+  "local solar hour using 6 variables of a Fourier-series basis",
   "Day",   "Continuous", "Bio-logger", 
-  "Linear, quadratic, and cubic effects of day-of-year were modeled",
+  "linear, quadratic, and cubic effects of day-of-year",
   "Precip", "Continuous", "NARR", 
-  "Convective precipitation (kg/m2)",
+  "convective precipitation (kg/m2)",
   "Pressure", "Continuous", "NARR", 
-  "Atmospheric pressure at sea level (kPa)",
+  "atmospheric pressure at sea level (kPa)",
   "Temp", "Continuous", "NARR",
-  "Air temperatures predicted at 2m above the earth’s surface",
+  "air temperatures at 2m above the earth’s surface",
   "Wind", "Continuous", "NARR", 
-  "Northerly and easterly vector components for wind were downloaded and converted into a single wind speed via the Euclidean norm.",
-  "Northing", "Continuous", "Bio-logger","For bearded seals a measurement of northing was caclulated as latitude divided by the mean latitude across all locations"
+  "northerly and easterly vector components for wind converted into a single wind speed via the Euclidean norm",
+  "Northing", "Continuous", "Bio-logger","latitude divided by the mean latitude across all locations (for bearded seals only)"
 )
 
 covariate_tbl %>% 
