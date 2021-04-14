@@ -432,10 +432,15 @@ d <- dat.sf %>%
 
 p <- ggplot(d,aes(day,hour,fill=percent_dry))+
   geom_tile(color= "white",size=0) + 
+  # scale_fill_gradientn(colors = viridisLite::turbo(n=256),
+  #                      name = "hourly percent dry", aesthetics = "fill",
+  #   guide = guide_colorbar(title.position = "bottom", barwidth = 15, 
+  #                          barheight = 0.5, title.hjust = 0.5)
+  #   )
   scale_fill_viridis_c(name = "hourly percent dry", aesthetics = "fill",
-    guide = guide_colorbar(title.position = "bottom", barwidth = 15, 
+    guide = guide_colorbar(title.position = "bottom", barwidth = 15,
                            barheight = 0.5, title.hjust = 0.5)
-    )
+  )
 p <- p + facet_grid(year~month)
 #p <- p + scale_y_continuous(trans = "reverse")
 p <- p + scale_x_continuous(breaks = c(1,10,20,30))
