@@ -212,14 +212,12 @@ to improve estimates of seal abundance. Previously estimated availability correc
 factors (e.g., [@bengtson2005pb], [@conn2014mee], and [@verhoef2014sm]) accounted for
 variables such as the time-of-day and day-of-year, but did not investigate meteorological
 variables that have been shown to influence haul-out behavior of walruses [@reder2003pb;
-@udevitz2009cjz]. Further, previous correction factor analyses assumed that tagged seals
-were representative of the population as a whole, even though the age and sex distribution
-of telemetered individuals might differ from the population. Third, we explore the annual
-variability in haul-out timing and possible linkage to dramatic changes in the
-availability and extent of seasonal sea ice between 2005 and 2020. Our work extends the
-scope of previous haul-out analyses, includes the influence of meteorological variability
-and possible ramifications of non-representative age-sex samples, and investigates the
-potential impact of a changing icescape on the behavior of these species.
+@udevitz2009cjz]. Third, we explore the annual variability in haul-out timing and possible
+linkage to dramatic changes in the availability and extent of seasonal sea ice between
+2005 and 2020. Our work extends the scope of previous haul-out analyses, includes the
+influence of meteorological variability and possible ramifications of non-representative
+age-sex samples, and investigates the potential impact of a changing icescape on the
+behavior of these species.
 
 # Methods
 
@@ -729,69 +727,6 @@ predictions were then used to develop haul-out probability surfaces, explore mar
 effects of weather covariates, and determine annual peaks in haul-out activity. The timing
 of peak haul-out behavior was further used to regress against the annual maximum sea ice
 extent in the study region.
-
-## Stable stage distributions
-
-::: {custom-style="comment"}
-I didn't update this at all from Paul's previous text other than to revise some of the
-latex equations and add references. Would be good to confirm all of this is still
-appropriate and makes sense.
-:::
-
-Previous availability correction factors used in aerial surveys for ice-associated Arctic
-seals (e.g. [@bengtson2005pb], [@conn2014mee], and [@verhoef2014sm]) ignored any age- and
-sex-based variation in haul-out probabilities. The implicit assumption is that the
-behavior of telemetered animals represents the population as a whole. However, if haul-out
-probabilities are related to sex- and age-class, and if there are tangible differences
-between the age- and sex-structure of the telemetered sample and that of the population,
-correction factors computed in this way may lead to biased abundance estimates.
-
-To determine how much of a potential problem this is within our data, we compared
-estimates of haul-out probabilities that (1) ignored sex- and age-structure and (2)
-accounted for sex- and age-structure, adjusting for the relative proportion of seals in
-each sex- and age-class. To simplify comparisons, we fitted two additional GLMPMs to
-ribbon and spotted seal haul-out datasets. In the first model, we expressed haul-out
-probabilities as a function of solar hour and day-of-year. In the second model, we also
-included effects of sex-age class and sex-age interactions with solar hour and
-day-of-year. To adjust for the proportion of seals in each age class, we calculated a
-predicted population-averaged haul-out probability at solar noon as a function of
-day-of-year ($t$) as
-
-$$
-\widetilde{p_t}=\sum_{s}\sum_{a}{\omega_{s,a}{\hat{p}}_{s,a,t}}
-$$
-
-where $\omega_{s,a}$ is the proportion of the population of seals in age class $a$ and sex
-$s$. Typically, we do not know $\omega_{s,a}$ exactly, but can use information about
-likely mortality and reproductive schedules of seals to approximate $\omega_{s,a}$ using
-stable stage distributions calculated from matrix population models ().
-
-To calculate plausible values for $\omega_{s,a}$, we obtained natural mortality
-predictions from a hierarchical meta-analysis of phocid natural mortality
-[@trukhanova2018ee]. We then assumed a 50/50 sex ratio at birth, 1 pup per litter, and
-reproductive schedules as reported by Fedoseev [-@fedoseev2000] for seals in the western
-Bering Sea to formulate Leslie matrices Ai for each species i. Stable age distributions
-$v_i={v\_i0,v\_i1,⋯,v\_iA}$ were then determined by normalizing the dominant eigenvector
-of $A_i$ so that they summed to one . Given a stable age distribution, we calculated the
-proportion of the population by sex and stage (young-of-the-year: \<1 year; subadult: at
-least one year but sexually immature; adult: sexually mature) using data on sexual
-maturity from Fedoseev [-@fedoseev2000]. In particular, the expected proportion of the
-population that are sex $s$ and young-of-year was set as $\pi_{i,s,yoy}=0.5v_i0$, while
-the expected proportion that are subadults and adults were set to
-
-$$
-\pi_{i,s,sub}={0.5\sum_{a}{{(1-m}_{i,s,a})}v}_{ia}
-$$
-
-and
-
-$$
-\pi_{i,s,ad}={0.5\sum_{a}\ m_{i,s,a}v}_{ia}
-$$
-
-Here, $m_{i,s,a}$ gives the anticipated proportion of animals of species $i$ and sex $s$
-that are sexually mature. Further details on mortality, reproductive and maturity
-schedules, and matrix modeling methods are presented in Appendix A.
 
 # Results
 
@@ -1541,31 +1476,6 @@ ggplot(data = peak_ho_df, aes(x = yday, y = max_extent_km2, color = species)) +
   
 ```
 
-## Stable stage distributions
-
-::: {custom-style="comment"}
-This section is unchanged from Paul's original write up. I have put off revisiting and
-integrating with my current document/code. Maybe between Paul/Irina/Me we can sort out a
-quick update. Might just need to walk me through the previous code and make sure I get it
-properly incorporated with this version
-:::
-
-Stable stage distributions calculated using mortality and reproductive schedules produced
-different patterns for the four species of ice-associated seals residing in Alaskan waters
-(Fig. X). Ribbon seals mature the fastest, and so can be expected to have the largest
-proportion of adults and smallest proportion of subadults; conversely, ringed seals mature
-slowly and are predicted to have roughly equal proportions of adults and subadults (note
-that we do not attempt to model ringed seal haul-out behavior in this study; see
-Discussion). Population-level haul-out distributions were somewhat different depending on
-whether we a) adjusted haul-out probabilities based on stable stage distributions or b)
-assumed the tagged sample represented the population. In particular, ribbon seal estimates
-differed somewhat at the beginning of the time series, but the two approaches produced
-similar estimates (Fig. X) within the window that previous aerial surveys in the region
-have been conducted (April and May; e.g. Conn et al. 2014). By contrast, during this time
-period spotted seal haul-out estimates were often ≈10% higher for the approach that
-adjusted for stable age distributions, presumably because subadults had lower predicted
-haul-out probabilities than adults but made up a disproportionately high proportion of the
-tagged sample.
 
 # Discussion
 
@@ -1659,21 +1569,15 @@ shown that there can be considerable differences in the number of seals hauled o
 based on these factors. We recommend that future abundance analyses employ correction
 factors that account for these factors. For instance, it is relatively straightforward to
 obtain weather reanalysis products for times and locations that are surveyed and to
-construct a relevant correction factor based on predictions of GMPMs. Further, one can
-apply stable stage distribution estimates from matrix population models to adjust
-predictions to the "average" prediction of the population. The latter suggestion is
-particularly appropriate when the age structure of the tagged sample does not reflect the
-likely age structure of the population. For instance, population weighted estimates can
-differ substantially from those based on a naïve analysis of the tagged sample, as was the
-case with analysis of spotted seal data (e.g. Fig X). The most challenging element in
-developing availability correction factors is with annual variability. It can be difficult
-to get a sufficient sample size to estimate year-specific correction factors, particularly
-because research teams would likely need to tag seals and conduct aerial surveys
-concurrently which requires considerably more personnel and money. One possible suggestion
-is to estimate a "shift" parameter within models for aerial survey counts that allow the
-peak of haul-out distributions to be adjusted earlier or later in the year based on the
-frequency of counts observed over time. Regardless, researchers should anticipate there
-being some unmodeled heterogeneity in availability probability present in abundance
+construct a relevant correction factor based on predictions of GMPMs. The most challenging
+element in developing availability correction factors is with annual variability. It can
+be difficult to get a sufficient sample size to estimate year-specific correction factors,
+particularly because research teams would likely need to tag seals and conduct aerial
+surveys concurrently which requires considerably more personnel and money. One possible
+suggestion is to estimate a "shift" parameter within models for aerial survey counts that
+allow the peak of haul-out distributions to be adjusted earlier or later in the year based
+on the frequency of counts observed over time. Regardless, researchers should anticipate
+there being some unmodeled heterogeneity in availability probability present in abundance
 estimates obtained from aerial surveys. This may make trend detection difficult, as one
 will not know if moderate differences in abundance estimates are attributable to changes
 in abundance or changes in haul-out frequencies.
