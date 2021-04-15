@@ -93,6 +93,7 @@ library(ggspatial)
 library(ggsci)
 library(ggrepel)
 library(gghighlight)
+library(ggtext)
 library(glmmLDTS)
 library(mgcv)
 library(ragg)
@@ -458,9 +459,10 @@ from some tags, especially those mounted to the rear flipper, resulted in poor m
 performance or convergence issues. For this study, we calculated a weighted average daily
 location where the inverse of the estimated Argos location error was used for the weight.
 Any days where haul-out observations were present without any location data were filled
-from the last calculated daily location, and any days where the location intersected with
-land were removed from the dataset. Figure \@ref(fig:dataMap) shows the spatial
-distribution of available haul-out behavior data for each species across the study area.
+from the last calculated weighted average daily location, and any days where the location
+intersected with land were removed from the dataset. Figure \@ref(fig:dataMap) shows the
+spatial distribution of available haul-out behavior data for each species across the study
+area.
 
 ```{r locs-count-mapdata}
 haulout_locs <- dat.sf %>% 
@@ -718,8 +720,8 @@ if (params$run_models) {
 A typical model fitting exercise would also include a model selection process. However,
 AIC (and similar criteria) is not suitable when using pseudo-likelihoods, because
 pseudo-data generated in the model fitting process [@verhoef2010cs] differ between models
-[@teneyck2017]. After fitting GLMPM models, we instead used "type III" F-tests to
-calculate p-values [@verhoef2010cs] to evaluate model performance and important terms. We
+[@teneyck2017]. After fitting GLMPM models, we instead used "type III" $F$-tests to
+calculate $p$-values [@verhoef2010cs] to evaluate model performance and important terms. We
 also produced predictions of haul-out behavior as a function of influential predictors
 (e.g. solar hour, day-of-year, age-sex). Weather covariates for these predictions were
 based on daily or hourly smoothed weather covariate values across the study region. Such
@@ -863,7 +865,7 @@ p <- p + scale_x_continuous(breaks = c(1,10,20,30))
 p <- p + theme(legend.position = "bottom") +
   theme(strip.background = element_rect(colour="white")) +
   theme(axis.ticks=element_blank()) +
-  xlab("day of month") + ylab("solar hour") +
+  xlab("day of month") + ylab("local solar hour") +
   ggtitle("Ribbon seals rest on sea ice in late spring and around solar noon.")
 p
 ```
@@ -914,7 +916,7 @@ values and more likely to be on the ice when temperatures were relatively warm. 
 = `r ribbon_type3$temp2_wind$F.value`; $p$ = `r ribbon_type3$temp2_wind$Prob.F`) showed a
 moderately negative influence on haul-out probability.
 
-```{r ribbonHOwx, fig.height = 5.5, include=TRUE, fig.id = "ribbonHOwx", fig.cap="Predicted haul-out probability of ribbon seals across a range of weather conditions."}
+```{r ribbonHOwx, fig.height = 5.5, include=TRUE, fig.id = "ribbonHOwx", fig.cap="Variability in predicted haul-out probability of ribbon seals across a range of weather conditions thea range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability. Solid lines are smoothed fits to the predictions and provided to better indicate the marginal effect."}
 
 p_temp <- ggplot(plot_df %>% filter(age_sex != "YOUNG OF YEAR"), aes(temp2*27, ho_prob, color = age_sex)) +
   geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.01, stroke = 0) +
@@ -1005,7 +1007,7 @@ p <- p + scale_x_continuous(breaks = c(1,10,20,30))
 p <- p + theme(legend.position = "bottom") +
   theme(strip.background = element_rect(colour="white")) +
   theme(axis.ticks=element_blank()) +
-  xlab("day of month") + ylab("solar hour") +
+  xlab("day of month") + ylab("local solar hour") +
   ggtitle("Spotted seals rest on sea ice in late spring and around solar noon.")
 p
 ```
@@ -1023,7 +1025,7 @@ were relatively warm. Wind chill (temperature $\times$ wind) and precipitation w
 influential. Differences in the magnitude of response between the age-sex classes is
 present and consistent across each of the weather covariates.
 
-```{r spottedHOwx,fig.height = 5.5, include=TRUE, fig.id = "spottedHOwx", fig.cap="Predicted haul-out probability of spotted seals across a range of weather conditions."}
+```{r spottedHOwx,fig.height = 5.5, include=TRUE, fig.id = "spottedHOwx", fig.cap="Variability in the predicted haul-out probability of spotted seals across a range of weather conditions thea range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability. Solid lines are smoothed fits to the predictions and provided to better indicate the marginal effect."}
 library(ggsci)
 
 p_temp <- ggplot(plot_df %>% filter(age_sex != "YOUNG OF YEAR"), aes(temp2*27, ho_prob, color = age_sex)) +
@@ -1119,7 +1121,7 @@ p <- p + scale_x_continuous(breaks = c(1,10,20,30))
 p <- p + theme(legend.position = "bottom") +
   theme(strip.background = element_rect(colour="white")) +
   theme(axis.ticks=element_blank()) +
-  xlab("day of month") + ylab("solar hour") +
+  xlab("day of month") + ylab("local solar hour") +
   ggtitle("Bearded seals rest on sea ice around solar noon and solar midnight")
 p
 ```
@@ -1134,7 +1136,7 @@ chill was also a significant influence
 = `r bearded_type3$temp2_wind$F.value`; $p$ = `r bearded_type3$temp2_wind$Prob.F`). Any
 influence of barometric pressure or precipitation is less apparent.
 
-```{r beardedHOwx,fig.height = 5.5, include=TRUE, fig.id = "beardedHOwx", fig.cap="Predicted haul-out probability of bearded seals across a range of weather conditions."}
+```{r beardedHOwx,fig.height = 5.5, include=TRUE, fig.id = "beardedHOwx", fig.cap="Variability in predicted haul-out probability of bearded seals across a range of weather conditions thea range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability. Solid lines are smoothed fits to the predictions and provided to better indicate the marginal effect."}
 
 p_temp <- ggplot(plot_df, aes(temp2*27, ho_prob, color = age_sex)) +
   geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.01, stroke = 0) +
@@ -1471,8 +1473,9 @@ ggplot(data = peak_ho_df, aes(y = yday, x = max_extent_km2, color = species)) +
   scale_fill_manual(values = c('#E66100','#5D3A9B'), name = "") +
   theme(legend.position = "top",
         legend.justification = "right") +
-  labs(y = "date of peak haul-out", x = "maximum sea ice extent (km^2 / 1000)",
-       title = "The connection between yearly maximum sea ice extent and the \ntiming of peak haul-out probability is limited")
+  labs(y = "date of peak haul-out", x = "maximum sea ice extent (km^2^ / 1000)",
+       title = "The connection between yearly maximum sea ice extent and the \ntiming of peak haul-out probability is limited") +
+  theme(axis.text.x = element_markdown())
   
 ```
 
