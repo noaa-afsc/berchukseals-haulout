@@ -1692,5 +1692,125 @@
         "title": "Haul-out behaviour of Arctic ringed seals (Pusa hispida): inter-annual patterns and impacts of current environmental change",
         "type": "article-journal",
         "volume": "41"
+    },
+    {
+        "ISSN": "0008-4301",
+        "author": [
+            {
+                "family": "Kelly",
+                "given": "B. P."
+            },
+            {
+                "family": "Quakenbush",
+                "given": "L. T."
+            }
+        ],
+        "container-title": "Canadian Journal of Zoology",
+        "id": "kelly1990",
+        "issue": "12",
+        "issued": {
+            "date-parts": [
+                [
+                    1990,
+                    12
+                ]
+            ]
+        },
+        "key": "GFBD4NSH",
+        "language": "English",
+        "libraryid": "2",
+        "page": "2503-2512",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Spatiotemporal use of lairs by ringed seals (<i>Phoca hispida</i>)",
+        "type": "article-journal",
+        "volume": "68"
+    },
+    {
+        "DOI": "10.1007/s00300-020-02710-6",
+        "ISSN": "1432-2056",
+        "URL": "https://doi.org/10.1007/s00300-020-02710-6",
+        "author": [
+            {
+                "family": "Olnes",
+                "given": "J."
+            },
+            {
+                "family": "Crawford",
+                "given": "J."
+            },
+            {
+                "family": "Citta",
+                "given": "J. J."
+            },
+            {
+                "family": "Druckenmiller",
+                "given": "M. L."
+            },
+            {
+                "family": "Von Duyke",
+                "given": "A. L."
+            },
+            {
+                "family": "Quakenbush",
+                "given": "L."
+            }
+        ],
+        "container-title": "Polar Biology",
+        "id": "olnes2020",
+        "issued": {
+            "date-parts": [
+                [
+                    2020,
+                    7,
+                    8
+                ]
+            ]
+        },
+        "key": "A53745C7",
+        "libraryid": "2",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Movement, diving, and haul-out behaviors of juvenile bearded seals in the Bering, Chukchi and Beaufort seas, 2014–2018",
+        "type": "article-journal"
+    },
+    {
+        "DOI": "10.1007/s00300-018-2399-x",
+        "ISSN": "1432-2056",
+        "author": [
+            {
+                "family": "Crawford",
+                "given": "Justin A."
+            },
+            {
+                "family": "Frost",
+                "given": "Kathryn J."
+            },
+            {
+                "family": "Quakenbush",
+                "given": "Lori T."
+            },
+            {
+                "family": "Whiting",
+                "given": "Alex"
+            }
+        ],
+        "container-title": "Polar Biology",
+        "id": "crawford2019",
+        "issue": "1",
+        "issued": {
+            "date-parts": [
+                [
+                    2019,
+                    1,
+                    1
+                ]
+            ]
+        },
+        "key": "XTUULQJ8",
+        "libraryid": "2",
+        "page": "65-80",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Seasonal and diel differences in dive and haul-out behavior of adult and subadult ringed seals (<i>Pusa hispida</i>) in the Bering and Chukchi seas",
+        "type": "article-journal",
+        "volume": "42"
     }
 ]
