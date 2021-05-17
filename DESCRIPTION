@@ -56,5 +56,7 @@ Imports: bookdown,
     tidyverse (>= 1.3.0)
 Suggests: devtools,
     git2r
+Remotes:
+    jmlondon/glmmLDTS
 URL: https://github.com/jmlondon/berchukHaulout
 BugReports: https://github.com/jmlondon/berchukHaulout/issues
