@@ -26,27 +26,29 @@ get_locs_sf <- function() {
 
   spenos_db <- tbl(con, in_schema("capture","for_telem")) %>% collect()
 
-  locs_qry <- "SELECT deployid, type, error_radius, locs_dt, quality, geom
-              FROM telem.geo_wc_locs_qa
-              UNION ALL
-              SELECT deployid, NULL AS type, NULL AS error_radius,
-                     loc_dt as locs_dt, argos_lc as quality, loc_geom as geom
-              FROM telem.adfg_locs
-              UNION ALL
-              SELECT deployid::VARCHAR, NULL AS type, NULL AS error_radius,
-                     loc_dt as locs_dt, argos_lc as quality, loc_geom as geom
-              FROM telem.nsb_locs;"
+  locs_qry <- "SELECT deployid, ptt, type, error_radius, locs_dt, quality, geom
+              FROM telem.geo_wc_locs_qa;"
 
   locs_sf <- read_sf(con, query = locs_qry) %>%
     left_join(deployments_db, by = 'deployid') %>%
     left_join(spenos_db, by = 'speno') %>%
     filter(species %in% c('Bearded seal', 'Ribbon seal', 'Spotted seal')) %>%
-    filter(month(locs_dt) %in% c(3,4,5,6,7)) %>%
+    filter(lubridate::month(locs_dt) %in% c(3,4,5,6,7)) %>%
     mutate(unique_day =
-             glue("{year(locs_dt)}",
-                  "{yday(locs_dt)}",
+             glue::glue("{lubridate::year(locs_dt)}",
+                  "{lubridate::yday(locs_dt)}",
                   .sep = "_"))
   dbDisconnect(con)
+
+  load(file = here::here('data/adfg_locations.rda'))
+  load(file = here::here('data/adfg_deployments.rda'))
+
+  adfg_locations <- adfg_locations %>%
+    rename(quality = location_quality, locs_dt = date_time, type = tag_type) %>%
+    left_join(adfg_deployments, by = 'deployid')
+    sf::st_as_sf(coords = c('longitude','latitude')) %>%
+    sf::st_set_crs(4326) %>%
+    sf::st_transform(3571)
 
   return(locs_sf)
 

@@ -12,7 +12,8 @@ library(purler)
 create_ar1_id <- function(h_dt) {
   ar1_id <- tibble(
     t_seq = seq(from = h_dt[1], to = h_dt[length(h_dt)], by = "hour",)
-  ) %>% left_join(tibble(h_dt = h_dt, haulout_dt = h_dt), by = c("t_seq" = "h_dt")) %>%
+  ) %>%
+    left_join(tibble(h_dt = h_dt, haulout_dt = h_dt), by = c("t_seq" = "h_dt")) %>%
     mutate(x = is.na(haulout_dt),
            rle = rlenc_id(x)) %>%
     filter(!is.na(haulout_dt)) %>%
@@ -105,6 +106,18 @@ fit_ribbon <- glmmLDTS(fixed.formula = dry ~ age_sex + sin1 + cos1 + sin2 + cos2
 
 save(fit_ribbon, file = here::here('data/fit_ribbon.Rdata'))
 
+fit_ribbon_noagesex <- glmmLDTS(fixed.formula = dry ~ sin1 + cos1 + sin2 + cos2 + sin3 + cos3 + day + day2+ day3 + temp2 + wind + pressure + precip + wind*temp2 +
+                                  sin1*day + cos1*day + sin2*day + cos2*day + sin3*day + cos3*day +
+                                  sin1*day2 + cos1*day2 + sin2*day2 + cos2*day2 + sin3*day2 + cos3*day2,
+                                random.formula = dry ~ speno,
+                                data = HO_ribbon,
+                                EstMeth = "REML",
+                                timecol = "time_vec",
+                                #ridge.reg = "global",
+                                #lambda = 0.5,
+                                group.vec = "ar1_id")
+
+save(fit_ribbon_noagesex, file = here::here('data/fit_ribbon_noagesex.Rdata'))
 
 
 HO_spotted = dat.sf %>%
@@ -128,6 +141,18 @@ fit_spotted <- glmmLDTS(fixed.formula = dry ~ age_sex + sin1 + cos1 + sin2 + cos
                        #lambda = 0.5,
                        group.vec = "ar1_id")
 save(fit_spotted, file = here::here('data/fit_spotted.Rdata'))
+
+fit_spotted_noagesex <- glmmLDTS(fixed.formula = dry ~ sin1 + cos1 + sin2 + cos2 + sin3 + cos3 + day + day2+ day3 + temp2 + wind + pressure + precip + wind*temp2 +
+                          sin1*day + cos1*day + sin2*day + cos2*day + sin3*day + cos3*day +
+                          sin1*day2 + cos1*day2 + sin2*day2 + cos2*day2 + sin3*day2 + cos3*day2,
+                        random.formula = dry ~ speno,
+                        data = HO_spotted,
+                        EstMeth = "REML",
+                        timecol = "time_vec",
+                        #ridge.reg = "global",
+                        #lambda = 0.5,
+                        group.vec = "ar1_id")
+save(fit_spotted_noagesex, file = here::here('data/fit_spotted_noagesex.Rdata'))
 
 HO_bearded = dat.sf %>%
   filter(species == "Bearded seal") %>%
