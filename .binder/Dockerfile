@@ -7,6 +7,6 @@ USER ${NB_USER}
 
 
 
-RUN wget https://github.com/jmlondon/berchukHaulout/raw/main/DESCRIPTION && R -e "options(repos = list(CRAN = 'http://mran.revolutionanalytics.com/snapshot/2021-03-23/')); devtools::install_deps()"
+RUN wget https://github.com/jmlondon/berchukHaulout/raw/master/DESCRIPTION && R -e "options(repos = list(CRAN = 'http://mran.revolutionanalytics.com/snapshot/2021-05-18/')); devtools::install_deps()"
 
 RUN rm DESCRIPTION.1; exit 0

@@ -58,5 +58,6 @@ Suggests: devtools,
     git2r
 Remotes:
     jmlondon/glmmLDTS
+    coolbutuseless/purler
 URL: https://github.com/jmlondon/berchukHaulout
 BugReports: https://github.com/jmlondon/berchukHaulout/issues
