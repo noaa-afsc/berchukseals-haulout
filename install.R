@@ -1,45 +1,44 @@
-install.packages(
-  "bookdown",
-  "broom",
-  "conflicted",
-  "DBI",
-  "dbplyr",
-  "devtools",
-  "distill",
-  "dplyr",
-  "flextable",
-  "forcats",
-  "gghighlight",
-  "ggplot2",
-  "ggrepel",
-  "ggsci",
-  "ggspatial",
-  "git2r",
-  "glue",
-  "gt",
-  "here",
-  "janitor",
-  "keyringr",
-  "knitr",
-  "lubridate",
-  "mgcv",
-  "odbc",
-  "officedown",
-  "patchwork",
-  "pingr",
-  "purrr",
-  "ragg",
-  "rmarkdown",
-  "rnaturalearth",
-  "rnaturalearthdata",
-  "sf",
-  "solaR",
-  "splines",
-  "stringr",
-  "tibble",
-  "tidyr",
-  "tidyverse"
-)
+install.packages("bookdown")
+install.packages("broom")
+install.packages("conflicted")
+install.packages("DBI")
+install.packages("dbplyr")
+install.packages("devtools")
+install.packages("distill")
+install.packages("dplyr")
+install.packages("flextable")
+install.packages("forcats")
+install.packages("gghighlight")
+install.packages("ggplot2")
+install.packages("ggrepel")
+install.packages("ggsci")
+install.packages("ggspatial")
+install.packages("git2r")
+install.packages("glue")
+install.packages("gt")
+install.packages("here")
+install.packages("janitor")
+install.packages("keyringr")
+install.packages("knitr")
+install.packages("lubridate")
+install.packages("mgcv")
+install.packages("odbc")
+install.packages("officedown")
+install.packages("patchwork")
+install.packages("pingr")
+install.packages("purrr")
+install.packages("ragg")
+install.packages("rmarkdown")
+install.packages("rnaturalearth")
+install.packages("rnaturalearthdata")
+install.packages("sf")
+install.packages("solaR")
+install.packages("splines")
+install.packages("stringr")
+install.packages("tibble")
+install.packages("tidyr")
+install.packages("tidyverse")
+install.packages("remotes")
 
 remotes::install_github("jmlondon/glmmLDTS")
 remotes::install_github("coolbutuseless/purler")
