@@ -17,9 +17,6 @@ author:
   - Jay M. Ver Hoef:
       institute: [MML]
       correspondence: false
-  - Irina S. Trukhanova:
-      institute: [MML]
-      correspondence: false
   - Michael F. Cameron:
       institute: [MML]
       correspondence: false
@@ -45,31 +42,30 @@ params:
 ## Abstract
 
 Ice-associated seals rely on sea ice for a variety of activities, including breeding,
-molting, pupping, and resting. In the Arctic, many of these activities occur in spring and
-early summer (April-June) as sea ice begins to melt and retreat northward. Rapid
-acceleration of climate change in Arctic ecosystems is therefore of concern as the
-quantity and quality of suitable habitat is forecast to decrease. In this paper, we use
-data collected from satellite-linked bio-loggers deployed between 2005 and 2020 to
-investigate the seasonal timing and environmental factors affecting sea ice use by seals
-(specifically, bearded, ribbon, and spotted seals) in the Bering and Chukchi seas. In
-addition to providing baseline data on phenology, these data also allow us to refine
-availability estimates needed to accurately estimate abundance from aerial survey counts
-of seals basking on ice (i.e., to correct for the proportion of animals that are in the
-water while surveys are conducted). Using generalized linear mixed pseudo-models to
-properly account for temporal autocorrelation, we fit models with a variety of covariates
-(e.g., day-of-year, solar hour, age-sex class, wind speed, barometric pressure,
-temperature, precipitation) to examine their ability to explain variation in hourly
-haul-out records. We found evidence for strong diurnal and within season patterns in
-haul-out behavior, as well as strong weather effects (particularly wind and temperature).
-In general, seals were more likely to rest on ice in the middle of the day and when wind
-speed was low and temperatures were higher. Haul-out propensity increased through March
-and April, peaking in May and early June before declining again. The timing and frequency
-of haul-out events also varied based on species and age-sex class. For ribbon and spotted
-seals, models with year effects were highly supported, indicating that the timing and
-magnitude of haul-out behavior varied among years. However, we did not find evidence that
-haul-out timing was linked annual sea ice extent. Our analysis emphasizes the importance
-of accounting for variation in haul-out behavior when interpreting the number of seals
-counted in aerial surveys.
+molting, pupping, and resting. In the Arctic, many of these activities occur in spring
+(April-June) as sea ice begins to melt and retreat northward. Rapid acceleration of
+climate change in Arctic ecosystems is therefore of concern as the quantity and quality of
+suitable habitat is forecast to decrease. In this paper, we use data collected from
+satellite-linked bio-loggers deployed between 2005 and 2020 to investigate the seasonal
+timing and environmental factors affecting sea ice use by seals (specifically, bearded,
+ribbon, and spotted seals) in the Bering and Chukchi seas. In addition to providing
+baseline data on phenology, these data also allow us to quantify ‘availability’, which is
+needed to accurately estimate abundance from aerial survey counts of seals basking on ice
+(i.e., to correct for the proportion of animals that are in the water while surveys are
+conducted). Using generalized linear mixed pseudo-models to properly account for temporal
+autocorrelation, we fit models with a variety of covariates (e.g., day-of-year, solar
+hour, age-sex class, wind speed, barometric pressure, temperature, precipitation) to
+examine their ability to explain variation in hourly haul-out records. We found evidence
+for strong diurnal and within-season patterns in haul-out behavior, as well as strong
+weather effects (particularly wind and temperature). In general, seals were more likely to
+rest on ice in the middle of the day and when wind speed was low and temperatures were
+higher. Haul-out propensity increased through March and April, peaking in May and early
+June before declining again. The timing and frequency of haul-out events also varied based
+on species and age-sex class. For ribbon and spotted seals, models with year effects were
+highly supported, indicating that the timing and magnitude of haul-out behavior varied
+among years. However, we did not find evidence that haul-out timing was linked to annual
+sea ice extent. Our analysis emphasizes the importance of accounting for variation in
+haul-out behavior when interpreting the number of seals counted in aerial surveys.
 
 keywords: availability; generalized linear mixed pseudo-model; haul-out behavior;
 phenology; Phocidae; sea ice
@@ -132,49 +128,50 @@ theme_replace(plot.title.position = "plot")
 
 # Introduction
 
-The global climate crisis is causing considerable reduction in Arctic sea ice extent,
+The global climate disruption is causing considerable reduction in Arctic sea ice extent,
 volume, and seasonal presence [@kwok2018erl, @meier2014rg, @wang2017dsrpitsio]. These
-changes have ripple effects on Arctic ecosystems, taxa, and the human communities who live
-in the region [@huntington2020ncc]. Such disruptions are a particular cause of concern for
-ice-associated seals (ringed (*Phoca hispida*), bearded (*Erignathus barbatus*), spotted
-(*Phoca largha*), and ribbon seals (*Histriophoca fasciata*)) that depend on spring and
-early summer sea ice (March-June) in the Bering and Chukchi seas as a platform for
-important functions, such as pupping, nursing, breeding, and molting [@boveng2009a;
-@boveng2013; @cameron2010a; @kelly2010]. Limited data and large knowledge gaps prevent our
-ability to make definitive predictions about the ultimate effects of changes in sea ice on
-the behavior, abundance, and distribution of these seals. Knowledge about biological
-constraints on the phenology of reproductive and molting behavior is generally lacking, so
-it is difficult to predict the readiness with which ice-associated seal species will be
-able to adapt to future changes (e.g., by adjusting pupping or molting schedules to
-earlier dates or different locales). Additionally, trends in abundance of these species
-are largely unknown, so it is difficult to say what effect, if any, declines in sea ice
-habitat have had, or will have, on seal densities.
+changes have ripple effects on Arctic organisms, ecosystems, and the human communities who
+live in the region [@huntington2020ncc]. Such disruptions are a particular cause of
+concern for ice-associated seals (ringed (*Phoca hispida*), bearded (*Erignathus
+barbatus*), spotted (*Phoca largha*), and ribbon seals (*Histriophoca fasciata*)) that
+depend on spring and early summer sea ice (March-June) in the Bering and Chukchi seas as a
+platform for important functions, such as pupping, nursing, breeding, and molting
+[@boveng2009a;
+@boveng2013; @cameron2010a; @kelly2010]. Limited data and large knowledge gaps complicate
+predictions about the ultimate effects of changes in sea ice on the behavior, abundance,
+and distribution of these seals. Knowledge about evolutionary constraints on the timing of
+reproductive and molting behavior is generally lacking, so it is difficult to predict the
+readiness with which ice-associated seal species will be able to adapt to future changes
+(e.g., by adjusting pupping or molting schedules to earlier dates or different locales).
+Additionally, trends in abundance of these species are largely unknown, so it is difficult
+to say what effect, if any, declines in sea ice habitat have had, or will have, on seal
+densities.
 
 For ice-associated seals, haul out is tightly linked with sea ice. Ribbon seals rest out
 of the water almost exclusively on sea ice and are mostly pelagic outside the spring
 pupping, breeding, and molting season [@burns1981]. While spotted and bearded seals rest
 on beaches during ice-free months, they strongly prefer sea ice as a resting platform
-during the spring and early summer [@burns2009]. The remote nature of the Bering and
-Chukchi seas mean direct observation of seal behavior is limited. Bio-logging devices are,
-thus, especially useful tools for collecting key information on movement and haul-out
-behavior for these species. Records of time spent out of the water provide valuable data
-for identifying covariates that explain variation in haul-out behavior. For instance, in
-the Antarctic, Bengtson and Cameron [-@bengtson2004pb] relied on bio-logging data to
-demonstrate greater haul-out propensity in juvenile crabeater seals (*Lobodon
-carcinophaga*) than adults, with highest probabilities in February and at times close to
-solar noon. In the Arctic, Von Duyke et al. [-@vonduyke2020ee] demonstrated seasonal
-changes between diurnal and nocturnal haul-out behavior of ringed seals. Bengtson et al.
-[-@bengtson2005pb] documented a higher propensity for ringed seal basking near solar noon,
-as did Ver Hoef et al. [-@verhoef2014sm] in an analysis of bearded , ribbon , and spotted
-seals using much larger sample sizes. Olnes et al. [-@olnes2020pb] showed that the
-proportion of time bearded seals spent hauled out progressively increased through spring
-and summer. And, Ver Hoef et al. [-@verhoef2014sm] found haul-out probabilities increased
-gradually starting in March and peaking in May and June for bearded, ribbon, and spotted
-seals. However, their primary focus was to develop a correction factor for estimating seal
-abundance, and like a subsequent analysis by Conn et al. [-@conn2014mee], they did not
-attempt to separately analyze haul-out schedules for different age and sex classes
-(although initial models with sex and age as fixed effects were insignificant at p = 0.05
-[@verhoef2014sm]).
+during the spring and early summer [@burns2009]. The remoteness of the Bering and Chukchi
+seas mean direct scientific observation of seal behavior is impractical. Bio-logging
+devices are, thus, especially useful tools for collecting key information on movement and
+haul-out behavior for these species. Bio-logging records of time spent out of the water
+provide valuable data for identifying covariates that explain variation in haul-out
+behavior. For instance, in the Antarctic, Bengtson and Cameron [-@bengtson2004pb] relied
+on bio-logging data to demonstrate greater haul-out propensity in juvenile crabeater seals
+(*Lobodon carcinophaga*) than adults, with highest probabilities in February and at times
+close to solar noon. In the Arctic, Von Duyke et al. [-@vonduyke2020ee] demonstrated
+seasonal changes between diurnal and nocturnal haul-out behavior of ringed seals. Bengtson
+et al. [-@bengtson2005pb] documented a higher propensity for ringed seal basking near
+solar noon, as did Ver Hoef et al. [-@verhoef2014sm] in an analysis of bearded , ribbon ,
+and spotted seals using much larger sample sizes. Olnes et al. [-@olnes2020pb] showed that
+the proportion of time bearded seals spent hauled out progressively increased through
+spring and summer. And, Ver Hoef et al. [-@verhoef2014sm] found haul-out probabilities
+increased gradually starting in March and peaking in May and June for bearded, ribbon, and
+spotted seals. However, their primary focus was to develop a correction factor for
+estimating seal abundance, and like a subsequent analysis by Conn et al. [-@conn2014mee],
+they did not attempt to separately analyze haul-out schedules for different age and sex
+classes (although initial models with sex and age as fixed effects were insignificant at p
+= 0.05 [@verhoef2014sm]).
 
 Several authors have used logistic regression-style analyses to estimate the probability
 of sea ice use from data garnered from bio-loggers. In these models, haul-out
