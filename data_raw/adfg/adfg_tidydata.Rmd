@@ -230,11 +230,13 @@ adfg_timelines <- readr::read_csv('ADFG_SealTimelineData3.csv',
                   lubridate::as_datetime(),
                 Ptt = as.integer(Ptt),
                 TagType = toupper(TagType)) %>% 
-  dplyr::rename(deployid = DeployIDs,
+  dplyr::rename(speno = DeployIDs,
                 tag_type = TagType,
                 hist_type = HistType,
                 date_time = GMTDate) %>% 
   dplyr::rename_all(tolower) %>% 
+  dplyr::mutate(deployid = paste(speno,tag_type, sep = "_")) %>% 
+  dplyr::relocate(deployid) %>% 
   dplyr::select(-c(monthnumb,latitude,longitude,locationquality,sum,hist_type))
 
 ```
@@ -251,7 +253,7 @@ adfg_timelines <- adfg_timelines %>%
         dplyr::left_join(bins, by = "bin") %>%
         dplyr::mutate(date_time = date_time + lubridate::hours(hour),
                       data_date = lubridate::floor_date(date_time,"day")) %>%
-        dplyr::select(c(deployid,ptt,tag_type,date_time,data_date,percent_dry)) %>% 
+        dplyr::select(c(deployid,speno,ptt,tag_type,date_time,data_date,percent_dry)) %>% 
         dplyr::arrange(deployid,date_time)
 ```
 
