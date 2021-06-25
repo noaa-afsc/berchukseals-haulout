@@ -96,7 +96,7 @@ we'll use the `tidyr::gather` function.
 adfg_deployments <- adfg_deployments %>% 
   dplyr::rename(speno = DeployIDs,
                 mapid = MapID,
-                date_tagged = DateTagged,
+                deploy_dt = DateTagged,
                 primary_tag_type = PrimaryTagType,
                 flipper_tag_type = FlipperTagType
                 ) %>% 
@@ -104,13 +104,11 @@ adfg_deployments <- adfg_deployments %>%
   dplyr::mutate(species = tolower(species),
                 age = tolower(age),
                 sex = tolower(sex)) %>% 
-  tidyr::gather(tag_position, tag_type, c(primary_tag_type,flipper_tag_type)) %>% 
+  tidyr::gather(tag_position, tag_family, c(primary_tag_type,flipper_tag_type)) %>% 
   dplyr::mutate(tag_position = ifelse(tag_position == "primary_tag_type",
-                   "primary","flipper"),
-                deployid = paste(speno,tag_type, sep = "_")) %>% 
-  dplyr::relocate(deployid, .after = mapid) %>% 
-  dplyr::filter(!is.na(tag_type)) %>% 
-  dplyr::arrange(date_tagged,deployid)
+                   "primary","flipper")) %>% 
+  dplyr::filter(!is.na(tag_family)) %>% 
+  dplyr::arrange(deploy_dt)
 
 glimpse(adfg_deployments)
 ```
@@ -158,14 +156,30 @@ As before, we'll rename a few columns to snake_case and then all to lower case.
 ```{r}
 adfg_locations <- adfg_locations %>% 
   dplyr::rename(speno = DeployID,
-                location_quality = LocationQuality,
-                date_time = Date,
-                tag_type = TagType) %>% 
-  dplyr::filter(location_quality != "Z") %>% 
+                quality = LocationQuality,
+                locs_dt = Date,
+                tag_family = TagType) %>% 
+  dplyr::filter(quality != "Z") %>% 
   dplyr::select(-MonthNumb) %>% 
   dplyr::rename_all(tolower) %>% 
-  dplyr::mutate(deployid = paste(speno,tag_type, sep = "_")) %>% 
-  dplyr::relocate(deployid)
+  dplyr::left_join(adfg_deployments, by = c("speno","tag_family")) %>% 
+  mutate(species_code = case_when(
+        species == "bearded" ~ "EB",
+        species == "ribbon" ~ "HF",
+        species == "spotted" ~ "PL"
+    )) %>% 
+    mutate(deployid = glue::glue("{species_code}",
+                            "{lubridate::year(deploy_dt)}_{ptt}")) %>% 
+    mutate(unique_day =
+             glue::glue("{lubridate::year(locs_dt)}",
+                  "{lubridate::yday(locs_dt)}",
+                  .sep = "_")) %>% 
+  select(-species_code) %>% 
+  relocate(deployid,ptt) %>% 
+  filter(species %in% c('bearded', 'ribbon', 'spotted')) %>%
+    filter(lubridate::month(locs_dt) %in% c(3,4,5,6,7)) %>%
+  sf::st_as_sf(coords = c("longitude","latitude")) %>% 
+  sf::st_set_crs(value = "EPSG:4326")
 
 glimpse(adfg_locations)
 ```
@@ -181,17 +195,12 @@ library(ggspatial)
 world <- ne_countries(scale = "medium", returnclass = "sf") %>% 
   sf::st_transform(3571)
 
-locs_sf <- adfg_locations %>% 
-  dplyr::left_join(adfg_deployments, by = c("deployid","speno","tag_type")) %>% 
-  sf::st_as_sf(coords = c("longitude","latitude")) %>% 
-  sf::st_set_crs(4326) %>% sf::st_transform(3571)
-
 ggplot() +
   annotation_spatial(world, 
                      size = 0, 
                      fill = "grey70") +
   layer_spatial(
-    data = locs_sf, size = 0.125
+    data = sf::st_transform(adfg_locations,3571), size = 0.125
   ) +
   facet_grid(~ species) +
   theme(legend.position = "bottom") +
@@ -206,7 +215,7 @@ ggplot() +
 Last, we'll go through a similar process with the timeline data.
 
 ```{r}
-adfg_timelines <- readr::read_csv('ADFG_SealTimelineData3.csv')
+adfg_timelines <- readr::read_csv(here::here('data_raw/adfg/ADFG_SealTimelineData3.csv'))
 ```
 
 For this dataset, we'll need to convert the `GMTDate` to a proper date-time
@@ -223,7 +232,7 @@ adfg_timeline_cols <- cols(
   Sum = readr::col_character()
 )
 
-adfg_timelines <- readr::read_csv('ADFG_SealTimelineData3.csv',
+adfg_timelines <- readr::read_csv(here::here('data_raw/adfg/ADFG_SealTimelineData3.csv'),
                                   col_types = adfg_timeline_cols) %>% 
   dplyr::mutate(GMTDate = as.Date(GMTDate, origin = "1899-12-30", 
                                      tz = "UTC") %>% 
@@ -231,12 +240,25 @@ adfg_timelines <- readr::read_csv('ADFG_SealTimelineData3.csv',
                 Ptt = as.integer(Ptt),
                 TagType = toupper(TagType)) %>% 
   dplyr::rename(speno = DeployIDs,
-                tag_type = TagType,
+                tag_family = TagType,
                 hist_type = HistType,
-                date_time = GMTDate) %>% 
+                timeline_start_dt = GMTDate) %>% 
   dplyr::rename_all(tolower) %>% 
-  dplyr::mutate(deployid = paste(speno,tag_type, sep = "_")) %>% 
+  dplyr::left_join(adfg_deployments, by = c("speno","tag_family")) %>% 
+  mutate(species_code = case_when(
+        species == "bearded" ~ "EB",
+        species == "ribbon" ~ "HF",
+        species == "spotted" ~ "PL"
+    )) %>% 
+  mutate(deployid = glue::glue("{species_code}",
+                            "{lubridate::year(deploy_dt)}_{ptt}")) %>%
+  mutate(unique_day =
+             glue::glue("{lubridate::year(timeline_start_dt)}",
+                  "{lubridate::yday(timeline_start_dt)}",
+                  .sep = "_")) %>%
   dplyr::relocate(deployid) %>% 
+  filter(species %in% c('bearded', 'ribbon', 'spotted')) %>%
+    filter(lubridate::month(timeline_start_dt) %in% c(3,4,5,6,7)) %>%
   dplyr::select(-c(monthnumb,latitude,longitude,locationquality,sum,hist_type))
 
 ```
@@ -251,10 +273,9 @@ bins <- list(bin = paste("bin", 1:24, sep=""), hour=0:23) %>% as_tibble()
 adfg_timelines <- adfg_timelines %>% 
         tidyr::gather(bin, percent_dry, starts_with('bin')) %>%
         dplyr::left_join(bins, by = "bin") %>%
-        dplyr::mutate(date_time = date_time + lubridate::hours(hour),
-                      data_date = lubridate::floor_date(date_time,"day")) %>%
-        dplyr::select(c(deployid,speno,ptt,tag_type,date_time,data_date,percent_dry)) %>% 
-        dplyr::arrange(deployid,date_time)
+        dplyr::mutate(timeline_start_dt = timeline_start_dt + lubridate::hours(hour)) %>%
+        dplyr::select(c(deployid,speno,species,age,sex,deploy_dt,ptt,tag_family,timeline_start_dt,unique_day,percent_dry)) %>% 
+        dplyr::arrange(deployid,timeline_start_dt)
 ```
 
 ```{r}

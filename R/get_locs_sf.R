@@ -11,7 +11,7 @@ get_locs_sf <- function() {
 
   stopifnot(
     "PEP Postgres Database Not Available; did you start VPN? ;)" =
-      is_up("161.55.120.122", "5432")
+      pingr::is_up("161.55.120.122", "5432")
   )
 
   con <- dbConnect(
@@ -22,11 +22,12 @@ get_locs_sf <- function() {
   )
 
   deployments_db <- tbl(con, in_schema("telem","tbl_tag_deployments")) %>%
-    select(speno, deployid, tag_family, deploy_dt, end_dt) %>% collect()
+    select(speno, deployid, tag_family, deploy_dt, end_dt) %>%
+    rename(tag_type = tag_family) %>% collect()
 
   spenos_db <- tbl(con, in_schema("capture","for_telem")) %>% collect()
 
-  locs_qry <- "SELECT deployid, ptt, type, error_radius, locs_dt, quality, geom
+  locs_qry <- "SELECT deployid, ptt, type, error_radius, locs_dt, quality, geom as geometry
               FROM telem.geo_wc_locs_qa;"
 
   locs_sf <- read_sf(con, query = locs_qry) %>%
@@ -41,14 +42,10 @@ get_locs_sf <- function() {
   dbDisconnect(con)
 
   load(file = here::here('data/adfg_locations.rda'))
-  load(file = here::here('data/adfg_deployments.rda'))
+  load(file = here::here('data/nsb_locations.rda'))
 
-  adfg_locations <- adfg_locations %>%
-    rename(quality = location_quality, locs_dt = date_time, type = tag_type) %>%
-    left_join(adfg_deployments, by = 'deployid')
-    sf::st_as_sf(coords = c('longitude','latitude')) %>%
-    sf::st_set_crs(4326) %>%
-    sf::st_transform(3571)
+  locs_sf <- locs_sf %>% bind_rows(adfg_locations) %>%
+    bind_rows(nsb_locations)
 
   return(locs_sf)
 
