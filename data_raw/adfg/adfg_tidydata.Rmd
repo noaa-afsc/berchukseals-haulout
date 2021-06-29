@@ -75,7 +75,7 @@ adfg_deployments <- readr::read_csv('ADFG_SealDeploymentTable3.csv',
                                     col_types = adfg_deploy_cols) %>% 
   dplyr::mutate(DateTagged = lubridate::force_tz(DateTagged, 
                                                  'America/Anchorage')) %>% 
-  dplyr::mutate(DateTagged = lubridate::as_date(DateTagged, 
+  dplyr::mutate(DateTagged = lubridate::as_datetime(DateTagged, 
                                                 tz = 'America/Anchorage'))
 
 glimpse(adfg_deployments)

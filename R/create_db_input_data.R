@@ -70,14 +70,15 @@ create_db_input_data <- function(timeline_data, locs_sf) {
   con <- dbConnect(
     odbc(),
     dsn = "PostgreSQL pep",
-    uid = keyringr::get_kc_account("pgpep_londonj"),
-    pwd = keyringr::decrypt_kc_pw("pgpep_londonj")
+    uid = keyringr::get_kc_account("pgpep_sa"),
+    pwd = keyringr::decrypt_kc_pw("pgpep_sa")
   )
 
   st_write(obj = tbl_percent_locs,
            dsn = con,
-           layer = "res_iceseal_haulout_jml",
-           layer_options = "OVERWRITE=true")
+           layer = SQL("telem.res_iceseal_haulout"),
+           layer_options = c("OVERWRITE=true","GEOMETRY_NAME=geom")
+  )
 
   return(tbl_percent_locs)
 
