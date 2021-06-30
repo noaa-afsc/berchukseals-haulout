@@ -1,0 +1,291 @@
+---
+title: "Import and Tidy ADFG Supplied Location and Haul-out Data"
+description: | 
+  This article describes the import and tidying of location and haul-out data provided to
+  MML by ADFG for use in manuscript analyzing haul-out behavior of bearded, ribbon, and
+  spotted seals in the Bering and Chukchi seas
+date: May 6, 2021
+author:
+  - name: "Josh M. London"
+    url: https://github.com/jmlondon
+    affiliation: Alaska Fisheries Science Center
+    affiliation_url: https://www.fisheries.noaa.gov/about/alaska-fisheries-science-center
+    orcid_id: 0000-0002-3647-5046
+  - name: "Justin Crawford"
+    url: http://www.adfg.alaska.gov/index.cfm%3Fadfg%3Dmarinemammalprogram.icesealresearch
+    affiliation: Alaska Department of Fish & Game
+    affiliation_url: http://www.adfg.alaska.gov
+output: distill::distill_article
+---
+
+```{r packages, include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+## Introduction
+
+The focus of this document is not to analyze the data, but instead to document
+the processing of the 'raw' data (as provided) into a usable data structure for
+downstream merging with other datasets and analysis procedures. We will focus
+on reading in the csv files, tidying any data structures or values that need it,
+and then merging into a single usable tibble.
+
+## Read the CSV Files
+
+There are three files provided by ADF&G
+
+1. ADFG_SealDeploymentTable3.csv
+2. ADFG_SealLocationData3.csv
+3. ADFG_SealTimelineData3.csv
+
+### ADFG Seal Deployments
+
+Let's read this file in and take a look at the structure
+
+```{r}
+adfg_deployments <- readr::read_csv('ADFG_SealDeploymentTable3.csv')
+```
+
+Let's look at some of the data and see if we might want to adjust some of the
+automatically determined column specifications
+
+```{r}
+glimpse(adfg_deployments)
+```
+
+Looks like the only thing we would want to change is the `DateTagged` column.
+This is clearly a date-time field, so we'll create a custom `readr::cols`
+function to specify our column types. Note, we will then set the proper time
+zone to *America/Anchorage* and then convert to a `Date` object.
+
+```{r}
+adfg_deploy_cols <- readr::cols(
+  DeployIDs = readr::col_character(),
+  MapID = readr::col_character(),
+  DateTagged = readr::col_datetime(format = "%m/%d/%Y %H:%M"),
+  Species = readr::col_character(),
+  Age = readr::col_character(),
+  Sex = readr::col_character(),
+  PrimaryTagType = readr::col_character(),
+  FlipperTagType = readr::col_character()
+)
+
+adfg_deployments <- readr::read_csv('ADFG_SealDeploymentTable3.csv',
+                                    col_types = adfg_deploy_cols) %>% 
+  dplyr::mutate(DateTagged = lubridate::force_tz(DateTagged, 
+                                                 'America/Anchorage')) %>% 
+  dplyr::mutate(DateTagged = lubridate::as_datetime(DateTagged, 
+                                                tz = 'America/Anchorage'))
+
+glimpse(adfg_deployments)
+```
+
+The first author (JML) likes to stick with snake case for column names and variables.
+So, we'll do some additional editing of the data to rename columns. While at it,
+we'll also convert some of the columns to lower case to limit typo issues down the
+road.
+
+Another issue we need to tidy up is the way satellite tag type and attachment
+position is recorded in the dataset. These data are stored within two columns:
+`primary_tag_type` and `flipper_tag_type`. For a proper tidy structure, we need
+to get these data into two columns: `tag_position` and `tag_type`. To do this,
+we'll use the `tidyr::gather` function.
+
+```{r}
+adfg_deployments <- adfg_deployments %>% 
+  dplyr::rename(speno = DeployIDs,
+                mapid = MapID,
+                deploy_dt = DateTagged,
+                primary_tag_type = PrimaryTagType,
+                flipper_tag_type = FlipperTagType
+                ) %>% 
+  dplyr::rename_all(tolower) %>% 
+  dplyr::mutate(species = tolower(species),
+                age = tolower(age),
+                sex = tolower(sex)) %>% 
+  tidyr::gather(tag_position, tag_family, c(primary_tag_type,flipper_tag_type)) %>% 
+  dplyr::mutate(tag_position = ifelse(tag_position == "primary_tag_type",
+                   "primary","flipper")) %>% 
+  dplyr::filter(!is.na(tag_family)) %>% 
+  dplyr::arrange(deploy_dt)
+
+glimpse(adfg_deployments)
+```
+
+### ADFG Seal Locations
+
+Next, we'll go through a similar process with the locations data.
+
+```{r}
+adfg_locations <- readr::read_csv('ADFG_SealLocationData3.csv')
+```
+
+```{r}
+glimpse(adfg_locations)
+```
+
+As with the deployment data, the `Date` column needs to be converted to a proper
+date-time type. Additionally, we can see that `Ptt` was brought in as a `double`
+when, in fact, this is an `integer`. There is no way to do the `Date` or `Ptt` type conversion via the `readr::col_*` functions, so we will do a mutate after 
+reading the data in.
+
+```{r}
+adfg_locs_cols <- readr::cols(
+  DeployID = readr::col_character(),
+  LocationQuality = readr::col_character(),
+  Date = readr::col_double(),
+  Latitude = readr::col_double(),
+  Longitude = readr::col_double(),
+  Ptt = readr::col_double(),
+  TagType = readr::col_character(),
+  MonthNumb = readr::col_character()
+)
+
+adfg_locations <- readr::read_csv('ADFG_SealLocationData3.csv',
+                                  col_types = adfg_locs_cols) %>% 
+  dplyr::mutate(Date = as.Date(Date, origin = "1899-12-30", tz ="UTC") %>% 
+                  lubridate::as_datetime(),
+                Ptt = as.integer(Ptt))
+
+glimpse(adfg_locations)
+```
+
+As before, we'll rename a few columns to snake_case and then all to lower case.
+
+```{r}
+adfg_locations <- adfg_locations %>% 
+  dplyr::rename(speno = DeployID,
+                quality = LocationQuality,
+                locs_dt = Date,
+                tag_family = TagType) %>% 
+  dplyr::filter(quality != "Z") %>% 
+  dplyr::select(-MonthNumb) %>% 
+  dplyr::rename_all(tolower) %>% 
+  dplyr::left_join(adfg_deployments, by = c("speno","tag_family")) %>% 
+  mutate(species_code = case_when(
+        species == "bearded" ~ "EB",
+        species == "ribbon" ~ "HF",
+        species == "spotted" ~ "PL"
+    )) %>% 
+    mutate(deployid = glue::glue("{species_code}",
+                            "{lubridate::year(deploy_dt)}_{ptt}")) %>% 
+    mutate(unique_day =
+             glue::glue("{lubridate::year(locs_dt)}",
+                  "{lubridate::yday(locs_dt)}",
+                  .sep = "_")) %>% 
+  select(-species_code) %>% 
+  relocate(deployid,ptt) %>% 
+  filter(species %in% c('bearded', 'ribbon', 'spotted')) %>%
+    filter(lubridate::month(locs_dt) %in% c(3,4,5,6,7)) %>%
+  sf::st_as_sf(coords = c("longitude","latitude")) %>% 
+  sf::st_set_crs(value = "EPSG:4326")
+
+glimpse(adfg_locations)
+```
+
+At this point, we have our locations data assembled. Let's take a moment and plot
+all the data on a map
+
+```{r}
+library(sf)
+library(rnaturalearth)
+library(ggspatial)
+
+world <- ne_countries(scale = "medium", returnclass = "sf") %>% 
+  sf::st_transform(3571)
+
+ggplot() +
+  annotation_spatial(world, 
+                     size = 0, 
+                     fill = "grey70") +
+  layer_spatial(
+    data = sf::st_transform(adfg_locations,3571), size = 0.125
+  ) +
+  facet_grid(~ species) +
+  theme(legend.position = "bottom") +
+  ggtitle("ADFG Locations (Argos)",
+            subtitle = "all locations from bearded, ringed, and spotted seals")
+
+```
+
+
+### ADFG Seal Timelines
+
+Last, we'll go through a similar process with the timeline data.
+
+```{r}
+adfg_timelines <- readr::read_csv(here::here('data_raw/adfg/ADFG_SealTimelineData3.csv'))
+```
+
+For this dataset, we'll need to convert the `GMTDate` to a proper date-time
+format. And, as before the same with the `Ptt` as an integer.
+
+```{r}
+adfg_timeline_cols <- cols(
+  .default = readr::col_double(),
+  DeployIDs = readr::col_character(),
+  TagType = readr::col_character(),
+  HistType = readr::col_character(),
+  MonthNumb = readr::col_character(),
+  LocationQuality = readr::col_character(),
+  Sum = readr::col_character()
+)
+
+adfg_timelines <- readr::read_csv(here::here('data_raw/adfg/ADFG_SealTimelineData3.csv'),
+                                  col_types = adfg_timeline_cols) %>% 
+  dplyr::mutate(GMTDate = as.Date(GMTDate, origin = "1899-12-30", 
+                                     tz = "UTC") %>% 
+                  lubridate::as_datetime(),
+                Ptt = as.integer(Ptt),
+                TagType = toupper(TagType)) %>% 
+  dplyr::rename(speno = DeployIDs,
+                tag_family = TagType,
+                hist_type = HistType,
+                timeline_start_dt = GMTDate) %>% 
+  dplyr::rename_all(tolower) %>% 
+  dplyr::left_join(adfg_deployments, by = c("speno","tag_family")) %>% 
+  mutate(species_code = case_when(
+        species == "bearded" ~ "EB",
+        species == "ribbon" ~ "HF",
+        species == "spotted" ~ "PL"
+    )) %>% 
+  mutate(deployid = glue::glue("{species_code}",
+                            "{lubridate::year(deploy_dt)}_{ptt}")) %>%
+  mutate(unique_day =
+             glue::glue("{lubridate::year(timeline_start_dt)}",
+                  "{lubridate::yday(timeline_start_dt)}",
+                  .sep = "_")) %>%
+  dplyr::relocate(deployid) %>% 
+  filter(species %in% c('bearded', 'ribbon', 'spotted')) %>%
+    filter(lubridate::month(timeline_start_dt) %in% c(3,4,5,6,7)) %>%
+  dplyr::select(-c(monthnumb,latitude,longitude,locationquality,sum,hist_type))
+
+```
+
+We need to do some additional processing of the timeline data to work with the
+odd non-tidy data structure. In this case, each `bin*` column represents an hour
+of each day.
+
+```{r}
+bins <- list(bin = paste("bin", 1:24, sep=""), hour=0:23) %>% as_tibble()
+
+adfg_timelines <- adfg_timelines %>% 
+        tidyr::gather(bin, percent_dry, starts_with('bin')) %>%
+        dplyr::left_join(bins, by = "bin") %>%
+        dplyr::mutate(timeline_start_dt = timeline_start_dt + lubridate::hours(hour)) %>%
+        dplyr::select(c(deployid,speno,species,age,sex,deploy_dt,ptt,tag_family,timeline_start_dt,unique_day,percent_dry)) %>% 
+        dplyr::arrange(deployid,timeline_start_dt)
+```
+
+```{r}
+glimpse(adfg_timelines)
+```
+
+
+```{r}
+usethis::use_data(adfg_deployments, overwrite = TRUE)
+usethis::use_data(adfg_timelines, overwrite = TRUE)
+usethis::use_data(adfg_locations, overwrite = TRUE)
+```
+

@@ -246,16 +246,29 @@ qry <- {
 dat.sf <- sf::st_read(con,query = qry) %>% 
   filter(lubridate::yday(haulout_dt) < 197 ) %>% 
   mutate(age = case_when(
-    age == "PUP" ~ "YOUNG OF YEAR",
-    age == "YEARLING" ~ "SUBADULT",
-    TRUE ~ age
-  ))
+    age %in% c("pup", "PUP") ~ "YOUNG OF YEAR",
+    age %in% c("yearling","YEARLING","subadult","Subadult") ~ "SUBADULT",
+    age %in% c("adult","ADULT","Adult") ~ "ADULT",
+    TRUE ~ age),
+    species = case_when(
+    species == "bearded" ~ "Bearded seal",
+    species == "spotted" ~ "Spotted seal",
+    TRUE ~ species),
+    sex = case_when(
+    sex %in% c("Female","female") ~ "F",
+    sex %in% c("Male","male") ~ "M",
+    TRUE ~ sex)
+    ) %>% 
+  filter(!is.na(age))
 
-deploy_meta <- tbl(con, in_schema("telem", "tbl_tag_deployments")) %>% 
+load(here::here('data/locs_sf.Rdata'))
+
+deploy_meta <- locs_sf %>% 
+  as_data_frame() %>% 
+  select(speno, deploy_dt) %>% 
   filter(speno %in% !!unique(dat.sf$speno)) %>% 
   group_by(speno) %>% 
-  summarise(deploy_dt = min(deploy_dt, na.rm = TRUE)) %>% 
-  collect()
+  summarise(deploy_dt = min(deploy_dt, na.rm = TRUE)) 
 
 dat.sf <- dat.sf %>% left_join(deploy_meta) %>% 
   mutate(bday = as.Date(paste0(lubridate::year(deploy_dt),"-03-01")),
@@ -704,7 +717,8 @@ hour-of-day effects:
 
 $$
 H_t=\alpha_1 \cos(\frac{\pi t}{4}) + \alpha_2 \sin(\frac{\pi t}{4}) + \alpha_3 \cos(\frac{\pi t}{6}) + \alpha_4 \sin(\frac{\pi t}{6}) + \alpha_5 \cos(\frac{\pi t}{12}) + \alpha_6 \sin(\frac{\pi t}{12})
-$$ where $H_t$ gives the effect for solar hour $t$ and $α_{i}$ are estimated parameters
+$$ 
+where $H_t$ gives the effect for solar hour $t$ and $α_{i}$ are estimated parameters
 (regression coefficients).
 
 For the second set of models examining inter-annual variation in sea ice use, we fitted

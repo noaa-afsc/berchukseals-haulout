@@ -34,7 +34,7 @@ create_db_input_data <- function(timeline_data, locs_sf) {
     select(-error_radius.y) %>%
     mutate(error_radius = ifelse(type %in% c("GPS","FastGPS"),
                                         50,error_radius),
-                  error_radius = ifelse(type == "User",
+                  error_radius = ifelse(type %in% c("User"),
                                         50,error_radius)) %>%
     group_by(speno,unique_day,age,sex,species) %>%
     summarise(x = weighted.mean(x,1/error_radius),
@@ -70,14 +70,15 @@ create_db_input_data <- function(timeline_data, locs_sf) {
   con <- dbConnect(
     odbc(),
     dsn = "PostgreSQL pep",
-    uid = get_kc_account("pgpep_londonj"),
-    pwd = decrypt_kc_pw("pgpep_londonj")
+    uid = keyringr::get_kc_account("pgpep_sa"),
+    pwd = keyringr::decrypt_kc_pw("pgpep_sa")
   )
 
   st_write(obj = tbl_percent_locs,
            dsn = con,
-           layer = "res_iceseal_haulout_jml",
-           layer_options = "OVERWRITE=true")
+           layer = SQL("telem.res_iceseal_haulout"),
+           layer_options = c("OVERWRITE=true","GEOMETRY_NAME=geom")
+  )
 
   return(tbl_percent_locs)
 

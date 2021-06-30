@@ -11,14 +11,14 @@ get_timeline_data <- function() {
 
   stopifnot(
     "PEP Postgres Database Not Available; did you start VPN? ;)" =
-      is_up("161.55.120.122", "5432")
+      pingr::is_up("161.55.120.122", "5432")
   )
 
   con <- dbConnect(
     odbc(),
     dsn = "PostgreSQL pep",
-    uid = get_kc_account("pgpep_londonj"),
-    pwd = decrypt_kc_pw("pgpep_londonj")
+    uid = keyringr::get_kc_account("pgpep_londonj"),
+    pwd = keyringr::decrypt_kc_pw("pgpep_londonj")
   )
 
   timeline_db <- tbl(con, in_schema("telem","tbl_wc_histos_timeline_qa")) %>%
@@ -31,19 +31,25 @@ get_timeline_data <- function() {
     left_join(deployments_db, by = 'deployid') %>%
     left_join(spenos_db, by = 'speno') %>%
     filter(species %in% c('Bearded seal', 'Ribbon seal', 'Spotted seal')) %>%
-    collect()
+    collect() %>%
+    filter(lubridate::month(timeline_start_dt) %in% c(3,4,5,6,7)) %>%
+    mutate(unique_day =
+             glue::glue("{lubridate::year(timeline_start_dt)}",
+                        "{lubridate::yday(timeline_start_dt)}",
+                        .sep = "_"))
+
+  load(file = here::here('data/adfg_timelines.rda'))
+  load(file = here::here('data/nsb_timelines.rda'))
 
   timeline_data <- timeline_data %>%
-    group_by(speno, species, sex, age, timeline_start_dt) %>%
+    bind_rows(adfg_timelines) %>%
+    bind_rows(nsb_timelines) %>%
+    group_by(speno, species, sex, age, unique_day, timeline_start_dt) %>%
     summarize(n_tags = n(),
               percent_dry = ifelse(
                 n_tags == 1, percent_dry, percent_dry[tag_family == "SPOT"]
-              )) %>%
-    filter(month(timeline_start_dt) %in% c(3,4,5,6,7)) %>%
-    mutate(unique_day =
-             glue("{year(timeline_start_dt)}",
-                  "{yday(timeline_start_dt)}",
-                  .sep = "_"))
+              ))
+
 
   dbDisconnect(con)
 

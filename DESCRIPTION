@@ -58,3 +58,5 @@ Suggests: devtools,
     git2r
 URL: https://github.com/jmlondon/berchukHaulout
 BugReports: https://github.com/jmlondon/berchukHaulout/issues
+Depends: 
+    R (>= 2.10)

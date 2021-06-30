@@ -63,7 +63,9 @@ by opening the corresponding R file within the R directory.
 
 ```{r}
 if (params$make_data) {
-source(here::here('analysis/scripts/get_data/make_data.R'))
+  source(here::here('analysis/scripts/get_data/make_data.R'))
+  save(locs_sf, file = here::here('data/locs_sf.Rdata'))
+  save(timeline_data, file = here::here('timeline_data.Rdata'))
 } else {
   load(here::here('data/locs_sf.Rdata'))
   load(here::here('data/timeline_data.Rdata'))
