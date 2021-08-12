@@ -1812,5 +1812,55 @@
         "title": "Seasonal and diel differences in dive and haul-out behavior of adult and subadult ringed seals (<i>Pusa hispida</i>) in the Bering and Chukchi seas",
         "type": "article-journal",
         "volume": "42"
+    },
+    {
+        "DOI": "DOI 10.1016/j.dsr.2008.01.005",
+        "ISSN": "0967-0637",
+        "author": [
+            {
+                "family": "Southwell",
+                "given": "C."
+            },
+            {
+                "family": "Paxton",
+                "given": "C. G. M."
+            },
+            {
+                "family": "Borchers",
+                "given": "D."
+            },
+            {
+                "family": "Boveng",
+                "given": "P."
+            },
+            {
+                "family": "Rogers",
+                "given": "T."
+            },
+            {
+                "family": "Mare",
+                "given": "W. K.",
+                "non-dropping-particle": "de la"
+            }
+        ],
+        "container-title": "Deep-Sea Research I",
+        "id": "southwell2008",
+        "issue": "4",
+        "issued": {
+            "date-parts": [
+                [
+                    2008,
+                    4
+                ]
+            ]
+        },
+        "key": "S8P9IJE6",
+        "language": "English",
+        "libraryid": "2",
+        "page": "519-531",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Uncommon or cryptic? Challenges in estimating leopard seal abundance by conventional but state-of-the-art methods",
+        "type": "article-journal",
+        "volume": "55"
     }
 ]
