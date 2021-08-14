@@ -1,13 +1,4 @@
-##' .. content for \description{} (no empty lines) ..
-##'
-##' .. content for \details{} ..
-##'
-##' @title
-
-##' @return
-##' @author Josh.London
-##' @export
-get_locs_sf <- function() {
+get_locs_sf <- function(adfg_locations, nsb_locations) {
 
   stopifnot(
     "PEP Postgres Database Not Available; did you start VPN? ;)" =
@@ -31,6 +22,7 @@ get_locs_sf <- function() {
               FROM telem.geo_wc_locs_qa;"
 
   locs_sf <- read_sf(con, query = locs_qry) %>%
+    filter(!deployid %in% c("PL2017_9001_16U2112")) %>%
     left_join(deployments_db, by = 'deployid') %>%
     left_join(spenos_db, by = 'speno') %>%
     filter(species %in% c('Bearded seal', 'Ribbon seal', 'Spotted seal')) %>%
@@ -40,9 +32,6 @@ get_locs_sf <- function() {
                   "{lubridate::yday(locs_dt)}",
                   .sep = "_"))
   dbDisconnect(con)
-
-  load(file = here::here('data/adfg_locations.rda'))
-  load(file = here::here('data/nsb_locations.rda'))
 
   locs_sf <- locs_sf %>% bind_rows(adfg_locations) %>%
     bind_rows(nsb_locations)

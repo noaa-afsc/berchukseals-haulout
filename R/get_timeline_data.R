@@ -1,13 +1,4 @@
-##' .. content for \description{} (no empty lines) ..
-##'
-##' .. content for \details{} ..
-##'
-##' @title
-
-##' @return
-##' @author Josh.London
-##' @export
-get_timeline_data <- function() {
+get_timeline_data <- function(adfg_timelines, nsb_timelines) {
 
   stopifnot(
     "PEP Postgres Database Not Available; did you start VPN? ;)" =
@@ -30,6 +21,7 @@ get_timeline_data <- function() {
   timeline_data <- timeline_db  %>%
     left_join(deployments_db, by = 'deployid') %>%
     left_join(spenos_db, by = 'speno') %>%
+    filter(!deployid %in% c("PL2017_9001_16U2112")) %>%
     filter(species %in% c('Bearded seal', 'Ribbon seal', 'Spotted seal')) %>%
     collect() %>%
     filter(lubridate::month(timeline_start_dt) %in% c(3,4,5,6,7)) %>%
@@ -37,9 +29,6 @@ get_timeline_data <- function() {
              glue::glue("{lubridate::year(timeline_start_dt)}",
                         "{lubridate::yday(timeline_start_dt)}",
                         .sep = "_"))
-
-  load(file = here::here('data/adfg_timelines.rda'))
-  load(file = here::here('data/nsb_timelines.rda'))
 
   timeline_data <- timeline_data %>%
     bind_rows(adfg_timelines) %>%

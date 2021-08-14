@@ -71,6 +71,7 @@ keywords: availability; generalized linear mixed pseudo-model; haul-out behavior
 phenology; Phocidae; sea ice
 
 ```{r setup, include = FALSE}
+library(targets)
 library(conflicted)
 library(tidyverse)
 conflict_prefer("filter", "dplyr")
@@ -81,6 +82,8 @@ library(glue)
 library(scales)
 library(DBI)
 library(dbplyr)
+library(RPostgres)
+library(pingr)
 library(sf)
 library(flextable)
 library(patchwork)
@@ -229,103 +232,15 @@ species.
 ## Data collection
 
 ```{r getdata}
-con <- dbConnect(
-  odbc::odbc(),
-  dsn = "PostgreSQL pep",
-  uid = keyringr::get_kc_account("pgpep_londonj"),
-  pwd = keyringr::decrypt_kc_pw("pgpep_londonj"),
-  sslmode = "disable"
-)
-
-# qry removes two Sea of Okhotsk bearded seals
-qry <- {
-  "SELECT * 
-  FROM telem.res_iceseal_haulout_cov 
-  WHERE 
-  EXTRACT(MONTH FROM haulout_dt) IN (3,4,5,6,7) AND
-  rast_vwnd IS NOT NULL AND
-  species != 'Ph' AND
-  speno != 'EB2009_7010' AND
-  speno != 'EB2009_3002' "
-}
-
-dat.sf <- sf::st_read(con,query = qry) %>% 
-  filter(lubridate::yday(haulout_dt) < 197 ) %>% 
-  mutate(age = case_when(
-    age %in% c("pup", "PUP") ~ "YOUNG OF YEAR",
-    age %in% c("yearling","YEARLING","subadult","Subadult") ~ "SUBADULT",
-    age %in% c("adult","ADULT","Adult") ~ "ADULT",
-    TRUE ~ age),
-    species = case_when(
-    species == "bearded" ~ "Bearded seal",
-    species == "spotted" ~ "Spotted seal",
-    TRUE ~ species),
-    sex = case_when(
-    sex %in% c("Female","female") ~ "F",
-    sex %in% c("Male","male") ~ "M",
-    TRUE ~ sex)
-    ) %>% 
-  filter(!is.na(age))
-
-load(here::here('data/locs_sf.Rdata'))
-
-deploy_meta <- locs_sf %>% 
-  as_data_frame() %>% 
-  select(speno, deploy_dt) %>% 
-  filter(speno %in% !!unique(dat.sf$speno)) %>% 
-  group_by(speno) %>% 
-  summarise(deploy_dt = min(deploy_dt, na.rm = TRUE)) 
-
-dat.sf <- dat.sf %>% left_join(deploy_meta) %>% 
-  mutate(bday = as.Date(paste0(lubridate::year(deploy_dt),"-03-01")),
-         age_days = difftime(haulout_dt, bday, tz="UTC", units = "days"),
-         age = case_when(
-           age_days > 360 & age == "YOUNG OF YEAR" ~ "SUBADULT",
-           TRUE ~ age
-         )) %>% 
-  mutate(age = forcats::fct_relevel(age, c("ADULT", "SUBADULT", "YOUNG OF YEAR"))) %>% 
-  dplyr::select(-c(bday,age_days)) %>% 
-  relocate(deploy_dt, .after = age) %>% 
-  filter(!(species == "Bearded seal" & age == "YOUNG OF YEAR"))
-
-# read in world land polygons and buffer in by 100m; want to ensure only locations well
-world <- ne_countries(scale = "large", returnclass = "sf") %>% 
-  filter(continent != "Antarctica") %>% 
-  st_wrap_dateline() %>% st_transform(st_crs(dat.sf)) %>% 
-  st_buffer(-100)
-  
-
-not_intersects <- function(x,y) {
-  !sf::st_intersects(x,y)
-}
-
-dat.sf <- dat.sf %>% 
-  sf::st_filter(st_combine(world), .predicate = not_intersects)
-
-save("dat.sf", file = here::here("data/dat_sf.Rdata"))
-
-grid.sf <- sf::st_read(con,
-                       query = "SELECT * FROM base.geo_analysis_grid") %>% 
-  st_filter(st_bbox(dat.sf) %>% st_as_sfc())
-
-dbDisconnect(con)
-
-deploy_tbl <- dat.sf %>% 
-  tibble::as_tibble() %>% 
-  dplyr::group_by(speno,species, sex, age) %>% 
-  dplyr::summarise(min_dt = min(haulout_dt),
-            max_dt = max(haulout_dt),
-            n_days = difftime(max_dt, min_dt, units = "days"),
-            n_hours = n()
-  ) %>% 
-  dplyr::select(-c("min_dt","max_dt"))
-
+targets::tar_load(analysis_data, store = here::here("_targets"))
+targets::tar_load(grid, store = here::here("_targets"))
+targets::tar_load(deploy_table, store = here::here("_targets"))
 ```
 
-Haul-out behavior data from `r dplyr::n_distinct(deploy_tbl$speno)` bio-loggers deployed
+Haul-out behavior data from `r dplyr::n_distinct(deploy_table$speno)` bio-loggers deployed
 on bearded, spotted, and ribbon seals was filtered to include only records from 1 March to
-15 July between `r min(lubridate::year(dat.sf$haulout_dt))` and
-`r max(lubridate::year(dat.sf$haulout_dt))`. Bio-loggers were of the 'SPLASH' or 'SPOT'
+15 July between `r min(lubridate::year(analysis_data$haulout_dt))` and
+`r max(lubridate::year(analysis_data$haulout_dt))`. Bio-loggers were of the 'SPLASH' or 'SPOT'
 family of tags developed by Wildlife Computers (Redmond, Washington, USA) and either
 adhered to the hair on the seal or attached to the rear flipper inter-digital webbing. The
 use of bio-loggers adhered to the back or head provide some benefits over flipper mounted
@@ -353,7 +268,7 @@ from them.
 
 ```{r tblDeploy, include=TRUE, tab.id = "tblDeploy", tab.cap = "Summary of bio-logger deployments across seal species and age classification from 1 March to 15 July. Total seal hours represents the sum of available data across all seals."}
 
-deploy_tbl %>% 
+deploy_table %>% 
   dplyr::group_by(species, sex, age) %>% 
   dplyr::summarise(
     n = n(),
@@ -379,7 +294,7 @@ deploy_tbl %>%
 ```
 
 ```{r seal-hours}
-seal_hours_tbl <- dat.sf %>% 
+seal_hours_tbl <- analysis_data %>% 
   tibble::as_tibble() %>% 
   dplyr::mutate(wkofyr = lubridate::epiweek(haulout_dt),
                 dayofwk = lubridate::wday(haulout_dt, label = TRUE, abbr = TRUE) %>% 
@@ -439,7 +354,7 @@ not available to the surface while the seal is at sea), tag performance, duty cy
 extra-terrestrial interference.
 
 ```{r examplePlot, include=TRUE, fig.id="examplePlot", fig.cap="Haul-out behavior observations recorded by a bio-logger deployment on a ribbon seal over two years during the months of March, April, and May. Empty areas of the plot within a month represent missing data that were not successfully transmitted from the tag."}
-d <- dat.sf %>% 
+d <- analysis_data %>% 
   filter(speno == "HF2016_1002") %>% 
   dplyr::select(speno, haulout_dt, percent_dry) %>% 
   arrange(haulout_dt) %>% st_drop_geometry() %>% 
@@ -484,7 +399,7 @@ spatial distribution of determined locations and available haul-out behavior dat
 species across the study area.
 
 ```{r locs-count-mapdata}
-haulout_locs <- dat.sf %>% 
+haulout_locs <- analysis_data %>% 
   filter(lubridate::hour(haulout_dt) == 12)
          
 
