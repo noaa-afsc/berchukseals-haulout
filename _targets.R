@@ -1,17 +1,10 @@
 library(targets)
-# This is an example _targets.R file. Every
-# {targets} pipeline needs one.
-# Use tar_script() to create _targets.R and tar_edit()
-# to open it again for editing.
-# Then, run tar_make() to run the pipeline
-# and tar_read(summary) to view the results.
+library(future)
+library(future.callr)
+plan(callr)
 
-# Define custom functions and other global objects.
-# This is where you write source(\"R/functions.R\")
-# if you keep your functions in external scripts.
 files <- fs::dir_ls("R",recurse = TRUE, glob = "*.R")
 sapply(files, source)
-
 
 # Set target-specific options such as packages.
 tar_option_set(packages = c(
@@ -26,7 +19,13 @@ tar_option_set(packages = c(
   "keyringr",
   "pingr",
   "rnaturalearth",
-  "rnaturalearthdata"
+  "rnaturalearthdata",
+  "glmmLDTS",
+  "mgcv",
+  "solaR",
+  "splines",
+  "purler",
+  "wcUtils"
   )
 )
 
@@ -53,5 +52,25 @@ list(
 
   tar_target(analysis_data, create_data_sf(locs_sf, source_data)),
   tar_target(grid, create_grid_sf(analysis_data)),
-  tar_target(deploy_table, create_deploy_tbl(analysis_data))
+  tar_target(deploy_table, create_deploy_tbl(analysis_data)),
+
+  tar_target(model_data, create_model_input(analysis_data)),
+
+  tar_target(ribbon_model_data, create_ribbon_data(model_data)),
+  tar_target(ribbon_fit, fit_ribbon(ribbon_model_data)),
+  tar_target(ribbon_noagesex_fit, fit_ribbon_noagesex(ribbon_model_data)),
+  tar_target(ribbon_year_fit, fit_ribbon_year(ribbon_model_data)),
+  tar_target(spotted_model_data, create_spotted_data(model_data)),
+  tar_target(spotted_fit, fit_spotted(spotted_model_data)),
+  tar_target(spotted_noagesex_fit, fit_spotted_noagesex(spotted_model_data)),
+  tar_target(spotted_year_fit, fit_spotted_year(spotted_model_data)),
+  tar_target(bearded_model_data, create_bearded_data(model_data)),
+  tar_target(bearded_fit, fit_bearded(bearded_model_data)),
+
+  tar_target(ribbon_newdata, create_ribbon_newdata(ribbon_fit)),
+  tar_target(spotted_newdata, create_spotted_newdata(spotted_fit)),
+  tar_target(bearded_newdata, create_bearded_newdata(bearded_fit)),
+
+  tar_target(ribbon_newdata_year, ribbon_newdata_yr(ribbon_year_fit)),
+  tar_target(spotted_newdata_year, spotted_newdata_yr(spotted_year_fit))
 )

@@ -13,7 +13,7 @@ get_locs_sf <- function(adfg_locations, nsb_locations) {
   )
 
   deployments_db <- tbl(con, in_schema("telem","tbl_tag_deployments")) %>%
-    select(speno, deployid, tag_family, deploy_dt, end_dt) %>%
+    dplyr::select(speno, deployid, tag_family, deploy_dt, end_dt) %>%
     rename(tag_type = tag_family) %>% collect()
 
   spenos_db <- tbl(con, in_schema("capture","for_telem")) %>% collect()

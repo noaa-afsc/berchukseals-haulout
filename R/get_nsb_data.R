@@ -28,6 +28,15 @@ using (sex_lku)"
   nsb_deployments <- tbl(con, sql(deploy_qry)) %>%
     dplyr::select(speno, deployid, species, age, sex, tag_family, deploy_dt, end_dt) %>%
     collect()
+  nsb_deployments2 <- tibble::tribble(
+    ~speno, ~deployid, ~species, ~age, ~sex, ~tag_family, ~deploy_dt, ~end_dt,
+    "EB2019BW02", 149452, "Bearded seal", "Pup", "Female", "SPLASH", "2019-09-19 18:30:00", "2020-05-24 17:30:00",
+    "EB2019BW02", 171333, "Bearded seal", "Pup", "Female", "SPOT", "2019-09-19 18:30:00", "2020-08-08 06:30:00"
+  ) %>%
+    dplyr::mutate(deploy_dt = lubridate::ymd_hms(deploy_dt),
+                  end_dt = lubridate::ymd_hms(end_dt))
+
+  nsb_deployments <- dplyr::bind_rows(nsb_deployments, nsb_deployments2)
 
   return(nsb_deployments)
 }
@@ -46,10 +55,21 @@ get_nsb_locs <- function(nsb_deployments) {
   )
   on.exit(odbc::dbDisconnect(con))
 
+  locs2 <- readr::read_csv(here::here("data_raw/nsb/iceSeals_NSB_Alaska_vonDuyke.csv")) %>%
+    janitor::clean_names() %>%
+    dplyr::filter(tag_local_identifier %in% c(149452, 171333)) %>%
+    dplyr::select(deployid = tag_local_identifier,
+                  locs_dt = timestamp,
+                  quality = argos_lc,
+                  location_long, location_lat) %>%
+    dplyr::mutate(deployid = as.integer(deployid)) %>%
+    sf::st_as_sf(coords = c("location_long","location_lat"), crs = 4326)
+
   locs_qry <- "SELECT deployid, loc_dt as locs_dt, argos_lc as quality, loc_geom as geometry
               FROM telem.nsb_locs;"
 
   nsb_locations <- read_sf(con, query = locs_qry) %>%
+    dplyr::bind_rows(locs2) %>%
     left_join(nsb_deployments, by = 'deployid') %>%
     filter(species %in% c('Bearded seal', 'Ribbon seal', 'Spotted seal')) %>%
     filter(lubridate::month(locs_dt) %in% c(3,4,5,6,7)) %>%
@@ -65,7 +85,7 @@ get_nsb_locs <- function(nsb_deployments) {
              glue::glue("{lubridate::year(locs_dt)}",
                         "{lubridate::yday(locs_dt)}",
                         .sep = "_")) %>%
-    select(-species_code) %>%
+    dplyr::select(-species_code) %>%
     relocate(deployid,ptt)
 
   return(nsb_locations)
@@ -85,9 +105,18 @@ get_nsb_timelines <- function(nsb_deployments) {
   )
   on.exit(odbc::dbDisconnect(con))
 
+  nsb_timelines2 <- wcUtils::read_histos(
+    here::here('data_raw/nsb/iceSeals_NSB_Alaska_vonDuyke_updatesOnly_20211008-Histos.csv'),
+    dt_fmt = "%Y-%m-%d %H:%M:%S") %>%
+    wcUtils::tidyTimelines() %>%
+    dplyr::mutate(deployid = as.integer(deployid)) %>%
+    dplyr::filter(deployid %in% c(149452, 171333)) %>%
+    dplyr::select(-hist_type) %>% as_tibble()
+
   nsb_timelines <- tbl(con, in_schema("telem","nsb_histos_timeline")) %>%
     dplyr::select(deployid,timeline_start_dt, percent_dry) %>%
     collect() %>%
+    dplyr::bind_rows(nsb_timelines2) %>%
     left_join(nsb_deployments, by = 'deployid') %>%
     filter(species %in% c('Bearded seal', 'Ribbon seal', 'Spotted seal')) %>%
     filter(lubridate::month(timeline_start_dt) %in% c(3,4,5,6,7)) %>%
@@ -103,7 +132,7 @@ get_nsb_timelines <- function(nsb_deployments) {
              glue::glue("{lubridate::year(timeline_start_dt)}",
                         "{lubridate::yday(timeline_start_dt)}",
                         .sep = "_")) %>%
-    select(-species_code) %>%
+    dplyr::select(-species_code) %>%
     relocate(deployid,ptt) %>%
     dplyr::arrange(deployid,timeline_start_dt)
 }

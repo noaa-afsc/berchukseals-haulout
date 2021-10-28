@@ -135,6 +135,7 @@ adfg_clean_tl <- function(file1,file2, adfg_deployments) {
   cols <- cols(
     .default = readr::col_double(),
     DeployIDs = readr::col_character(),
+    GMTDate = readr::col_datetime(format = "%m/%d/%y"),
     TagType = readr::col_character(),
     HistType = readr::col_character(),
     LocationQuality = readr::col_character(),
@@ -145,9 +146,7 @@ adfg_clean_tl <- function(file1,file2, adfg_deployments) {
 
   adfg_timelines <- csv_files %>%
     purrr::map_dfr(read_csv, col_types = cols) %>%
-    dplyr::mutate(GMTDate = as.Date(GMTDate, origin = "1899-12-30",
-                                    tz = "UTC") %>%
-                    lubridate::as_datetime(),
+    dplyr::mutate(GMTDate = lubridate::as_datetime(GMTDate) %>% lubridate::force_tz("UTC"),
                   Ptt = as.integer(Ptt),
                   TagType = toupper(TagType)) %>%
     dplyr::rename(speno = DeployIDs,

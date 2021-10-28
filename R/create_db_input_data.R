@@ -21,7 +21,7 @@ create_source_data <- function(locs_sf, timeline_data) {
                                           error_radius.y,
                                           error_radius.x)) %>%
     rename(error_radius = error_radius.x) %>%
-    select(-error_radius.y) %>%
+    dplyr::select(-error_radius.y) %>%
     mutate(error_radius = ifelse(type %in% c("GPS","FastGPS"),
                                         50,error_radius),
                   error_radius = ifelse(type %in% c("User"),
@@ -38,7 +38,7 @@ create_source_data <- function(locs_sf, timeline_data) {
     group_by(speno) %>% nest() %>%
     mutate(start_idx = map_int(data,~ which.max(!is.na(.x$x))),
            data = map2(data, start_idx, ~ slice(.x, .y:nrow(.x)))) %>%
-    select(-start_idx) %>%
+    dplyr::select(-start_idx) %>%
     unnest(cols = c(data)) %>%
     mutate(fill_xy = ifelse(is.na(x), TRUE, FALSE)) %>%
     group_by(speno) %>%
@@ -50,7 +50,7 @@ create_source_data <- function(locs_sf, timeline_data) {
     st_as_sf(coords = c("x","y")) %>%
     st_set_crs(3571) %>%
     rename(haulout_dt = timeline_start_dt) %>%
-    select(speno,species,age,sex,haulout_dt,percent_dry,n_tags,fill_xy)
+    dplyr::select(speno,species,age,sex,haulout_dt,percent_dry,n_tags,fill_xy)
 
   stopifnot(
     "PEP Postgres Database Not Available; did you start VPN? ;)" =

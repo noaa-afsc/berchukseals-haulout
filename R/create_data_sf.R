@@ -2,7 +2,7 @@ create_data_sf <- function(locs_sf, source_data) {
   dat.sf <- source_data %>%
     filter(lubridate::yday(haulout_dt) < 197 ) %>%
     mutate(age = case_when(
-      age %in% c("pup", "PUP", "p") ~ "YOUNG OF YEAR",
+      age %in% c("pup", "PUP", "p", "Pup") ~ "YOUNG OF YEAR",
       age %in% c("yearling","YEARLING","subadult","Subadult") ~ "SUBADULT",
       age %in% c("adult","ADULT","Adult") ~ "ADULT",
       TRUE ~ age),
@@ -19,7 +19,7 @@ create_data_sf <- function(locs_sf, source_data) {
 
   deploy_meta <- locs_sf %>%
     as_tibble() %>%
-    select(speno, deploy_dt) %>%
+    dplyr::select(speno, deploy_dt) %>%
     filter(speno %in% !!unique(dat.sf$speno)) %>%
     group_by(speno) %>%
     summarise(deploy_dt = min(deploy_dt, na.rm = TRUE))
