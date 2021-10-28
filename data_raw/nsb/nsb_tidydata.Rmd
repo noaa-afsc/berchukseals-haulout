@@ -64,9 +64,30 @@ nsb_deployments <- tbl(con, sql(deploy_qry)) %>%
     dplyr::select(speno, deployid, species, age, sex, tag_family, deploy_dt, end_dt) %>% 
   collect()
 
+nsb_deployments2 <- tibble::tribble(
+  ~speno, ~deployid, ~species, ~age, ~sex, ~tag_family, ~deploy_dt, ~end_dt,
+  "EB2019BW02", 149452, "Bearded seal", "Pup", "Female", "SPLASH", "2019-09-19 18:30:00", "2020-05-24 17:30:00",
+  "EB2019BW02", 171333, "Bearded seal", "Pup", "Female", "SPLASH", "2019-09-19 18:30:00", "2020-08-08 06:30:00"
+) %>% 
+  dplyr::mutate(deploy_dt = lubridate::ymd_hms(deploy_dt),
+                end_dt = lubridate::ymd_hms(end_dt))
+
+nsb_deployments <- dplyr::bind_rows(nsb_deployments, nsb_deployments2)
+
 nsb_timelines <- tbl(con, in_schema("telem","nsb_histos_timeline")) %>%
     dplyr::select(deployid,timeline_start_dt, percent_dry) %>% 
   collect()
+
+nsb_timelines2 <- wcUtils::read_histos(
+  here::here('data_raw/nsb/iceSeals_NSB_Alaska_vonDuyke_updatesOnly_20211008-Histos.csv'),
+  dt_fmt = "%Y-%m-%d %H:%M:%S") %>% 
+  wcUtils::tidyTimelines() %>% 
+  dplyr::mutate(deployid = as.integer(deployid)) %>% 
+  dplyr::filter(deployid %in% c(149452, 171333)) %>% 
+  dplyr::select(-hist_type) %>% as_tibble()
+
+nsb_timelines <- dplyr::bind_rows(nsb_timelines, nsb_timelines2)
+  
 
 locs_qry <- "SELECT deployid, loc_dt as locs_dt, argos_lc as quality, loc_geom as geometry
               FROM telem.nsb_locs;"

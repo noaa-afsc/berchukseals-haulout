@@ -33,18 +33,23 @@ and then merging into a single usable tibble.
 
 ## Read the CSV Files
 
-There are three files provided by ADF&G
+There are six files provided by ADF&G
 
 1. ADFG_SealDeploymentTable3.csv
 2. ADFG_SealLocationData3.csv
 3. ADFG_SealTimelineData3.csv
+4. ADFG_SealDeploymentTable_NewRecords.csv
+5. ADFG_SealLocationData_NewRecords.csv
+6. ADFG_SealTimelineData_NewRecords.csv
+
 
 ### ADFG Seal Deployments
 
-Let's read this file in and take a look at the structure
+Let's read these files in and take a look at the structure
 
 ```{r}
 adfg_deployments <- readr::read_csv('ADFG_SealDeploymentTable3.csv')
+adfg_deployments_new <- readr::read_csv('ADFG_SealDeploymentTable_NewRecords.csv')
 ```
 
 Let's look at some of the data and see if we might want to adjust some of the
@@ -63,7 +68,7 @@ zone to *America/Anchorage* and then convert to a `Date` object.
 adfg_deploy_cols <- readr::cols(
   DeployIDs = readr::col_character(),
   MapID = readr::col_character(),
-  DateTagged = readr::col_datetime(format = "%m/%d/%Y %H:%M"),
+#  DateTagged = readr::col_datetime(format = "%m/%d/%Y %H:%M"),
   Species = readr::col_character(),
   Age = readr::col_character(),
   Sex = readr::col_character(),
@@ -73,12 +78,42 @@ adfg_deploy_cols <- readr::cols(
 
 adfg_deployments <- readr::read_csv('ADFG_SealDeploymentTable3.csv',
                                     col_types = adfg_deploy_cols) %>% 
+  mutate(DateTagged = parse_datetime(DateTagged,format = "%m/%d/%Y %H:%M")) %>% 
   dplyr::mutate(DateTagged = lubridate::force_tz(DateTagged, 
                                                  'America/Anchorage')) %>% 
   dplyr::mutate(DateTagged = lubridate::as_datetime(DateTagged, 
                                                 tz = 'America/Anchorage'))
 
 glimpse(adfg_deployments)
+```
+
+```{r}
+glimpse(adfg_deployments_new)
+```
+```{r}
+adfg_deploy_cols <- readr::cols(
+  DeployIDs = readr::col_character(),
+  Species = readr::col_character(),
+  Age = readr::col_character(),
+  Sex = readr::col_character(),
+  FlipperTagType = readr::col_character()
+)
+
+adfg_deployments_new <- readr::read_csv('ADFG_SealDeploymentTable_NewRecords.csv',
+                                    col_types = adfg_deploy_cols) %>% 
+  mutate(DateTagged = parse_datetime(DateTagged,format = "%m/%d/%y")) %>% 
+  dplyr::mutate(DateTagged = lubridate::force_tz(DateTagged, 
+                                                 'America/Anchorage')) %>% 
+  dplyr::mutate(DateTagged = lubridate::as_datetime(DateTagged, 
+                                                tz = 'America/Anchorage'))
+
+glimpse(adfg_deployments_new)
+```
+
+
+```{r}
+adfg_deployments <- adfg_deployments %>% 
+  bind_rows(adfg_deployments_new)
 ```
 
 The first author (JML) likes to stick with snake case for column names and variables.
@@ -98,7 +133,8 @@ adfg_deployments <- adfg_deployments %>%
                 mapid = MapID,
                 deploy_dt = DateTagged,
                 primary_tag_type = PrimaryTagType,
-                flipper_tag_type = FlipperTagType
+                flipper_tag_type = FlipperTagType,
+                flipper_last_signal = FlipperSatTagLastSignal
                 ) %>% 
   dplyr::rename_all(tolower) %>% 
   dplyr::mutate(species = tolower(species),
@@ -119,6 +155,7 @@ Next, we'll go through a similar process with the locations data.
 
 ```{r}
 adfg_locations <- readr::read_csv('ADFG_SealLocationData3.csv')
+adfg_locations_new <- readr::read_csv('ADFG_SealLocationData_NewRecords.csv')
 ```
 
 ```{r}
@@ -151,6 +188,37 @@ adfg_locations <- readr::read_csv('ADFG_SealLocationData3.csv',
 glimpse(adfg_locations)
 ```
 
+```{r}
+glimpse(adfg_locations_new)
+```
+
+```{r}
+adfg_locs_cols <- readr::cols(
+  DeployID = readr::col_character(),
+  LocationQuality = readr::col_character(),
+  Date = readr::col_double(),
+  Latitude = readr::col_double(),
+  Longitude = readr::col_double(),
+  Ptt = readr::col_double(),
+  TagType = readr::col_character(),
+  SerialNum = readr::col_character()
+)
+
+adfg_locations_new <- readr::read_csv('ADFG_SealLocationData_NewRecords.csv',
+                                  col_types = adfg_locs_cols) %>% 
+  dplyr::mutate(Date = as.Date(Date, origin = "1899-12-30", tz ="UTC") %>% 
+                  lubridate::as_datetime(),
+                Ptt = as.integer(Ptt))
+
+glimpse(adfg_locations_new)
+```
+
+```{r}
+adfg_locations <- adfg_locations %>% 
+  bind_rows(adfg_locations_new)
+```
+
+
 As before, we'll rename a few columns to snake_case and then all to lower case.
 
 ```{r}
@@ -160,7 +228,6 @@ adfg_locations <- adfg_locations %>%
                 locs_dt = Date,
                 tag_family = TagType) %>% 
   dplyr::filter(quality != "Z") %>% 
-  dplyr::select(-MonthNumb) %>% 
   dplyr::rename_all(tolower) %>% 
   dplyr::left_join(adfg_deployments, by = c("speno","tag_family")) %>% 
   mutate(species_code = case_when(
