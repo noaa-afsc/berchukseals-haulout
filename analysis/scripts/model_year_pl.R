@@ -25,9 +25,9 @@ load(here::here('data/dat_sf.Rdata'))
 
 dat.sf <- dat.sf  %>%
   mutate(dry = round(percent_dry/100)) %>%
-  mutate(hour_utc = hour(haulout_dt),
+  mutate(hour_utc = lubridate::hour(haulout_dt),
          yday = yday(haulout_dt),
-         year = year(haulout_dt)) %>%
+         year = lubridate::year(haulout_dt)) %>%
   mutate(coords_x = st_coordinates(st_transform(.,4326))[,1],
          coords_y = st_coordinates(st_transform(.,4326))[,2],
          solar_hour = solaR::local2Solar(haulout_dt,coords_x) %>% lubridate::hour(),

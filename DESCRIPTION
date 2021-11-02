@@ -14,7 +14,7 @@ ByteCompile: true
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Imports: bookdown,
     here,
     broom (>= 0.7.4),
@@ -47,6 +47,7 @@ Imports: bookdown,
     rmarkdown (>= 2.6),
     rnaturalearth (>= 0.2.0),
     rnaturalearthdata (>= 0.2.0),
+    RPostgres,
     sf (>= 0.9-7),
     solaR (>= 0.45),
     splines (>= 4.0.2),
@@ -61,3 +62,5 @@ Remotes:
     coolbutuseless/purler
 URL: https://github.com/jmlondon/berchukHaulout
 BugReports: https://github.com/jmlondon/berchukHaulout/issues
+Depends: 
+    R (>= 2.10)

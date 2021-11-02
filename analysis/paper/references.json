@@ -1406,5 +1406,461 @@
         "title": "Attendance and nursing patterns of harp seals in the harsh environment of the northwest Atlantic",
         "type": "article-journal",
         "volume": "40"
+    },
+    {
+        "DOI": "10.1007/s13571-017-0130-5",
+        "ISSN": "0976-8386",
+        "URL": "http://dx.doi.org/10.1007/s13571-017-0130-5",
+        "author": [
+            {
+                "family": "Ten Eyck",
+                "given": "Patrick"
+            },
+            {
+                "family": "Cavanaugh",
+                "given": "Joseph E."
+            }
+        ],
+        "container-title": "Sankhya B",
+        "container-title-short": "Sankhya B",
+        "id": "teneyck2017",
+        "is-referenced-by-count": "0",
+        "issue": "1",
+        "issued": {
+            "date-parts": [
+                [
+                    2017,
+                    3,
+                    22
+                ]
+            ]
+        },
+        "language": "en",
+        "member": "297",
+        "page": "98-122",
+        "prefix": "10.1007",
+        "providerkey": "doi",
+        "publisher": "Springer Science and Business Media LLC",
+        "reference-count": "32",
+        "references-count": "32",
+        "score": "1",
+        "source": "Crossref",
+        "title": "An Alternate Approach to Pseudo-Likelihood Model Selection in the Generalized Linear Mixed Modeling Framework",
+        "type": "article-journal",
+        "update-policy": "http://dx.doi.org/10.1007/springer_crossmark_policy",
+        "volume": "80"
+    },
+    {
+        "URL": "https://www.R-project.org/",
+        "author": [
+            {
+                "family": "R Core Team"
+            }
+        ],
+        "genre": "manual",
+        "id": "rcoreteam2021",
+        "issued": {
+            "date-parts": [
+                [
+                    2021
+                ]
+            ]
+        },
+        "key": "STEYUJCA",
+        "libraryid": "2",
+        "note": "tex.organization: R Foundation for Statistical Computing",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "publisher-place": "Vienna, Austria",
+        "tex.organization": "R",
+        "title": "R: A language and environment for statistical computing",
+        "type": "report"
+    },
+    {
+        "DOI": "10.1016/j.ecolmodel.2005.04.027",
+        "ISSN": "0304-3800",
+        "URL": "https://www.sciencedirect.com/science/article/pii/S0304380005002759",
+        "accessed": {
+            "date-parts": []
+        },
+        "author": [
+            {
+                "family": "Betts",
+                "given": "Matthew G."
+            },
+            {
+                "family": "Diamond",
+                "given": "A. W."
+            },
+            {
+                "family": "Forbes",
+                "given": "G. J."
+            },
+            {
+                "family": "Villard",
+                "given": "M. -A."
+            },
+            {
+                "family": "Gunn",
+                "given": "J. S."
+            }
+        ],
+        "container-title": "Ecological Modelling",
+        "container-title-short": "Ecological Modelling",
+        "id": "betts2006",
+        "issue": "2",
+        "issued": {
+            "date-parts": [
+                [
+                    2006,
+                    1,
+                    31
+                ]
+            ]
+        },
+        "key": "I55SURU3",
+        "language": "en",
+        "libraryid": "3",
+        "page": "197-224",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "source": "ScienceDirect",
+        "title": "The importance of spatial autocorrelation, extent and resolution in predicting forest bird occurrence",
+        "type": "article-journal",
+        "volume": "191"
+    },
+    {
+        "author": [
+            {
+                "family": "Feltz",
+                "given": "Elmer T."
+            },
+            {
+                "family": "Fay",
+                "given": "Francis H."
+            }
+        ],
+        "container-title": "Cryobiology",
+        "id": "feltz1966",
+        "issue": "3",
+        "issued": {
+            "date-parts": [
+                [
+                    1966
+                ]
+            ]
+        },
+        "key": "S4M5IDAR",
+        "libraryid": "2",
+        "page": "261-264",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Thermal requirements in vitro of epidermal cells from seals",
+        "type": "article-journal",
+        "volume": "3"
+    },
+    {
+        "DOI": "10.1002/ece3.6302",
+        "ISSN": "2045-7758",
+        "author": [
+            {
+                "family": "Von Duyke",
+                "given": "Andrew L."
+            },
+            {
+                "family": "Douglas",
+                "given": "David C."
+            },
+            {
+                "family": "Herreman",
+                "given": "Jason K."
+            },
+            {
+                "family": "Crawford",
+                "given": "Justin A."
+            }
+        ],
+        "container-title": "Ecology and Evolution",
+        "id": "vonduyke2020",
+        "issue": "n/a",
+        "issued": {
+            "date-parts": [
+                [
+                    2020,
+                    5,
+                    5
+                ]
+            ]
+        },
+        "key": "DMLV7N4G",
+        "libraryid": "2",
+        "page": "1-22",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Ringed seal (<i>Pusa hispida</i>) seasonal movements, diving, and haul-out behavior in the Beaufort, Chukchi, and Bering Seas (2011–2017)",
+        "type": "article-journal",
+        "volume": "00"
+    },
+    {
+        "author": [
+            {
+                "family": "McClintock",
+                "given": "Brett T."
+            },
+            {
+                "family": "Moreland",
+                "given": "Erin E."
+            },
+            {
+                "family": "London",
+                "given": "Joshua M."
+            },
+            {
+                "family": "Dahle",
+                "given": "Shawn P."
+            },
+            {
+                "family": "Brady",
+                "given": "Gavin M."
+            },
+            {
+                "family": "Richmond",
+                "given": "Erin L."
+            },
+            {
+                "family": "Yano",
+                "given": "Kymberly M."
+            },
+            {
+                "family": "Boveng",
+                "given": "Peter L."
+            }
+        ],
+        "container-title": "Marine Mammal Science",
+        "id": "mcclintock2015",
+        "issue": "3",
+        "issued": {
+            "date-parts": [
+                [
+                    2015
+                ]
+            ]
+        },
+        "key": "U7LDL6TZ",
+        "libraryid": "2",
+        "page": "1057-1076",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Quantitative assessment of species identification in aerial transect surveys for ice-associated seals",
+        "type": "article-journal",
+        "volume": "21"
+    },
+    {
+        "DOI": "10.1007/s00300-018-2260-2",
+        "ISSN": "1432-2056",
+        "URL": "https://doi.org/10.1007/s00300-018-2260-2",
+        "author": [
+            {
+                "family": "Hamilton",
+                "given": "Charmain D."
+            },
+            {
+                "family": "Kovacs",
+                "given": "Kit M."
+            },
+            {
+                "family": "Ims",
+                "given": "Rolf A."
+            },
+            {
+                "family": "Lydersen",
+                "given": "Christian"
+            }
+        ],
+        "container-title": "Polar Biology",
+        "id": "hamilton2018",
+        "issue": "6",
+        "issued": {
+            "date-parts": [
+                [
+                    2018,
+                    6,
+                    1
+                ]
+            ]
+        },
+        "key": "74XPSTMW",
+        "libraryid": "2",
+        "note": "tex.ids= hamilton2018pba, hamilton2018pbb",
+        "page": "1063-1082",
+        "providerkey": "Zotero",
+        "title": "Haul-out behaviour of Arctic ringed seals (Pusa hispida): inter-annual patterns and impacts of current environmental change",
+        "type": "article-journal",
+        "volume": "41"
+    },
+    {
+        "ISSN": "0008-4301",
+        "author": [
+            {
+                "family": "Kelly",
+                "given": "B. P."
+            },
+            {
+                "family": "Quakenbush",
+                "given": "L. T."
+            }
+        ],
+        "container-title": "Canadian Journal of Zoology",
+        "id": "kelly1990",
+        "issue": "12",
+        "issued": {
+            "date-parts": [
+                [
+                    1990,
+                    12
+                ]
+            ]
+        },
+        "key": "GFBD4NSH",
+        "language": "English",
+        "libraryid": "2",
+        "page": "2503-2512",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Spatiotemporal use of lairs by ringed seals (<i>Phoca hispida</i>)",
+        "type": "article-journal",
+        "volume": "68"
+    },
+    {
+        "DOI": "10.1007/s00300-020-02710-6",
+        "ISSN": "1432-2056",
+        "URL": "https://doi.org/10.1007/s00300-020-02710-6",
+        "author": [
+            {
+                "family": "Olnes",
+                "given": "J."
+            },
+            {
+                "family": "Crawford",
+                "given": "J."
+            },
+            {
+                "family": "Citta",
+                "given": "J. J."
+            },
+            {
+                "family": "Druckenmiller",
+                "given": "M. L."
+            },
+            {
+                "family": "Von Duyke",
+                "given": "A. L."
+            },
+            {
+                "family": "Quakenbush",
+                "given": "L."
+            }
+        ],
+        "container-title": "Polar Biology",
+        "id": "olnes2020",
+        "issued": {
+            "date-parts": [
+                [
+                    2020,
+                    7,
+                    8
+                ]
+            ]
+        },
+        "key": "A53745C7",
+        "libraryid": "2",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Movement, diving, and haul-out behaviors of juvenile bearded seals in the Bering, Chukchi and Beaufort seas, 2014–2018",
+        "type": "article-journal"
+    },
+    {
+        "DOI": "10.1007/s00300-018-2399-x",
+        "ISSN": "1432-2056",
+        "author": [
+            {
+                "family": "Crawford",
+                "given": "Justin A."
+            },
+            {
+                "family": "Frost",
+                "given": "Kathryn J."
+            },
+            {
+                "family": "Quakenbush",
+                "given": "Lori T."
+            },
+            {
+                "family": "Whiting",
+                "given": "Alex"
+            }
+        ],
+        "container-title": "Polar Biology",
+        "id": "crawford2019",
+        "issue": "1",
+        "issued": {
+            "date-parts": [
+                [
+                    2019,
+                    1,
+                    1
+                ]
+            ]
+        },
+        "key": "XTUULQJ8",
+        "libraryid": "2",
+        "page": "65-80",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Seasonal and diel differences in dive and haul-out behavior of adult and subadult ringed seals (<i>Pusa hispida</i>) in the Bering and Chukchi seas",
+        "type": "article-journal",
+        "volume": "42"
+    },
+    {
+        "DOI": "DOI 10.1016/j.dsr.2008.01.005",
+        "ISSN": "0967-0637",
+        "author": [
+            {
+                "family": "Southwell",
+                "given": "C."
+            },
+            {
+                "family": "Paxton",
+                "given": "C. G. M."
+            },
+            {
+                "family": "Borchers",
+                "given": "D."
+            },
+            {
+                "family": "Boveng",
+                "given": "P."
+            },
+            {
+                "family": "Rogers",
+                "given": "T."
+            },
+            {
+                "family": "Mare",
+                "given": "W. K.",
+                "non-dropping-particle": "de la"
+            }
+        ],
+        "container-title": "Deep-Sea Research I",
+        "id": "southwell2008",
+        "issue": "4",
+        "issued": {
+            "date-parts": [
+                [
+                    2008,
+                    4
+                ]
+            ]
+        },
+        "key": "S8P9IJE6",
+        "language": "English",
+        "libraryid": "2",
+        "page": "519-531",
+        "providerkey": "2509FBBE-5BB0-44C4-B119-6083A81ED673",
+        "title": "Uncommon or cryptic? Challenges in estimating leopard seal abundance by conventional but state-of-the-art methods",
+        "type": "article-journal",
+        "volume": "55"
     }
 ]

@@ -1,14 +1,4 @@
-##' .. content for \description{} (no empty lines) ..
-##'
-##' .. content for \details{} ..
-##'
-##' @title
-##' @param timeline_data
-##' @param locs_sf
-##' @return
-##' @author Josh.London
-##' @export
-create_db_input_data <- function(timeline_data, locs_sf) {
+create_source_data <- function(locs_sf, timeline_data) {
 
   loc_qual_tbl <- tribble(
     ~quality, ~error_radius,
@@ -21,7 +11,7 @@ create_db_input_data <- function(timeline_data, locs_sf) {
   )
 
   locs_daily <- locs_sf %>%
-    filter(quality != "Z") %>%
+    dplyr::filter(quality %in% c("3","2","1","0","A","B")) %>%
     left_join(loc_qual_tbl, by = "quality") %>%
     st_transform(3571) %>%
     mutate(x = st_coordinates(.)[,"X"],
@@ -31,10 +21,10 @@ create_db_input_data <- function(timeline_data, locs_sf) {
                                           error_radius.y,
                                           error_radius.x)) %>%
     rename(error_radius = error_radius.x) %>%
-    select(-error_radius.y) %>%
+    dplyr::select(-error_radius.y) %>%
     mutate(error_radius = ifelse(type %in% c("GPS","FastGPS"),
                                         50,error_radius),
-                  error_radius = ifelse(type == "User",
+                  error_radius = ifelse(type %in% c("User"),
                                         50,error_radius)) %>%
     group_by(speno,unique_day,age,sex,species) %>%
     summarise(x = weighted.mean(x,1/error_radius),
@@ -48,37 +38,52 @@ create_db_input_data <- function(timeline_data, locs_sf) {
     group_by(speno) %>% nest() %>%
     mutate(start_idx = map_int(data,~ which.max(!is.na(.x$x))),
            data = map2(data, start_idx, ~ slice(.x, .y:nrow(.x)))) %>%
-    select(-start_idx) %>%
+    dplyr::select(-start_idx) %>%
     unnest(cols = c(data)) %>%
     mutate(fill_xy = ifelse(is.na(x), TRUE, FALSE)) %>%
     group_by(speno) %>%
     fill(x,y) %>%
     ungroup() %>%
-    filter(!is.na(percent_dry)) %>%
-    filter(!speno %in% c("EB2005_5995","PL2006_5984","PL2006_5987")) %>%
-    filter(!is.na(x)) %>%
+    dplyr::filter(!is.na(percent_dry)) %>%
+    dplyr::filter(!speno %in% c("EB2005_5995","PL2006_5984","PL2006_5987")) %>%
+    dplyr::filter(!is.na(x)) %>%
     st_as_sf(coords = c("x","y")) %>%
     st_set_crs(3571) %>%
     rename(haulout_dt = timeline_start_dt) %>%
-    select(speno,species,age,sex,haulout_dt,percent_dry,n_tags,fill_xy)
+    dplyr::select(speno,species,age,sex,haulout_dt,percent_dry,n_tags,fill_xy)
 
   stopifnot(
     "PEP Postgres Database Not Available; did you start VPN? ;)" =
       is_up("161.55.120.122", "5432")
   )
 
-  con <- dbConnect(
-    odbc(),
-    dsn = "PostgreSQL pep",
-    uid = get_kc_account("pgpep_londonj"),
-    pwd = decrypt_kc_pw("pgpep_londonj")
-  )
+  con <- dbConnect(RPostgres::Postgres(),dbname = 'pep',
+                   host = '161.55.120.122',
+                   port = 5432,
+                   user = keyringr::get_kc_account("pgpep_sa"),
+                   password = keyringr::decrypt_kc_pw("pgpep_sa"))
+  on.exit(dbDisconnect(con))
 
   st_write(obj = tbl_percent_locs,
            dsn = con,
-           layer = "res_iceseal_haulout_jml",
-           layer_options = "OVERWRITE=true")
+           delete_layer = TRUE,
+           layer = SQL("telem.res_iceseal_haulout")
+  )
 
-  return(tbl_percent_locs)
+  dbExecute(con, "ALTER TABLE telem.res_iceseal_haulout RENAME COLUMN geometry TO geom")
+  dbExecute(con, "SELECT telem.fxn_iceseal_pred_idx();")
+  dbExecute(con, "SELECT telem.fxn_iceseal_haulout_cov();")
 
+  qry <- {
+    "SELECT *
+  FROM telem.res_iceseal_haulout_cov
+  WHERE
+  EXTRACT(MONTH FROM haulout_dt) IN (3,4,5,6,7) AND
+  rast_vwnd IS NOT NULL AND
+  species != 'Ph' AND
+  speno != 'EB2009_7010' AND
+  speno != 'EB2009_3002' "
+  }
+
+  sf::st_read(con, query = qry)
 }
