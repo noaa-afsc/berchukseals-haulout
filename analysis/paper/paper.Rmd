@@ -20,11 +20,22 @@ author:
   - Michael F. Cameron:
       institute: [MML]
       correspondence: false
+  - Justin Crawford:
+      institute: [ADFG]
+      correspondence: false
+  - Andrew L. Von Duyke:
+      institute: [NSB]
+      correspondence: false
+  - Lori T. Quakenbush:
+      institute: [ADFG]
+      correspondence: false
   - Peter L. Boveng:
       institute: [MML]
       correspondence: false
 institute:
   - MML: Marine Mammal Laboratory, Alaska Fisheries Science Center, NOAA Fisheries, Seattle, Washington, USA
+  - ADFG: Arctic Marine Mammals Program, Alaska Department of Fish and Game, Fairbanks, Alaska, USA
+  - NSB: Department of Wildlife Management, North Slope Borough, Utqiaġvik, Alaska, USA
 output: 
   officedown::rdocx_document:
     reference_docx: ../templates/jml_template.docx
