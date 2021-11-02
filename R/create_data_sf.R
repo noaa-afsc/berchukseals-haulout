@@ -11,7 +11,7 @@ create_data_sf <- function(locs_sf, source_data) {
         species == "spotted" ~ "Spotted seal",
         TRUE ~ species),
       sex = case_when(
-        sex %in% c("Female","female") ~ "F",
+        sex %in% c("Female","female", "f") ~ "F",
         sex %in% c("Male","male","m") ~ "M",
         TRUE ~ sex)
     ) %>%

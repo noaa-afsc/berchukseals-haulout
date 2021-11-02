@@ -47,6 +47,10 @@ adfg_clean_deploy <- function(file1,file2) {
     dplyr::rename_all(tolower) %>%
     dplyr::mutate(species = tolower(species),
                   age = tolower(age),
+                  age = case_when(
+                    age %in% c("1","3") ~ "SUBADULT",
+                    TRUE ~ age
+                  ),
                   sex = tolower(sex)) %>%
     tidyr::gather(tag_position, tag_family, c(primary_tag_type,flipper_tag_type)) %>%
     dplyr::mutate(tag_position = ifelse(tag_position == "primary_tag_type",
@@ -116,7 +120,7 @@ adfg_clean_locs <- function(file1, file2, adfg_deployments) {
              glue::glue("{lubridate::year(locs_dt)}",
                         "{lubridate::yday(locs_dt)}",
                         .sep = "_")) %>%
-    select(-species_code) %>%
+    dplyr::select(-species_code) %>%
     relocate(deployid,ptt) %>%
     filter(species %in% c('bearded', 'ribbon', 'spotted')) %>%
     filter(lubridate::month(locs_dt) %in% c(3,4,5,6,7)) %>%
@@ -148,7 +152,11 @@ adfg_clean_tl <- function(file1,file2, adfg_deployments) {
     purrr::map_dfr(read_csv, col_types = cols) %>%
     dplyr::mutate(GMTDate = lubridate::as_datetime(GMTDate) %>% lubridate::force_tz("UTC"),
                   Ptt = as.integer(Ptt),
-                  TagType = toupper(TagType)) %>%
+                  TagType = toupper(TagType),
+                  TagType = case_when(
+                    TagType == "UT" ~ "SPOT",
+                    TRUE ~ TagType
+                  )) %>%
     dplyr::rename(speno = DeployIDs,
                   tag_family = TagType,
                   hist_type = HistType,
