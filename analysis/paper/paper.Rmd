@@ -661,7 +661,8 @@ seals (which had considerably more data than bearded seals), we fitted models
 that included all the effects from the first model, but also permitted annual
 variation in haul-out timing. This second class of models was used to examine
 whether haul-out patterns varied by year and to determine the annual timing of
-apparent peaks in haul-out behavior.
+apparent peaks in haul-out behavior. For both models, the response variable was
+the transmitted hourly percent-dry value.
 
 We followed Ver Hoef et al. [-@verhoef2014a] in using linear, quadratic, and
 cubic effects of day-of-year to represent temporal changes in behavior. However,
@@ -754,7 +755,7 @@ bearded_type3 <- setNames(split(bearded_type3,
 
 Age and sex class were not included in the model for bearded seals due to our
 lower sample size for adult and young-of-year age classes. As such,
-results are shown for all ages. Bearded seals were predicted to have a bi-modal
+results are shown for all ages. Bearded seals had a bi-modal
 distribution of haul-out probability across the day (Figure
 \@ref(fig:beardedHOCal)). In addition to a peak around local solar noon, the
 bearded seal model predicts additional haul-out activity around local midnight.
@@ -962,13 +963,13 @@ targets::tar_load(spotted_newdata, store = here::here("_targets"))
 
 Compared to ribbon seals, spotted seals showed a longer spring haul-out season
 that is less intensely centered on solar noon (Figure \@ref(fig:spottedHOCal)).
-Adults of both sexes spend considerable time in April, May and June resting on the
-ice. In contrast to ribibon seals, adult spotted seal males have a more protracted
-haul-out season compared to females, and more time spent resting in June and
-July (Figures \@ref(fig:ribbonHOCal) and \@ref(fig:spottedHOCal)). As with 
-ribbon seals, the young-of-the-year records begin after weaning and
-the model predictions demonstrate the ontogeny of in-water activities (e.g.
-diving, foraging) in May.
+Adults of both sexes spend considerable time in April, May and June hauled out.
+In contrast to ribibon seals, adult spotted seal males have a more protracted
+haul-out season compared to females, and more time out of the water in June and
+July (Figures \@ref(fig:ribbonHOCal) and \@ref(fig:spottedHOCal)). As with
+ribbon seals, the young-of-the-year records begin after weaning and the model
+predictions demonstrate the ontogeny of in-water activities (e.g. diving,
+foraging) in May.
 
 ```{r spottedHOCal, fig.height = 5.5, include=TRUE, fig.id = "spottedHOCal", fig.cap="Predicted haul-out probability of spotted seals from 1 March to 15 July for each age and sex class used in the model. Adult females are indicated by 'ADULT.F' and 'ADULT.M' indicates adult males. 'SUBADULT' and 'YOUNG OF YEAR' age classes include both sexes."}
 
@@ -1255,29 +1256,30 @@ ggplot(data = peak_ho_df, aes(y = yday, x = max_extent_km2, color = species)) +
 
 We modeled data from bio-loggers deployed on bearded, ribbon, and spotted seals
 to examine factors affecting haul-out behavior on sea ice in the Bering and
-Chukchi seas. Our analysis shows seals haul out progressively more through the
-spring and peak near mid-May to early June before declining again. This pattern
-aligns well with what has been previously documented and confirms our haul-out
-data are likely capturing population-level behavioral patterns. Seals
-preferentially haul out on ice shortly after solar noon, which allows seals to
-maximize absorption of solar radiation thought to facilitate the molting process
-[@feltz1966]. Interestingly, bearded seals appear to have two peaks in haul-out
-activity within a day, one shortly after solar noon, and one centered near solar
-midnight. A similar bi-modal pattern has been seen in ringed seals
-[@vonduyke2020] and suggests that bearded and ringed seals may be operating
-under different constraints than ribbon and spotted seals. Bearded and ringed 
-seals are distributed across higher latitudes and the extended daylight hours
-may allow more flexibility in optimizing resting periods with foraging. Other
-factors such as polar bear predation (which is rare for ribbon and spotted seals
-in the Bering Sea) may also explain differing haul-out patterns. Bearded seals also
-showed a more protracted season of haul-out behavior compared to ribbon and
-spotted seals. This aligns with findings from Thometz et al. [@thometz2021] who
-observed a mean molting period of 119$\pm$2 days and a relatively stable resting
-metabolic rate during that time. In the same study, spotted and ringed seals
+Chukchi seas. Our analysis shows all three species of seal haul out
+progressively more through the spring and peak near mid-May to early June before
+declining again. This pattern aligns well with what has been previously
+documented and confirms our haul-out data are likely capturing population-level
+behavioral patterns. Seals preferentially haul out on ice shortly after solar
+noon, which allows seals to maximize absorption of solar radiation thought to
+facilitate the molting process [@feltz1966]. Interestingly, bearded seals appear
+to have two peaks in haul-out activity within a day, one shortly after solar
+noon, and one centered near solar midnight. A similar bi-modal pattern has been
+seen in ringed seals [@vonduyke2020] and suggests that bearded and ringed seals
+may be operating under different constraints than ribbon and spotted seals.
+Bearded and ringed seals are distributed across higher latitudes and the
+extended daylight hours may allow more flexibility in optimizing resting periods
+with foraging. Other factors such as polar bear predation (which is rare for
+ribbon and spotted seals in the Bering Sea) may also explain differing haul-out
+patterns. Bearded seals also showed a more protracted season of haul-out
+behavior compared to ribbon and spotted seals. This aligns with findings from
+Thometz et al. [@thometz2021] who observed a mean molting period of 119$\pm$2
+days and a relatively stable resting metabolic rate during that time. While
+ribbon seals were not considered in the same study, spotted and ringed seals
 underwent molt periods of 33$\pm$4 and 28$\pm$6 days and exhibited increased
 resting metabolic rates.
 
-Unlike previous analyses of seal haul-out data (e.g. [@verhoef2010a],
+Unlike previous analyses of seal haul-out behavior (e.g. [@verhoef2010a],
 [@conn2014a]), we also investigated the influence of sex-age class on haul-out
 probabilities for all species except bearded seals because of low sample size.
 While both ribbon and spotted seals exhibited a unimodal diel haul-out pattern
@@ -1291,16 +1293,16 @@ hypothesis that ribbon seal females continue foraging while nursing. Spotted
 seals are known to form triads during the breeding season [@burns2009,
 @mcclintock2015] where a female and dependent pup are accompanied on the ice by
 a suitor male. The male waits for the female to wean the pup and enter estrus,
-and fends off any other males that may be interested. Triad formation results in
-both males and females spending a large portion of the day hauled out on ice and
-a protracted spring haul-out season for both sexes. Because mating occurs in the
-water, females may also be less inclined to venture out for foraging trips while
-still nursing the pup. We see this reflected in the predicted haul-out behavior,
-with both males and females exhibiting a broad distribution of time out of the
-water throughout the solar day and the season.  In the case of both ribbon and
-spotted seals, subadults are the first to begin consistent haul-out behavior and
-follow a typical phocid pattern where subadults molt first as they do not have
-any reproductive constraints.
+and fends off any other potential suitor males. Triad formation results in both
+males and females spending a large portion of the day hauled out on ice and a
+protracted spring haul-out season for both sexes. Because mating occurs in the
+water, females may also be less inclined to interrupt their haul-out with
+foraging trips while still nursing the pup. We see this reflected in the
+predicted haul-out behavior, with both males and females exhibiting a broad
+distribution of time out of the water throughout the solar day and the season.
+In the case of both ribbon and spotted seals, subadults are the first to begin
+consistent haul-out behavior and follow a typical phocid pattern where subadults
+molt first as they do not have any reproductive constraints.
 
 We also investigated the influence of environmental covariates on haul-out
 probabilities, including wind speed, temperature, barometric pressure,
@@ -1422,30 +1424,29 @@ telemetry are archived at the United States Animal Telemetry Network.
 
 # Acknowledgements
 
-We recognize that the species and ecosystems studied in this paper are
-within the traditional range of the Inpuiaq and Yupik people. And, we
-would like to acknowledge and thank them as the original stewards of
-these ecosystems. The deployment of bio-logging devices used in this
-study were often done in collaboration with Alaska Native seal hungers and their communities.
-We would like to especially acknowledge the communities of Kotzebue,
-Utqiaġvik, and Ulguniq (Wainwright) and the following individuals: James Adams, Jeff
-Barger, David Barr, Wendell Booth, Cyrus Harris, Nereus 'Doc' Harris,
-Grover Harris, Lee Harris, Tom Jones, Frank Garfield, Brenda Goodwin,
-Henry Goodwin, John Goodwin, Pearl Goodwin, Willie Goodwin, Brett Kirk,
-Noah Naylor, Virgil Naylor Jr., Virgil Naylor Sr., Dan Savetilik, Allen
-Stone, and Randy Toshavik from Kotzebue, Alaska; Billy Adams, Mary-Ellen
-Ahmaogak, James Aiken, Tim Aiken, Sarah Coburn, Jason Herreman, Howard
-Kittick, Gilbert Leavitt, Isaac Leavitt, J.R. Leavitt, Enoch Oktollik,
-Shawn Oktollik, Stacey Osborn, Fred Rexford, Chuck Schaeffer, Ross
-Schaeffer, Bob Shears, and Joe Skin from the North Slope Borough,
-Alaska;
+We recognize that the species and ecosystems studied in this paper are within
+the traditional range of the Inpuiaq and Yupik people. And, we would like to
+acknowledge and thank them as the original stewards of these ecosystems. The
+deployment of bio-logging devices used in this study were often done in
+collaboration with Alaska Native seal hungers and their communities. We would
+like to especially acknowledge the communities of Kotzebue, Koyuk, Utqiaġvik,
+and Ulguniq (Wainwright) and the following individuals: James Adams, Jeff
+Barger, David Barr, Wendell Booth, Cyrus Harris, Nereus 'Doc' Harris, Grover
+Harris, Lee Harris, Tom Jones, Frank Garfield, Brenda Goodwin, Henry Goodwin,
+John Goodwin, Pearl Goodwin, Willie Goodwin, Brett Kirk, Noah Naylor, Virgil
+Naylor Jr., Virgil Naylor Sr., Dan Savetilik, Allen Stone, and Randy Toshavik
+from Kotzebue, Alaska; Merlin Henry from Koyuk, Alaska; Billy Adams, Mary-Ellen
+Ahmaogak, James Aiken, Tim Aiken, Sarah Coburn, Jason Herreman, Howard Kittick,
+Gilbert Leavitt, Isaac Leavitt, J.R. Leavitt, Enoch Oktollik, Shawn Oktollik,
+Stacey Osborn, Fred Rexford, Chuck Schaeffer, Ross Schaeffer, Bob Shears, and
+Joe Skin from the North Slope Borough, Alaska;
 
 We are grateful for the assistance in catching and sampling seals by
 James Bailey, Michelle Barbieri, John Bengtson, Gavin Brady, Vladamir
 Burkanov, Cynthia Christman, Shawn Dahle, Rob Delong, Stacy DiRocco, Deb
 Fauquier, Shannon Fitzgerald, Kathy Frost, Scott Gende, Tracey
 Goldstein, Jeff Harris, Markus Horning, John Jansen, Shawn Johnson,
-Charles Littnan, Lloyd Lowry, Erin Moreland, Lorrie Rea, Gay Sheffield,
+Charles Littnan, Lloyd Lowry, Erin Moreland, Mark Nelson, Lorrie Rea, Gay Sheffield,
 Brent Stewart, and Dave Withrow. We also appreciate the commitment to
 science and safety by all officers and crew of the NOAA Ship Oscar
 Dyson, the NOAA Ship MacArthur II, and the RV Thomas G. Thompson.
@@ -1472,9 +1473,8 @@ Fisheries Science Center Institutional Animal Care and Use Committee (IACUC). ).
 Funding to ADFG for tagging seals was provided by the Bureau of Ocean Energy
 Management (No. M13PC0015) and the Office of Naval Research (No.
 N00014-16-1-3019). ADFG and NSB field work was covered by Research Permits Nos.
-358-1585, 358-1787, 15324, and 20466 and by ADFG IACUC permits Nos. 06-16,
-09-21, 2010-13, 2012-020, 0027-2019-41, 2013-020, 2014-03,2015-25, 2016-23,
-0027-2017-27, 0027-2018-29, 0027-2019-041.
+358-1585, 358-1787, 15324, and 20466 and by ADF&G IACUC permits Nos. 06-16,
+09-21, 2014-03, 2015-25, 2016-23, 0027-2017-27, 0027-2018-29, 0027-2019-041.
 
 # References
 
