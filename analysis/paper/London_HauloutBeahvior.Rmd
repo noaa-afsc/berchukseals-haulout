@@ -1096,7 +1096,6 @@ p_temp + p_wind + p_pressure + p_precip +
 ```
 
 
-
 ## Annual variation in haul-out
 
 ```{r hfpvyear}
@@ -1130,15 +1129,13 @@ spotted_year_type3 <- setNames(split(spotted_year_type3,
 
 The second set of models that included annual variation in haul-out
 patterns uncovered significant contributions for linear and quadratic
-interactions between day and year in both ribbon seals (day $\times$
-year,
+interactions between day and year in both ribbon seals (day:year,
 $F_{`r paste(ribbon_year_type3$day_year$Num.df, ribbon_year_type3$day_year$Den.df, sep=",")`}$
 = `r ribbon_year_type3$day_year$F.value`; $p$ =
 `r ribbon_year_type3$day_year$Prob.F`; day^2^:year,
 $F_{`r paste(ribbon_year_type3$day2_year$Num.df, ribbon_year_type3$day2_year$Den.df, sep=",")`}$
 = `r ribbon_year_type3$day2_year$F.value`; $p$ =
-`r ribbon_year_type3$day2_year$Prob.F`) and spotted seals (day $\times$
-year,
+`r ribbon_year_type3$day2_year$Prob.F`) and spotted seals (day:year,
 $F_{`r paste(spotted_year_type3$day_year$Num.df, spotted_year_type3$day_year$Den.df, sep=",")`}$
 = `r spotted_year_type3$day_year$F.value`; $p$ =
 `r spotted_year_type3$day_year$Prob.F`; day^2^:year,
@@ -1449,19 +1446,28 @@ validation, writing: review and editing
 **Jay M. Ver Hoef**: conceptualization, methodology, software, writing:
 review and editing
 
-**Irina S. Trukhanova**: conceptualization, writing: review and editing
-
 **Michael F. Cameron**: investigation, project administration, writing:
 review and editing
+
+**Justin Crawford**: investigation, methodology, validation, data curation, 
+writing: review and editing
+
+**Lori T. Quakenbush**: investigation, methodology, supervision, project
+administration, writing: review and editing
+
+**Andrew L. Von Duyke**: investigation, methodology, validation, data curation,
+writing: review and editing
 
 **Peter L. Boveng**: investigation, conceptualization, supervision,
 project administration, writing: review and editing
 
 # Data Availability
 
-Data and code will be available as a complete research compendium on
-GitHub and major versions archived at Zenodo. Original data sources for
-telemetry are archived at the United States Animal Telemetry Network.
+This manuscript was developed as a reproducible research compendium. Data and
+code are available on GitHub (https://github.com/jmlondon/berchukHaulout) and
+major versions archived at Zenodo (https://doi.org/10.5281/zenodo.4638221).
+Original data sources for telemetry are archived at the United States Animal
+Telemetry Network.
 
 # Acknowledgements
 
