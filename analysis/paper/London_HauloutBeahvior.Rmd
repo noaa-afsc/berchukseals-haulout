@@ -42,6 +42,18 @@ output:
     pandoc_args:
       - --lua-filter=../templates/scholarly-metadata.lua
       - --lua-filter=../templates/author-info-blocks.lua
+    page_size:
+      width: 8.5
+      height: 11
+      orient: "portrait"
+    page_margins:
+      bottom: 1.25
+      top: 1.25
+      right: 1.0
+      left: 0.5
+      header: 0.5
+      footer: 0.5
+      gutter: 0.5
 bibliography: references.json
 link-citations: true
 csl: ../templates/proceedings-of-the-royal-society-b.csl
