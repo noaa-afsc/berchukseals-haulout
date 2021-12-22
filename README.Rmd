@@ -1,5 +1,6 @@
 ---
 output: github_document
+always_allow_html: true
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -10,8 +11,6 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "README-"
 )
-# Please put your title here to include it in the file below.
-Title <- "Haul-out behavior and aerial survey detectability of seals in the Bering and Chukchi seas"
 ```
 
 <!-- badges: start -->
@@ -53,9 +52,16 @@ The **data** directory contains
 This repository relies heavily on the {targets} and {renv} packages for management
 of analysis pipelines and reproducibility. 
 
-  - [:file\_folder: R](/R): pipeline functions developed in support or target pipeline
+  - [:file\_folder: R](/R): pipeline functions developed in support of target pipeline
   - [:page\_facing\_up: _targets.R](/_targets.R): target pipeline
   - [:page\_facing\_up: renv.lock](/renv.lock): renv lockfile
+  
+The dependency graph for our pipeline is shown below
+
+```{r, echo=FALSE}
+library(targets)
+targets::tar_glimpse()
+```
 
 ### NOAA README
 
