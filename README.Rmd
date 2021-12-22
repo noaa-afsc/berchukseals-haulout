@@ -1,6 +1,5 @@
 ---
 output: github_document
-always_allow_html: true
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -58,10 +57,7 @@ of analysis pipelines and reproducibility.
   
 The dependency graph for our pipeline is shown below
 
-```{r, echo=FALSE}
-library(targets)
-targets::tar_glimpse()
-```
+![](./tar_glimpse.png)
 
 ### NOAA README
 
