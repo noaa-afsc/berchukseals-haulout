@@ -22,9 +22,14 @@ Quakenbush<sup>2</sup>, and Peter L. Boveng<sup>1</sup>
 
 ✉ Correspondence: Josh M. London <josh.london@noaa.gov>
 
-This repository contains the research compendium in support of the above
-titled paper. The manuscript is currently in preparation and the text,
-code, analysis, and results are under active development.
+This repository serves as the research compendium in support of the
+above titled paper. As the manuscript works its way through peer review
+and the publications process, additional reproducibility features
+(e.g. Dockerfile, MyBinder.org) and an R/Shiny application to explore
+results will be made available.
+
+Major releases of the research compendium are published and archived
+with Zenodo <https://doi.org/10.5281/zenodo.4638221>
 
 ## Draft Manuscript Under Active Development
 
