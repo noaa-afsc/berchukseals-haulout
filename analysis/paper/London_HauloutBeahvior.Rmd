@@ -253,11 +253,10 @@ species misclassification, and possible disturbance of seals by aircraft
 accuracy of abundance estimates in the Arctic.
 
 In this study, we used 16 years of bio-logging data to investigate the haul-out
-behavior of 3 species of ice-associated seals in the Bering and Chukchi seas. We
-focused our effort on bearded, ribbon, and spotted seals. Our
-goals were threefold. First, we wished to establish baseline estimates for the
-chronology of haul-out behavior in the critical spring season for each species
-across different age and sex classes. Second, we refined estimates of
+behavior of bearded, ribbon, and spotted seals in the Bering and Chukchi seas.
+Our goals were threefold. First, we wished to establish baseline estimates for
+the chronology of haul-out behavior in the critical spring season for each
+species across different age and sex classes. Second, we refined estimates of
 haul-out availability corrections for aerial surveys in order to improve
 estimates of seal abundance. Previously estimated availability correction
 factors (e.g., [@bengtson2005a], [@conn2014a], and [@verhoef2014a]) accounted
@@ -431,6 +430,26 @@ ggplot(data = seal_hours_tbl) +
        size = "seal hours of bio-logger data") +
   ggtitle("Density of haul-out behavior observations varies from March through July",
           subtitle = "data are grouped by day-of-year and presented in seal-hours collated across years (2005-2020)")
+```
+
+```{r binomialdata}
+
+portion_10 <- function(d) {
+  n <- nrow(d)
+  f <- d %>% dplyr::filter(percent_dry <= 10) %>% 
+    nrow()
+  p10 <- f/n
+  return(p10)
+}
+
+portion_90 <- function(d) {
+  n <- nrow(d)
+  f <- d %>% dplyr::filter(percent_dry >= 90) %>% 
+    nrow()
+  p90 <- f/n
+  return(p90)
+}
+
 ```
 
 Haul-out behavior data were recorded and transmitted via the Argos satellite
@@ -704,8 +723,12 @@ seals (which had considerably more data than bearded seals), we fitted models
 that included all the effects from the first model, but also permitted annual
 variation in haul-out timing. This second class of models was used to examine
 whether haul-out patterns varied by year and to determine the annual timing of
-apparent peaks in haul-out behavior. For both models, the response variable was
-the transmitted hourly percent-dry value.
+apparent peaks in haul-out behavior. For both models, we assumed an hourly
+Bernoulli response (i.e., whether tags were mostly dry or mostly wet) where
+the linear predictor was modeled on the logit scale. This is consistent with
+previous approaches [@verhoef2014a, @london2012] and only
+`r (1 - (portion_10(analysis_data) + portion_90(analysis_data))) * 100`% of our
+observations fell between 10% and 90% hourly percent dry.
 
 We followed Ver Hoef et al. [-@verhoef2014a] in using linear, quadratic, and
 cubic effects of day-of-year to represent temporal changes in behavior. However,
