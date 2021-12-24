@@ -405,7 +405,7 @@ evenly spread with fewer observations in May and June. The majority of bearded
 seal deployments start later in the summer and by May bio-loggers have either
 fallen off or the batteries are depleted.
 
-```{r seal-hours-calendar, include=TRUE, fig.id = "dataCal", fig.height = 4.75, fig.cap = "Distribution of hourly percent-dry biologger data from 1 March to 15 July for each species. Data are grouped by day-of-year and presented in seal-hours collated across all years between 2005 and 2020. The higher density of data from May and June in ribbon and spotted seals coincides with peak molting when seals (and their attached bio-loggers) are more likely hauled out. Additionally, many bio-logger deployments started in April and May."}
+```{r seal-hours-calendar, include=TRUE, fig.id = "dataCal", fig.height = 4.75, fig.cap = "Distribution of hourly percent-dry bio-logger data from 1 March to 15 July for each species. Data are grouped by day-of-year and presented in seal-hours collated across all years between 2005 and 2020. The higher density of data from May and June in ribbon and spotted seals coincides with peak molting when seals (and their attached bio-loggers) are more likely hauled out. Additionally, many bio-logger deployments started in April and May."}
 
 ggplot(data = seal_hours_tbl, aes(x=yday, y=n, fill=n)) +
   geom_col(binwidth = 1) +
@@ -420,7 +420,7 @@ ggplot(data = seal_hours_tbl, aes(x=yday, y=n, fill=n)) +
         axis.title = element_blank(),
         panel.grid = element_blank(),
         legend.position = "bottom") +
-  labs(fill = "seal hours of bio-logger data") +
+  labs(fill = "seal-hours of bio-logger data") +
   ggtitle("Density of haul-out behavior observations varies from March through July",
           subtitle = "data are grouped by day-of-year and presented in seal-hours collated across years (2005-2020)")
 
@@ -864,7 +864,18 @@ significant influence
 `r bearded_type3$temp2_wind$Prob.F`). Any influence of barometric
 pressure or precipitation was less apparent.
 
-```{r beardedHOwx,fig.height = 5.5, include=FALSE, fig.id = "beardedHOwx", fig.cap="Variability in predicted haul-out probability of bearded seals across the range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability. Solid lines are smoothed fits to the predictions and provided to better indicate the marginal effect."}
+Visualizing the marginal effect of each weather covariate on haul-out
+probability is difficult in this analysis because of the collinearity
+between covariates as well as the temporal variation in covariate values
+during the study period. The relationship of each weather covariate with
+haul-out probability, averaged over the other weather conditions, is
+more variable than simply showing model coefficients would imply. Figure
+\@ref(fig:beardedHOwx) presents the predicted haul-out probability of
+bearded seals across the range of weather conditions encountered in the
+observed data. The collinearity and temporal variation are apparent in
+the visual patterns that emerge.
+
+```{r beardedHOwx,fig.height = 5.5, include=TRUE, fig.id = "beardedHOwx", fig.cap="Variability in predicted haul-out probability of bearded seals across the range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability. Solid lines are smoothed fits to the predictions and provided to better indicate the marginal effect."}
 
 p_temp <- ggplot(plot_df, aes(temp2*27, ho_prob, color = age_sex)) +
   geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.01, stroke = 0) +
@@ -964,18 +975,14 @@ relatively warm. Wind chill
 ($F_{`r paste(ribbon_type3$temp2_wind$Num.df, ribbon_type3$temp2_wind$Den.df, sep=",")`}$
 = `r ribbon_type3$temp2_wind$F.value`; $p$ =
 `r ribbon_type3$temp2_wind$Prob.F`) showed a moderately negative
-influence on haul-out probability.
-
-Visualizing the marginal effect of each weather covariate on haul-out
-probability is difficult in this analysis because of the collinearity
-between covariates as well as the temporal variation in covariate values
-during the study period. The relationship of each weather covariate with
-haul-out probability, averaged over the other weather conditions, is
-more variable than simply showing model coefficients would imply. Figure
+influence on haul-out probability. As with bearded seals, Figure
 \@ref(fig:ribbonHOwx) presents the predicted haul-out probability of
 ribbon seals across the range of weather conditions encountered in the
-observed data. The collinearity and temporal variation are apparent in
-the visual patterns that emerge.
+observed data. Because our ribbon seal model included age and sex class, we can
+visualize the different influences of weather covariates those classes. Of note,
+there is an indication that sub-adult ribbon seals are more likely to haul-out
+at lower temperatures. But, this may also be simply reflective of their
+tendency to haul-out earlier in the season compared to adults.
 
 ```{r ribbonHOwx, fig.height = 5.5, include=TRUE, fig.id = "ribbonHOwx", fig.cap="Variability in predicted haul-out probability of ribbon seals across the range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability. Solid lines are smoothed fits to the predictions and provided to better indicate the marginal effect."}
 
@@ -1072,7 +1079,8 @@ temperatures were relatively warm. Wind chill (*temperature:wind*) and
 precipitation were not as influential as the other covariates.
 Differences in the magnitude of response between the age-sex classes are
 present and consistent across each of the weather covariates (Figure
-\@ref(fig:spottedHOwx)).
+\@ref(fig:spottedHOwx)). There is a consistent ranking of adult males being the most
+likely to haul out, followed by adult females, and, then, subadults.
 
 ```{r spottedHOwx,fig.height = 5.5, include=TRUE, fig.id = "spottedHOwx", fig.cap="Variability in the predicted haul-out probability of spotted seals across the range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability. Solid lines are smoothed fits to the predictions and provided to better indicate the marginal effect."}
 
