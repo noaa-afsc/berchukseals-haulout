@@ -408,25 +408,6 @@ fallen off or the batteries are depleted.
 
 ```{r seal-hours-calendar, include=TRUE, fig.id = "dataCal", fig.height = 4, fig.cap = "Distribution of hourly percent-dry bio-logger data from 1 March to 15 July for each species. Data are grouped by day-of-year and presented in seal-hours collated across all years between 2005 and 2020. The higher density of data from May and June in ribbon and spotted seals coincides with peak molting when seals (and their attached bio-loggers) are more likely hauled out. Additionally, many bio-logger deployments started in April and May."}
 
-# bar chart instead of a strip
-#
-# ggplot(data = seal_hours_tbl, aes(x=yday, y=n, fill=n)) +
-#   geom_col(binwidth = 1) +
-#   scale_fill_gradient(low = "#6baed6", high = "#08306b") +
-#   scale_x_continuous(breaks = c(60, 91, 121, 152, 182),
-#                      labels = c("March", "April", "May", "June", "July"),
-#                      expand = expansion(mult = c(0.01, 0.025))) +
-#   guides(fill = guide_legend(title.position = "bottom", title.hjust = 0.5)) +
-#   facet_grid(species ~ .) + 
-#   theme(axis.text.x = element_text(hjust = 0),
-#         axis.text.y = element_blank(),
-#         axis.title = element_blank(),
-#         panel.grid = element_blank(),
-#         legend.position = "bottom") +
-#   labs(fill = "seal-hours of bio-logger data") +
-#   ggtitle("Density of haul-out behavior observations varies from March through July",
-#           subtitle = "data are grouped by day-of-year and presented in seal-hours collated across years (2005-2020)")
-
 ggplot(data = seal_hours_tbl, aes(x = yday, y = 1, fill = n))+
         geom_tile()+
         scale_fill_viridis_c(option="mako") +
@@ -784,11 +765,12 @@ pseudo-likelihoods, because pseudo-data generated in the model fitting process
 [@verhoef2010a] differ between models [@teneyck2018]. After fitting GLMPM
 models, we instead used "type III" $F$-tests to calculate $p$-values
 [@verhoef2010a] to evaluate model performance and important terms. We also
-produced predictions of haul-out behavior as a function of influential
+produced predictions of haul-out behavior as a function of three influential
 predictors (e.g. solar hour, day-of-year, age-sex). Weather covariates for these
 predictions were based on daily or hourly smoothed weather covariate values
 across the study region. Such predictions were then used to develop haul-out
-probability surfaces, explore conditional effects of weather covariates, and
+probability surfaces (see figures \@ref(beardedHOCal), \@ref(ribbonHOCal), and
+\@ref(spottedHOCal)), explore conditional effects of weather covariates, and
 determine annual peaks in haul-out activity. The timing of peak haul-out
 behavior was further used to regress against the annual maximum sea ice extent
 in the study region.
@@ -809,7 +791,7 @@ haul out. While this approach does not entirely remove patterns of collinearity
 from the visualization (e.g. temperature increases with day of year), by
 limiting our range of days and hours we gain some insight into how haul-out
 probability varies across different weather covariate values. Figures
-\@ref(fig:beardedHOwx), @\ref(fig:ribbonHOwx), and @\ref(fig:spottedHOwx)
+\@ref(fig:beardedHOwx), \@ref(fig:ribbonHOwx), and \@ref(fig:spottedHOwx)
 present the predicted haul-out probability with respect to age and sex class
 across the range of temperature and wind conditions encountered in the three
 time windows. The visualizations also include vertical lines representing 95%
@@ -994,7 +976,7 @@ p_wind <- ggplot(plot_df, aes(wind*10, ho_prob, color = age_sex, fill = age_sex)
   facet_wrap(. ~ season + date_start + date_end, scales = "free_x",
              labeller = label_glue('{season}\n{date_start} - {date_end}')) +
   theme(legend.title = element_blank(),
-        legend.position = "bottom") +
+        legend.position = "none") +
   xlab("total wind (m/s)") + ylab("haul-out probability") 
 
 
@@ -1004,7 +986,7 @@ p_temp / p_wind +
   plot_annotation(
     title = 'The influence of temperature and wind on predicted bearded seal \nhaul-out behavior varies within season',
     subtitle = 'data are subset to only include local solar hours between 0800 and 1600',
-    caption = 'Solid lines represent linear fits to the predicted values and are \nprovided to better indicate marginal patterns.')
+    caption = 'Solid lines represent linear fits to the predicted values and are \nprovided to better indicate underlying trends.')
 ```
 
 ## Ribbon Seals
@@ -1170,7 +1152,7 @@ p_temp / p_wind +
   plot_annotation(
     title = 'The influence of temperature and wind on predicted ribbon seal \nhaul-out behavior varies within season',
     subtitle = 'data are subset to only include local solar hours between 0800 and 1600',
-    caption = 'Solid lines represent linear fits to the predicted values and are \nprovided to better indicate marginal patterns.')
+    caption = 'Solid lines represent linear fits to the predicted values and are \nprovided to better indicate underlying trends.')
 ```
 
 ## Spotted Seals
@@ -1324,7 +1306,7 @@ p_temp / p_wind +
   plot_annotation(
     title = 'The influence of temperature and wind on predicted spotted seal \nhaul-out behavior varies within season',
     subtitle = 'data are subset to only include local solar hours between 0800 and 1600',
-    caption = 'Solid lines represent linear fits to the predicted values and are \nprovided to better indicate marginal patterns.')
+    caption = 'Solid lines represent linear fits to the predicted values and are \nprovided to better indicate underlying trends.')
 ```
 
 
