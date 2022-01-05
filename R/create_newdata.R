@@ -14,13 +14,21 @@ create_newdata <- function(data, age_sex) {
     # to vary w/in day over the season
 
     gam.baro <-
-      gam(pressure ~ s(yday), data = data)
+      gam(pressure ~ s(yday), 
+          data = data, 
+          method = "REML")
     gam.temp <-
-      gam(temp2 ~ s(yday) + s(as.numeric(solar_hour)), data = data)
+      gam(temp2 ~ s(yday) + s(as.numeric(solar_hour)), 
+          data = data, 
+          method = "REML")
     gam.wind <-
-      gam(wind ~ s(yday) + s(as.numeric(solar_hour)), data = data)
+      gam(wind ~ s(yday) + s(as.numeric(solar_hour)), 
+          data = data, 
+          method = "REML")
     gam.precip <-
-      gam(precip ~ s(yday), data = data)
+      gam(precip ~ s(yday), 
+          data = data, 
+          method = "REML")
 
     wx_new_data <- data.frame(
       solar_hour = rep(0:23, each = n_days),
