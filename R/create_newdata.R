@@ -73,10 +73,54 @@ create_newdata <- function(data, age_sex) {
   }
 }
 
-create_ribbon_newdata <- function(fit_ribbon) {
+create_newdata_margins <- function(data, age_sex, terms) {
+  df_list <- vector(mode = "list", length = length({{age_sex}} ))
+  
+  for (a_s in {{age_sex}}) {
+    
+    df <- data.frame(
+      age_sex = a_s,
+      solar_hour = terms$solar_hour,
+      yday = terms$yday,
+      northing = mean(data$northing),
+      temp2 = ifelse(is.na(terms$temp2), mean(data$temp2), terms$temp2),
+      wind = ifelse(is.na(terms$wind), mean(data$wind), terms$wind),
+      pressure = ifelse(is.na(terms$pressure), mean(data$pressure), terms$pressure),
+      precip = ifelse(is.na(terms$precip), mean(data$precip), terms$precip)
+      ) %>%
+      mutate(
+        sin1 = sin(pi * solar_hour / 12),
+        cos1 = cos(pi * solar_hour / 12),
+        sin2 = sin(pi * solar_hour / 6),
+        cos2 = cos(pi * solar_hour / 6),
+        sin3 = sin(pi * solar_hour / 4),
+        cos3 = sin(pi * solar_hour / 4),
+      ) %>%
+      mutate(day = (yday - 120) / 10,
+             day2 = day ^ 2,
+             day3 = day ^ 3)
+    df_list[[a_s]] <- df
+  }
+  if(length({{age_sex}}) > 1) {
+    df_out <- bind_rows(df_list) %>%
+      mutate(age_sex = forcats::fct_relevel(
+        age_sex,c("ADULT.F","ADULT.M","SUBADULT","YOUNG OF YEAR"))
+      )
+  } else {
+    df_out <- bind_rows(df_list)
+  }
+}
 
+
+create_ribbon_newdata <- function(fit_ribbon, margins = FALSE, ...) {
+  if(margins) {
+    ribbon_newdata <- create_newdata_margins(fit_ribbon$dataset,
+                                             age_sex = levels(fit_ribbon$dataset$age_sex),
+                                             terms)
+  } else {
   ribbon_newdata <- create_newdata(fit_ribbon$dataset,
                  age_sex = levels(fit_ribbon$dataset$age_sex))
+  }
 
   # create the model matrix
   ribbon_mm <- model.matrix(fit_ribbon$fixed.formula[-2],
@@ -98,10 +142,15 @@ create_ribbon_newdata <- function(fit_ribbon) {
     )
 }
 
-create_spotted_newdata <- function(fit_spotted) {
-
-  spotted_newdata <- create_newdata(fit_spotted$dataset,
-                 age_sex = levels(fit_spotted$dataset$age_sex))
+create_spotted_newdata <- function(fit_spotted, margins = FALSE, ...) {
+    if(margins) {
+      spotted_newdata <- create_newdata_margins(fit_spotted$dataset,
+                                               age_sex = levels(fit_spotted$dataset$age_sex),
+                                               terms)
+    } else {
+      spotted_newdata <- create_newdata(fit_spotted$dataset,
+                                       age_sex = levels(fit_spotted$dataset$age_sex))
+    }
 
   # create the model matrix
   spotted_mm <- model.matrix(fit_spotted$fixed.formula[-2],
@@ -123,13 +172,18 @@ create_spotted_newdata <- function(fit_spotted) {
     )
 }
 
-create_bearded_newdata <- function(fit_bearded) {
-
+create_spotted_newdata <- function(fit_spotted, margins = FALSE, ...) {
   eb_data <- fit_bearded$dataset %>%
     mutate(age_sex = forcats::as_factor("ALL AGES"))
-
-  bearded_newdata <- create_newdata(eb_data,
-                                    age_sex = levels(eb_data$age_sex))
+  
+  if(margins) {
+    spotted_newdata <- create_newdata_margins(fit_spotted$dataset,
+                                              age_sex = levels(fit_spotted$dataset$age_sex),
+                                              terms)
+  } else {
+    spotted_newdata <- create_newdata(fit_spotted$dataset,
+                                      age_sex = levels(fit_spotted$dataset$age_sex))
+  }
 
   # create the model matrix
   bearded_mm <- model.matrix(fit_bearded$fixed.formula[-2],
