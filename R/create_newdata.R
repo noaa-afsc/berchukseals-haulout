@@ -73,20 +73,21 @@ create_newdata <- function(data, age_sex) {
   }
 }
 
-create_newdata_margins <- function(data, age_sex, terms) {
+create_newdata_margins <- function(data, age_sex, 
+                                   solar_hour, yday, term) {
   df_list <- vector(mode = "list", length = length({{age_sex}} ))
   
   for (a_s in {{age_sex}}) {
     
     df <- data.frame(
       age_sex = a_s,
-      solar_hour = terms$solar_hour,
-      yday = terms$yday,
+      solar_hour = solar_hour,
+      yday = yday,
       northing = mean(data$northing),
-      temp2 = ifelse(is.na(terms$temp2), mean(data$temp2), terms$temp2),
-      wind = ifelse(is.na(terms$wind), mean(data$wind), terms$wind),
-      pressure = ifelse(is.na(terms$pressure), mean(data$pressure), terms$pressure),
-      precip = ifelse(is.na(terms$precip), mean(data$precip), terms$precip)
+      temp2 = if(term %in% c("temp2")) sample(unique(data[,"temp2"]),500) else mean(data[,"temp2"]),
+      wind = if(term %in% c("wind")) sample(unique(data[,"wind"]),500) else mean(data[,"wind"]),
+      pressure = if(term %in% c("pressure")) sample(unique(data[,"pressure"]),500) else mean(data[,"pressure"]),
+      precip = if(term %in% c("precip")) sample(unique(data[,"precip"]),500) else mean(data[,"precip"])
       ) %>%
       mutate(
         sin1 = sin(pi * solar_hour / 12),
@@ -112,11 +113,12 @@ create_newdata_margins <- function(data, age_sex, terms) {
 }
 
 
-create_ribbon_newdata <- function(fit_ribbon, margins = FALSE, ...) {
+create_ribbon_newdata <- function(fit_ribbon, margins = FALSE, solar_hour, yday, term) {
   if(margins) {
     ribbon_newdata <- create_newdata_margins(fit_ribbon$dataset,
                                              age_sex = levels(fit_ribbon$dataset$age_sex),
-                                             terms)
+                                             solar_hour = solar_hour, yday = yday,
+                                             term)
   } else {
   ribbon_newdata <- create_newdata(fit_ribbon$dataset,
                  age_sex = levels(fit_ribbon$dataset$age_sex))
