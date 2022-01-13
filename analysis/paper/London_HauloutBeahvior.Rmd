@@ -502,7 +502,7 @@ missing_hours <- tibble(haulout_dt = seq(min(d_deploy$haulout_dt),
 
 p <- ggplot(d,aes(day,hour,fill=percent_dry))+
   geom_tile(color= "white",size=0) + 
-  scale_fill_distiller(palette = "YlGnBu",
+  scale_fill_gradientn(colors = rev(met.brewer("Hiroshige")),
                        name = "hourly percent dry", aesthetics = "fill",
     guide = guide_colorbar(title.position = "bottom", barwidth = 15,
                            barheight = 0.5, title.hjust = 0.5)
@@ -782,24 +782,15 @@ covariate on haul-out probability is difficult in this analysis because of the
 collinearity between covariates as well as the spatial and temporal variation
 across such a large region. The relationship of each weather covariate with
 haul-out probability, averaged over the other weather conditions, is more
-variable than simply showing model coefficients would imply. To elucidate
-underlying patterns between the model's predicted haul-out probability and
-specific weather covariates, we explored a subset of predictions during three
-separate time windows. The same set of predictions used to create the haul-out
-probability surfaces was reduced to include only local solar hours between 06:00
-and 18:00 during three 7-day time windows. The time windows were centered on the
-day of maximum haul-out probability and 25 days before and 25 days after peak
-haul out. While this approach does not entirely remove patterns of collinearity
-from the visualization (e.g. temperature increases with day of year), by
-limiting our range of days and hours we gain some insight into how haul-out
-probability varies across different weather covariate values. Figures
-\@ref(fig:beardedHOwx), \@ref(fig:ribbonHOwx), and \@ref(fig:spottedHOwx)
-present the predicted haul-out probability with respect to age and sex class
-across the range of temperature and wind conditions encountered in the three
-time windows. The visualizations also include vertical lines representing 95%
-confidence intervals around the predicted haul-out probability to better
-communicate the variation in model uncertainty. Additionally, simple linear fits
-are shown to assist interpretation of overall patterns.
+variable than simply showing model coefficients would imply. That said,
+important insights can be gained from plots of marginal effects. To create these
+plots (figures \@ref(fig:beardedHOwx), \@ref(fig:ribbonHOwx), and
+\@ref(fig:spottedHOwx)), we predicted haul-out probability across the full range
+of weather covariate values while fixing hour of the day at local solar noon and
+day-of-year at the average day of peak haul-out for each species. The
+visualizations also include vertical lines representing 95% confidence intervals
+around the predicted haul-out probability to better communicate the variation in
+model uncertainty.
 
 # Results
 
@@ -846,13 +837,14 @@ bearded_type3 <- setNames(split(bearded_type3,
 ## Bearded Seals
 
 Age and sex class were not included in the model for bearded seals due to our
-lower sample size for adult and young-of-year age classes. As such,
-results are shown for all ages. Bearded seals had a bi-modal
-distribution of haul-out probability across the day (Figure
+lower sample size for adult and young-of-year age classes. As such, results are
+shown for all ages. Overall, bearded seals were less likely to haul out and had
+a bi-modal distribution of haul-out probability across the day (Figure
 \@ref(fig:beardedHOCal)). In addition to a peak around local solar noon, the
 bearded seal model predicts additional haul-out activity around local midnight.
-The haul-out behavior is also more protracted throughout the spring season
-compared to ribbon and spotted seals.
+In concert with the lower magnitude of haul-out probability, bearded seal
+haul-out behavior is also more protracted throughout the spring season compared
+to ribbon and spotted seals.
 
 ```{r ebnewdata}
 targets::tar_load(bearded_newdata, store = here::here("_targets"))
@@ -902,7 +894,7 @@ significant influence
 pressure or precipitation was less apparent.
 
 
-```{r beardedHOwx,fig.height = 5.5, include=TRUE, fig.id = "beardedHOwx", fig.cap="Variability in predicted haul-out probability of bearded seals across the range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability."}
+```{r beardedHOwx,fig.height = 5.5, include=TRUE, fig.id = "beardedHOwx", fig.cap="Marginal effects of temperature, wind, pressure, and accumulated precipitation on the predicted haul-out probability of bearded seals combined across all age and sex classifications. Hour of the day was fixed at local solar noon and day-of-year held at the day of peak haul-out for bearded seals. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability."}
 
 targets::tar_load(bearded_wx_plot, store = here::here("_targets"))
 
@@ -986,7 +978,7 @@ there is an indication that sub-adult ribbon seals are more likely to haul-out
 at lower temperatures. But, this may also be simply reflective of their
 tendency to haul-out earlier in the season compared to adults.
 
-```{r ribbonHOwx, fig.height = 5.5, include=TRUE, fig.id = "ribbonHOwx", fig.cap="Variability in predicted haul-out probability of ribbon seals across the range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability."}
+```{r ribbonHOwx, fig.height = 5.5, include=TRUE, fig.id = "ribbonHOwx", fig.cap="Marginal effects of temperature, wind, pressure, and accumulated precipitation on the predicted haul-out probability of ribbon seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year held at the average day of peak haul-out for ribbon seals. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability."}
 
 targets::tar_load(ribbon_wx_plot, store = here::here("_targets"))
 
@@ -1058,7 +1050,7 @@ present and consistent across each of the weather covariates (Figure
 \@ref(fig:spottedHOwx)). There is a consistent ranking of adult males being the most
 likely to haul out, followed by adult females, and, then, subadults.
 
-```{r spottedHOwx,fig.height = 5.5, include=TRUE, fig.id = "spottedHOwx", fig.cap="Variability in the predicted haul-out probability of spotted seals across the range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability."}
+```{r spottedHOwx,fig.height = 5.5, include=TRUE, fig.id = "spottedHOwx", fig.cap="Marginal effects of temperature, wind, pressure, and accumulated precipitation on the predicted haul-out probability of spotted seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year held at the average day of peak haul-out for spotted seals. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability."}
 
 targets::tar_load(spotted_wx_plot, store = here::here("_targets"))
 
