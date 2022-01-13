@@ -127,6 +127,7 @@ library(glmmLDTS)
 library(mgcv)
 library(ragg)
 library(stickylabeller)
+library(MetBrewer)
 
 knitr::opts_chunk$set(dev = "ragg_png")
 
@@ -410,7 +411,8 @@ fallen off or the batteries are depleted.
 
 ggplot(data = seal_hours_tbl, aes(x = yday, y = 1, fill = n))+
         geom_tile()+
-        scale_fill_viridis_c(option="mako") +
+        scale_fill_gradientn(colors = rev(met.brewer("Hokusai2"))) +
+        # scale_fill_viridis_c(option="mako") +
         scale_x_continuous(breaks = c(60, 91, 121, 152, 182),
                            labels = c("01 March", "01 April", "01 May", "01 June", "01 July"),
                            expand = expansion(mult = c(0, 0))) +
@@ -578,7 +580,7 @@ ggplot() +
     data = locs_count, size = 0.125,
     aes(fill = ct)
   ) +
-  scale_fill_distiller(type = "seq", palette = "YlOrRd", direction = 1,
+  scale_fill_gradientn(colors = rev(met.brewer("Greek")),
                     trans = "log10", aesthetics = "fill",
     name = "number of locations",
     guide = guide_colorbar(title.position = "bottom", barwidth = 15, 
@@ -856,7 +858,7 @@ compared to ribbon and spotted seals.
 targets::tar_load(bearded_newdata, store = here::here("_targets"))
 ```
 
-```{r beardedHOCal, fig.height = 3.5, include=TRUE, fig.id = "beardedHOCal", fig.cap="Predicted haul-out probability of bearded seals (all ages and sex classes) from 1 March to 15 July for all and sex classes."}
+```{r beardedHOCal, fig.height = 4.5, include=TRUE, fig.id = "beardedHOCal", fig.cap="Predicted haul-out probability of bearded seals (all ages and sex classes) from 1 March to 15 July for all and sex classes."}
 
 plot_df <- bearded_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
@@ -866,9 +868,14 @@ plot_df <- bearded_newdata %>%
 
 p <- ggplot(plot_df,aes(day,solar_hour,fill = ho_prob))+
   geom_tile(color= "white",size = 0) +
-  scale_fill_viridis_c(name = "haul-out probability", aesthetics = "fill",
+  scale_fill_gradientn(colors = rev(met.brewer("Hiroshige")),
+                       name = "haul-out probability", aesthetics = "fill",
+                       limits = c(0,1), breaks = c(0.25, 0.50, 0.75),
                        guide = guide_colorbar(title.position = "bottom", barwidth = 15,
                                               barheight = 0.5, title.hjust = 0.5)
+  # scale_fill_viridis_c(name = "haul-out probability", aesthetics = "fill",
+  #                      guide = guide_colorbar(title.position = "bottom", barwidth = 15,
+  #                                             barheight = 0.5, title.hjust = 0.5)
   )
 p <- p + facet_grid(age_sex~month)
 p <- p + scale_x_continuous(breaks = c(1,10,20,30)) +
@@ -897,96 +904,9 @@ pressure or precipitation was less apparent.
 
 ```{r beardedHOwx,fig.height = 5.5, include=TRUE, fig.id = "beardedHOwx", fig.cap="Variability in predicted haul-out probability of bearded seals across the range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability."}
 
-plot_df <- bearded_newdata %>%
-  mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
-         month = lubridate::month(date,label = TRUE),
-         day = lubridate::day(date)) %>% 
-  filter(age_sex != "YOUNG OF YEAR",
-         between(solar_hour, 8,16)) %>% 
-  group_by(age_sex)
+targets::tar_load(bearded_wx_plot, store = here::here("_targets"))
 
-plot_df_early <- plot_df %>% tidyr::nest() %>% 
-  rowwise() %>% 
-  mutate(peak_idx = which.max(data$ho_prob),
-         peak_day = data$yday[peak_idx]) %>% ungroup() %>% 
-  mutate(peak_avg = as.integer(mean(peak_day))) %>% 
-  rowwise() %>% 
-  mutate(data = list(data %>% filter(between(yday,(peak_avg-25)-3, (peak_avg-25)+3))),
-         season = "early") %>% 
-  unnest(cols = c(data))
-
-plot_df_peak <- plot_df %>% tidyr::nest() %>% 
-  rowwise() %>% 
-  mutate(peak_idx = which.max(data$ho_prob),
-         peak_day = data$yday[peak_idx]) %>% ungroup() %>% 
-  mutate(peak_avg = as.integer(mean(peak_day))) %>% 
-  rowwise() %>% 
-  mutate(data = list(data %>% filter(between(yday,(peak_avg)-3, (peak_avg)+3))),
-         season = "peak") %>% 
-  unnest(cols = c(data))
-
-plot_df_late <- plot_df %>% tidyr::nest() %>% 
-  rowwise() %>% 
-  mutate(peak_idx = which.max(data$ho_prob),
-         peak_day = data$yday[peak_idx]) %>% ungroup() %>% 
-  mutate(peak_avg = as.integer(mean(peak_day))) %>% 
-  rowwise() %>% 
-  mutate(data = list(data %>% filter(between(yday,(peak_avg+25)-3, (peak_avg+25)+3))),
-         season = "late") %>% 
-  unnest(cols = c(data))
-
-plot_df <- bind_rows(list(plot_df_early, plot_df_peak, plot_df_late)) %>% 
-  mutate(date_start = case_when(
-    season == "peak" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") - 3, "%d %b"),
-    season == "early" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") - 28, "%d %b"),
-    season == "late" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") + 22, "%d %b")
-  )) %>% 
-  mutate(date_end = case_when(
-    season == "peak" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") + 3, "%d %b"),
-    season == "early" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") - 22, "%d %b"),
-    season == "late" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") + 28, "%d %b")
-  )) %>% 
-  mutate(season = forcats::fct_relevel(season, "early", "peak", "late"),
-         season = forcats::fct_recode(season, "peak haul out - 25 days" = "early",
-                             "peak haul out" = "peak",
-                             "peak haul out + 25 days" = "late"))
-
-
-p_temp <- ggplot(plot_df, 
-                 aes(temp2*27, ho_prob, color = age_sex, fill = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.1, stroke = 0) +
-  geom_smooth(method = "lm", formula = y ~ x, size = 0.3, alpha = 0.1,
-              show.legend = FALSE) +
-  scale_fill_d3() +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 1),
-                                      direction = "horizontal")) +
-  theme(legend.title = element_blank(),
-        legend.position = "none") +
-  facet_wrap(. ~ season + date_start + date_end, scales = "free_x",
-             labeller = label_glue('{season}\n{date_start} - {date_end}')) +
-  xlab("temperature (C)") + ylab("haul-out probability")
-
-p_wind <- ggplot(plot_df, aes(wind*10, ho_prob, color = age_sex, fill = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.1, stroke = 0) +
-  geom_smooth(method = "lm", formula = y ~ x, size = 0.3, alpha = 0.1,
-              show.legend = FALSE) +
-  scale_fill_d3() +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 0.75),
-                                      direction = "horizontal")) +
-  facet_wrap(. ~ season + date_start + date_end, scales = "free_x",
-             labeller = label_glue('{season}\n{date_start} - {date_end}')) +
-  theme(legend.title = element_blank(),
-        legend.position = "none") +
-  xlab("total wind (m/s)") + ylab("haul-out probability") 
-
-
-library(patchwork)
-
-p_temp / p_wind +
-  plot_annotation(
-    title = 'The influence of temperature and wind on predicted bearded seal \nhaul-out behavior varies within season',
-    subtitle = 'data are subset to only include local solar hours between 0800 and 1600',
-    caption = 'Solid lines represent linear fits to the predicted values and are \nprovided to better indicate underlying trends.')
+bearded_wx_plot
 ```
 
 ## Ribbon Seals
@@ -1019,9 +939,14 @@ plot_df <- ribbon_newdata %>%
 
 p <- ggplot(plot_df, aes(day,solar_hour,fill = ho_prob)) +
   geom_tile(color = "white",size = 0) +
-  scale_fill_viridis_c(name = "haul-out probability", aesthetics = "fill",
+  scale_fill_gradientn(colors = rev(met.brewer("Hiroshige")),
+                       name = "haul-out probability", aesthetics = "fill",
+                       limits = c(0,1), breaks = c(0.25, 0.50, 0.75),
                        guide = guide_colorbar(title.position = "bottom", barwidth = 15,
                                               barheight = 0.5, title.hjust = 0.5)
+  # scale_fill_viridis_c(name = "haul-out probability", aesthetics = "fill",
+  #                      guide = guide_colorbar(title.position = "bottom", barwidth = 15,
+  #                                             barheight = 0.5, title.hjust = 0.5)
   )
 p <- p + facet_grid(age_sex~month)
 p <- p + scale_x_continuous(breaks = c(1,10,20,30)) +
@@ -1063,96 +988,9 @@ tendency to haul-out earlier in the season compared to adults.
 
 ```{r ribbonHOwx, fig.height = 5.5, include=TRUE, fig.id = "ribbonHOwx", fig.cap="Variability in predicted haul-out probability of ribbon seals across the range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability."}
 
-plot_df <- ribbon_newdata %>%
-  mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
-         month = lubridate::month(date,label = TRUE),
-         day = lubridate::day(date)) %>% 
-  filter(age_sex != "YOUNG OF YEAR",
-         between(solar_hour, 8,16)) %>% 
-  group_by(age_sex)
+targets::tar_load(ribbon_wx_plot, store = here::here("_targets"))
 
-plot_df_early <- plot_df %>% tidyr::nest() %>% 
-  rowwise() %>% 
-  mutate(peak_idx = which.max(data$ho_prob),
-         peak_day = data$yday[peak_idx]) %>% ungroup() %>% 
-  mutate(peak_avg = as.integer(mean(peak_day))) %>% 
-  rowwise() %>% 
-  mutate(data = list(data %>% filter(between(yday,(peak_avg-25)-3, (peak_avg-25)+3))),
-         season = "early") %>% 
-  unnest(cols = c(data))
-
-plot_df_peak <- plot_df %>% tidyr::nest() %>% 
-  rowwise() %>% 
-  mutate(peak_idx = which.max(data$ho_prob),
-         peak_day = data$yday[peak_idx]) %>% ungroup() %>% 
-  mutate(peak_avg = as.integer(mean(peak_day))) %>% 
-  rowwise() %>% 
-  mutate(data = list(data %>% filter(between(yday,(peak_avg)-3, (peak_avg)+3))),
-         season = "peak") %>% 
-  unnest(cols = c(data))
-
-plot_df_late <- plot_df %>% tidyr::nest() %>% 
-  rowwise() %>% 
-  mutate(peak_idx = which.max(data$ho_prob),
-         peak_day = data$yday[peak_idx]) %>% ungroup() %>% 
-  mutate(peak_avg = as.integer(mean(peak_day))) %>% 
-  rowwise() %>% 
-  mutate(data = list(data %>% filter(between(yday,(peak_avg+25)-3, (peak_avg+25)+3))),
-         season = "late") %>% 
-  unnest(cols = c(data))
-
-plot_df <- bind_rows(list(plot_df_early, plot_df_peak, plot_df_late)) %>% 
-  mutate(date_start = case_when(
-    season == "peak" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") - 3, "%d %b"),
-    season == "early" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") - 28, "%d %b"),
-    season == "late" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") + 22, "%d %b")
-  )) %>% 
-  mutate(date_end = case_when(
-    season == "peak" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") + 3, "%d %b"),
-    season == "early" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") - 22, "%d %b"),
-    season == "late" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") + 28, "%d %b")
-  )) %>% 
-  mutate(season = forcats::fct_relevel(season, "early", "peak", "late"),
-         season = forcats::fct_recode(season, "peak haul out - 25 days" = "early",
-                             "peak haul out" = "peak",
-                             "peak haul out + 25 days" = "late"))
-
-
-p_temp <- ggplot(plot_df, 
-                 aes(temp2*27, ho_prob, color = age_sex, fill = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.1, stroke = 0) +
-  geom_smooth(method = "lm", formula = y ~ x, size = 0.3, alpha = 0.1,
-              show.legend = FALSE) +
-  scale_fill_d3() +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 1),
-                                      direction = "horizontal")) +
-  theme(legend.title = element_blank(),
-        legend.position = "none") +
-  facet_wrap(. ~ season + date_start + date_end, scales = "free_x",
-             labeller = label_glue('{season}\n{date_start} - {date_end}')) +
-  xlab("temperature (C)") + ylab("haul-out probability")
-
-p_wind <- ggplot(plot_df, aes(wind*10, ho_prob, color = age_sex, fill = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.1, stroke = 0) +
-  geom_smooth(method = "lm", formula = y ~ x, size = 0.3, alpha = 0.1,
-              show.legend = FALSE) +
-  scale_fill_d3() +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 0.75),
-                                      direction = "horizontal")) +
-  facet_wrap(. ~ season + date_start + date_end, scales = "free_x",
-             labeller = label_glue('{season}\n{date_start} - {date_end}')) +
-  theme(legend.title = element_blank(),
-        legend.position = "bottom") +
-  xlab("total wind (m/s)") + ylab("haul-out probability") 
-
-
-library(patchwork)
-
-p_temp / p_wind +
-  plot_annotation(
-    title = 'The influence of temperature and wind on predicted ribbon seal \nhaul-out behavior varies within season',
-    subtitle = 'data are subset to only include local solar hours between 0800 and 1600',
-    caption = 'Solid lines represent linear fits to the predicted values and are \nprovided to better indicate underlying trends.')
+ribbon_wx_plot
 ```
 
 ## Spotted Seals
@@ -1181,9 +1019,14 @@ plot_df <- spotted_newdata %>%
 
 p <- ggplot(plot_df,aes(day,solar_hour,fill=ho_prob))+
   geom_tile(color= "white",size = 0) +
-  scale_fill_viridis_c(name = "haul-out probability", aesthetics = "fill",
+  scale_fill_gradientn(colors = rev(met.brewer("Hiroshige")),
+                       name = "haul-out probability", aesthetics = "fill",
+                       limits = c(0,1), breaks = c(0.25, 0.50, 0.75),
                        guide = guide_colorbar(title.position = "bottom", barwidth = 15,
                                               barheight = 0.5, title.hjust = 0.5)
+  # scale_fill_viridis_c(name = "haul-out probability", aesthetics = "fill",
+  #                      guide = guide_colorbar(title.position = "bottom", barwidth = 15,
+  #                                             barheight = 0.5, title.hjust = 0.5)
   )
 p <- p + facet_grid(age_sex~month)
 p <- p + scale_x_continuous(breaks = c(1,10,20,30)) +
@@ -1217,96 +1060,9 @@ likely to haul out, followed by adult females, and, then, subadults.
 
 ```{r spottedHOwx,fig.height = 5.5, include=TRUE, fig.id = "spottedHOwx", fig.cap="Variability in the predicted haul-out probability of spotted seals across the range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability."}
 
-plot_df <- spotted_newdata %>%
-  mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
-         month = lubridate::month(date,label = TRUE),
-         day = lubridate::day(date)) %>% 
-  filter(age_sex != "YOUNG OF YEAR",
-         between(solar_hour, 8,16)) %>% 
-  group_by(age_sex)
+targets::tar_load(spotted_wx_plot, store = here::here("_targets"))
 
-plot_df_early <- plot_df %>% tidyr::nest() %>% 
-  rowwise() %>% 
-  mutate(peak_idx = which.max(data$ho_prob),
-         peak_day = data$yday[peak_idx]) %>% ungroup() %>% 
-  mutate(peak_avg = as.integer(mean(peak_day))) %>% 
-  rowwise() %>% 
-  mutate(data = list(data %>% filter(between(yday,(peak_avg-25)-3, (peak_avg-25)+3))),
-         season = "early") %>% 
-  unnest(cols = c(data))
-
-plot_df_peak <- plot_df %>% tidyr::nest() %>% 
-  rowwise() %>% 
-  mutate(peak_idx = which.max(data$ho_prob),
-         peak_day = data$yday[peak_idx]) %>% ungroup() %>% 
-  mutate(peak_avg = as.integer(mean(peak_day))) %>% 
-  rowwise() %>% 
-  mutate(data = list(data %>% filter(between(yday,(peak_avg)-3, (peak_avg)+3))),
-         season = "peak") %>% 
-  unnest(cols = c(data))
-
-plot_df_late <- plot_df %>% tidyr::nest() %>% 
-  rowwise() %>% 
-  mutate(peak_idx = which.max(data$ho_prob),
-         peak_day = data$yday[peak_idx]) %>% ungroup() %>% 
-  mutate(peak_avg = as.integer(mean(peak_day))) %>% 
-  rowwise() %>% 
-  mutate(data = list(data %>% filter(between(yday,(peak_avg+25)-3, (peak_avg+25)+3))),
-         season = "late") %>% 
-  unnest(cols = c(data))
-
-plot_df <- bind_rows(list(plot_df_early, plot_df_peak, plot_df_late)) %>% 
-  mutate(date_start = case_when(
-    season == "peak" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") - 3, "%d %b"),
-    season == "early" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") - 28, "%d %b"),
-    season == "late" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") + 22, "%d %b")
-  )) %>% 
-  mutate(date_end = case_when(
-    season == "peak" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") + 3, "%d %b"),
-    season == "early" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") - 22, "%d %b"),
-    season == "late" ~ format(lubridate::as_date(peak_avg, origin = "2015-01-01") + 28, "%d %b")
-  )) %>% 
-  mutate(season = forcats::fct_relevel(season, "early", "peak", "late"),
-         season = forcats::fct_recode(season, "peak haul out - 25 days" = "early",
-                             "peak haul out" = "peak",
-                             "peak haul out + 25 days" = "late"))
-
-
-p_temp <- ggplot(plot_df, 
-                 aes(temp2*27, ho_prob, color = age_sex, fill = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.1, stroke = 0) +
-  geom_smooth(method = "lm", formula = y ~ x, size = 0.3, alpha = 0.1,
-              show.legend = FALSE) +
-  scale_fill_d3() +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 1),
-                                      direction = "horizontal")) +
-  theme(legend.title = element_blank(),
-        legend.position = "none") +
-  facet_wrap(. ~ season + date_start + date_end, scales = "free_x",
-             labeller = label_glue('{season}\n{date_start} - {date_end}')) +
-  xlab("temperature (C)") + ylab("haul-out probability")
-
-p_wind <- ggplot(plot_df, aes(wind*10, ho_prob, color = age_sex, fill = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.1, stroke = 0) +
-  geom_smooth(method = "lm", formula = y ~ x, size = 0.3, alpha = 0.1,
-              show.legend = FALSE) +
-  scale_fill_d3() +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 0.75),
-                                      direction = "horizontal")) +
-  facet_wrap(. ~ season + date_start + date_end, scales = "free_x",
-             labeller = label_glue('{season}\n{date_start} - {date_end}')) +
-  theme(legend.title = element_blank(),
-        legend.position = "bottom") +
-  xlab("total wind (m/s)") + ylab("haul-out probability") 
-
-
-library(patchwork)
-
-p_temp / p_wind +
-  plot_annotation(
-    title = 'The influence of temperature and wind on predicted spotted seal \nhaul-out behavior varies within season',
-    subtitle = 'data are subset to only include local solar hours between 0800 and 1600',
-    caption = 'Solid lines represent linear fits to the predicted values and are \nprovided to better indicate underlying trends.')
+spotted_wx_plot
 ```
 
 
