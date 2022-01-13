@@ -126,6 +126,8 @@ library(ggtext)
 library(glmmLDTS)
 library(mgcv)
 library(ragg)
+library(stickylabeller)
+library(MetBrewer)
 
 knitr::opts_chunk$set(dev = "ragg_png")
 
@@ -407,26 +409,10 @@ fallen off or the batteries are depleted.
 
 ```{r seal-hours-calendar, include=TRUE, fig.id = "dataCal", fig.height = 4, fig.cap = "Distribution of hourly percent-dry bio-logger data from 1 March to 15 July for each species. Data are grouped by day-of-year and presented in seal-hours collated across all years between 2005 and 2020. The higher density of data from May and June in ribbon and spotted seals coincides with peak molting when seals (and their attached bio-loggers) are more likely hauled out. Additionally, many bio-logger deployments started in April and May."}
 
-# ggplot(data = seal_hours_tbl, aes(x=yday, y=n, fill=n)) +
-#   geom_col(binwidth = 1) +
-#   scale_fill_gradient(low = "#6baed6", high = "#08306b") +
-#   scale_x_continuous(breaks = c(60, 91, 121, 152, 182),
-#                      labels = c("March", "April", "May", "June", "July"),
-#                      expand = expansion(mult = c(0.01, 0.025))) +
-#   guides(fill = guide_legend(title.position = "bottom", title.hjust = 0.5)) +
-#   facet_grid(species ~ .) + 
-#   theme(axis.text.x = element_text(hjust = 0),
-#         axis.text.y = element_blank(),
-#         axis.title = element_blank(),
-#         panel.grid = element_blank(),
-#         legend.position = "bottom") +
-#   labs(fill = "seal-hours of bio-logger data") +
-#   ggtitle("Density of haul-out behavior observations varies from March through July",
-#           subtitle = "data are grouped by day-of-year and presented in seal-hours collated across years (2005-2020)")
-
 ggplot(data = seal_hours_tbl, aes(x = yday, y = 1, fill = n))+
         geom_tile()+
-        scale_fill_gradient(low = "#6baed6", high = "#08306b") +
+        scale_fill_gradientn(colors = rev(met.brewer("Hokusai2"))) +
+        # scale_fill_viridis_c(option="mako") +
         scale_x_continuous(breaks = c(60, 91, 121, 152, 182),
                            labels = c("01 March", "01 April", "01 May", "01 June", "01 July"),
                            expand = expansion(mult = c(0, 0))) +
@@ -516,7 +502,7 @@ missing_hours <- tibble(haulout_dt = seq(min(d_deploy$haulout_dt),
 
 p <- ggplot(d,aes(day,hour,fill=percent_dry))+
   geom_tile(color= "white",size=0) + 
-  scale_fill_distiller(palette = "YlGnBu",
+  scale_fill_gradientn(colors = rev(met.brewer("Hiroshige")),
                        name = "hourly percent dry", aesthetics = "fill",
     guide = guide_colorbar(title.position = "bottom", barwidth = 15,
                            barheight = 0.5, title.hjust = 0.5)
@@ -594,7 +580,7 @@ ggplot() +
     data = locs_count, size = 0.125,
     aes(fill = ct)
   ) +
-  scale_fill_distiller(type = "seq", palette = "YlOrRd", direction = 1,
+  scale_fill_gradientn(colors = rev(met.brewer("Greek")),
                     trans = "log10", aesthetics = "fill",
     name = "number of locations",
     guide = guide_colorbar(title.position = "bottom", barwidth = 15, 
@@ -781,14 +767,30 @@ pseudo-likelihoods, because pseudo-data generated in the model fitting process
 [@verhoef2010a] differ between models [@teneyck2018]. After fitting GLMPM
 models, we instead used "type III" $F$-tests to calculate $p$-values
 [@verhoef2010a] to evaluate model performance and important terms. We also
-produced predictions of haul-out behavior as a function of influential
+produced predictions of haul-out behavior as a function of three influential
 predictors (e.g. solar hour, day-of-year, age-sex). Weather covariates for these
 predictions were based on daily or hourly smoothed weather covariate values
 across the study region. Such predictions were then used to develop haul-out
-probability surfaces, explore conditional effects of weather covariates, and
+probability surfaces (see figures \@ref(beardedHOCal), \@ref(ribbonHOCal), and
+\@ref(spottedHOCal)), explore conditional effects of weather covariates, and
 determine annual peaks in haul-out activity. The timing of peak haul-out
 behavior was further used to regress against the annual maximum sea ice extent
 in the study region.
+
+Visualizing the marginal or conditional effect of an individual weather
+covariate on haul-out probability is difficult in this analysis because of the
+collinearity between covariates as well as the spatial and temporal variation
+across such a large region. The relationship of each weather covariate with
+haul-out probability, averaged over the other weather conditions, is more
+variable than simply showing model coefficients would imply. That said,
+important insights can be gained from plots of marginal effects. To create these
+plots (figures \@ref(fig:beardedHOwx), \@ref(fig:ribbonHOwx), and
+\@ref(fig:spottedHOwx)), we predicted haul-out probability across the full range
+of weather covariate values while fixing hour of the day at local solar noon and
+day-of-year at the average day of peak haul-out for each species. The
+visualizations also include vertical lines representing 95% confidence intervals
+around the predicted haul-out probability to better communicate the variation in
+model uncertainty.
 
 # Results
 
@@ -835,19 +837,20 @@ bearded_type3 <- setNames(split(bearded_type3,
 ## Bearded Seals
 
 Age and sex class were not included in the model for bearded seals due to our
-lower sample size for adult and young-of-year age classes. As such,
-results are shown for all ages. Bearded seals had a bi-modal
-distribution of haul-out probability across the day (Figure
+lower sample size for adult and young-of-year age classes. As such, results are
+shown for all ages. Overall, bearded seals were less likely to haul out and had
+a bi-modal distribution of haul-out probability across the day (Figure
 \@ref(fig:beardedHOCal)). In addition to a peak around local solar noon, the
 bearded seal model predicts additional haul-out activity around local midnight.
-The haul-out behavior is also more protracted throughout the spring season
-compared to ribbon and spotted seals.
+In concert with the lower magnitude of haul-out probability, bearded seal
+haul-out behavior is also more protracted throughout the spring season compared
+to ribbon and spotted seals.
 
 ```{r ebnewdata}
 targets::tar_load(bearded_newdata, store = here::here("_targets"))
 ```
 
-```{r beardedHOCal, fig.height = 3.5, include=TRUE, fig.id = "beardedHOCal", fig.cap="Predicted haul-out probability of bearded seals (all ages and sex classes) from 1 March to 15 July for all and sex classes."}
+```{r beardedHOCal, fig.height = 4.5, include=TRUE, fig.id = "beardedHOCal", fig.cap="Predicted haul-out probability of bearded seals (all ages and sex classes) from 1 March to 15 July for all and sex classes."}
 
 plot_df <- bearded_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
@@ -857,9 +860,14 @@ plot_df <- bearded_newdata %>%
 
 p <- ggplot(plot_df,aes(day,solar_hour,fill = ho_prob))+
   geom_tile(color= "white",size = 0) +
-  scale_fill_viridis_c(name = "haul-out probability", aesthetics = "fill",
+  scale_fill_gradientn(colors = rev(met.brewer("Hiroshige")),
+                       name = "haul-out probability", aesthetics = "fill",
+                       limits = c(0,1), breaks = c(0.25, 0.50, 0.75),
                        guide = guide_colorbar(title.position = "bottom", barwidth = 15,
                                               barheight = 0.5, title.hjust = 0.5)
+  # scale_fill_viridis_c(name = "haul-out probability", aesthetics = "fill",
+  #                      guide = guide_colorbar(title.position = "bottom", barwidth = 15,
+  #                                             barheight = 0.5, title.hjust = 0.5)
   )
 p <- p + facet_grid(age_sex~month)
 p <- p + scale_x_continuous(breaks = c(1,10,20,30)) +
@@ -885,52 +893,12 @@ significant influence
 `r bearded_type3$temp2_wind$Prob.F`). Any influence of barometric
 pressure or precipitation was less apparent.
 
-Visualizing the marginal effect of each weather covariate on haul-out
-probability is difficult in this analysis because of the collinearity
-between covariates as well as the temporal variation in covariate values
-during the study period. The relationship of each weather covariate with
-haul-out probability, averaged over the other weather conditions, is
-more variable than simply showing model coefficients would imply. Figure
-\@ref(fig:beardedHOwx) presents the predicted haul-out probability of
-bearded seals across the range of weather conditions encountered in the
-observed data. The collinearity and temporal variation are apparent in
-the visual patterns that emerge.
 
-```{r beardedHOwx,fig.height = 5.5, include=TRUE, fig.id = "beardedHOwx", fig.cap="Variability in predicted haul-out probability of bearded seals across the range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability. Solid lines are smoothed fits to the predictions and provided to better indicate the marginal effect."}
+```{r beardedHOwx,fig.height = 5.5, include=TRUE, fig.id = "beardedHOwx", fig.cap="Marginal effects of temperature, wind, pressure, and accumulated precipitation on the predicted haul-out probability of bearded seals combined across all age and sex classifications. Hour of the day was fixed at local solar noon and day-of-year held at the day of peak haul-out for bearded seals. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability."}
 
-p_temp <- ggplot(plot_df, aes(temp2*27, ho_prob, color = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.01, stroke = 0) +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 1) )) +
-  geom_smooth(se = FALSE) +
-  theme(legend.position = "none") +
-  xlab("temperature (C)") + ylab("haul-out probability") 
+targets::tar_load(bearded_wx_plot, store = here::here("_targets"))
 
-p_wind <- ggplot(plot_df, aes(wind, ho_prob, color = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.01, stroke = 0) +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 1) )) +
-  geom_smooth(se = FALSE) +
-  theme(legend.position = "none") +
-  xlab("wind") + ylab("") 
-
-p_pressure <- ggplot(plot_df, aes(pressure, ho_prob, color = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.01, stroke = 0) +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 1) )) +
-  geom_smooth(se = FALSE) +
-  theme(legend.position = "none") +
-  xlab("barometric pressure") + ylab("haul-out probability") 
-
-p_precip <- ggplot(plot_df, aes(precip, ho_prob, color = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.01, stroke = 0) +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 1) )) +
-  geom_smooth(se = FALSE) +
-  theme(legend.position = "none") +
-  xlab("precipitation") + ylab("") 
-
-library(patchwork)
-
-((p_temp + p_wind) / (p_pressure + p_precip)) +
-  plot_annotation(
-    title = 'Bearded seal haul-out behavior is less influeced by weather')
+bearded_wx_plot
 ```
 
 ## Ribbon Seals
@@ -963,9 +931,14 @@ plot_df <- ribbon_newdata %>%
 
 p <- ggplot(plot_df, aes(day,solar_hour,fill = ho_prob)) +
   geom_tile(color = "white",size = 0) +
-  scale_fill_viridis_c(name = "haul-out probability", aesthetics = "fill",
+  scale_fill_gradientn(colors = rev(met.brewer("Hiroshige")),
+                       name = "haul-out probability", aesthetics = "fill",
+                       limits = c(0,1), breaks = c(0.25, 0.50, 0.75),
                        guide = guide_colorbar(title.position = "bottom", barwidth = 15,
                                               barheight = 0.5, title.hjust = 0.5)
+  # scale_fill_viridis_c(name = "haul-out probability", aesthetics = "fill",
+  #                      guide = guide_colorbar(title.position = "bottom", barwidth = 15,
+  #                                             barheight = 0.5, title.hjust = 0.5)
   )
 p <- p + facet_grid(age_sex~month)
 p <- p + scale_x_continuous(breaks = c(1,10,20,30)) +
@@ -1005,42 +978,11 @@ there is an indication that sub-adult ribbon seals are more likely to haul-out
 at lower temperatures. But, this may also be simply reflective of their
 tendency to haul-out earlier in the season compared to adults.
 
-```{r ribbonHOwx, fig.height = 5.5, include=TRUE, fig.id = "ribbonHOwx", fig.cap="Variability in predicted haul-out probability of ribbon seals across the range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability. Solid lines are smoothed fits to the predictions and provided to better indicate the marginal effect."}
+```{r ribbonHOwx, fig.height = 5.5, include=TRUE, fig.id = "ribbonHOwx", fig.cap="Marginal effects of temperature, wind, pressure, and accumulated precipitation on the predicted haul-out probability of ribbon seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year held at the average day of peak haul-out for ribbon seals. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability."}
 
-p_temp <- ggplot(plot_df %>% filter(age_sex != "YOUNG OF YEAR"), aes(temp2*27, ho_prob, color = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.01, stroke = 0) +
-  geom_smooth(se = FALSE) +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 1) )) +
-  theme(legend.position = "none") +
-  xlab("temperature (C)") + ylab("haul-out probability")
+targets::tar_load(ribbon_wx_plot, store = here::here("_targets"))
 
-p_wind <- ggplot(plot_df %>% filter(age_sex != "YOUNG OF YEAR"), aes(wind, ho_prob, color = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.01, stroke = 0) +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 1) ),
-                 name = "") +
-  geom_smooth(se = FALSE) +
-  theme(legend.position = "top") +
-  xlab("wind") + ylab("")
-
-p_pressure <- ggplot(plot_df %>% filter(age_sex != "YOUNG OF YEAR"), aes(pressure, ho_prob, color = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.01, stroke = 0) +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 1) )) +
-  geom_smooth(se = FALSE) +
-  theme(legend.position = "none") +
-  xlab("barometric pressure") + ylab("haul-out probability")
-
-p_precip <- ggplot(plot_df %>% filter(age_sex != "YOUNG OF YEAR"), aes(precip, ho_prob, color = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.01, stroke = 0) +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 1) )) +
-  geom_smooth(se = FALSE) +
-  theme(legend.position = "none") +
-  xlab("precipitation") + ylab("")
-
-library(patchwork)
-
-p_temp + p_wind + p_pressure + p_precip +
-  plot_annotation(
-    title = 'Ribbon seal haul-out behavior is influenced by weather')
+ribbon_wx_plot
 ```
 
 ## Spotted Seals
@@ -1069,9 +1011,14 @@ plot_df <- spotted_newdata %>%
 
 p <- ggplot(plot_df,aes(day,solar_hour,fill=ho_prob))+
   geom_tile(color= "white",size = 0) +
-  scale_fill_viridis_c(name = "haul-out probability", aesthetics = "fill",
+  scale_fill_gradientn(colors = rev(met.brewer("Hiroshige")),
+                       name = "haul-out probability", aesthetics = "fill",
+                       limits = c(0,1), breaks = c(0.25, 0.50, 0.75),
                        guide = guide_colorbar(title.position = "bottom", barwidth = 15,
                                               barheight = 0.5, title.hjust = 0.5)
+  # scale_fill_viridis_c(name = "haul-out probability", aesthetics = "fill",
+  #                      guide = guide_colorbar(title.position = "bottom", barwidth = 15,
+  #                                             barheight = 0.5, title.hjust = 0.5)
   )
 p <- p + facet_grid(age_sex~month)
 p <- p + scale_x_continuous(breaks = c(1,10,20,30)) +
@@ -1103,44 +1050,11 @@ present and consistent across each of the weather covariates (Figure
 \@ref(fig:spottedHOwx)). There is a consistent ranking of adult males being the most
 likely to haul out, followed by adult females, and, then, subadults.
 
-```{r spottedHOwx,fig.height = 5.5, include=TRUE, fig.id = "spottedHOwx", fig.cap="Variability in the predicted haul-out probability of spotted seals across the range of weather conditions encountered in the observed data. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability. Solid lines are smoothed fits to the predictions and provided to better indicate the marginal effect."}
+```{r spottedHOwx,fig.height = 5.5, include=TRUE, fig.id = "spottedHOwx", fig.cap="Marginal effects of temperature, wind, pressure, and accumulated precipitation on the predicted haul-out probability of spotted seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year held at the average day of peak haul-out for spotted seals. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability."}
 
-library(ggsci)
+targets::tar_load(spotted_wx_plot, store = here::here("_targets"))
 
-p_temp <- ggplot(plot_df %>% filter(age_sex != "YOUNG OF YEAR"), aes(temp2*27, ho_prob, color = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.01, stroke = 0) +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 1) )) +
-  geom_smooth(se = FALSE) +
-  theme(legend.position = "none") +
-  xlab("temperature (C)") + ylab("haul-out probability") 
-
-p_wind <- ggplot(plot_df %>% filter(age_sex != "YOUNG OF YEAR"), aes(wind, ho_prob, color = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.01, stroke = 0) +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 1) ),
-                 name = "") +
-  geom_smooth(se = FALSE) +
-  theme(legend.position = "top") +
-  xlab("wind") + ylab("") 
-
-p_pressure <- ggplot(plot_df %>% filter(age_sex != "YOUNG OF YEAR"), aes(pressure, ho_prob, color = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.01, stroke = 0) +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 1) )) +
-  geom_smooth(se = FALSE) +
-  theme(legend.position = "none") +
-  xlab("barometric pressure") + ylab("haul-out probability") 
-
-p_precip <- ggplot(plot_df %>% filter(age_sex != "YOUNG OF YEAR"), aes(precip, ho_prob, color = age_sex)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.01, stroke = 0) +
-  scale_color_d3(guide = guide_legend(override.aes = list(alpha = 1) )) +
-  geom_smooth(se = FALSE) +
-  theme(legend.position = "none") +
-  xlab("precipitation") + ylab("") 
-
-library(patchwork)
-
-p_temp + p_wind + p_pressure + p_precip +
-  plot_annotation(
-    title = 'Spotted seal haul-out behavior is influenced by weather')
+spotted_wx_plot
 ```
 
 

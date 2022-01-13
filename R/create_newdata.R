@@ -14,13 +14,21 @@ create_newdata <- function(data, age_sex) {
     # to vary w/in day over the season
 
     gam.baro <-
-      gam(pressure ~ s(yday), data = data)
+      gam(pressure ~ s(yday), 
+          data = data, 
+          method = "REML")
     gam.temp <-
-      gam(temp2 ~ s(yday) + s(as.numeric(solar_hour)), data = data)
+      gam(temp2 ~ s(yday) + s(as.numeric(solar_hour)), 
+          data = data, 
+          method = "REML")
     gam.wind <-
-      gam(wind ~ s(yday) + s(as.numeric(solar_hour)), data = data)
+      gam(wind ~ s(yday) + s(as.numeric(solar_hour)), 
+          data = data, 
+          method = "REML")
     gam.precip <-
-      gam(precip ~ s(yday), data = data)
+      gam(precip ~ s(yday), 
+          data = data, 
+          method = "REML")
 
     wx_new_data <- data.frame(
       solar_hour = rep(0:23, each = n_days),
@@ -65,10 +73,56 @@ create_newdata <- function(data, age_sex) {
   }
 }
 
-create_ribbon_newdata <- function(fit_ribbon) {
+create_newdata_margins <- function(data, age_sex, 
+                                   solar_hour, yday, term) {
+  df_list <- vector(mode = "list", length = length({{age_sex}} ))
+  
+  for (a_s in {{age_sex}}) {
+    
+    df <- data.frame(
+      age_sex = a_s,
+      solar_hour = solar_hour,
+      yday = yday,
+      northing = mean(data$northing),
+      temp2 = if(term %in% c("temp2")) sample(unique(data[,"temp2"]),150) else mean(data[,"temp2"]),
+      wind = if(term %in% c("wind")) sample(unique(data[,"wind"]),150) else mean(data[,"wind"]),
+      pressure = if(term %in% c("pressure")) sample(unique(data[,"pressure"]),150) else mean(data[,"pressure"]),
+      precip = if(term %in% c("precip")) sample(unique(data[,"precip"]),150) else mean(data[,"precip"])
+      ) %>%
+      mutate(
+        sin1 = sin(pi * solar_hour / 12),
+        cos1 = cos(pi * solar_hour / 12),
+        sin2 = sin(pi * solar_hour / 6),
+        cos2 = cos(pi * solar_hour / 6),
+        sin3 = sin(pi * solar_hour / 4),
+        cos3 = sin(pi * solar_hour / 4),
+      ) %>%
+      mutate(day = (yday - 120) / 10,
+             day2 = day ^ 2,
+             day3 = day ^ 3)
+    df_list[[a_s]] <- df
+  }
+  if(length({{age_sex}}) > 1) {
+    df_out <- bind_rows(df_list) %>%
+      mutate(age_sex = forcats::fct_relevel(
+        age_sex,c("ADULT.F","ADULT.M","SUBADULT","YOUNG OF YEAR"))
+      )
+  } else {
+    df_out <- bind_rows(df_list)
+  }
+}
 
+
+create_ribbon_newdata <- function(fit_ribbon, margins = FALSE, solar_hour, yday, term) {
+  if(margins) {
+    ribbon_newdata <- create_newdata_margins(fit_ribbon$dataset,
+                                             age_sex = levels(fit_ribbon$dataset$age_sex),
+                                             solar_hour = solar_hour, yday = yday,
+                                             term)
+  } else {
   ribbon_newdata <- create_newdata(fit_ribbon$dataset,
                  age_sex = levels(fit_ribbon$dataset$age_sex))
+  }
 
   # create the model matrix
   ribbon_mm <- model.matrix(fit_ribbon$fixed.formula[-2],
@@ -90,10 +144,16 @@ create_ribbon_newdata <- function(fit_ribbon) {
     )
 }
 
-create_spotted_newdata <- function(fit_spotted) {
-
-  spotted_newdata <- create_newdata(fit_spotted$dataset,
-                 age_sex = levels(fit_spotted$dataset$age_sex))
+create_spotted_newdata <- function(fit_spotted, margins = FALSE, solar_hour, yday, term) {
+  if(margins) {
+    spotted_newdata <- create_newdata_margins(fit_spotted$dataset,
+                                             age_sex = levels(fit_spotted$dataset$age_sex),
+                                             solar_hour = solar_hour, yday = yday,
+                                             term)
+  } else {
+    spotted_newdata <- create_newdata(fit_spotted$dataset,
+                                     age_sex = levels(fit_spotted$dataset$age_sex))
+  }
 
   # create the model matrix
   spotted_mm <- model.matrix(fit_spotted$fixed.formula[-2],
@@ -115,13 +175,19 @@ create_spotted_newdata <- function(fit_spotted) {
     )
 }
 
-create_bearded_newdata <- function(fit_bearded) {
-
+create_bearded_newdata <- function(fit_bearded, margins = FALSE, solar_hour, yday, term) {
   eb_data <- fit_bearded$dataset %>%
     mutate(age_sex = forcats::as_factor("ALL AGES"))
-
-  bearded_newdata <- create_newdata(eb_data,
-                                    age_sex = levels(eb_data$age_sex))
+  
+  if(margins) {
+    bearded_newdata <- create_newdata_margins(eb_data,
+                                             age_sex = levels(eb_data$age_sex),
+                                             solar_hour = solar_hour, yday = yday,
+                                             term)
+  } else {
+    bearded_newdata <- create_newdata(eb_data,
+                                     age_sex = levels(eb_data$age_sex))
+  }
 
   # create the model matrix
   bearded_mm <- model.matrix(fit_bearded$fixed.formula[-2],
