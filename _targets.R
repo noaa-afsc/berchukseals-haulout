@@ -25,7 +25,9 @@ tar_option_set(packages = c(
   "solaR",
   "splines",
   "purler",
-  "wcUtils"
+  "wcUtils",
+  "MetBrewer",
+  "patchwork"
   )
 )
 
@@ -70,6 +72,10 @@ list(
   tar_target(ribbon_newdata, create_ribbon_newdata(ribbon_fit)),
   tar_target(spotted_newdata, create_spotted_newdata(spotted_fit)),
   tar_target(bearded_newdata, create_bearded_newdata(bearded_fit)),
+  
+  tar_target(ribbon_wx_plot, plot_ribbon_wx(ribbon_fit)),
+  tar_target(spotted_wx_plot, plot_spotted_wx(spotted_fit)),
+  tar_target(bearded_wx_plot, plot_bearded_wx(bearded_fit)),
 
   tar_target(ribbon_newdata_year, ribbon_newdata_yr(ribbon_year_fit)),
   tar_target(spotted_newdata_year, spotted_newdata_yr(spotted_year_fit))
