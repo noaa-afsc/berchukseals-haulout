@@ -73,11 +73,10 @@ header-includes:
   - \usepackage {newpxtext}
   - \usepackage {newpxmath}
   - \usepackage [semibold]{sourcesanspro}
-  - \usepackage {sectsty}
-  - \allsectionsfont {\sffamily}
   - \usepackage {hyperref}
   - \hypersetup {colorlinks, linkcolor={red!50!black}, citecolor={blue!50!black},urlcolor={blue!80!black}}
-  - \linespread{1.1}
+  - \usepackage{setspace}
+  - \onehalfspacing
 bibliography: references.json
 csl: peerj.csl
 ---
@@ -98,6 +97,7 @@ library(RPostgres)
 library(pingr)
 library(sf)
 library(flextable)
+library(gt)
 library(patchwork)
 library(rnaturalearth)
 library(rnaturalearthdata)
@@ -120,8 +120,7 @@ knitr::opts_chunk$set(
   echo = FALSE,
   include = FALSE,
   fig.path = "../figures/",
-  dpi = 400,
-  fig.width = 6.5,
+  dpi = 300,
   out.width = "100%"
 )
 
@@ -162,11 +161,11 @@ timing of reproductive and molting behavior is generally lacking, so it is
 difficult to predict the readiness with which ice-associated seal species will
 be able to adapt to future changes (e.g., by adjusting pupping or molting
 schedules to earlier dates or different locales). This is further complicated by
-the spatio-temporal variation in the phenology of these life history events 
+the spatio-temporal variation in the phenology of these life history events
 within regions and throughout their full ranges. Additionally, trends in
-abundance from large scale surveys of these species are unknown, so it is difficult to assess the
-effect, if any, declines in sea ice habitat have had, or will have, on seal
-densities.
+abundance from large scale surveys of these species are unknown, so it is
+difficult to assess the effect, if any, declines in sea ice habitat have had, or
+will have, on seal densities.
 
 For ice-associated seals, haul-out behavior is tightly linked with sea ice.
 Ribbon seals (_Histriophoca fasciata_) haul out of the water almost exclusively
@@ -184,7 +183,7 @@ Bio-logging records of time spent out of the water provide valuable data for
 identifying covariates that explain variation in haul-out behavior. For
 instance, in the Antarctic, Bengtson and Cameron [-@bengtson2004] relied on
 bio-logging data to demonstrate greater haul-out propensity in juvenile
-crabeater seals (*Lobodon carcinophaga*) than adults, with highest probabilities
+crabeater seals (_Lobodon carcinophaga_) than adults, with highest probabilities
 in February and at times close to solar noon. In the Arctic, Von Duyke et al.
 [-@vonduyke2020] used satellite-linked bio-loggers to corroborate seasonal
 changes between diurnal and nocturnal haul-out behavior of ringed seals
@@ -310,30 +309,33 @@ following year. Table \@ref(tab:tblDeploy) provides a summary of these
 deployments and data received from them.
 
 ```{r tblDeploy, include=TRUE, tab.cap = "Summary of bio-logger data across seal species and age classification from 1 March to 15 July 2005-2020. Total seal hours represents the sum of available data across all seals. Because young-of-the-year are advanced to subadult on 1 March of the following year, some individual seals are represented in both columns in this table"}
- 
-deploy_table %>% 
-  dplyr::group_by(species, sex, age) %>% 
+
+deploy_table %>%
+  dplyr::group_by(species, sex, age) %>%
   dplyr::summarise(
     n = n(),
     seal_hours = sum(n_hours)
-  ) %>% 
+  ) %>%
   dplyr::mutate(
     deploy_stats = glue::glue('{n} ({format(seal_hours, big.mark=",")} seal hours)')
-  ) %>% 
-  dplyr::select(-c("n","seal_hours")) %>% 
-  tidyr::pivot_wider(names_from = age, values_from = c(deploy_stats)) %>% 
-  dplyr::ungroup() %>% 
+  ) %>%
+  dplyr::select(-c("n","seal_hours")) %>%
+  tidyr::pivot_wider(names_from = age, values_from = c(deploy_stats)) %>%
+  dplyr::ungroup() %>%
   dplyr::rename(Species = species, Sex = sex, `Young-of-the-Year` = `YOUNG OF YEAR`,
-                `Subadult` = SUBADULT, Adult = ADULT) %>% 
-  flextable() %>% 
+                `Subadult` = SUBADULT, Adult = ADULT) %>%
+  flextable() %>%
   add_header(`Young-of-the-Year` = "Age Class",
    Subadult = "Age Class", Adult = "Age Class",
-   top = TRUE ) %>% 
-  merge_h(part = "header") %>% 
+   top = TRUE ) %>%
+  merge_h(part = "header") %>%
   align(align = "left", part = "header") %>% 
-  # font(fontname = "Source Serif Pro Light", part = "all") %>% 
+  align(i = 1, align = "center", part = "header") %>% 
   fontsize(size = 10, part = "all") %>% 
-  autofit()
+  width(width = 1.35) %>% 
+  width(j = ~ Species, width = 0.9) %>% 
+  width(j = ~ Sex, width = 0.4)
+
 ```
 
 ```{r seal-hours}
@@ -668,10 +670,10 @@ covariate_tbl <- tibble::tribble(
 
 covariate_tbl %>% 
   flextable() %>% 
-  font(fontname = "Source Serif Pro Light", part = "all") %>% 
-  fontsize(size = 10) %>% 
+  fontsize(size = 10, part = "all") %>% 
   hline(i=8) %>% 
-  set_table_properties(width = .95, layout = "autofit")
+  width(width = 1.0) %>% 
+  width(j = ~ Description, width = 2.5)
 ```
 
 ## Haul-out modeling {-}
@@ -877,7 +879,7 @@ significant influence
 pressure or precipitation was less apparent.
 
 
-```{r beardedHOwx,fig.height = 5.5, include=TRUE, fig.id = "beardedHOwx", fig.cap="Marginal effects of temperature, wind, pressure, and accumulated precipitation on the predicted haul-out probability of bearded seals combined across all age and sex classifications. Hour of the day was fixed at local solar noon and day-of-year held at the day of peak haul-out for bearded seals. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability."}
+```{r beardedHOwx, fig.height = 5.5, include=TRUE, fig.cap="Marginal effects of temperature, wind, pressure, and accumulated precipitation on the predicted haul-out probability of bearded seals combined across all age and sex classifications. Hour of the day was fixed at local solar noon and day-of-year held at the day of peak haul-out for bearded seals. Transparent vertical lines represent the 95\\% confidence interval around the predicted haul-out probability."}
 
 targets::tar_load(bearded_wx_plot, store = here::here("_targets"))
 
@@ -904,7 +906,7 @@ adult male ribbon seals complete their molt by the end of June. Lastly,
 for adults of both sexes there is some indication for a shift to a
 crepuscular haul-out pattern in late June and July.
 
-```{r ribbonHOCal, fig.height = 5.5, include=TRUE, fig.id = "ribbonHOCal", fig.cap="Predicted haul-out probability of ribbon seals from 1 March to 15 July for each age and sex class used in the model. Adult females are indicated by 'ADULT.F' and 'ADULT.M' indicates adult males. 'SUBADULT' and 'YOUNG OF YEAR' age classes include both sexes."}
+```{r ribbonHOCal, fig.height = 5.5, include=TRUE, fig.cap="Predicted haul-out probability of ribbon seals from 1 March to 15 July for each age and sex class used in the model. Adult females are indicated by 'ADULT.F' and 'ADULT.M' indicates adult males. 'SUBADULT' and 'YOUNG OF YEAR' age classes include both sexes."}
 
 plot_df <- ribbon_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
@@ -961,7 +963,7 @@ there is an indication that sub-adult ribbon seals are more likely to haul-out
 at lower temperatures. But, this may also be simply reflective of their
 tendency to haul-out earlier in the season compared to adults.
 
-```{r ribbonHOwx, fig.height = 5.5, include=TRUE, fig.id = "ribbonHOwx", fig.cap="Marginal effects of temperature, wind, pressure, and accumulated precipitation on the predicted haul-out probability of ribbon seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year held at the average day of peak haul-out for ribbon seals. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability."}
+```{r ribbonHOwx, fig.height = 5.5, include=TRUE, fig.cap="Marginal effects of temperature, wind, pressure, and accumulated precipitation on the predicted haul-out probability of ribbon seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year held at the average day of peak haul-out for ribbon seals. Transparent vertical lines represent the 95\\% confidence interval around the predicted haul-out probability."}
 
 targets::tar_load(ribbon_wx_plot, store = here::here("_targets"))
 
@@ -984,7 +986,7 @@ ribbon seals, the young-of-the-year records begin after weaning and the model
 predictions demonstrate the ontogeny of in-water activities (e.g. diving,
 foraging) in May.
 
-```{r spottedHOCal, fig.height = 5.5, include=TRUE, fig.id = "spottedHOCal", fig.cap="Predicted haul-out probability of spotted seals from 1 March to 15 July for each age and sex class used in the model. Adult females are indicated by 'ADULT.F' and 'ADULT.M' indicates adult males. 'SUBADULT' and 'YOUNG OF YEAR' age classes include both sexes."}
+```{r spottedHOCal, fig.height = 5.5, include=TRUE, fig.cap="Predicted haul-out probability of spotted seals from 1 March to 15 July for each age and sex class used in the model. Adult females are indicated by 'ADULT.F' and 'ADULT.M' indicates adult males. 'SUBADULT' and 'YOUNG OF YEAR' age classes include both sexes."}
 
 plot_df <- spotted_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
@@ -1033,7 +1035,7 @@ present and consistent across each of the weather covariates (Figure
 \@ref(fig:spottedHOwx)). There is a consistent ranking of adult males being the most
 likely to haul out, followed by adult females, and, then, subadults.
 
-```{r spottedHOwx,fig.height = 5.5, include=TRUE, fig.id = "spottedHOwx", fig.cap="Marginal effects of temperature, wind, pressure, and accumulated precipitation on the predicted haul-out probability of spotted seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year held at the average day of peak haul-out for spotted seals. Transparent vertical lines represent the 95% confidence interval around the predicted haul-out probability."}
+```{r spottedHOwx,fig.height = 5.5, include=TRUE, fig.cap="Marginal effects of temperature, wind, pressure, and accumulated precipitation on the predicted haul-out probability of spotted seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year held at the average day of peak haul-out for spotted seals. Transparent vertical lines represent the 95\\% confidence interval around the predicted haul-out probability."}
 
 targets::tar_load(spotted_wx_plot, store = here::here("_targets"))
 
@@ -1096,7 +1098,7 @@ deployment in a species + age-sex group was present, there are still
 some years where the pattern shown is informed by a small number of
 individuals that may not represent population level processes.
 
-```{r annualHO, fig.height = 5.5, include=TRUE, fig.id = "annualHO", fig.cap="Annual variability in the timing of peak haul-out probability for ribbon and spotted seals across 10 years. Predictions are shown for local solar noon and under smoothed weather conditions. Only those groups (age-sex + year) that included observations from more than one seal are shown. Additionally, any groups where the underlying data started after 1 June or ended before 1 May are not included."}
+```{r annualHO, fig.height = 5.5, include=TRUE, fig.cap="Annual variability in the timing of peak haul-out probability for ribbon and spotted seals across 10 years. Predictions are shown for local solar noon and under smoothed weather conditions. Only those groups (age-sex + year) that included observations from more than one seal are shown. Additionally, any groups where the underlying data started after 1 June or ended before 1 May are not included."}
 
 select_groups <- ribbon_year_fit$dataset %>%
   filter(age_sex != "YOUNG OF YEAR") %>%
@@ -1217,7 +1219,7 @@ ribbon seal adult males: $R^{2}$ = `r hf_adultM$r.squared`, $p$ =
 adult males: $R^{2}$ = `r pl_adultM$r.squared`, $p$ =
 `r pl_adultM$p.value`).
 
-```{r maxextentHO, fig.height = 5.5, include=FALSE, fig.id = "maxextent", fig.cap="Annual timing of peak haul-out behavior analyzed against the yearly maximum area of sea ice extent in the study area. While spotted seal adult females and subadults show a negative trend line, none of the relationships were determined to be significant."}
+```{r maxextentHO, fig.height = 5.5, include=FALSE, fig.cap="Annual timing of peak haul-out behavior analyzed against the yearly maximum area of sea ice extent in the study area. While spotted seal adult females and subadults show a negative trend line, none of the relationships were determined to be significant."}
 
 ggplot(data = peak_ho_df, aes(y = yday, x = max_extent_km2, color = species)) + 
   geom_smooth(method = "lm", alpha = 0.2, aes(fill = species)) +
@@ -1377,36 +1379,27 @@ future study.
 
 # Author Contributions {-}
 
-**Josh M. London**: investigation, conceptualization, methodology,
+* **Josh M. London**: investigation, conceptualization, methodology,
 formal analysis, validation, software, writing: original draft, writing:
 review and editing, visualization, and data curation
-
-**Paul B. Conn**: conceptualization, methodology, formal analysis,
+* **Paul B. Conn**: conceptualization, methodology, formal analysis,
 software, validation, writing: original draft, writing: review and
 editing
-
-**Stacie K. Hardy**: investigation, data curation, methodology,
+* **Stacie K. Hardy**: investigation, data curation, methodology,
 validation, writing: review and editing
-
-**Erin L. Richmond**: data curation, investigation, methodology,
+* **Erin L. Richmond**: data curation, investigation, methodology,
 validation, writing: review and editing
-
-**Jay M. Ver Hoef**: conceptualization, methodology, software, writing:
+* **Jay M. Ver Hoef**: conceptualization, methodology, software, writing:
 review and editing
-
-**Michael F. Cameron**: investigation, project administration, writing:
+* **Michael F. Cameron**: investigation, project administration, writing:
 review and editing
-
-**Justin Crawford**: investigation, methodology, validation, data curation, 
+* **Justin Crawford**: investigation, methodology, validation, data curation, 
 writing: review and editing
-
-**Lori T. Quakenbush**: investigation, methodology, supervision, project
+* **Lori T. Quakenbush**: investigation, methodology, supervision, project
 administration, writing: review and editing
-
-**Andrew L. Von Duyke**: investigation, methodology, validation, data curation,
+* **Andrew L. Von Duyke**: investigation, methodology, validation, data curation,
 writing: review and editing
-
-**Peter L. Boveng**: investigation, conceptualization, supervision,
+* **Peter L. Boveng**: investigation, conceptualization, supervision,
 project administration, writing: review and editing
 
 # Data Availability {-}
