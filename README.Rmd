@@ -71,24 +71,26 @@ The dependency graph for our pipeline is shown below
 
 ## Acknowledgements
 
-We recognize that the species and ecosystems studied in this paper are within
-the traditional range of the Inpuiaq and Yupik people. And, we would like to
-acknowledge and thank them as the original stewards of these ecosystems. The
-deployment of bio-logging devices used in this study were often done in
-collaboration with Alaska Native seal hunters near their communities. We would
-like to especially acknowledge the communities of Kotzebue, Koyuk, Nome,
-Nuiqsut, Scammon Bay, St. Michael, Utqiaġvik, and Ulguniq (Wainwright) and the
-following individuals: James Adams, Jeff Barger, David Barr, Wendell Booth,
-Cyrus Harris, Nereus 'Doc' Harris, Grover Harris, Lee Harris, Tom Jones, Frank
-Garfield, Brenda Goodwin, Henry Goodwin, John Goodwin, Pearl Goodwin, Willie
-Goodwin, Brett Kirk, Noah Naylor, Virgil Naylor Jr., Virgil Naylor Sr., Dan
-Savetilik, Chuck Schaeffer, Ross Schaeffer, Allen Stone, and Randy Toshavik from
-Kotzebue, Alaska; Merlin Henry from Koyuk, Alaska; Tom Gray from Nome; Vernon
-Long and Richard Tukle from Nuiqsuit, Alaska; Morgan Simon, River Simon, and Al
-Smith from Scammon Bay, Alaska; Alex Niksik Jr. from St. Michael, Alaska; Billy
-Adams, James Aiken, Tim Aiken, Howard Kittick, Gilbert Leavitt, Isaac Leavitt,
-J.R. Leavitt, and Joe Skin from Utqiaġvik, Alaska; Mary Ellen Ahmaogak, Enoch
-Oktollik, Shawn Oktollik, Stacey Osborn, and Fred Rexford from Ulguniq, Alaska.
+We recognize that the species and ecosystems we studied are within the ancestral
+and present-day environs of the Inupiat and Yup'ik people who, through many
+uncredited contributions of traditional knowledge, provided early western
+naturalists and scientists with much of what gets described as the ‘basic
+biology’ of Arctic seals. The deployment of bio-logging devices used in this
+study were often done in collaboration with Alaska Native seal hunters near
+their communities. We would like to especially acknowledge the communities of
+Kotzebue, Koyuk, Nome, Nuiqsut, Scammon Bay, St. Michael, Utqiaġvik, and Ulguniq
+(Wainwright) and the following individuals: James Adams, Jeff Barger, David
+Barr, Wendell Booth, Cyrus Harris, Nereus 'Doc' Harris, Grover Harris, Lee
+Harris, Tom Jones, Frank Garfield, Brenda Goodwin, Henry Goodwin, John Goodwin,
+Pearl Goodwin, Willie Goodwin, Brett Kirk, Noah Naylor, Virgil Naylor Jr.,
+Virgil Naylor Sr., Dan Savetilik, Chuck Schaeffer, Ross Schaeffer, Allen Stone,
+and Randy Toshavik from Kotzebue, Alaska; Merlin Henry from Koyuk, Alaska; Tom
+Gray from Nome; Vernon Long and Richard Tukle from Nuiqsuit, Alaska; Morgan
+Simon, River Simon, and Al Smith from Scammon Bay, Alaska; Alex Niksik Jr. from
+St. Michael, Alaska; Billy Adams, James Aiken, Tim Aiken, Howard Kittick,
+Gilbert Leavitt, Isaac Leavitt, J.R. Leavitt, and Joe Skin from Utqiaġvik,
+Alaska; Mary Ellen Ahmaogak, Enoch Oktollik, Shawn Oktollik, Stacey Osborn, and
+Fred Rexford from Ulguniq, Alaska.
 
 We are grateful for the assistance in catching and sampling seals by Ryan Adam,
 James Bailey, Michelle Barbieri, John Bengtson, Gavin Brady, Vladamir Burkanov,

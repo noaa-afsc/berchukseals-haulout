@@ -77,7 +77,7 @@ plot_ribbon_wx <- function(ribbon_fit_obj) {
                                             direction = "horizontal")) +
     theme(legend.title = element_blank(),
           legend.position = "none") +
-    xlab("accumulated precip (mm/hr)") + ylab("haul-out probability")
+    xlab("precip (mm/hr)") + ylab("haul-out probability")
   
   apply_consistent_y_lims <- function(this_plot){
     num_plots <- length(this_plot$layers)
@@ -176,7 +176,7 @@ plot_spotted_wx <- function(spotted_fit_obj) {
                                             direction = "horizontal")) +
     theme(legend.title = element_blank(),
           legend.position = "none") +
-    xlab("accumulated precip (mm/hr)") + ylab("haul-out probability")
+    xlab("precip (mm/hr)") + ylab("haul-out probability")
   
   apply_consistent_y_lims <- function(this_plot){
     num_plots <- length(this_plot$layers)
@@ -271,7 +271,7 @@ plot_bearded_wx <- function(bearded_fit_obj) {
                                             direction = "horizontal")) +
     theme(legend.title = element_blank(),
           legend.position = "none") +
-    xlab("accumulated precip (mm/hr)") + ylab("haul-out probability")
+    xlab("precip (mm/hr)") + ylab("haul-out probability")
   
   apply_consistent_y_lims <- function(this_plot){
     num_plots <- length(this_plot$layers)
