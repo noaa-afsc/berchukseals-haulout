@@ -26,7 +26,7 @@ author:
     affiliation: 1
 affiliation:
   - code: 1
-    address: Marine Mammal Laboratory, Alaska Fisheries Science Center, NOAA Fisheries, Seattle, Washington, USA
+    address: Marine Mammal Laboratory, Alaska Fisheries Science Center, National Marine Fisheries Service, NOAA, Seattle, Washington, USA
   - code: 2
     address: Arctic Marine Mammals Program, Alaska Department of Fish and Game, Fairbanks, Alaska, USA
   - code: 3
@@ -191,8 +191,8 @@ propensity for ringed seal basking near solar noon, as did Ver Hoef et al.
 [-@verhoef2014a] in an analysis of bearded, ribbon, and spotted seals using much
 larger sample sizes. Olnes et al. [-@olnes2020] showed that the proportion of
 time bearded seals spent hauled out progressively increased through spring and
-summer. And, Ver Hoef et al. [-@verhoef2014a] found haul-out probabilities
-increased gradually starting in March and peaking in May and June for bearded,
+summer, and Ver Hoef et al. [-@verhoef2014a] found haul-out probabilities
+increased gradually starting in March and peaked in May and June for bearded,
 ribbon, and spotted seals.
 
 Knowledge of haul-out patterns is not only important for understanding natural
@@ -271,7 +271,7 @@ capture events occurred from May to October, generally between the coastal
 communities of Scammon Bay, Alaska in the Bering Sea, Utqiaġvik, Alaska in the
 Chukchi Sea, and Nuiqsut in the Beaufort Sea from 2005 to 2020. We refer readers
 to the primary literature for detailed capture and bio-logger attachment methods
-(Supplemental Material, Table).
+(see Supplemental Material, Table 1).
 
 ```{r deploystats}
 species_n <- deploy_table %>% 
@@ -531,10 +531,10 @@ modeling performance or convergence issues. For this study, we calculated a
 weighted average daily location where the inverse of the estimated Argos or
 FastLoc GPS location error was used for the weight. Each Argos location estimate
 was assigned an error radius based on either the categorical location quality (
-_3_=250m, _2_=500m, _1_=1500m, _0_=2500m [@lopez2013]; we chose 2500m for
+_3_ = 250 m, _2_ = 500 m, _1_ = 1500 m, _0_ = 2500 m [@lopez2013]; we chose 2500 m for
 location classes _A_ and _B_) or, when available, the estimated error radius
 from the Argos Kalman filter algorithm. Location estimates from FastLoc GPS were
-all assigned an error radius of 50m. On days when haul-out observations were
+all assigned an error radius of 50 m. On days when haul-out observations were
 present but location data were missing we used the seal's last calculated weighted
 average daily location; days when the location intersected with land
 were removed from the seal's record. We recognized that bearded and spotted
@@ -606,11 +606,11 @@ observational data to produce a long-term picture of weather over North America
 and portions of the surrounding seas. Weather variables are made
 available across the region 8 times daily. For this study, NARR weather values
 were subset to the extent of our study area over the Bering and Chukchi seas at
-3-hr intervals based on the native grid resolution of 32km (1024km^2^). The
+3-hr intervals based on the native grid resolution of 32 km (1024 km^2^). The
 following meteorological variables are known to affect haul-out behavior in
 other Arctic pinnipeds [@reder2003;
 @udevitz2009; @perry2017] and were interpolated and assigned to daily seal
-locations using a bilinear method: 1) air temperature at 2m above the earth's
+locations using a bilinear method: 1) air temperature at 2 m above the Earth's
 surface, 2) wind consisting of northerly and easterly vector components
 converted to wind speed using the Euclidean norm, 3) barometric pressure at sea
 level, and 4) precipitation (Table \@ref(tab:tblCovariates)).
@@ -646,7 +646,7 @@ seal which do not provide at-sea locations, limiting our ability to fully
 evaluate fine-scale habitat preferences related to sea-ice. Lastly, our study
 was limited to the spring season when seal haul-out tendencies are strongly
 influenced by pupping, nursing, breeding behavior, and molt and these drivers
-are likely more influential than specific sea-ice concentration. Crawford et al
+are likely more influential than specific sea-ice concentration. Crawford et al.
 [-@crawford2019] compared haul-out probability models for ringed seals and found
 those that only included season (and not sea-ice concentration) were the most
 parsimonious. For these reasons, we have elected not to use sea ice
@@ -1314,7 +1314,7 @@ chill. These have been investigated for walruses (e.g. Udevitz et al.
 [@hamilton2018, @perry2017]. In our study, ribbon seals seemed to be the most
 influenced by weather, with wind, temperature, and barometric pressure all being
 important components of the model. Spotted seals were most affected by wind and
-barometric pressure. And, for bearded seals, the model indicated wind and
+barometric pressure. For bearded seals, the model indicated wind and
 temperature had the greatest impact. In general, and as might be expected, seals
 were more likely to haul-out when daily temperatures were warmer, winds speeds
 were lower, barometric pressure was higher, and precipitation was lower. Those
@@ -1431,7 +1431,7 @@ major versions archived at Zenodo (https://doi.org/10.5281/zenodo.4638221).
 Original data sources for telemetry are archived at the United States Animal
 Telemetry Network.
 
-# Acknowledgements {-}
+# Acknowledgments {-}
 
 We recognize that the species and ecosystems we studied are within the ancestral
 and present-day environs of the Inpuiat and Yup'ik people who, through many
@@ -1462,8 +1462,8 @@ Harris, Jason Herreman, Markus Horning, John Jansen, Shawn Johnson, Charles
 Littnan, Lloyd Lowry, Brett McClintock, Erin Moreland, Mark Nelson, Justin
 Olnes, Lorrie Rea, Bob Shears, Gay Sheffield, Brent Stewart, Dave Withrow, and
 Heather Ziel. We also appreciate the commitment to science and safety by all
-officers and crew of the NOAA Ship Oscar Dyson, the NOAA Ship MacArthur II, and
-the RV Thomas G. Thompson.
+officers and crew of the NOAA ship _Oscar Dyson_, the NOAA ship _MacArthur II_, and
+the RV _Thomas G. Thompson_.
 
 Telemetry data from the Alaska Department of Fish and Game (ADFG) and the North
 Slope Borough Department of Wildlife Management (NSB) were important
