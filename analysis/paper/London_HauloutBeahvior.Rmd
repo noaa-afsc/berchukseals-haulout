@@ -1491,3 +1491,18 @@ N00014-16-1-3019). ADFG and NSB field work was covered by Research Permits Nos.
 
 ::: {#refs}
 :::
+
+# Supplemental Material {-} 
+
+# S1. Supplemental Table of Bio-logger Deployment Details
+
+The following table provides additional details about the timing, location, and
+agencies responsible for the bio-logger deployments used in this study.
+
+```{r}
+
+
+  
+```
+
+
