@@ -267,14 +267,14 @@ targets::tar_load(deploy_table, store = here::here("_targets"))
 Data used in our study came from bio-loggers deployed on bearded, ribbon, and
 spotted seals in the Bering, Chukchi, and western Beaufort seas by multiple
 organizations as part of collaborative investigations from 2005 through 2020.
-Seals were captured using nets and bio-loggers were attached during studies based
-in coastal Alaska communities or on research ships. Ship-based capture events
-occurred during spring near the southern ice edge in the Bering Sea. Land-based
-capture events occurred from May to October, generally between the coastal
-communities of Scammon Bay, Alaska in the Bering Sea, Utqiaġvik, Alaska in the
-Chukchi Sea, and Nuiqsut in the Beaufort Sea from 2005 to 2020. We refer readers
-to the primary literature for detailed capture and bio-logger attachment methods
-(see Supplemental Material, Table 1).
+Seals were captured using nets and bio-loggers were attached during studies
+based in coastal Alaska communities or on research ships. Ship-based capture
+events occurred during spring near the southern ice edge in the Bering Sea.
+Land-based capture events occurred between 2005 and 2020 from May to October,
+generally between the coastal communities of Scammon Bay, Alaska in the Bering
+Sea, Utqiaġvik, Alaska in the Chukchi Sea, and Nuiqsut in the Beaufort Sea. We
+refer readers to the primary literature for detailed capture and bio-logger
+attachment methods (see Supplemental Material, S1).
 
 ```{r deploystats}
 species_n <- deploy_table %>% 
