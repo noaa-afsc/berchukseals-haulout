@@ -76,6 +76,9 @@ header-includes:
   - \hypersetup {colorlinks, linkcolor={red!50!black}, citecolor={blue!50!black},urlcolor={blue!80!black}}
   - \usepackage{setspace}
   - \onehalfspacing
+  - \usepackage{pdflscape}
+  - \newcommand{\blandscape}{\begin{landscape}}
+  - \newcommand{\elandscape}{\end{landscape}}
 bibliography: references.json
 csl: peerj.csl
 ---
@@ -1492,6 +1495,7 @@ N00014-16-1-3019). ADFG and NSB field work was covered by Research Permits Nos.
 ::: {#refs}
 :::
 
+\blandscape
 # Supplemental Material {-} 
 
 # S1. Supplemental Table of Bio-logger Deployment Details
@@ -1499,10 +1503,65 @@ N00014-16-1-3019). ADFG and NSB field work was covered by Research Permits Nos.
 The following table provides additional details about the timing, location, and
 agencies responsible for the bio-logger deployments used in this study.
 
-```{r}
 
+
+```{r, include=TRUE}
+library(gt)
+library(googlesheets4)
+library(glue)
+
+deploy_tbl <- read_sheet("1MpCiyAKWLBXufwnzW8QTnb2SsTkrKSuPlWdpWMnqoto")
+
+
+deploy_tbl %>% 
+  dplyr::select(species, agency, deploy_year, permit, location, speno, sex, age, publications) %>% 
+  dplyr::group_by(species, agency, deploy_year, location, publications) %>% 
+  dplyr::mutate(agency = 
+                  case_when(
+                    agency %in% c('ADFG') ~ "Alaska Dept. Fish & Game",
+                    agency %in% c('NSB') ~ "North Slope Burough",
+                    agency %in% c('PEP') ~ "NOAA Alaska Fisheries Sci. Ctr",
+                    agency %in% c('NPWC') ~ "N. Pacific Wildlife Consortium"
+                  )) %>% 
+  dplyr::summarise(permits = toString(unique(permit)),
+                   n_seals = n(),
+                   sex = toString(unique(sex)),
+                   age_class = tolower(toString(unique(age)))) %>% 
+  dplyr::arrange(species, agency, deploy_year) %>% 
+  gt(
+    rowname_col = "species",
+    groupname_col = "agency"
+  ) %>% 
+  cols_label(
+    deploy_year = "Year Deployed",
+    location = "Location",
+    publications = "Publication(s)",
+    permits = "Permits",
+    n_seals = "No. Seals",
+    sex = "Sex",
+    age_class = "Age Class"
+  ) %>% 
+  tab_style(
+    style = list(
+      cell_text(style = "italic")
+    ),
+    locations = cells_body(
+      columns = publications
+    )
+  ) %>% 
+  cols_align(
+    align = "center",
+    columns = everything()
+  ) %>% 
+  cols_align(
+    align = "right",
+    columns = age_class
+  ) %>% 
+  tab_header(
+    title = "Data Contributions From Collaborators and Additional Deployment Details"
+  )
 
   
 ```
-
+\elandscape
 
