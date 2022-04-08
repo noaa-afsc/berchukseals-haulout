@@ -1223,7 +1223,7 @@ pl_subadult <- models %>% filter(species == "Spotted seal" & age_sex == "SUBADUL
 The timing of peak haul-out probability for ribbon and spotted seals
 appeared to have little to no relationship with the amount of
 yearly maximum sea ice extent. Adult female and subadult spotted seals
-show a negative trend line, but there is no indication that the observed
+show a negative relationship, but there is no indication that the observed
 trend is meaningful (spotted seal adult female: $R^{2}$ =
 `r pl_adultF$r.squared`, $p$ = `r pl_adultF$p.value`; spotted seal
 subadults: $R^{2}$ = `r pl_subadult$r.squared`, $p$ =
@@ -1393,13 +1393,13 @@ analysis.
 We focused this paper on haul-out behavior of bearded, ribbon, and spotted
 seals. Ringed seals are also present in the Bering and Chukchi seas but exhibit
 a unique complicating factor. Adult ringed seals build subnivean lairs under the
-snow on top of the sea ice, where they haul out and where females rear pups until
-conditions are good for basking [@frost2004]. Thus, the wet-dry sensor on a bio-logger
-could indicate that an animal is hauled out, but if it is within a lair, it is
-not available to be detected during an aerial survey. We hope to address
-availability of ringed seals using data from satellite tags, replicate survey
-tracks, and auxiliary information about snow depth and timing of melt in a
-future study.
+snow on top of the sea ice, where they haul out and where females rear pups
+until conditions are good for basking [@frost2004]. Thus, the wet-dry sensor on
+a bio-logger could indicate that an animal is hauled out, but if it is within a
+lair, it is not available to be detected during an aerial survey. We hope to
+address availability of ringed seals using data from satellite tags, replicate
+survey tracks, and auxiliary information about snow depth and timing of melt in
+a future study.
 
 # Author Contributions {-}
 
