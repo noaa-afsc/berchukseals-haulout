@@ -1,5 +1,5 @@
 ---
-title: Haul-out behavior and aerial survey detectability of seals in the Bering and Chukchi seas
+title: Spring haul-out behavior of seals in the Bering and Chukchi seas
 preprint: false
 author: 
   - name: Josh M. London
