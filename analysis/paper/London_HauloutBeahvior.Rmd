@@ -114,7 +114,6 @@ library(ggtext)
 library(glmmLDTS)
 library(mgcv)
 library(ragg)
-library(stickylabeller)
 library(MetBrewer)
 
 knitr::opts_chunk$set(dev = "ragg_png")
@@ -155,21 +154,38 @@ ice extent, volume, and seasonal presence [@kwok2018;
 Arctic organisms, ecosystems, and the human communities who live in the region
 [@huntington2020]. Such disruptions are a particular cause of concern for the
 ice-associated seals that depend on spring and early summer sea ice (March-June)
-in the Bering and Chukchi seas as a platform for important life history functions,
-such as pupping, nursing, breeding behavior, and molting [@boveng2009;
-@boveng2013a; @cameron2010; @kelly2010]. Limited data and large knowledge gaps
-complicate predictions about the ultimate effects of changes in sea ice on the
-behavior, health, abundance, and distribution of these seals. To date, indices
-of seal health sampled during periods of declining sea ice differ regionally
-[@crawford2015; @harwood2020]. Knowledge about evolutionary constraints on the
-timing of reproductive and molting behavior is generally lacking, so it is
-difficult to predict the readiness with which ice-associated seal species will
-be able to adapt to future changes (e.g., by adjusting pupping or molting
-schedules to earlier dates or different locales). This is further complicated by
-the spatio-temporal variation in the phenology of these life history events
-within regions and throughout their full ranges. Additionally, trends in
-abundance of these species are unknown, so it is difficult to assess the effect,
-if any, declines in sea ice habitat have had, or will have, on seal demography.
+in the Bering and Chukchi seas as a platform for important life history
+functions, such as pupping, nursing, breeding behavior, and molting
+[@boveng2009; @boveng2013a; @cameron2010; @kelly2010]. Limited data and large
+knowledge gaps complicate predictions about the ultimate effects of changes in
+sea ice on the behavior, health, abundance, and distribution of these seals. To
+date, indices of seal health sampled during periods of declining sea ice differ
+regionally [@crawford2015; @harwood2020]. Knowledge about evolutionary
+constraints on the timing of reproductive and molting behavior is generally
+lacking, so it is difficult to predict how or if ice-associated seal species
+adapt to future changes (e.g., by adjusting pupping or molting schedules to
+earlier dates or different locales). This is further complicated by the
+spatio-temporal variation in the phenology of these life history events within
+regions and throughout their full ranges. Additionally, trends in abundance of
+these species are unknown, so it is difficult to assess the effect, if any,
+declines in sea ice habitat have had, or will have, on seal demography.
+
+Statutory requirements (e.g., United States Marine Mammal Protection Act (MMPA),
+United States Endangered Species Act (ESA)) for timely estimates of population
+abundance and trend of these species mean improved aerial survey effort is
+needed -- and, must be paired with improved knowledge of haul-out behavior to
+ensure accurate estimates. Several studies have contributed estimates of the
+distribution and abundance of ice-associated seal species in the Arctic using
+aerial surveys (e.g., [@bengtson2005a], [@conn2014a], and [@verhoef2014a]). Such
+abundance studies were conducted over very large areas and estimation of
+absolute abundance required making inference about numerous issues affecting the
+observation of seals on ice. These included availability (only seals on ice were
+available to be counted), detection probability (observers or automated
+detection systems may have missed some seals on ice), species misclassification,
+and possible disturbance of seals by aircraft [@conn2014a; @verhoef2014a].
+Refining these inferences will improve the accuracy of abundance estimates and,
+hopefully, allow credible predictions about the effects of climate disruptions
+on the abundance and distribution of Arctic seal populations.
 
 How ice-assoicated seals use sea ice as a haul-out platform varies between species.
 Ribbon seals (_Histriophoca fasciata_) haul out of the water almost exclusively
@@ -180,27 +196,26 @@ ice as a haul-out platform during the spring and early summer [@frost2018].
 Ringed seals (_Phoca hispida_) --- not included in this study --- haul out on
 sea-ice but also within snow lairs during winter and spring. 
 
-The remoteness of the Bering and Chukchi seas means direct scientific observation
-of seal behavior is impractical. Thus, bio-logging devices are especially useful
-tools for collecting key information on movement and haul-out behavior for these
-species. Bio-logging records of time spent out of the water provide valuable
-data for identifying covariates that explain variation in haul-out behavior. 
-For instance,Von Duyke et al.
-[-@vonduyke2020] used satellite-linked bio-loggers to corroborate seasonal
-changes between diurnal and nocturnal haul-out behavior of ringed seals
-previously described by Kelly and Quakenbush [-@kelly1990c] using VHF radio tags
-and direct observation. Bengtson et al. [-@bengtson2005a] documented a higher
-propensity for ringed seal basking near solar noon, as did Ver Hoef et al.
-[-@verhoef2014a] in an analysis of bearded, ribbon, and spotted seals using much
-larger sample sizes. Olnes et al. [-@olnes2020] showed that the proportion of
-time bearded seals spent hauled out progressively increased through spring and
-summer, and Ver Hoef et al. [-@verhoef2014a] found haul-out probabilities
-increased gradually starting in March and peaked in May and June for bearded,
-ribbon, and spotted seals. Such analyses have not been limited to the Arctic. In 
-the Antarctic, Bengtson and Cameron [-@bengtson2004] relied on
-bio-logging data to demonstrate greater haul-out propensity in juvenile
-crabeater seals (_Lobodon carcinophaga_) than adults, with highest probabilities
-in February and at times close to solar noon. 
+The remoteness of the Bering and Chukchi seas means direct scientific
+observation of seal behavior is impractical. Thus, bio-logging devices are
+especially useful tools for collecting key information on movement and haul-out
+behavior for these species. Bio-logging records of time spent out of the water
+provide valuable data for identifying covariates that explain variation in
+haul-out behavior. For instance,Von Duyke et al. [-@vonduyke2020] used
+satellite-linked bio-loggers to corroborate seasonal changes between diurnal and
+nocturnal haul-out behavior of ringed seals previously described by Kelly and
+Quakenbush [-@kelly1990c] using VHF radio tags and direct observation. Bengtson
+et al. [-@bengtson2005a] documented a higher propensity for ringed seal basking
+near solar noon, as did Ver Hoef et al. [-@verhoef2014a] in an analysis of
+bearded, ribbon, and spotted seals using much larger sample sizes. Olnes et al.
+[-@olnes2020] showed that the proportion of time bearded seals spent hauled out
+progressively increased through spring and summer, and Ver Hoef et al.
+[-@verhoef2014a] found haul-out probabilities increased gradually starting in
+March and peaked in May and June for bearded, ribbon, and spotted seals. Such
+analyses have not been limited to the Arctic. In the Antarctic, Bengtson and
+Cameron [-@bengtson2004] relied on bio-logging data to demonstrate greater
+haul-out propensity in juvenile crabeater seals (_Lobodon carcinophaga_) than
+adults, with highest probabilities in February and at times close to solar noon.
 
 Knowledge of haul-out patterns is not only important for understanding natural
 history and ecology, but also for developing "availability" correction factors
@@ -225,23 +240,6 @@ of a subset of the study individuals. These devices are designed to collect data
 through the molt period (when those adhered to the hair would fall off) and, in
 some situations, provide multiple years of data.
 
-Statutory requirements under, for instance, the Marine Mammal Protection Act
-(MMPA) and the Endangered Species Act (ESA) for timely estimates of population 
-abundance and trend mean improved aerial survey effort must be paired with
-improved knowledge of haul-out behavior. Several studies have contributed
-estimates of the distribution and abundance of ice-associated seal species in
-the Arctic using aerial surveys (e.g., [@bengtson2005a], [@conn2014a], and
-[@verhoef2014a]). Such abundance studies were conducted over very large areas and
-estimation of absolute abundance required making inference about numerous issues
-affecting the observation of seals on ice. These included availability (only
-seals on ice were available to be counted), detection probability
-(observers or automated detection systems may have missed some seals on ice),
-species misclassification, and possible disturbance of seals by aircraft
-[@conn2014a; @verhoef2014a]. Refining these inferences will improve the
-accuracy of abundance estimates and, hopefully, allow credible
-predictions about the effects of climate disruptions on the abundance and
-distribution of Arctic seal populations.
-
 In this study, we used 16 years of bio-logging data to investigate the haul-out
 behavior of bearded, ribbon, and spotted seals in the Bering and Chukchi seas.
 Our goals were threefold. First, we wished to establish baseline estimates for
@@ -256,7 +254,7 @@ behavior of walruses [@udevitz2009]. Third, we aimed to assess the annual
 variability in haul-out timing and possible linkage to changes in the extent of
 seasonal sea ice between 2005 and 2020. Our work extends the scope of previous
 haul-out analyses, includes the influence of meteorological variability, and
-investigates the potential impact of a changing icescape on the behavior of
+investigates the potential impact of changing sea-ice extent on the behavior of
 these species.
 
 # Methods {-}
@@ -269,12 +267,13 @@ targets::tar_load(grid, store = here::here("_targets"))
 targets::tar_load(deploy_table, store = here::here("_targets"))
 ```
 
-Data used in our study came from bio-loggers deployed on bearded, ribbon, and
-spotted seals in the Bering, Chukchi, and western Beaufort seas by multiple
-organizations as part of collaborative investigations from 2005 through 2020.
-Seals were captured using nets and bio-loggers were attached during studies
-based in coastal Alaska communities or on research ships. Ship-based capture
-events occurred during spring near the southern ice edge in the Bering Sea.
+For this study we used haul-out behavior data and location estimates from
+bio-loggers deployed on bearded, ribbon, and spotted seals in the Bering,
+Chukchi, and western Beaufort seas by multiple organizations as part of
+collaborative investigations from 2005 through 2020. Seals were captured using
+nets and bio-loggers were attached during studies based in coastal Alaska
+communities or on research ships. Ship-based capture events occurred during
+spring near the southern ice edge in the Bering Sea between 2005 and 2018.
 Land-based capture events occurred between 2005 and 2020 from May to October,
 generally between the coastal communities of Scammon Bay, Alaska in the Bering
 Sea, Utqiaġvik, Alaska in the Chukchi Sea, and Nuiqsut in the Beaufort Sea. We
@@ -289,25 +288,25 @@ species_n <- deploy_table %>%
 ```
 
 
-Haul-out behavior data from 
+We subset haul-out behavior data from 
 `r species_n %>% .$n %>% sum()` bio-loggers deployed on 
 `r species_n %>% filter(species == "Bearded seal") %>% .$n` bearded, 
 `r species_n %>% filter(species == "Ribbon seal") %>% .$n` ribbon, and 
-`r species_n %>% filter(species == "Spotted seal") %>% .$n` spotted seals were
-subset to include only records from 1 March to 15 July between 
+`r species_n %>% filter(species == "Spotted seal") %>% .$n` spotted seals 
+to include only records from 1 March to 15 July between 
 `r min(lubridate::year(analysis_data$haulout_dt))` and 
 `r max(lubridate::year(analysis_data$haulout_dt))`. Bio-loggers were of the
 'SPLASH' or 'SPOT' family of tags developed by Wildlife Computers (Redmond,
-Washington, USA) and either adhered to the hair on the seal or attached through the
-rear flipper inter-digital webbing. The use of bio-loggers adhered to the back
-or head provide some benefits over flipper mounted devices (e.g. increased
-satellite transmittal rates, locations at sea) but these are lost during the
-following annual molt, which, depending on deployment date, limits the duration
-of haul-out data they provide. Additionally, bio-loggers attached to the head or
-dorsal region are often dry while the seal is floating at the surface, inducing
-a slight positive bias in the hourly percent-dry values reported by the
-bio-logger. For this study, in cases where both bio-logger types were deployed,
-hourly percent-dry observations from the flipper tag were preferred.
+Washington, USA) and we either adhered them to the hair on the seal or attached
+them through the rear flipper inter-digital webbing. The use of bio-loggers
+adhered to the back or head provides some benefits over flipper mounted devices
+(e.g. increased satellite transmittal rates, locations at sea) but these are
+lost during the following annual molt, which, depending on deployment date,
+limits the duration of haul-out data they provide. Additionally, bio-loggers
+attached to the head or dorsal region are often dry while the seal is floating
+at the surface, inducing a slight positive bias in the hourly percent-dry values
+reported by the bio-logger. For this study, in cases where both bio-logger types
+were deployed, we preferred hourly percent-dry observations from the flipper tag.> 
 
 Field identification of age class can be inexact, particularly when differentiating
 subadults from adults. Sex as well as age class (non-dependent _young-of-the-year_,
