@@ -414,8 +414,8 @@ by May, bio-loggers had either fallen off or their batteries were depleted.
 
 ```{r dataCal, include=TRUE, fig.height = 4, fig.cap = "Distribution of hourly percent-dry bio-logger data from 1 March to 15 July for each species. Data are grouped by day-of-year and presented in seal-hours collated across all years between 2005 and 2020. The higher density of data from May and June in ribbon and spotted seals coincides with peak molting when seals (and their attached bio-loggers) are more likely hauled out. Additionally, many bio-logger deployments started in April and May. The overall reduced quantity of observations from bearded seals is reflective of the lower number of bio-logger deployments in the study."}
 
-ggplot(data = seal_hours_tbl, aes(x = yday, y = 1, fill = n))+
-        geom_tile()+
+ggplot(data = seal_hours_tbl, aes(x = yday, y = n, fill = n))+
+  geom_col() +
         scale_fill_gradientn(colors = rev(met.brewer("Hokusai2"))) +
         # scale_fill_viridis_c(option="mako") +
         scale_x_continuous(breaks = c(60, 91, 121, 152, 182),
@@ -434,7 +434,6 @@ ggplot(data = seal_hours_tbl, aes(x = yday, y = 1, fill = n))+
   labs(fill = "seal-hours of bio-logger data") +
   ggtitle("Density of haul-out behavior observations varies from March through July",
           subtitle = "data are grouped by day-of-year and presented in seal-hours collated across years (2005-2020)")
-
 
 ```
 
