@@ -103,10 +103,21 @@ on the Arctic region.
 > *Please use direct language you mean biologically important
 > functions?*
 
-The term 'life history function' is a commonly used, direct term that
-refers to biologically important functions. To ensure the reader is
-clearly aware of which behaviors/functions we are referring to we
-provide specific examples within the sentence.
+The term 'life history function' is a commonly used, direct term.
+
+Here is a definition from Oxford:
+
+"The life history of an organism is its pattern of survival and reproduction,
+along with the traits that directly affect survival and the timing or amount of
+reproduction. Rates of survival and reproduction can be estimated across age
+classes, or across different stages in organisms with complex life cycles. Life
+history traits include growth rate; age and size at sexual maturity; the
+temporal pattern or schedule of reproduction; the number, size, and sex ratio of
+offspring; the distribution of intrinsic or extrinsic mortality rates (e.g.,
+patterns of senescence); and patterns of dormancy and dispersal."
+
+To ensure the reader is clearly aware of which life-history behaviors/functions
+we are referring to we provide specific examples within the sentence.
 
 > *What does "readiness" mean in the context of a marine mammal?*
 
@@ -137,3 +148,163 @@ bio-logger data to estimate haul-out behavior.
 > Here you are specifically interested in age-class.*
 
 We have edited to use the term 'demographic'
+
+> Please help your reader understand why are you doing your analysis and not 
+> offer a wide and jargon rich inventory of concepts that may be considered.
+
+> Please keep your introduction focused on establishing the knowledge gap that 
+> you are seeking to fill.   Please do not lead your reader to the numerous other 
+> knowledge gaps that are not being addressed by your current study.
+
+We have removed the sentence in question
+
+> Please use the term "hauled-out".  Neither the biologger nor the aerial 
+> survey is able to distinguish among the various seal behaviors that result in 
+> them being hauled out and available for view by an aerial survey.
+
+noted, and the terms 'hauled out', 'to haul out', etc is used consistently
+throughout the manuscript
+
+> You have indicate that you would consider sea ice extent.  Here you introduce 
+> the concept of icescape.  Please introduce this concept earlier and indicate 
+> how you will incorporate this into your analysis.
+
+changed `icescape` to `sea-ice extent`
+
+> Please use an active voice for clarity.
+
+This sentence has been changed to:
+
+"For this study we used haul-out behavior data and location estimates from
+bio-loggers deployed on bearded, ribbon, and spotted seals in the Bering,
+Chukchi, and western Beaufort seas by multiple organizations as part of 
+collaborative investigations from 2005 through 2020."
+
+> You summarize the years during which land-based studies applied bio-loggers.  
+> Please do the same for the offshore deployments.
+
+This sentence now reads:
+
+"Ship-based capture events occurred during spring near the southern ice edge in
+the Bering Sea between 2005 and 2018."
+
+> Please provide the geographic context of your tag deployments and data 
+> collection using a plot similar to that used by Jay et al. 
+> (2012:  10.3354/meps10057 figure 2).  Please consider using a tabulation that 
+> enables readers to understand the geographic context of the deployments 
+> similar to that used by Jay et al. 2012, table 1.
+
+We feel the spatial distribution of the actual transmitted data -- compared to
+the deployment location -- is most informative and relevant for the audience's
+understanding of how our data are distributed spatially and how well data
+represents the range of each species. We provide this visually in Figure 3 and
+adding an additional layer to that figure would to show deployments would be
+an additional complication. To ensure the audience as a clear understanding
+of our study area, we have added an additional figure with a map of the Bering
+and Chukchi sea region that indicates generally where deployments started. We
+have also added a more detailed figure to the supplemental section with each
+location specifically marked.
+
+> Please use active voice for all actions that you took in your data collection, 
+> preparation and analysis.
+
+Noted and addressed
+
+> Please move this to the discussion.  This is a summary of your data findings, 
+> not a description of your methods.
+
+We can see the reviewer's point. However, we do not feel this topic is a summary 
+of our data findings in this paper. Instead, our view
+is that this information provides the context and rationale for our
+methodological choice regarding bio-logger type and attachment methods. It is
+also important regarding the analytic methods -- preference for flipper tag
+haul-out data over those from a tag adhered to the dorsal/head. If we were to 
+move these important points to the discussion, we worry those points would be 
+left disconnected. 
+
+> This is a discussion of your methods.  This is not your methods.  Please state 
+> how the data was collected in your Methods section and discuss how data 
+> collection have been uncertain or biased in your discussion section.
+
+> Please move to your discussion.
+
+We appreciate this suggestion from the reviewer and we have moved large
+portions of this paragraph to the discussion. However, some information
+regarding age/sex class determination is left here so the reader has context
+for Table 1.
+
+> Please indicate how this was determined during data collection.
+
+We have edited this sentence some to clearly communicate that field 
+determination of reproductive status (and, thus ideal delineation of
+sub-adult and adult age class) was not possible.
+
+> Please allow your readers the opportunity to understand the geographic 
+> context of these deployments through use of symbols that maybe used to 
+> cross-reference the deployment locations in a map that indicates deployment 
+> locations along with filtered movement tracks.
+
+As previously addressed, there are now two figures available that provide
+geographic context of the deployments. Figure 3 shows the geographic
+distribution of the data from the deployments. The paper is not presenting or
+discussing movement ecology and, therefore, we do not present filtered
+movement tracks. We keep the focus on haul-out behavior data.
+
+> Please consider bar plot similar to that used by Jay et al. 
+> (2012: 10.3354/meps10057 figure 3), replacing the region with the seal species.
+
+This figure has been updated with this suggestion in mind
+
+> Please state clearly how you determined the end of a deployment.  Here you 
+> indicate various elements of the haulout chronology, movement and dive 
+> chronology that may have been used, however not reader could replicate your 
+> methods base don this text. 
+
+We've added the following text to the paragraph:
+
+"For example, a data record that ends with several consecutive
+days (~10+ days) of 100% dry observations and with locations indicating the tag
+was on land would be truncated to not include the final stretch of 100% dry
+observations. The vast majority of deployments end with the device detaching in the 
+water and the deployment end date is obvious. There is no perfect algorithm for
+identifying deployment end dates and each deployment in question must be considered 
+separately. While not perfect, we are confident our reliance on expert opinion and
+examination of multiple data streams provides the best option."
+
+> Deployment activity is known to disrupt normal pinniped behavior.  Did you 
+> censure some period of data collection during and after the deployment to 
+> ensure that that disruptions from the deployment activity did not bias your 
+> analysis?
+
+For these phocid species, we have no empirical data (or even anecdotal 
+observational data) on how captures may or may not disrupt 'normal' behavior.
+This is likely to be influenced by the capture method, how long the animal
+was restrained, whether the animal was with a dependent pup, whether the
+animal was molting, environmental variables such as wind and temperature, etc
+etc. Given all these unknowns, we have not applied a censure to the beginning of
+our deployment data. We can't 100% ensure this choice doesn't result in some
+level of bias. However, given the large sample size and duration of deployments
+we expect any bias imposed is negligible.
+
+> This is a result.
+> Please indicate the method that you used to distinguish "plausible" from 
+> "implausible" telemetered seal behavior.  In your Results section, you may 
+> indicate how method was able to identify occasions of implausible seal behavior 
+> and any patterns that arose relative to tag model or attachment.
+
+This sentence has been moved to the results section. Addtionally, we've provided
+a brief explanation of implausible. For these devices, the percent-dry timeline
+reported 100% dry for several weeks followed by an additional period of time
+that was more typical of expected bearded seal behavior. During the extended dry
+time the locations indicated movement of the tag that would not be simply
+drifting ice. We also observed increasing transmission rates. The working (i.e.
+unconfirmed guess) is that the wet/dry sensor surface became obscured by some
+corrosive element such that when in the water conductivity was prevented and,
+thus, recorded as dry.
+
+> Please move to the Results section.
+> Please move the discussion of how molt timing affects termination of tag 
+> deployments to the discussion section.
+
+Figure 1 (original) has been moved to the results section along with additional
+descriptive text. We have also added mention to the Discussion section.

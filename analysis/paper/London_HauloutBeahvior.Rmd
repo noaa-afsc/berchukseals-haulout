@@ -128,18 +128,6 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 
-# knitr::opts_chunk$set(
-#   tab.cap.style = "Table Caption",
-#   tab.cap.pre = "Table ",
-#   tab.cap.sep = ": "
-#   )
-# 
-# knitr::opts_chunk$set(
-#   fig.cap.style = "Image Caption",
-#   fig.cap.pre = "Figure ",
-#   fig.cap.sep = ": "
-#   )
-
 options(scipen = 3, digits = 3)
 
 theme_set(theme_minimal(base_family = 'Source Sans Pro'))
@@ -308,24 +296,16 @@ at the surface, inducing a slight positive bias in the hourly percent-dry values
 reported by the bio-logger. For this study, in cases where both bio-logger types
 were deployed, we preferred hourly percent-dry observations from the flipper tag.> 
 
-Field identification of age class can be inexact, particularly when differentiating
-subadults from adults. Sex as well as age class (non-dependent _young-of-the-year_,
-sexually immature _subadults_, and mature _adults_) were estimated at the time
-of deployment by various combinations of length, claw growth ridges
-[@mclaren1958a], and pelage characteristics for some species. In the case of
-ribbon seals, subadults often have less distinct ribbons than adults. Bearded
-seal subadults will often have a spotted pattern in the pelage that is not seen
-in adults. Spotted seal pelage cannot be used to reliably discern adults from
-subadults. Despite these challenges, we feel the age classifications used in
-this analysis are useful in testing for age-related effects on haul-out
-behavior. Seals determined to be less than one year were classified as
-young-of-the-year. Subadults are those seals likely greater than one year of age
-but not yet sexually mature. Adults are individuals that are likely sexually
-mature and older than four years. For those bio-loggers deployed on
+Sex as well as age class (non-dependent _young-of-the-year_, sexually immature
+_subadults_, and mature _adults_) were estimated at the time of deployment by
+various combinations of length, claw growth ridges [@mclaren1958a], and pelage
+characteristics for some species. Seals determined to be less than one year were
+classified as young-of-the-year. For those bio-loggers deployed on
 young-of-the-year and transmitting into the next year, the age class was
-advanced to subadult on 1 March of the following year. Table
-\@ref(tab:tblDeploy) provides a summary of these deployments and data received
-from them.
+advanced to subadult on 1 March of the following year. Subadults are those seals
+likely greater than one year of age but less than four years. Adults are
+individuals that are likely older than four years. Table \@ref(tab:tblDeploy)
+provides a summary of these deployments and data received from them.
 
 ```{r tblDeploy, include=TRUE, tab.cap = "Summary of bio-logger data across seal species and age classification from 1 March to 15 July 2005-2020. Total seal hours represents the sum of hourly observations across all seals used in the analysis. Because young-of-the-year are advanced to subadult on 1 March of the following year, some individual seals are represented in both columns in this table"}
 
@@ -391,71 +371,21 @@ seal_hours_tbl <- analysis_data %>%
 ```
 
 Tags that fall off due to molt, attachment failure, or seal mortality and remain
-on ice or land may continue to send data to satellites; i.e., a detached bio-logger 
-that is dry (either on ice or land) will record and transmit data suggesting
-the seal is hauled out. Therefore, end times of each deployment were identified by
-examining bio-logger locations, percent-dry records, and dive behavior (if
-available) to determine when bio-loggers ceased providing data consistent with
-seal behavior. Data outside of the deployment start and end times were discarded
-prior to analysis. After approximately 9 months, 7 devices deployed on the rear
-flipper of bearded seals reported implausible hourly percent-dry data. All data
-after the first instance of unrealistic values were censored from this analysis.
-Figure \@ref(fig:dataCal) shows the distribution of all haul-out data across the
-study season for each species. Observations for ribbon and spotted seals were
-concentrated in the months of May and June due to the timing of deployment
-(April and May) and the timing of molt (May and June). During molt, seals (and
-their attached bio-loggers) spend more time out of the water and more data are
-transmitted. Molt timing also impacts when many deployments end as any
-bio-loggers adhered to the hair will fall off. Relative to the other species in
-the study, there were fewer deployments of bio-loggers on bearded seals. This
-resulted in fewer data observations overall and noticeably lower in numbers May
-and June. The majority of bearded seal deployments started later in the summer and,
-by May, bio-loggers had either fallen off or their batteries were depleted.
-
-```{r dataCal, include=TRUE, fig.height = 4, fig.cap = "Distribution of hourly percent-dry bio-logger data from 1 March to 15 July for each species. Data are grouped by day-of-year and presented in seal-hours collated across all years between 2005 and 2020. The higher density of data from May and June in ribbon and spotted seals coincides with peak molting when seals (and their attached bio-loggers) are more likely hauled out. Additionally, many bio-logger deployments started in April and May. The overall reduced quantity of observations from bearded seals is reflective of the lower number of bio-logger deployments in the study."}
-
-ggplot(data = seal_hours_tbl, aes(x = yday, y = n, fill = n))+
-  geom_col() +
-        scale_fill_gradientn(colors = rev(met.brewer("Hokusai2"))) +
-        # scale_fill_viridis_c(option="mako") +
-        scale_x_continuous(breaks = c(60, 91, 121, 152, 182),
-                           labels = c("01 March", "01 April", "01 May", "01 June", "01 July"),
-                           expand = expansion(mult = c(0, 0))) +
-        scale_y_continuous(expand = expansion(mult = c(0, 0))) +
-  guides(fill = guide_colorbar(title.position = "bottom", 
-                               title.hjust = 0.5, barwidth = 15,
-                               barheight = 0.5)) +
-  facet_grid(species ~ .) + 
-  theme(axis.text.x = element_text(hjust = 0),
-        axis.text.y = element_blank(),
-        axis.title = element_blank(),
-        panel.grid = element_blank(),
-        legend.position = "bottom") +
-  labs(fill = "seal-hours of bio-logger data") +
-  ggtitle("Density of haul-out behavior observations varies from March through July",
-          subtitle = "data are grouped by day-of-year and presented in seal-hours collated across years (2005-2020)")
-
-```
-
-```{r binomialdata}
-
-portion_10 <- function(d) {
-  n <- nrow(d)
-  f <- d %>% dplyr::filter(percent_dry <= 10) %>% 
-    nrow()
-  p10 <- f/n
-  return(p10)
-}
-
-portion_90 <- function(d) {
-  n <- nrow(d)
-  f <- d %>% dplyr::filter(percent_dry >= 90) %>% 
-    nrow()
-  p90 <- f/n
-  return(p90)
-}
-
-```
+on ice or land may continue to send data to satellites; i.e., a detached
+bio-logger that is dry (either on ice or land) will record and transmit data
+suggesting the seal is hauled out. Therefore, end times of each deployment were
+identified by examining bio-logger locations, percent-dry records, and dive
+behavior (if available) to determine when bio-loggers ceased providing data
+consistent with seal behavior. For example, a data record that ends with several
+consecutive days (~10+ days) of 100% dry observations and with locations
+indicating the tag was on land would be truncated to not include the final
+stretch of 100% dry observations. The vast majority of deployments end with the
+device detaching in the water and the deployment end date is obvious. There is
+no perfect algorithm for identifying deployment end dates and each deployment in
+question must be considered separately. While not perfect, we are confident our
+reliance on expert opinion and examination of multiple data streams provides the
+best option. Data outside of the deployment start and end times were discarded
+prior to analysis. 
 
 Haul-out behavior data were recorded and transmitted via the Argos satellite
 network as hourly percent-dry timelines. For each hour of a day, the wet/dry
@@ -718,6 +648,26 @@ clearly violated if hourly responses are modeled. Any analysis that ignores
 temporal autocorrelation in responses will thus have overstated precision
 [@betts2006].
 
+```{r binomialdata}
+
+portion_10 <- function(d) {
+  n <- nrow(d)
+  f <- d %>% dplyr::filter(percent_dry <= 10) %>% 
+    nrow()
+  p10 <- f/n
+  return(p10)
+}
+
+portion_90 <- function(d) {
+  n <- nrow(d)
+  f <- d %>% dplyr::filter(percent_dry >= 90) %>% 
+    nrow()
+  p90 <- f/n
+  return(p90)
+}
+
+```
+
 To properly account for temporal dependence within a computationally tractable
 framework, we used generalized linear mixed pseudo-models (GLMPMs;
 [@verhoef2010a]) to model variation in haul-out behavior as a function of (1)
@@ -801,6 +751,44 @@ model uncertainty.
 
 # Results {-}
 
+Figure \@ref(fig:dataCal) shows the distribution of all
+haul-out data across the study season for each species. Observations for ribbon
+and spotted seals were concentrated in the months of May and June due to the
+timing of deployment (April and May) and the timing of molt (May and June).
+During molt, seals (and their attached bio-loggers) spend more time out of the
+water and more data are transmitted. Molt timing also impacts when many
+deployments end as any bio-loggers adhered to the hair will fall off. Relative
+to the other species in the study, there were fewer deployments of bio-loggers
+on bearded seals. This resulted in fewer data observations overall and
+noticeably lower in numbers May and June. The majority of bearded seal
+deployments started later in the summer and, by May, bio-loggers had either
+fallen off or their batteries were depleted.
+
+```{r dataCal, include=TRUE, fig.height = 4, fig.cap = "Distribution of hourly percent-dry bio-logger data from 1 March to 15 July for each species. Data are grouped by day-of-year and presented in seal-hours collated across all years between 2005 and 2020. The higher density of data from May and June in ribbon and spotted seals coincides with peak molting when seals (and their attached bio-loggers) are more likely hauled out. Additionally, many bio-logger deployments started in April and May. The overall reduced quantity of observations from bearded seals is reflective of the lower number of bio-logger deployments in the study."}
+
+ggplot(data = seal_hours_tbl, aes(x = yday, y = n, fill = n))+
+  geom_col() +
+        scale_fill_gradientn(colors = met.brewer("VanGogh3")) +
+        # scale_fill_viridis_c(option="mako") +
+        scale_x_continuous(breaks = c(60, 91, 121, 152, 182),
+                           labels = c("01 March", "01 April", "01 May", "01 June", "01 July"),
+                           expand = expansion(mult = c(0, 0))) +
+        scale_y_continuous(expand = expansion(mult = c(0, 0))) +
+  guides(fill = guide_colorbar(title.position = "bottom", 
+                               title.hjust = 0.5, barwidth = 15,
+                               barheight = 0.5)) +
+  facet_grid(species ~ .) + 
+  theme(axis.text.x = element_text(hjust = 0),
+        axis.text.y = element_blank(),
+        axis.title = element_blank(),
+        panel.grid = element_blank(),
+        legend.position = "bottom") +
+  labs(fill = "seal-hours of bio-logger data") +
+  ggtitle("Density of haul-out behavior observations varies from March through July",
+          subtitle = "data are grouped by day-of-year and presented in seal-hours collated across years (2005-2020)")
+
+```
+
 Models omitting year effects suggested that day-of-year, solar hour, age-sex
 class, temperature, and wind substantially influenced haul-out behavior of all
 three species, with $F$ tests producing $p$-values less than 0.05 for variables
@@ -808,6 +796,8 @@ embodying these effects and/or their interactions. Haul-out probabilities
 typically increased throughout March and April, reaching a peak in May and early
 June before declining again. Diurnal patterns were present, with maximum
 haul-out behavior centered around local solar noon.
+
+
 
 ```{r type3}
 ribbon_type3 <- tibble(
@@ -845,13 +835,17 @@ bearded_type3 <- setNames(split(bearded_type3,
 
 Age and sex class were not included in the model for bearded seals due to our
 lower sample size for adult and young-of-year age classes. As such, results are
-shown for all ages (Figure \@ref(fig:beardedHOCal)). Overall, bearded seals were
-less likely to haul out and had a bi-modal distribution of haul-out probability
-across the day. In addition to a peak around local solar noon, the bearded seal
-model predicted additional haul-out activity around local midnight. In concert
-with the lower magnitude of haul-out probability, bearded seal haul-out behavior
-was also more protracted throughout the spring season compared to ribbon and
-spotted seals.
+shown for all ages (Figure \@ref(fig:beardedHOCal)). Additionally, after
+approximately 9 months, 7 devices deployed on the rear flipper of bearded seals
+reported implausible hourly percent-dry data (100% dry for several weeks but
+indicative of movement and increasing transmission rates (see @boveng2013)). All
+data after the first instance of unrealistic values were censored from this
+analysis. Overall, bearded seals were less likely to haul out and had a bi-modal
+distribution of haul-out probability across the day. In addition to a peak
+around local solar noon, the bearded seal model predicted additional haul-out
+activity around local midnight. In concert with the lower magnitude of haul-out
+probability, bearded seal haul-out behavior was also more protracted throughout
+the spring season compared to ribbon and spotted seals.
 
 ```{r ebnewdata}
 targets::tar_load(bearded_newdata, store = here::here("_targets"))
@@ -1289,8 +1283,15 @@ resting metabolic rates.
 
 Unlike previous analyses of seal haul-out behavior in spotted and ribbon seals
 (e.g. [@verhoef2010a], [@conn2014a]), we also investigated the influence of
-sex-age class on haul-out probabilities for all species (not for bearded seals
-because of low sample size). Although ribbon and spotted seals exhibited a
+sex-age class on haul-out probabilities for both species (not for bearded seals
+because of low sample size). Field identification of age class can be inexact,
+particularly when differentiating subadults from adults. In the case of ribbon
+seals, subadults often have less distinct ribbons than adults. Spotted seal
+pelage cannot be used to reliably discern adults from subadults. Despite these
+challenges, we feel the age classifications used in this analysis are useful in
+testing for age-related effects on haul-out behavior.
+
+Although ribbon and spotted seals exhibited a
 unimodal diel haul-out pattern generally centered around local solar noon, there
 were key differences across species, age, and sex that match our understanding
 from natural history descriptions of their ecological behavior. Spotted seals
