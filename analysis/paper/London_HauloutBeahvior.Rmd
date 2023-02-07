@@ -162,18 +162,19 @@ Statutory requirements (e.g., United States Marine Mammal Protection Act (MMPA),
 United States Endangered Species Act (ESA)) for timely estimates of population
 abundance and trend of these species mean improved aerial survey effort is
 needed -- and, must be paired with improved knowledge of haul-out behavior to
-ensure accurate estimates. Several studies have contributed estimates of the
-distribution and abundance of ice-associated seal species in the Arctic using
-aerial surveys (e.g., [@bengtson2005a], [@conn2014a], and [@verhoef2014a]). Such
-abundance studies were conducted over very large areas and estimation of
-absolute abundance required making inference about numerous issues affecting the
-observation of seals on ice. These included availability (only seals on ice were
-available to be counted), detection probability (observers or automated
-detection systems may have missed some seals on ice), species misclassification,
-and possible disturbance of seals by aircraft [@conn2014a; @verhoef2014a].
-Refining these inferences will improve the accuracy of abundance estimates and,
-hopefully, allow credible predictions about the effects of climate disruptions
-on the abundance and distribution of Arctic seal populations.
+ensure appropriate survey design, robust methods, and accurate estimates.
+Several studies have contributed estimates of the distribution and abundance of
+ice-associated seal species in the Arctic using aerial surveys (e.g.,
+[@bengtson2005a], [@conn2014a], and [@verhoef2014a]). Such abundance studies
+were conducted over very large areas and estimation of absolute abundance
+required making inference about numerous issues affecting the observation of
+seals on ice. These included availability (only seals on ice were available to
+be counted), detection probability (observers or automated detection systems may
+have missed some seals on ice), species misclassification, and possible
+disturbance of seals by aircraft [@conn2014a; @verhoef2014a]. Refining these
+inferences will improve the accuracy of abundance estimates and, hopefully,
+allow credible predictions about the effects of climate disruptions on the
+abundance and distribution of Arctic seal populations.
 
 How ice-assoicated seals use sea ice as a haul-out platform varies between species.
 Ribbon seals (_Histriophoca fasciata_) haul out of the water almost exclusively
@@ -294,7 +295,7 @@ limits the duration of haul-out data they provide. Additionally, bio-loggers
 attached to the head or dorsal region are often dry while the seal is floating
 at the surface, inducing a slight positive bias in the hourly percent-dry values
 reported by the bio-logger. For this study, in cases where both bio-logger types
-were deployed, we preferred hourly percent-dry observations from the flipper tag.> 
+were deployed, we preferred hourly percent-dry observations from the flipper tag. 
 
 Sex as well as age class (non-dependent _young-of-the-year_, sexually immature
 _subadults_, and mature _adults_) were estimated at the time of deployment by
@@ -390,18 +391,20 @@ prior to analysis.
 Haul-out behavior data were recorded and transmitted via the Argos satellite
 network as hourly percent-dry timelines. For each hour of a day, the wet/dry
 sensor was polled by the tag firmware every few seconds and the percent of the
-hour in the dry state was calculated (Figure \@ref(fig:examplePlot)). On board the
-bio-logger, hourly percent-dry data were rounded to the nearest 10%
-inclusive of 0% and 100% and additional values at 3% and 98%. This
+hour in the dry state was calculated (Figure \@ref(fig:examplePlot)). On board
+the bio-logger, hourly percent-dry calculations were rounded to the nearest 10%
+inclusive of 0% and 100% along with additional values at 3% and 98%. This
 compression resulted in additional data transmission as each message consisted
-of two complete 24-hour records. Bio-loggers were, typically, deployed and
-programmed in a manner to maximize data transmission during the spring pupping
-and molting period, though hourly percent-dry data were not always
-successfully transmitted. This is due to a variety of factors including
+of two complete 24-hour records. Memory capacity allowed caching of percent-dry
+records for several weeks or months and each message was transmitted several
+times to ensure reception at the satellite. Bio-loggers were, typically,
+deployed and programmed in a manner to maximize data transmission during the
+spring pupping and molting period, though hourly percent-dry data were not
+always successfully transmitted. This is due to a variety of factors including
 satellite coverage, tag availability (e.g., tags mounted to the rear flipper
 often do not transmit while at sea), tag performance, duty cycling, and
-extra-terrestrial atmospheric interference. Fortunately, missing records do not
-substantially bias inference about haul-out probabilities [@conn2012b].
+atmospheric interference. Fortunately, missing records do not substantially bias
+inference about haul-out probabilities [@conn2012b].
 
 ```{r examplePlot, include=TRUE, fig.id="examplePlot", fig.cap="Haul-out behavior observations recorded by a bio-logger deployed on a ribbon seal over two years during the months of March, April, and May. Areas of the plot indicated with an 'X' represent missing data that were not successfully recieved from the tag."}
 
@@ -473,7 +476,7 @@ from the Argos Kalman filter algorithm. Location estimates from FastLoc GPS were
 all assigned an error radius of 50 m. On days when haul-out observations were
 present but location data were missing we used the seal's last calculated weighted
 average daily location; days when the location intersected with land
-were removed from the seal's record. We recognized that bearded and spotted
+were removed from the seal's record. We recognize that bearded and spotted
 seals haul out on land. However, assessing the relationship between haul-out
 behavior and weather covariates and seals' availability for aerial surveys on
 land was outside the scope of this study. Additionally, any daily locations on
@@ -532,26 +535,27 @@ ggplot() +
 
 In addition to sex and age class, we analyzed variables that might help explain
 variation in haul-out probabilities. These included day-of-year (for seasonal
-effects) and local solar hour (for diurnal effects). Solar hour was calculated
-using the {solaR} package [@perpinan2012] within the R statistical environment
-[@rcoreteam2021] using the daily locations. We also linked the weighted average
-daily locations from our bio-loggers to key weather values from the North
-American Regional Reanalysis (NARR) model produced by the National Centers for
-Environmental Prediction [@mesinger2006]. The NARR model assimilates
+effects) and local solar hour (for diurnal effects). We calculated local solar
+hour using the {solaR} package [@perpinan2012] within the R statistical
+environment [@rcoreteam2021] based on the weighted daily average locations. We
+also linked the weighted average daily locations to weather values from the
+North American Regional Reanalysis (NARR) model produced by the National Centers
+for Environmental Prediction [@mesinger2006]. The NARR model assimilates
 observational data to produce a long-term picture of weather over North America
-and portions of the surrounding seas. Weather variables are made
-available across the region 8 times daily. For this study, NARR weather values
-were subset to the extent of our study area over the Bering and Chukchi seas at
-3-hr intervals based on the native grid resolution of 32 km (1024 km^2^). The
+and portions of the surrounding seas. Weather variables are made available
+across the region 8 times daily. For this study, NARR weather values were subset
+to the extent of our study area over the Bering and Chukchi seas at 3-hr
+intervals based on the native grid resolution of 32 km (1024 km^2^). The
 following meteorological variables are known to affect haul-out behavior in
-other Arctic pinnipeds [@reder2003;
-@udevitz2009; @perry2017] and were interpolated and assigned to daily seal
-locations using a bilinear method: 1) air temperature at 2 m above the Earth's
-surface, 2) wind consisting of northerly and easterly vector components
-converted to wind speed using the Euclidean norm, 3) barometric pressure at sea
-level, and 4) precipitation (Table \@ref(tab:tblCovariates)).
+other Arctic pinnipeds [@reder2003; @udevitz2009; @perry2017] and were
+interpolated and assigned to daily seal locations using a bilinear method: 1)
+air temperature at 2 m above the Earth's surface, 2) wind consisting of
+northerly and easterly vector components converted to wind speed using the
+Euclidean norm, 3) barometric pressure at sea level, and 4) precipitation (Table
+\@ref(tab:tblCovariates)).
 
-Models for all species included the following effects: day-of-year, solar hour,
+For all seal species, we considered the following 
+variables when modeling the hourly haul-out behavior: day-of-year, solar hour,
 temperature, wind speed, barometric pressure, precipitation, wind chill
 (represented by a *wind:temperature* interaction [@udevitz2009]), and
 day-of-year and time-of-day (solar hour) interactions to permit diurnal patterns
@@ -571,22 +575,26 @@ representation of sea ice concentration, area, or extent. This may seem
 counterintuitive when modeling the haul-out behavior of seal species with such a
 close association to sea ice; seals haul out in the presence of sea ice, and we
 could assess the local concentration of sea ice during these events (see
-[@olnes2020]). However, a major focus of this study was to develop models
-applicable for aerial survey correction factors and using sea ice as a covariate
-would almost certainly bias haul-out predictions towards those seals that are on
-or near ice and therefore more likely to haul out. Since aerial surveys can only
-detect seals on ice, abundance estimates would be missing a correction for those
-seals that are away from ice (e.g., on foraging trips). Additionally, many of
-the deployments consisted of a single device attached to the rear flipper of the
-seal which did not provide at-sea locations, limiting our ability to fully
-evaluate fine-scale habitat preferences related to sea-ice. Lastly, our study
-was limited to the spring season when seal haul-out tendencies are strongly
-influenced by pupping, nursing, breeding behavior, and molt and these drivers
-are likely more influential than specific sea-ice concentration. Crawford et al.
-[-@crawford2019] compared haul-out probability models for ringed seals and found
-those that only included season (and not sea-ice concentration) were the most
-parsimonious. For these reasons, we have elected not to use sea ice
-concentration _as a predictor for haul-out probability_ in the present study.
+[@olnes2020]). This, however, expands the scope of our analysis into the realm
+of habitat selection and many of our deployments consisted of a single device
+attached to the rear flipper of the seal which did not provide at-sea locations,
+limiting our ability to fully evaluate fine-scale habitat preferences related to
+sea-ice. Insight into how seals use and interact with sea-ice during an extended
+period when the availability and characteristics of sea-ice is rapidly changing
+is important but ancillary to the focus of this analysis. The focus of this
+study was to develop models applicable for aerial survey correction factors and
+using sea ice as a covariate would almost certainly bias haul-out predictions
+towards those seals that are on or near ice and therefore more likely to haul
+out. Since aerial surveys can only detect seals on ice, abundance estimates
+would be missing a correction for those seals that are away from ice. Lastly,
+our study was limited to the spring season when seal haul-out behaviors are
+strongly influenced by pupping, nursing, breeding behavior, and molt and these
+drivers are likely more influential than specific sea-ice concentration.
+Crawford et al. [-@crawford2019] compared haul-out probability models for ringed
+seals and found those that only included season (and not sea-ice concentration)
+were the most parsimonious. For these reasons, we have elected not to use sea
+ice concentration _as a predictor for haul-out probability_ in the present
+study.
 
 We did assess whether the annual variation in maximum spring sea ice extent in the
 Bering Sea influenced the seasonal peak of seal haul-out probability. In
@@ -623,6 +631,7 @@ covariate_tbl <- tibble::tribble(
 )
 
 covariate_tbl %>% 
+  select(-Source) %>% 
   flextable() %>% 
   fontsize(size = 10, part = "all") %>% 
   hline(i=8) %>% 
