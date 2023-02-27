@@ -9,7 +9,9 @@ sapply(files, source)
 # Set target-specific options such as packages.
 tar_option_set(packages = c(
   "tidyverse",
+  "ggplot2",
   "sf",
+  "ggspatial",
   "lubridate",
   "odbc",
   "RPostgres",
@@ -27,7 +29,8 @@ tar_option_set(packages = c(
   "purler",
   "wcUtils",
   "MetBrewer",
-  "patchwork"
+  "patchwork",
+  "concaveman"
   )
 )
 
@@ -42,6 +45,8 @@ list(
   tar_target(adfg_timelines_file1, "data_raw/adfg/ADFG_SealTimelineData3.csv",format = "file"),
   tar_target(adfg_timelines_file2, "data_raw/adfg/ADFG_SealTimelineData_NewRecords.csv", format = "file"),
   tar_target(adfg_timelines, adfg_clean_tl(adfg_timelines_file1, adfg_timelines_file2, adfg_deployments)),
+  tar_target(deploy_details_file, "data_raw/deploy_details.csv",format = "file"),
+  tar_target(deploy_details, create_deploy_details(deploy_details_file)),
 
   tar_target(nsb_deployments, get_nsb_deployments()),
   tar_target(nsb_locations, get_nsb_locs(nsb_deployments)),
