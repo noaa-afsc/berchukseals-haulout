@@ -162,6 +162,11 @@ adfg_clean_tl <- function(file1,file2, adfg_deployments) {
                   hist_type = HistType,
                   timeline_start_dt = GMTDate) %>%
     dplyr::rename_all(tolower) %>%
+    dplyr::mutate(tag_family = case_when(
+      ptt %in% c(110597, 158422) ~ "SPLASH",
+      ptt %in% c(167946, 137526) ~ "SPOT",
+      TRUE ~ tag_family
+    )) %>% 
     dplyr::left_join(adfg_deployments, by = c("speno","tag_family")) %>%
     mutate(species_code = case_when(
       species == "bearded" ~ "EB",

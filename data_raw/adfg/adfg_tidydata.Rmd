@@ -48,8 +48,8 @@ There are six files provided by ADF&G
 Let's read these files in and take a look at the structure
 
 ```{r}
-adfg_deployments <- readr::read_csv('ADFG_SealDeploymentTable3.csv')
-adfg_deployments_new <- readr::read_csv('ADFG_SealDeploymentTable_NewRecords.csv')
+adfg_deployments <- readr::read_csv(here::here('data_raw/adfg/ADFG_SealDeploymentTable3.csv'))
+adfg_deployments_new <- readr::read_csv(here::here('data_raw/adfg/ADFG_SealDeploymentTable_NewRecords.csv'))
 ```
 
 Let's look at some of the data and see if we might want to adjust some of the
@@ -76,7 +76,7 @@ adfg_deploy_cols <- readr::cols(
   FlipperTagType = readr::col_character()
 )
 
-adfg_deployments <- readr::read_csv('ADFG_SealDeploymentTable3.csv',
+adfg_deployments <- readr::read_csv(here::here('data_raw/adfg/ADFG_SealDeploymentTable3.csv'),
                                     col_types = adfg_deploy_cols) %>% 
   mutate(DateTagged = parse_datetime(DateTagged,format = "%m/%d/%Y %H:%M")) %>% 
   dplyr::mutate(DateTagged = lubridate::force_tz(DateTagged, 
@@ -99,7 +99,7 @@ adfg_deploy_cols <- readr::cols(
   FlipperTagType = readr::col_character()
 )
 
-adfg_deployments_new <- readr::read_csv('ADFG_SealDeploymentTable_NewRecords.csv',
+adfg_deployments_new <- readr::read_csv(here::here('data_raw/adfg/ADFG_SealDeploymentTable_NewRecords.csv'),
                                     col_types = adfg_deploy_cols) %>% 
   mutate(DateTagged = parse_datetime(DateTagged,format = "%m/%d/%y")) %>% 
   dplyr::mutate(DateTagged = lubridate::force_tz(DateTagged, 
@@ -154,8 +154,8 @@ glimpse(adfg_deployments)
 Next, we'll go through a similar process with the locations data.
 
 ```{r}
-adfg_locations <- readr::read_csv('ADFG_SealLocationData3.csv')
-adfg_locations_new <- readr::read_csv('ADFG_SealLocationData_NewRecords.csv')
+adfg_locations <- readr::read_csv(here::here('data_raw/adfg/ADFG_SealLocationData3.csv'))
+adfg_locations_new <- readr::read_csv(here::here('data_raw/adfg/ADFG_SealLocationData_NewRecords.csv'))
 ```
 
 ```{r}
@@ -179,7 +179,7 @@ adfg_locs_cols <- readr::cols(
   MonthNumb = readr::col_character()
 )
 
-adfg_locations <- readr::read_csv('ADFG_SealLocationData3.csv',
+adfg_locations <- readr::read_csv(here::here('data_raw/adfg/ADFG_SealLocationData3.csv'),
                                   col_types = adfg_locs_cols) %>% 
   dplyr::mutate(Date = as.Date(Date, origin = "1899-12-30", tz ="UTC") %>% 
                   lubridate::as_datetime(),
@@ -204,7 +204,7 @@ adfg_locs_cols <- readr::cols(
   SerialNum = readr::col_character()
 )
 
-adfg_locations_new <- readr::read_csv('ADFG_SealLocationData_NewRecords.csv',
+adfg_locations_new <- readr::read_csv(here::here('data_raw/adfg/ADFG_SealLocationData_NewRecords.csv'),
                                   col_types = adfg_locs_cols) %>% 
   dplyr::mutate(Date = as.Date(Date, origin = "1899-12-30", tz ="UTC") %>% 
                   lubridate::as_datetime(),
@@ -294,6 +294,7 @@ adfg_timeline_cols <- cols(
   DeployIDs = readr::col_character(),
   TagType = readr::col_character(),
   HistType = readr::col_character(),
+  GMTDate = readr::col_character(),
   MonthNumb = readr::col_character(),
   LocationQuality = readr::col_character(),
   Sum = readr::col_character()
@@ -301,9 +302,7 @@ adfg_timeline_cols <- cols(
 
 adfg_timelines <- readr::read_csv(here::here('data_raw/adfg/ADFG_SealTimelineData3.csv'),
                                   col_types = adfg_timeline_cols) %>% 
-  dplyr::mutate(GMTDate = as.Date(GMTDate, origin = "1899-12-30", 
-                                     tz = "UTC") %>% 
-                  lubridate::as_datetime(),
+  dplyr::mutate(GMTDate = lubridate::parse_date_time(GMTDate,orders = "mdy"),
                 Ptt = as.integer(Ptt),
                 TagType = toupper(TagType)) %>% 
   dplyr::rename(speno = DeployIDs,
