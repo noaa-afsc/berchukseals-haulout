@@ -143,7 +143,7 @@ We have adopted this suggestion
 We have moved this reference to later in the paragraph so the first
 references are about Arctic work. While the example is from the
 Antarctic, it is an important, early example of analysis using
-bio-logger data to estimate haul-out behavior.
+bio-logger data to estimate haul-out behavior in seals.
 
 > *Do you mean age-class? The term life-history implies knowledge of
 > previous behavioral efforts or occupancy of regions of interest.  
@@ -208,9 +208,7 @@ provide this visually in Figure 3 and adding an additional layer to that
 figure would to show deployments would be an additional complication. To
 ensure the audience as a clear understanding of our study area, we have
 added an additional figure with a map of the Bering and Chukchi sea
-region that indicates generally where deployments started. We have also
-added a more detailed figure to the supplemental section with each
-location specifically marked.
+region that indicates generally where deployments were initiated.
 
 > Please use active voice for all actions that you took in your data
 > collection, preparation and analysis.
@@ -311,7 +309,7 @@ dry for several weeks followed by an additional period of time that was
 more typical of expected bearded seal behavior. During the extended dry
 time the locations indicated movement of the tag that would not be
 simply drifting ice. We also observed increasing transmission rates. The
-working (i.e. unconfirmed guess) is that the wet/dry sensor surface
+working hypothesis (i.e. unconfirmed guess) is that the wet/dry sensor surface
 became obscured by some corrosive element such that when in the water
 conductivity was prevented and, thus, recorded as dry.
 
@@ -368,7 +366,7 @@ loggers. We have edited the sentence for additional clarity.
 
 > What is a "key" weather variable? Please write for clarity.
 
-We've edited this sentence removed the word 'key'
+We've edited this sentence and removed the word 'key'
 
 > This is a procedural detail. Other readers may replicate your method
 > without needing to do this. Please omit this detail.
@@ -378,7 +376,7 @@ We've edited this sentence removed the word 'key'
 
 We're not sure why the reviewer would recommend omitting a 'procedural
 detail' as part of our methods. We feel it is important to clearly
-communicated our procedure for processing the large NARR data set and
+communicate our procedure for processing the large NARR data set and
 that we used the native grid size of 32km. Regarding the calculation of
 wind vectors, we include this detail because many readers, like us
 initially, may not be well versed in how wind vectors components are
@@ -418,6 +416,12 @@ incorporated the reviewers suggests to expand discussion of the
 statutory requirements of the MMPA and ESA but don't feel we need to
 single out the motivations for the Federal government.
 
+We have also added a figure depicting the estimated species range for bearded,
+ribbon, and spotted seals along with general representation of recent aerial
+survey effort. This should better communicate to the reader how the spatial
+distribution of our haul-out behavior overlaps with the species range and
+survey effort.
+
 > Seals can just as happily be on foraging trips within the pack and
 > marginal sea ice as in the open water, depending on the species.
 > Suggesting that foraging trips are associated with ice-free conditions
@@ -444,12 +448,19 @@ we have limited geolocation data for at-sea periods of our haul-out behavior
 data -- we know the seal was in the water but don't have any estimates of
 location when only a flipper tag is attached. By leading with this statement,
 we hope that communicates our primary rationale. But, the other rationales
-are also important and we still include them.
+are also important and we still include them. We have also moved this section
+to the 'Discussion' in response to other reviewer comments.
 
-We have also provided some statistics regarding the percentage of the
+We have provided some statistics regarding the percentage of the
 percent-dry timeline data that is not associated with a corresponding location
 estimate because the seal was in the water and no estimates were available from
 flipper mounted SPOT tags.
+
+We have also added a figure depicting the estimated species range for bearded,
+ribbon, and spotted seals along with general representation of recent aerial
+survey effort. This should better communicate to the reader how the spatial
+distribution of our haul-out behavior overlaps with the species range and
+survey effort.
 
 > Please help the reader understand why you have not included a basic
 > metric of sea ice geography, such as distance from marginal ice edge

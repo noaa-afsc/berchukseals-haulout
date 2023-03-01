@@ -183,7 +183,7 @@ inferences will improve the accuracy of abundance estimates and, hopefully,
 allow credible predictions about the effects of climate disruptions on the
 abundance and distribution of Arctic seal populations.
 
-How ice-assoicated seals use sea ice as a haul-out platform varies between species.
+How ice-associated seals use sea ice as a haul-out platform varies between species.
 Ribbon seals (_Histriophoca fasciata_) haul out of the water almost exclusively
 on sea ice and are mostly pelagic outside the spring pupping, breeding, and
 molting season [@boveng2018a]. While spotted (_Phoca largha_) and bearded
@@ -278,7 +278,7 @@ included. We refer readers to Figure \@ref(fig:deployplot) and the primary liter
 for detailed capture and bio-logger attachment methods (see Supplemental
 Material, S1).
 
-(ref:deployMapCaption) Initial deployment areas for each seal species (bearded, ribbon, and spotted seals) in the study between 2005 and 2020. Deployments were initiated across a range of months but only data from 1 March to 15 July were included in the analysis. See Figure \@ref(fig:dataMap) for the spatial distribution of observed data used in the study.
+(ref:deployMapCaption) Initial deployment areas for each seal species (bearded, ribbon, and spotted seals) in the study between 2005 and 2020. Colored regions shown are minimum concave polygons buffered by 60 km for enhanced visibility. See Supplemental Material S1 for specific details. Deployments were initiated across a range of months but only data from 1 March to 15 July were included in the analysis. See Figure \@ref(fig:dataMap) for the spatial distribution of observed data used in the study.
 
 ```{r deployplot, include=TRUE, fig.asp = 0.45, fig.cap = "(ref:deployMapCaption)"}
 targets::tar_load(deploy_details, store = here::here("_targets"))
@@ -289,7 +289,7 @@ deploy_sf <- deploy_details %>%
   dplyr::group_by(species,location, region) %>% 
   dplyr::group_modify(~ concaveman::concaveman(., concavity = 4),.keep=TRUE) %>% 
   sf::st_sf(crs = 3571) %>% 
-  sf::st_buffer(40*1000) 
+  sf::st_buffer(60*1000) 
 
 world <- ne_countries(scale = "medium", returnclass = "sf") %>% 
   sf::st_transform(st_crs(deploy_sf))
@@ -321,11 +321,11 @@ p <- ggplot() +
   ggtitle("Areas of initial deployment location",
           subtitle = 
                  paste0("Bio-loggers were initially deployed on ",
-                "<span style = 'color:",species_colors['Bearded seal'],";'>bearded, </span> ", 
-                "<span style = 'color:",species_colors['Ribbon seal'],";'>ribbon, </span> ",  
+                "<span style = 'color:",species_colors['Bearded seal'],";'>**bearded**, </span> ", 
+                "<span style = 'color:",species_colors['Ribbon seal'],";'>**ribbon**, </span> ",  
                 "and ", 
-                "<span style = 'color:",species_colors['Spotted seal'],";'>spotted seals</span> ", 
-                "across multiple regions within the Bering and Chukchi seas.")) +
+                "<span style = 'color:",species_colors['Spotted seal'],";'>**spotted**</span> seals ", 
+                "across multiple regions within the Bering, Chukchi, and western Beaufort seas.")) +
   theme(legend.position = "none",
         strip.background = element_blank(),
         strip.placement = "outside",
