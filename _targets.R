@@ -34,6 +34,12 @@ tar_option_set(packages = c(
   )
 )
 
+# tar_make_clustermq() configuration (okay to leave alone):
+options(clustermq.scheduler = "multicore")
+
+# tar_make_future() configuration (okay to leave alone):
+future::plan(future.callr::callr, workers = 3)
+
 # End this file with a list of target objects.
 list(
   tar_target(adfg_deploy_file1, "data_raw/adfg/ADFG_SealDeploymentTable3.csv",format = "file"),

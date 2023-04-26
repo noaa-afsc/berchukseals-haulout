@@ -48,7 +48,7 @@ adfg_clean_deploy <- function(file1,file2) {
     dplyr::mutate(species = tolower(species),
                   age = tolower(age),
                   age = case_when(
-                    age %in% c("1","3") ~ "SUBADULT",
+                    age %in% c("1","3") ~ "subadult",
                     TRUE ~ age
                   ),
                   sex = tolower(sex)) %>%

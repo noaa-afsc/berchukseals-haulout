@@ -26,6 +26,7 @@ get_locs_sf <- function(adfg_locations, nsb_locations) {
     left_join(deployments_db, by = 'deployid') %>%
     left_join(spenos_db, by = 'speno') %>%
     filter(species %in% c('Bearded seal', 'Ribbon seal', 'Spotted seal')) %>%
+    filter(between(locs_dt,deploy_dt,end_dt)) %>%
     filter(lubridate::month(locs_dt) %in% c(3,4,5,6,7)) %>%
     mutate(unique_day =
              glue::glue("{lubridate::year(locs_dt)}",

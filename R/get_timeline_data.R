@@ -23,6 +23,7 @@ get_timeline_data <- function(adfg_timelines, nsb_timelines) {
     left_join(spenos_db, by = 'speno') %>%
     filter(!deployid %in% c("PL2017_9001_16U2112")) %>%
     filter(species %in% c('Bearded seal', 'Ribbon seal', 'Spotted seal')) %>%
+    filter(between(timeline_start_dt,deploy_dt,end_dt)) %>% 
     collect() %>%
     filter(lubridate::month(timeline_start_dt) %in% c(3,4,5,6,7)) %>%
     mutate(unique_day =

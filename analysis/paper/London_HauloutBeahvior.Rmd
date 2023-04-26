@@ -1615,6 +1615,13 @@ library(gt)
 library(googlesheets4)
 library(glue)
 
+options(
+  gargle_oauth_cache = here::here(".secrets"),
+  gargle_oauth_email = TRUE
+)
+
+gs4_auth()
+
 deploy_tbl <- read_sheet("1MpCiyAKWLBXufwnzW8QTnb2SsTkrKSuPlWdpWMnqoto")
 
 
