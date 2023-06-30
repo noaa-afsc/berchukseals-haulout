@@ -2453,7 +2453,7 @@
     },
     "sp": {
       "Package": "sp",
-      "Version": "1.6-1",
+      "Version": "2.0-0",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -2466,7 +2466,7 @@
         "stats",
         "utils"
       ],
-      "Hash": "ca27b2643e3593b7688244d035f2cd92"
+      "Hash": "2551981e6f85d59c81652bf654d6c3ca"
     },
     "stringi": {
       "Package": "stringi",
