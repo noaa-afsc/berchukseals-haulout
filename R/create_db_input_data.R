@@ -52,16 +52,17 @@ create_source_data <- function(locs_sf, timeline_data) {
     rename(haulout_dt = timeline_start_dt) %>%
     dplyr::select(speno,species,age,sex,haulout_dt,percent_dry,n_tags,fill_xy)
 
-  stopifnot(
-    "PEP Postgres Database Not Available; did you start VPN? ;)" =
-      is_up("161.55.120.122", "5432")
-  )
 
-  con <- dbConnect(RPostgres::Postgres(),dbname = 'pep',
-                   host = '161.55.120.122',
-                   port = 5432,
-                   user = keyringr::get_kc_account("pgpep_sa"),
-                   password = keyringr::decrypt_kc_pw("pgpep_sa"))
+  tryCatch({
+    con <- dbConnect(RPostgres::Postgres(),
+                     dbname = 'pep', 
+                     host = Sys.getenv('PEP_PG_IP'),
+                     user = keyringr::get_kc_account("pgpep_londonj"),
+                     password = keyringr::decrypt_kc_pw("pgpep_londonj"))
+  },
+  error = function(cond) {
+    print("Unable to connect to Database.")
+  })
   on.exit(dbDisconnect(con))
 
   st_write(obj = tbl_percent_locs,

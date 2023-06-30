@@ -1,12 +1,17 @@
 create_deploy_details <- function(deploy_details_file) {
   deploy_tbl <- readr::read_csv(deploy_details_file)
   
-  con <- dbConnect(
-    odbc(),
-    dsn = "PostgreSQL pep",
-    uid = keyringr::get_kc_account("pgpep_londonj"),
-    pwd = keyringr::decrypt_kc_pw("pgpep_londonj")
-  )
+  tryCatch({
+    con <- dbConnect(RPostgres::Postgres(),
+                      dbname = 'pep', 
+                      host = Sys.getenv('PEP_PG_IP'),
+                      user = keyringr::get_kc_account("pgpep_londonj"),
+                      password = keyringr::decrypt_kc_pw("pgpep_londonj"))
+  },
+  error = function(cond) {
+    print("Unable to connect to Database.")
+  })
+  on.exit(dbDisconnect(con))
   
   deploy_db <- tbl(con, in_schema("telem","tbl_tag_deployments")) %>% 
     dplyr::select(speno, deploy_lat, deploy_long, capture_lat, capture_long) %>% 
