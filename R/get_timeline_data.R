@@ -1,18 +1,18 @@
 get_timeline_data <- function(adfg_timelines, nsb_timelines) {
-
-  stopifnot(
-    "PEP Postgres Database Not Available; did you start VPN? ;)" =
-      pingr::is_up("161.55.120.122", "5432")
-  )
-
-  con <- dbConnect(
-    odbc(),
-    dsn = "PostgreSQL pep",
-    uid = keyringr::get_kc_account("pgpep_londonj"),
-    pwd = keyringr::decrypt_kc_pw("pgpep_londonj")
-  )
+  
+  tryCatch({
+    con <- dbConnect(RPostgres::Postgres(),
+                     dbname = 'pep', 
+                     host = Sys.getenv('PEP_PG_IP'),
+                     user = keyringr::get_kc_account("pgpep_londonj"),
+                     password = keyringr::decrypt_kc_pw("pgpep_londonj"))
+  },
+  error = function(cond) {
+    print("Unable to connect to Database.")
+  })
 
   timeline_db <- tbl(con, in_schema("telem","tbl_wc_histos_timeline_qa")) %>%
+    dplyr::filter(qa_status != 'tag_actively_transmitting') %>%
     dplyr::select(deployid,timeline_start_dt, percent_dry)
   deployments_db <- tbl(con, in_schema("telem","tbl_tag_deployments")) %>%
     dplyr::select(speno, deployid, tag_family, deploy_dt, end_dt)
@@ -23,7 +23,6 @@ get_timeline_data <- function(adfg_timelines, nsb_timelines) {
     left_join(spenos_db, by = 'speno') %>%
     filter(!deployid %in% c("PL2017_9001_16U2112")) %>%
     filter(species %in% c('Bearded seal', 'Ribbon seal', 'Spotted seal')) %>%
-    filter(between(timeline_start_dt,deploy_dt,end_dt)) %>% 
     collect() %>%
     filter(lubridate::month(timeline_start_dt) %in% c(3,4,5,6,7)) %>%
     mutate(unique_day =
