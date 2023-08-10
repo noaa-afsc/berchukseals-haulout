@@ -22,7 +22,6 @@ get_locs_sf <- function(adfg_locations, nsb_locations) {
               FROM telem.geo_wc_locs_qa WHERE qa_status != 'tag_actively_transmitting';"
 
   locs_sf <- read_sf(con, query = locs_qry) %>%
-    filter(!deployid %in% c("PL2017_9001_16U2112")) %>%
     left_join(deployments_db, by = 'deployid') %>%
     left_join(spenos_db, by = 'speno') %>%
     filter(species %in% c('Bearded seal', 'Ribbon seal', 'Spotted seal')) %>%

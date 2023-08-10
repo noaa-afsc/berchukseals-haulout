@@ -18,7 +18,7 @@ adfg_clean_deploy <- function(file1,file2) {
                                                    'America/Anchorage')) %>%
     dplyr::mutate(DateTagged = lubridate::as_datetime(DateTagged,
                                                       tz = 'America/Anchorage')) %>%
-    dplyr::filter( ! (DeployIDs %in% c("EB16SMK-158429")) )
+    dplyr::filter( ! (DeployIDs %in% c("EB16SMK-158429")) ) #included in adfg file2
 
   cols <- readr::cols(
     DeployIDs = readr::col_character(),
@@ -82,7 +82,7 @@ adfg_clean_locs <- function(file1, file2, adfg_deployments) {
     dplyr::mutate(Date = as.Date(Date, origin = "1899-12-30", tz ="UTC") %>%
                     lubridate::as_datetime(),
                   Ptt = as.integer(Ptt)) %>%
-    dplyr::filter( ! (DeployID %in% c("EB16SMK-158429")) )
+    dplyr::filter( ! (DeployID %in% c("EB16SMK-158429")) ) # included in adfg file2
 
   cols <- readr::cols(
     DeployID = readr::col_character(),
