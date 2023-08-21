@@ -7,3 +7,4 @@ _targets
 renv
 *.Rproj
 .secrets
+data_raw/era5_ssrd
