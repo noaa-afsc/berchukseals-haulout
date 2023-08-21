@@ -28,7 +28,8 @@ tar_option_set(packages = c(
   "wcUtils",
   "MetBrewer",
   "patchwork",
-  "concaveman"
+  "concaveman",
+  "terra"
   )
 )
 
@@ -62,10 +63,11 @@ list(
   tar_target(source_data, create_source_data(locs_sf, timeline_data)),
 
   tar_target(analysis_data, create_data_sf(locs_sf, source_data)),
-  tar_target(grid, create_grid_sf(analysis_data)),
-  tar_target(deploy_table, create_deploy_tbl(analysis_data)),
+  tar_target(analysis_data_ssrd, add_ssrd(analysis_data)),
+  # tar_target(grid, create_grid_sf(analysis_data_ssrd)),
+  tar_target(deploy_table, create_deploy_tbl(analysis_data_ssrd)),
 
-  tar_target(model_data, create_model_input(analysis_data)),
+  tar_target(model_data, create_model_input(analysis_data_ssrd)),
 
   tar_target(ribbon_model_data, create_ribbon_data(model_data)),
   tar_target(ribbon_fit, fit_ribbon(ribbon_model_data)),
@@ -73,6 +75,8 @@ list(
   tar_target(ribbon_year_fit, fit_ribbon_year(ribbon_model_data)),
   tar_target(spotted_model_data, create_spotted_data(model_data)),
   tar_target(spotted_fit, fit_spotted(spotted_model_data)),
+  tar_target(spotted_fit_bam, fit_spotted_bam(spotted_model_data)),
+  tar_target(spotted_fit_bam_discrete, fit_spotted_bam_discrete(spotted_model_data)),
   tar_target(spotted_noagesex_fit, fit_spotted_noagesex(spotted_model_data)),
   tar_target(spotted_year_fit, fit_spotted_year(spotted_model_data)),
   tar_target(bearded_model_data, create_bearded_data(model_data)),
