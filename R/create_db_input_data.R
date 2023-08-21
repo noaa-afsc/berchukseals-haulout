@@ -31,18 +31,30 @@ create_source_data <- function(locs_sf, timeline_data) {
                      y = weighted.mean(y,1/error_radius))
 
   tbl_percent_locs <- timeline_data %>%
+    ungroup() %>%
+    # let's make sure we only have hourly summarized timeline data
+    group_by(speno,species,sex,age,unique_day,n_tags,
+             timeline_hour = lubridate::hour(timeline_start_dt)) %>%
+    reframe( #using reframe here b/c summarize creates a warning about more (or less) than 1 row per `summarise()`
+      timeline_start_dt = lubridate::floor_date(timeline_start_dt, "hours"),
+      percent_dry = mean(percent_dry)
+    ) %>%
+    ungroup() %>%
+    dplyr::select(-timeline_hour) %>%
+    # now join with daily locations
     full_join(locs_daily,
                      by = c("speno","unique_day","age",
                             "sex","species")) %>%
     arrange(speno,unique_day,timeline_start_dt) %>%
-    group_by(speno) %>% nest() %>%
-    mutate(start_idx = map_int(data,~ which.max(!is.na(.x$x))),
-           data = map2(data, start_idx, ~ slice(.x, .y:nrow(.x)))) %>%
+    group_by(speno) %>% 
+    tidyr::nest() %>%
+    mutate(start_idx = purrr::map_int(data,~ which.max(!is.na(.x$x))),
+           data = purrr::map2(data, start_idx, ~ slice(.x, .y:nrow(.x)))) %>%
     dplyr::select(-start_idx) %>%
-    unnest(cols = c(data)) %>%
+    tidyr::unnest(cols = c(data)) %>%
     mutate(fill_xy = ifelse(is.na(x), TRUE, FALSE)) %>%
     group_by(speno) %>%
-    fill(x,y) %>%
+    tidyr::fill(x,y) %>%
     ungroup() %>%
     dplyr::filter(!is.na(percent_dry)) %>%
     dplyr::filter(!speno %in% c("EB2005_5995")) %>% #peard bay capture; only 1 day of data
@@ -50,6 +62,7 @@ create_source_data <- function(locs_sf, timeline_data) {
     st_as_sf(coords = c("x","y")) %>%
     st_set_crs(3571) %>%
     rename(haulout_dt = timeline_start_dt) %>%
+    
     dplyr::select(speno,species,age,sex,haulout_dt,percent_dry,n_tags,fill_xy)
 
 

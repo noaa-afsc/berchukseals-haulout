@@ -1,5 +1,5 @@
 create_model_input <- function(dat.sf) {
-  dat.sf  %>%
+  temp_dat <- dat.sf  %>%
   mutate(dry = round(percent_dry/100)) %>%
   mutate(hour_utc = lubridate::hour(haulout_dt),
          yday = lubridate::yday(haulout_dt),
@@ -33,11 +33,13 @@ create_model_input <- function(dat.sf) {
          solar_hour = forcats::as_factor(solar_hour)) %>%
   arrange(speno,haulout_dt) %>%
   group_by(speno) %>%
-  mutate(ar1_id = paste(speno,create_ar1_id(haulout_dt),sep="_")) %>%
+  mutate(ar1_id = paste(speno,create_ar1_id(haulout_dt),sep="_"),
+         ar1_start = create_ar1_start(ar1_id)) %>%
   ungroup() %>%
   mutate(ar1_id = forcats::as_factor(ar1_id),
          speno = forcats::as_factor(speno)) %>%
   relocate(ar1_id, .after = speno) %>%
+  relocate(ar1_start, .after = ar1_id) %>%
   dplyr::select(-c(coords_x, coords_y)) %>%
   group_by(ar1_id) %>% mutate(time_vec = row_number(ar1_id) - 1) %>%
   ungroup() %>%
@@ -56,4 +58,6 @@ create_model_input <- function(dat.sf) {
     age_sex_inter = forcats::as_factor(age_sex_inter) %>%
       forcats::fct_relevel(c("ADULT.F","ADULT.M","SUBADULT"))
   )
+  
+  return(temp_dat)
 }

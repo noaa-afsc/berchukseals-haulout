@@ -15,7 +15,7 @@ get_timeline_data <- function(adfg_timelines, nsb_timelines) {
     dplyr::filter(qa_status != 'tag_actively_transmitting') %>%
     dplyr::select(deployid,timeline_start_dt, percent_dry)
   deployments_db <- tbl(con, in_schema("telem","tbl_tag_deployments")) %>%
-    dplyr::select(speno, deployid, tag_family, deploy_dt, end_dt)
+    dplyr::select(speno, deployid, tag_family, ptt, deploy_dt, end_dt)
   spenos_db <- tbl(con, in_schema("capture","for_telem"))
 
   timeline_data <- timeline_db  %>%
@@ -27,7 +27,8 @@ get_timeline_data <- function(adfg_timelines, nsb_timelines) {
     mutate(unique_day =
              glue::glue("{lubridate::year(timeline_start_dt)}",
                         "{lubridate::yday(timeline_start_dt)}",
-                        .sep = "_"))
+                        .sep = "_")) %>%
+    filter(paste0(speno,unique_day) != 'HF2009_10182009_191') #2009-07-10 faulty records
 
   timeline_data <- timeline_data %>%
     bind_rows(adfg_timelines) %>%
