@@ -572,21 +572,19 @@ northerly and easterly vector components converted to wind speed using the
 Euclidean norm, 3) barometric pressure at sea level, and 4) precipitation 
 (Table \@ref(tab:tblCovariates)).
 
-For all seal species, we considered the following 
-variables when modeling the hourly haul-out behavior: day-of-year, solar hour,
-temperature, wind speed, barometric pressure, precipitation, wind chill
-(represented by a *wind:temperature* interaction [@udevitz2009]), and
-day-of-year and time-of-day (solar hour) interactions to permit diurnal patterns
-to change from March to July. Ribbon and spotted seal models included age-sex
-class and interactions between day-of-year and age-sex class, but we omitted
-these from bearded seal models due to poor representation of age-sex classes
-(Table \@ref(tab:tblDeploy)). Bearded seal models included a latitudinal effect
-(and an interaction with day-of-year), since bearded seals occupy a substantial
-range during the spring and we were interested in possible differences in the
-timing of haul-out behavior along a latitudinal gradient. We omitted the
-latitudinal effect from ribbon and spotted seal models because, during the
-spring, these species are most prevalent near the southern ice edge in the
-Bering Sea [@conn2014a].
+For all seal species, we considered the following variables when modeling the
+hourly haul-out behavior: day-of-year, solar hour, temperature, wind speed,
+barometric pressure, precipitation, and wind chill (represented by a
+*wind:temperature* interaction [@udevitz2009]). Ribbon and spotted seal models
+included age-sex class and interactions between day-of-year and age-sex class,
+but we omitted these from bearded seal models due to poor representation of
+age-sex classes (Table \@ref(tab:tblDeploy)). Bearded seal models included a
+latitudinal effect (and an interaction with day-of-year), since bearded seals
+occupy a substantial range during the spring and we were interested in possible
+differences in the timing of haul-out behavior along a latitudinal gradient. We
+omitted the latitudinal effect from ribbon and spotted seal models because,
+during the spring, these species are most prevalent near the southern ice edge
+in the Bering Sea [@conn2014a].
 
 We did assess whether the annual variation in maximum spring sea ice extent in the
 Bering Sea influenced the seasonal peak of seal haul-out probability. In
@@ -691,18 +689,17 @@ previous approaches [@verhoef2014a, @london2012] and only
 `r (1 - round((portion_10(analysis_data) + portion_90(analysis_data))) * 100)`% of our
 observations fell between 10% and 90% hourly percent-dry.
 
-We followed Ver Hoef et al. [-@verhoef2014a] in using linear, quadratic, and
-cubic effects of day-of-year to represent temporal changes in behavior. However,
-unlike previous models for harbor seals [@london2012] and ice-associated seals
-[@verhoef2014a], which treated hour-of-day as a 24-level categorical variable to
-capture diurnal cycles, we adopted a continuous formulation based on Fourier
-series that provides a flexible model while preserving the inherent circularity
-needed for time-of-day effects (i.e., hour 0 should be equal to hour 24). It
-also represents hour-of-day with 6 parameters, which is a considerable reduction
-when compared to a 24-parameter variable, especially when fitting models including
-interactions between hour-of-day and other variables (e.g., age-sex class,
-day-of-year). According to this approach, we used the following specification
-for hour-of-day effects:
+We followed Ver Hoef et al. [-@verhoef2014a] in using linear, quadratic, and cubic
+effects of day-of-year to represent temporal changes
+in behavior during the season. However, unlike previous models for harbor seals
+[@london2012] and ice-associated seals [@verhoef2014a], which treated
+hour-of-day as a 24-level categorical variable to capture diurnal cycles, we
+adopted a continuous formulation based on Fourier series that provides a
+flexible model while preserving the inherent circularity needed for time-of-day
+effects (i.e., hour 0 should be equal to hour 24). It also represents
+hour-of-day with 6 parameters, which is a considerable reduction when compared
+to a 24-parameter variable. According to this approach, we used the following
+specification for hour-of-day effects:
 
 $$
 H_t=\alpha_1 \cos(\frac{\pi t}{4}) + \alpha_2 \sin(\frac{\pi t}{4}) + \alpha_3 \cos(\frac{\pi t}{6}) + \alpha_4 \sin(\frac{\pi t}{6}) + \alpha_5 \cos(\frac{\pi t}{12}) + \alpha_6 \sin(\frac{\pi t}{12})
@@ -1616,7 +1613,7 @@ library(glue)
 
 options(
   gargle_oauth_cache = here::here(".secrets"),
-  gargle_oauth_email = TRUE
+  gargle_oauth_email = "josh.london@noaa.gov"
 )
 
 gs4_auth()

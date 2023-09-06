@@ -14,12 +14,13 @@ create_model_input <- function(dat.sf) {
          sin3 = sin(pi*solar_hour/4),
          cos3 = sin(pi*solar_hour/4),
          day = (yday-120)/10,
-         day2 = day^2,
-         day3 = day^3
+         day_2 = day^2,
+         day_3 = day^3,
+         day_4 = day^4
   ) %>%
   mutate(precip = rast_acpcp,
-         temp2 = (rast_air2m-270)/27,
-         temp0 = (rast_airsfc-270)/27,
+         temp2m = (rast_air2m-273.15)/27,
+         temp0 = (rast_airsfc-273.15)/27,
          pressure = (rast_prmsl-100000)/10000,
          wind = sqrt(rast_uwnd^2 + rast_vwnd^2)/10
   ) %>%

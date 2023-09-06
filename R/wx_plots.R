@@ -3,14 +3,14 @@ plot_ribbon_wx <- function(ribbon_fit_obj) {
   p_temp <- create_ribbon_newdata(ribbon_fit_obj, 
                                   margins=TRUE, 
                                   solar_hour = 12, yday = 135, 
-                                  term = "temp2") %>% 
+                                  term = "temp2m") %>% 
     mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
            month = lubridate::month(date,label = TRUE),
            day = lubridate::day(date)) %>% 
     filter(age_sex != "YOUNG OF YEAR") %>% 
     group_by(age_sex) %>% 
     
-    ggplot(aes(temp2*27, ho_prob, color = age_sex)) +
+    ggplot(aes(temp2m*27, ho_prob, color = age_sex)) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
     scale_color_manual(values= met.brewer("Egypt",n=3),
@@ -102,14 +102,14 @@ plot_spotted_wx <- function(spotted_fit_obj) {
   p_temp <- create_spotted_newdata(spotted_fit_obj, 
                                    margins=TRUE, 
                                    solar_hour = 12, yday = 135, 
-                                   term = "temp2") %>% 
+                                   term = "temp2m") %>% 
     mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
            month = lubridate::month(date,label = TRUE),
            day = lubridate::day(date)) %>% 
     filter(age_sex != "YOUNG OF YEAR") %>% 
     group_by(age_sex) %>% 
     
-    ggplot(aes(temp2*27, ho_prob, color = age_sex)) +
+    ggplot(aes(temp2m*27, ho_prob, color = age_sex)) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
     scale_color_manual(values= met.brewer("Egypt",n=3),
@@ -201,13 +201,13 @@ plot_bearded_wx <- function(bearded_fit_obj) {
   p_temp <- create_bearded_newdata(bearded_fit_obj, 
                                   margins=TRUE, 
                                   solar_hour = 12, yday = 135, 
-                                  term = "temp2") %>% 
+                                  term = "temp2m") %>% 
     mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
            month = lubridate::month(date,label = TRUE),
            day = lubridate::day(date)) %>% 
     group_by(age_sex) %>% 
     
-    ggplot(aes(temp2*27, ho_prob, color = age_sex)) +
+    ggplot(aes(temp2m*27, ho_prob, color = age_sex)) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
     scale_color_manual(values= rev(met.brewer("Egypt",n=4)),

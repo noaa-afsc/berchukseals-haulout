@@ -8,3 +8,4 @@ renv
 *.Rproj
 .secrets
 data_raw/era5_ssrd
+/Users/joshlondon/dev/berchukseals-haulout/.secrets

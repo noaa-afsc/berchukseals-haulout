@@ -71,13 +71,9 @@ list(
 
   tar_target(ribbon_model_data, create_ribbon_data(model_data)),
   tar_target(ribbon_fit, fit_ribbon(ribbon_model_data)),
-  tar_target(ribbon_noagesex_fit, fit_ribbon_noagesex(ribbon_model_data)),
   tar_target(ribbon_year_fit, fit_ribbon_year(ribbon_model_data)),
   tar_target(spotted_model_data, create_spotted_data(model_data)),
   tar_target(spotted_fit, fit_spotted(spotted_model_data)),
-  tar_target(spotted_fit_bam, fit_spotted_bam(spotted_model_data)),
-  tar_target(spotted_fit_bam_discrete, fit_spotted_bam_discrete(spotted_model_data)),
-  tar_target(spotted_noagesex_fit, fit_spotted_noagesex(spotted_model_data)),
   tar_target(spotted_year_fit, fit_spotted_year(spotted_model_data)),
   tar_target(bearded_model_data, create_bearded_data(model_data)),
   tar_target(bearded_fit, fit_bearded(bearded_model_data)),

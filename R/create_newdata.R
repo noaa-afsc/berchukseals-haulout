@@ -18,7 +18,7 @@ create_newdata <- function(data, age_sex) {
           data = data, 
           method = "REML")
     gam.temp <-
-      gam(temp2 ~ s(yday) + s(as.numeric(solar_hour)), 
+      gam(temp2m ~ s(yday) + s(as.numeric(solar_hour)), 
           data = data, 
           method = "REML")
     gam.wind <-
@@ -45,7 +45,7 @@ create_newdata <- function(data, age_sex) {
       solar_hour = rep(0:23, each = n_days),
       yday = rep(start_day:end_day, times = 24),
       northing = mean(data$northing),
-      temp2 = temp_pred,
+      temp2m = temp_pred,
       wind = wind_pred,
       pressure = baro_pred,
       precip = precip_pred
@@ -59,8 +59,9 @@ create_newdata <- function(data, age_sex) {
         cos3 = sin(pi * solar_hour / 4),
       ) %>%
       mutate(day = (yday - 120) / 10,
-             day2 = day ^ 2,
-             day3 = day ^ 3)
+             day_2 = day ^ 2,
+             day_3 = day ^ 3,
+             day_4 = day ^ 4)
     df_list[[a_s]] <- df
   }
   if(length({{age_sex}}) > 1) {
@@ -84,7 +85,7 @@ create_newdata_margins <- function(data, age_sex,
       solar_hour = solar_hour,
       yday = yday,
       northing = mean(data$northing),
-      temp2 = if(term %in% c("temp2")) sample(unique(data[,"temp2"]),150) else mean(data[,"temp2"]),
+      temp2m = if(term %in% c("temp2m")) sample(unique(data[,"temp2m"]),150) else mean(data[,"temp2m"]),
       wind = if(term %in% c("wind")) sample(unique(data[,"wind"]),150) else mean(data[,"wind"]),
       pressure = if(term %in% c("pressure")) sample(unique(data[,"pressure"]),150) else mean(data[,"pressure"]),
       precip = if(term %in% c("precip")) sample(unique(data[,"precip"]),150) else mean(data[,"precip"])
@@ -98,8 +99,9 @@ create_newdata_margins <- function(data, age_sex,
         cos3 = sin(pi * solar_hour / 4),
       ) %>%
       mutate(day = (yday - 120) / 10,
-             day2 = day ^ 2,
-             day3 = day ^ 3)
+             day_2 = day ^ 2,
+             day_3 = day ^ 3,
+             day_4 = day ^ 4)
     df_list[[a_s]] <- df
   }
   if(length({{age_sex}}) > 1) {
@@ -135,9 +137,11 @@ create_ribbon_newdata <- function(fit_ribbon, margins = FALSE, solar_hour, yday,
 
   ribbon_newdata <- ribbon_newdata %>%
     mutate(logit_fits = as.vector(ribbon_mm %*% fit_coef),
-           logit_fits_var = diag(ribbon_mm %*% fit_ribbon$covb %*% t(ribbon_mm)),
-           logit_fits_lo95 = logit_fits - 1.96*sqrt(logit_fits_var),
-           logit_fits_up95 = logit_fits + 1.96*sqrt(logit_fits_var),
+           logit_fits_se = sqrt(
+             diag(ribbon_mm %*% fit_ribbon$covb %*% t(ribbon_mm))
+             ),
+           logit_fits_lo95 = logit_fits - 1.96*(logit_fits_se),
+           logit_fits_up95 = logit_fits + 1.96*(logit_fits_se),
            ho_prob = plogis(ribbon_mm %*% fit_coef),
            lower95 = plogis(logit_fits_lo95),
            upper95 = plogis(logit_fits_up95)
@@ -166,9 +170,11 @@ create_spotted_newdata <- function(fit_spotted, margins = FALSE, solar_hour, yda
 
   spotted_newdata <- spotted_newdata %>%
     mutate(logit_fits = as.vector(spotted_mm %*% fit_coef),
-           logit_fits_var = diag(spotted_mm %*% fit_spotted$covb %*% t(spotted_mm)),
-           logit_fits_lo95 = logit_fits - 1.96*sqrt(logit_fits_var),
-           logit_fits_up95 = logit_fits + 1.96*sqrt(logit_fits_var),
+           logit_fits_se = sqrt(
+             diag(spotted_mm %*% fit_spotted$covb %*% t(spotted_mm))
+             ),
+           logit_fits_lo95 = logit_fits - 1.96*(logit_fits_se),
+           logit_fits_up95 = logit_fits + 1.96*(logit_fits_se),
            ho_prob = plogis(spotted_mm %*% fit_coef),
            lower95 = plogis(logit_fits_lo95),
            upper95 = plogis(logit_fits_up95)
@@ -200,9 +206,11 @@ create_bearded_newdata <- function(fit_bearded, margins = FALSE, solar_hour, yda
 
   bearded_newdata <- bearded_newdata %>%
     mutate(logit_fits = as.vector(bearded_mm %*% fit_coef),
-           logit_fits_var = diag(bearded_mm %*% fit_bearded$covb %*% t(bearded_mm)),
-           logit_fits_lo95 = logit_fits - 1.96*sqrt(logit_fits_var),
-           logit_fits_up95 = logit_fits + 1.96*sqrt(logit_fits_var),
+           logit_fits_se = sqrt(
+             diag(bearded_mm %*% fit_bearded$covb %*% t(bearded_mm))
+             ),
+           logit_fits_lo95 = logit_fits - 1.96*(logit_fits_se),
+           logit_fits_up95 = logit_fits + 1.96*(logit_fits_se),
            ho_prob = plogis(bearded_mm %*% fit_coef),
            lower95 = plogis(logit_fits_lo95),
            upper95 = plogis(logit_fits_up95)
@@ -234,7 +242,7 @@ create_newdata_year <- function(data, age_sex) {
       gam.baro <-
         gam(pressure ~ s(yday), data = data)
       gam.temp <-
-        gam(temp2 ~ s(yday) + s(as.numeric(solar_hour)), data = data)
+        gam(temp2m ~ s(yday) + s(as.numeric(solar_hour)), data = data)
       gam.wind <-
         gam(wind ~ s(yday) + s(as.numeric(solar_hour)), data = data)
       gam.precip <-
@@ -256,7 +264,7 @@ create_newdata_year <- function(data, age_sex) {
         solar_hour = 12,
         yday = start_day:end_day,
         northing = mean(data$northing),
-        temp2 = temp_pred,
+        temp2m = temp_pred,
         wind = wind_pred,
         pressure = baro_pred,
         precip = precip_pred
@@ -270,8 +278,9 @@ create_newdata_year <- function(data, age_sex) {
           cos3 = sin(pi * solar_hour / 4),
         ) %>%
         mutate(day = (yday - 120) / 10,
-               day2 = day ^ 2,
-               day3 = day ^ 3)
+               day_2 = day ^ 2,
+               day_3 = day ^ 3,
+               day_4 = day ^ 4)
       df_list_years[[y]] <- df
     }
     df_list[[a_s]] <- bind_rows(df_list_years)
@@ -302,9 +311,11 @@ fit_coef <- fit_ribbon_year$fixed.effects %>%
 # (this came from J Laake code for Hood Canal estimates)
 ribbon_newdata_year <- ribbon_newdata_year %>%
   mutate(logit_fits = as.vector(ribbon_mm %*% fit_coef),
-         logit_fits_var = diag(ribbon_mm %*% fit_ribbon_year$covb %*% t(ribbon_mm)),
-         logit_fits_lo95 = logit_fits - 1.96*sqrt(logit_fits_var),
-         logit_fits_up95 = logit_fits + 1.96*sqrt(logit_fits_var),
+         logit_fits_se = sqrt(
+           diag(ribbon_mm %*% fit_ribbon_year$covb %*% t(ribbon_mm))
+           ),
+         logit_fits_lo95 = logit_fits - 1.96*(logit_fits_se),
+         logit_fits_up95 = logit_fits + 1.96*(logit_fits_se),
          ho_prob = plogis(ribbon_mm %*% fit_coef),
          lower95 = plogis(logit_fits_lo95),
          upper95 = plogis(logit_fits_up95)
@@ -329,9 +340,11 @@ fit_coef <- fit_spotted_year$fixed.effects %>%
 # (this came from J Laake code for Hood Canal estimates)
 spotted_newdata_year <- spotted_newdata_year %>%
   mutate(logit_fits = as.vector(spotted_mm %*% fit_coef),
-         logit_fits_var = diag(spotted_mm %*% fit_spotted_year$covb %*% t(spotted_mm)),
-         logit_fits_lo95 = logit_fits - 1.96*sqrt(logit_fits_var),
-         logit_fits_up95 = logit_fits + 1.96*sqrt(logit_fits_var),
+         logit_fits_se = sqrt(
+           diag(spotted_mm %*% fit_spotted_year$covb %*% t(spotted_mm))
+           ),
+         logit_fits_lo95 = logit_fits - 1.96*(logit_fits_se),
+         logit_fits_up95 = logit_fits + 1.96*(logit_fits_se),
          ho_prob = plogis(spotted_mm %*% fit_coef),
          lower95 = plogis(logit_fits_lo95),
          upper95 = plogis(logit_fits_up95)
