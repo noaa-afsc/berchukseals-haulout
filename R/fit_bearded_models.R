@@ -7,11 +7,17 @@ create_bearded_data <- function(dat.sf) {
 }
 
 fit_bearded <- function (HO_bearded) {
-  glmmLDTS(fixed.formula = dry ~  
+  glmmLDTS(fixed.formula = dry ~ age_sex + 
              sin1 + cos1 + sin2 + cos2 + sin3 + cos3 + 
-             day + day_2 + day_3 + day_4 + 
-             temp2m*wind + pressure + precip + northing +
-             northing:day + northing:day_2 + northing:day_3 + northing_day_4,
+             day + day_2 + day_3 +  
+             temp2m*wind + pressure + precip + 
+             northing:day + northing:day_2 + northing:day_3 + 
+             sin1:day + sin1:day_2 + sin1:day_3 +
+             cos1:day + cos1:day_2 + cos1:day_3 +
+             sin2:day + sin2:day_2 + sin2:day_3 +
+             cos2:day + cos2:day_2 + cos2:day_3 +
+             sin3:day + sin3:day_2 + sin3:day_3 +
+             cos3:day + cos3:day_2 + cos3:day_3,
            random.formula = dry ~ speno,
            data = HO_bearded,
            EstMeth = "REML",
