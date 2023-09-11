@@ -454,7 +454,8 @@ reliance on expert opinion and examination of multiple data streams provides the
 best option. Data outside of the deployment start and end times were discarded
 prior to analysis. 
 
-Haul-out behavior data were recorded and transmitted via the Argos satellite
+Haul-out behavior data were recorded in a manner standard across Wildlife Computers
+bio-loggers and transmitted via the Argos satellite
 network as hourly percent-dry timelines. For each hour of a day, the wet/dry
 sensor was polled by the tag firmware every few seconds and the percent of the
 hour in the dry state was calculated (Figure \@ref(fig:examplePlot)). On board
