@@ -1396,7 +1396,9 @@ study was to develop models applicable for aerial survey correction factors and
 using sea ice as a covariate would almost certainly bias haul-out predictions
 towards those seals that are on or near ice and therefore more likely to haul
 out. Since aerial surveys can only detect seals on ice, abundance estimates
-would be missing a correction for those seals that are away from ice. Consider
+would be missing a correction for those seals that are away from ice. 
+
+Consider
 the case of employing haul-out probabilities as an aerial survey correction in a
 population inhabiting two areas: an ice-free region and a region with sea ice.
 Further, assume that half of the population is in each area on average, and that
@@ -1418,6 +1420,7 @@ ice, and therefore have a zero chance of hauling out. The same logic holds for
 any other covariate, such as distance from the ice edge, that has different
 values in the surveyed and unsurveyed habitat of the seals (assuming distance
 from ice edge is coded with opposite signs inside and outside the pack ice).
+
 Lastly, our study was limited to the spring season when seal haul-out behaviors
 are strongly influenced by pupping, nursing, breeding behavior, and molt and
 these drivers are likely more influential than specific sea-ice concentration.
@@ -1681,6 +1684,7 @@ deploy_tbl <- deploy_tbl %>%
                locations = cells_body(columns = agency, 
                                       rows = agency == "NPWC"))
 
+deploy_tbl
   
 ```
 \elandscape
