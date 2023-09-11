@@ -668,14 +668,16 @@ portion_90 <- function(d) {
 
 ```
 
-To properly account for temporal dependence within a computationally tractable
-framework, we used generalized linear mixed pseudo-models (GLMPMs;
+To properly account for temporal dependence and to take advantage of computational
+efficiency, we used generalized linear mixed pseudo-models (GLMPMs;
 [@verhoef2010a]) to model variation in haul-out behavior as a function of (1)
 covariate predictors, (2) temporally autocorrelated random effects, and (3)
 individual random effects representing heterogeneity in individual behavior. We
 used the glmmLDTS package [@verhoef2010a] to implement GLMPMs. We explored two
-different model formulations for our data, and owing to the large number of
-records, we fit separate models to bearded, ribbon, and spotted seal data sets.
+different model formulations for our data and we fit separate models to bearded, 
+ribbon, and spotted seal data sets as we expected differing behavior by species. 
+Separate models for each species were also
+needed because a single, very large data set proved computationally intractable.
 In our first model formulation and for each species, we fitted a year-independent
 model that predicted average haul-out behavior as a function of demographic,
 environmental, seasonal, and diurnal effects. Second, for ribbon and spotted
