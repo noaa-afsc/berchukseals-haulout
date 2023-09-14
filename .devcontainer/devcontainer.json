@@ -1,5 +1,4 @@
 {
-  ...
-  "build": { "dockerfile": "Dockerfile" },
-  ...
+  "name": "berchukseals",
+  "build": { "dockerfile": "Dockerfile" }
 }
