@@ -2,8 +2,6 @@ FROM rocker/geospatial
 
 RUN R -e "install.packages('renv', repos = c(CRAN = 'https://cloud.r-project.org'))"
 
-WORKDIR /project
-
 COPY renv.lock renv.lock
 
 RUN mkdir -p renv
