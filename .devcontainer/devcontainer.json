@@ -1,4 +1,6 @@
 {
   "name": "${localWorkspaceFolderBasename}",
-  "image": "ghcr.io/rocker-org/devcontainer/geospatial:4.3.1"
+  "image": "ghcr.io/rocker-org/devcontainer/geospatial:4",
+
 }
+
