@@ -7,7 +7,7 @@ create_bearded_data <- function(dat.sf) {
 }
 
 fit_bearded <- function (HO_bearded) {
-  glmmLDTS(fixed.formula = dry ~ age_sex + 
+  glmmLDTS(fixed.formula = dry ~
              sin1 + cos1 + sin2 + cos2 + sin3 + cos3 + 
              day + day_2 + day_3 +  
              temp2m*wind + pressure + precip + 

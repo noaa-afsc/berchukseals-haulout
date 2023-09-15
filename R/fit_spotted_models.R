@@ -48,9 +48,9 @@ fit_spotted_year <- function(HO_spotted) {
              sin2:day + sin2:day_2 + sin2:day_3 +
              cos2:day + cos2:day_2 + cos2:day_3 +
              sin3:day + sin3:day_2 + sin3:day_3 +
-             cos3:day + cos3:day_2 + cos3:day_3,
+             cos3:day + cos3:day_2 + cos3:day_3 +
              age_sex:day + age_sex:day_2 + age_sex:day_3 +  
-             year:day + year:day_2 + year:day_3,
+             year:day + year:day_2,
            random.formula = dry ~ speno,
            data = HO_spotted,
            EstMeth = "REML",
