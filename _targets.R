@@ -56,7 +56,9 @@ list(
   tar_target(nsb_deployments, get_nsb_deployments()),
   tar_target(nsb_locations, get_nsb_locs(nsb_deployments)),
   tar_target(nsb_timelines, get_nsb_timelines(nsb_deployments)),
-
+  
+  tar_target(survey_area, get_survey_area()),
+  
   tar_target(locs_sf, get_locs_sf(adfg_locations, nsb_locations)),
   tar_target(timeline_data, get_timeline_data(adfg_timelines, nsb_timelines)),
 
