@@ -274,13 +274,13 @@ To ensure the reader is clearly aware of which life-history behaviors/functions 
 > Presumably "extra-terrestrial atmospheric" events (such as events on Venus or Mars) played no role in the transmission of the data signal to the Argos receivers in orbit around Earth.*
 
 ::: author-response
-**\[author response\]** We were using a less strict definition of extra-terrestrial to refer to interference that wasn't Earth/surface-based. We've edited to 'atmospheric interference'
+**\[author response\]** We've edited to 'atmospheric interference'
 :::
 
 > ***Line 174-175:** This note belongs in the Discussion, not the Results.*
 
 ::: author-response
-**\[author response\]** We feel this note is important to acknowledge in the methods because it speaks to the rationale for our methodological choices (bio-logger type, programming choices, analytical choices).
+**\[author response\]** We feel this note is important to acknowledge in the methods because it speaks to the rationale for our methodological choices (bio-logger type, programming choices, analytic choices).
 :::
 
 > ***Figure 3:** Do you mean that each cell "encompasses" and area of 50 km\^2?*
@@ -298,7 +298,7 @@ To ensure the reader is clearly aware of which life-history behaviors/functions 
 > ***Line 198-199:** For most tags, your daily locations are from the Argos system, not from your data loggers. However, you included some FastLoc tag deployments. Please re-write for clarity of what these location are.*
 
 ::: author-response
-**\[author response\]** The previous paragraph describes how we determined daily locations. We see the reviewers point re: the data not technicaly coming from our data loggers. We have edited the sentence for additional clarity.
+**\[author response\]** The previous paragraph describes how we determined daily locations. We see the reviewers point re: the data not technically coming from our data loggers. We have edited the sentence for additional clarity.
 :::
 
 > ***Line 199:** What is a "key" weather variable? Please write for clarity.*
