@@ -918,7 +918,7 @@ the spring season compared to ribbon and spotted seals.
 targets::tar_load(bearded_newdata, store = here::here("_targets"))
 ```
 
-```{r beardedHOCal, include=TRUE, fig.cap="Predicted hourly haul-out probability of bearded seals (all ages and sex classes) from 1 March to 15 July for all and sex classes. Hour of the day was fixed at local solar noon."}
+```{r beardedHOCal, include=TRUE, fig.cap="Predicted hourly haul-out probability of bearded seals (all ages and sex classes) from 1 March to 15 July for all and sex classes."}
 
 plot_df <- bearded_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
@@ -944,7 +944,8 @@ p <- p + theme(legend.position = "bottom") +
   theme(strip.background = element_rect(colour="white")) +
   theme(axis.ticks=element_blank()) +
   xlab("day of month") + ylab("local solar hour") +
-  ggtitle("Bearded seals rest on sea ice around solar noon and solar midnight")
+  ggtitle("Bearded seal predicted haul-out probability",
+          subtitle = str_wrap("Periods of highest haul-out probability for bearded seals appear to be centered around solar noon and midnight"))
 p
 ```
 
@@ -1016,7 +1017,8 @@ p <- p + theme(legend.position = "bottom") +
   theme(strip.background = element_rect(colour = "white")) +
   theme(axis.ticks = element_blank()) +
   xlab("day of month") + ylab("local solar hour") +
-  ggtitle("Ribbon seals rest on sea ice in late spring and around solar noon.")
+  ggtitle("Ribbon seal predicted haul-out probability.",
+          subtitle = str_wrap("Periods of highest haul-out probability for ribbon seals appear centered around solar noon and age-sex classes show differing seasonal patterns."))
 p
 ```
 
@@ -1093,7 +1095,8 @@ p <- p + theme(legend.position = "bottom") +
   theme(strip.background = element_rect(colour="white")) +
   theme(axis.ticks=element_blank()) +
   xlab("day of month") + ylab("local solar hour") +
-  ggtitle("Spotted seals rest on sea ice in late spring and around solar noon.")
+  ggtitle("Spotted seal predicted haul-out probability.",
+          subtitle = str_wrap("Periods of highest haul-out probability for spotted seals appear centered around solar noon and age-sex classes show differing seasonal patterns."))
 p
 ```
 
