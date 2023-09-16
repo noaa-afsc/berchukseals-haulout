@@ -792,7 +792,7 @@ locs_count <- hexgrid %>%
   ) %>% drop_na()
 ```
 
-(ref:mapCaption) Spatial distribution of haul-out data during the months of March through July 15 for each of the three species. Data were collated across all years between 2005 and 2020. Each hexagonal cell represents an area of 50 km^2^
+(ref:mapCaption) Spatial distribution of haul-out records during the months of March through July 15 for each of the three species. Data were collated across all years between 2005 and 2020. Each hexagonal cell represents an area of 50 km^2^
 
 ```{r dataMap, include=TRUE, fig.cap="(ref:mapCaption)"}
 
@@ -814,7 +814,7 @@ ggplot() +
                            barheight = 0.5, title.hjust = 0.5)) + 
   facet_grid(~ species) +
   theme(legend.position = "bottom") +
-  ggtitle("Spatial distribution of haul-out behavior data") +
+  ggtitle("Spatial distribution of haul-out behavior records") +
   labs(caption = bquote("One hexagonal cell represents 50"~km^2))
 ```
 
@@ -851,8 +851,8 @@ ggplot(data = seal_hours_tbl, aes(x = yday, y = n, fill = n))+
         panel.grid = element_blank(),
         legend.position = "bottom") +
   labs(fill = "seal-hours of bio-logger data") +
-  ggtitle("Density of haul-out behavior observations varies from March through July",
-          subtitle = "data are grouped by day-of-year and presented in seal-hours collated across years (2005-2020)")
+  ggtitle("Density of haul-out behavior observations by species",
+          subtitle = str_wrap("data are grouped by day-of-year and presented in seal-hours collated across years (2005-2020) from March through July"))
 
 ```
 
