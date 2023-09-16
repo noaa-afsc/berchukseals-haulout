@@ -494,7 +494,7 @@ often do not transmit while at sea), tag performance, duty cycling, and
 atmospheric interference. Fortunately, missing records do not substantially bias
 inference about haul-out probabilities [@conn2012b].
 
-```{r examplePlot, include=TRUE, fig.id="examplePlot", fig.cap="Haul-out behavior observations recorded by a bio-logger deployed on a ribbon seal over two years during the months of March, April, and May. Areas of the plot indicated with an 'X' represent missing data that were not successfully recieved from the tag."}
+```{r examplePlot, include=TRUE, fig.id="examplePlot", fig.cap="Haul-out behavior observations recorded by a bio-logger deployed on a ribbon seal over two years during the months of March, April, and May. This actogram plot represents the transmitted hourly percent-dry values. Areas indicated with an 'X' represent missing data that were not successfully recieved from the tag."}
 
 d <- analysis_data %>% 
   filter(speno == "HF2016_1002") %>% 
@@ -540,8 +540,8 @@ p <- p + theme(legend.position = "bottom") +
   theme(strip.background = element_rect(colour="white")) +
   theme(axis.ticks=element_blank()) +
   theme(panel.spacing = unit(0,"line")) +
-  ggtitle("Observation records are incomplete because not all data are transmitted",
-          subtitle = "percent-dry actogram for a single ribbon seal across two years") +
+  ggtitle("Example percent-dry actogram from bio-logger data",
+          subtitle = str_wrap("Observation records shown are from a single ribbon seal across a two year deployment. Note that not all records are received from the device.", width = 85)) +
   xlab("day of month") + ylab("hour (UTC)") 
 p <- p + 
   geom_point(aes(x = day, y = hour), data = missing_hours, 
@@ -623,23 +623,17 @@ with greater than 15% concentration for each year.
 ```{r tblCovariates, include=TRUE, tab.cap = "Explanatory covariates used in analyses of binary haul-out records for bearded, spotted, and ribbon seals. Note that we also considered select interactions (see article text) between these primary covariates.  For instance, wind chill was represented by the interaction temperature:wind."}
 
 covariate_tbl <- tibble::tribble(
-  ~Covariate, ~Type, ~Source, ~Description,
-  "Age-sex class",   "Categorical", "Field Assessment", 
-  "young-of-the-year, subadult, adult male and adult female",
-  "Hour", "Continuous; Fourier basis", "Bio-logger", 
-  "local solar hour using 6 variables of a Fourier-series basis",
-  "Day",   "Continuous", "Bio-logger", 
-  "linear, quadratic, and cubic effects of day-of-year",
-  "Precip", "Continuous", "NARR", 
-  "convective precipitation (ref:kgm2)",
-  "Pressure", "Continuous", "NARR", 
-  "atmospheric pressure at sea level (kPa)",
-  "Temp", "Continuous", "NARR",
-  "air temperature (C) at 2m above the earth’s surface",
-  "Wind", "Continuous", "NARR", 
-  "northerly and easterly vector components for wind converted into a single wind speed via the Euclidean norm",
-  "Northing", "Continuous", "Bio-logger","latitude divided by the mean latitude across all locations (for bearded seals only)",
-  "Year", "Continuous", "Bio-logger", "For the set of models examining inter-annual variation in sea ice use, we fitted models with the addition of year by day-of-year interactions." 
+  ~Covariate, ~Type, ~Description,
+  "Age-sex class","Categorical","young-of-the-year, subadult, adult male and adult female",
+  "Hour", "Continuous; Fourier basis", "local solar hour using 6 variables of a Fourier-series basis",
+  "Day",   "Continuous", "linear, quadratic, and cubic effects of day-of-year",
+  "Precip", "Continuous", "convective precipitation (ref:kgm2) (NARR)",
+  "Pressure", "Continuous", "atmospheric pressure at sea level (kPa) (NARR)",
+  "Temp", "Continuous", "air temperature (C) at 2m above the earth’s surface (NARR)",
+  "Wind", "Continuous",
+  "northerly and easterly vector components for wind (NARR) converted into a single wind speed via the Euclidean norm",
+  "Northing", "Continuous", "latitude divided by the mean latitude across all locations (for bearded seals only)",
+  "Year", "Continuous", "For the set of models examining inter-annual variation in sea ice use, we fitted models with the addition of year by day-of-year interactions." 
 )
 
 covariate_tbl %>% 
