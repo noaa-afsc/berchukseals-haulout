@@ -136,9 +136,39 @@ knitr::opts_chunk$set(
 
 options(scipen = 3, digits = 3)
 
-theme_set(theme_minimal(base_family = 'Source Sans Pro',
+theme_set(theme_minimal(base_family = 'Spline Sans',
                         base_size = 9))
-theme_replace(plot.title.position = "plot")
+theme_update(
+  plot.title.position = "plot",
+  # left-align title
+  plot.caption.position = "plot",
+  # right-align caption
+  plot.title = element_text(face = "bold"),
+  # larger, bold title
+  plot.subtitle = element_textbox_simple(
+    color = "grey30",
+    margin = ggplot2::margin(t = 0, b = 12, r = 60)
+  ),
+  plot.caption = element_text(color = "grey30"),
+  # change color of caption
+  panel.grid.minor = element_blank() # no minor grid lines
+)
+
+# use a named vector for explicit matching
+species_colors <- c(
+  'Spotted seal' = "#52BCA3",
+  'Bearded seal' = "#E58606",
+  'Ribbon seal' = "#5D69B1"
+)
+
+age_sex_labels <- c(
+  "ADULT.F" = "adult female",
+  "ADULT.M" = "adult male",
+  "SUBADULT" = "subadult",
+  "YOUNG OF YEAR" = "young of year",
+  "ALL AGES" = "all ages"
+)
+
 ```
 
 # Introduction {-}
@@ -279,7 +309,7 @@ included. We refer readers to Figure \@ref(fig:deployplot) and the primary liter
 for detailed capture and bio-logger attachment methods (see Supplemental
 Material, S1).
 
-(ref:deployMapCaption) Initial deployment areas for each seal species (bearded, ribbon, and spotted seals) in the study between 2005 and 2020. Regions shown for each species are minimum concave polygons buffered by 60 km for enhanced visibility. The larger region (shaded yellow) indicates the spatial extent of aerial survey effort to date in US waters of the Bering and Chukchi seas. Deployments were initiated across a range of months but only data from 1 March to 15 July were included in the analysis. See Figure \@ref(fig:dataMap) for the spatial distribution of observed data used in the study and Supplemental Materials 1 for additional deployment details.
+(ref:deployMapCaption) Initial deployment areas for each seal species (bearded, ribbon, and spotted seals) in the study between 2005 and 2020. Solid regions shown for each species are minimum concave polygons buffered by 60 km for enhanced visibility. The larger, shaded region indicates the spatial extent of aerial survey effort to date in US waters of the Bering and Chukchi seas. Deployments were initiated across a range of months but only data from 1 March to 15 July were included in the analysis. See Figure \@ref(fig:dataMap) for the spatial distribution of observed data used in the study and Supplemental Materials 1 for additional deployment details.
 
 ```{r deployplot, include=TRUE, fig.asp = 0.45, fig.cap = "(ref:deployMapCaption)"}
 targets::tar_load(deploy_details, store = here::here("_targets"))
@@ -299,8 +329,7 @@ world <- ne_countries(scale = "medium", returnclass = "sf") %>%
 survey_area <- survey_area %>% 
   sf::st_transform(st_crs(deploy_sf))
 
-species_colors <- setNames(met.brewer("Isfahan2",n=3,direction=-1,override.order = TRUE),
-                           c("Bearded seal","Ribbon seal","Spotted seal"))
+
 species_labels <- c("Bearded seal" = paste0("<span style = 'color:",
                                             species_colors['Bearded seal'],
                                             ";'>Bearded seal</span>"),
@@ -320,8 +349,8 @@ label_coords_beaufort <- st_sfc(st_point(c(-146.5,72.25)), crs = 4326) %>%
   st_transform(st_crs(deploy_sf))
 
 p <- ggplot() +
-  layer_spatial(survey_area, color = "#ddc000", 
-                fill = "#ddc000", 
+  layer_spatial(survey_area, color = "#A26E7C", 
+                fill = "#A26E7C", 
                 alpha = 0.15,
                 linewidth = 0.5) +
   layer_spatial(deploy_sf, aes(fill=species),
@@ -329,29 +358,32 @@ p <- ggplot() +
   annotation_spatial(world,
                      linewidth=0,
                      fill = "grey80") +
-  geom_sf_text(data = label_coords_bering, aes(label = "Bering sea"), size = 1.75, color = "grey40") +
-  geom_sf_text(data = label_coords_chukchi, aes(label = "Chuckchi \nsea"), size = 1.75, color = "grey40") +
-  geom_sf_text(data = label_coords_beaufort, aes(label = "Beaufort \nsea"), size = 1.75, color = "grey40") +
+  geom_sf_text(data = label_coords_bering, aes(label = "Bering sea"), size = 1.65, color = "grey30") +
+  geom_sf_text(data = label_coords_chukchi, 
+               aes(label = "Chuckchi \nsea"), size = 1.65, lineheight = .85, color = "grey30") +
+  geom_sf_text(data = label_coords_beaufort, 
+               aes(label = "Beaufort \nsea"), size = 1.65, lineheight = .85, color = "grey30") +
   facet_grid(cols = vars(species), labeller = species_labels,
              switch="x") +
-  scale_fill_manual(values = met.brewer("Isfahan2",n=3,direction=-1,override.order = TRUE),
+  scale_fill_manual(values = species_colors,
                     aesthetics = "fill", 
                     name = "species") + 
-  ggtitle("Initial bio-logger deployment locations by species",
+  labs(title = "Initial bio-logger deployment locations by species",
           subtitle = 
                  paste0("Bio-loggers were initially deployed on ",
                 "<span style = 'color:",species_colors['Bearded seal'],";'>bearded,</span> ", 
                 "<span style = 'color:",species_colors['Ribbon seal'],";'>ribbon,</span> ",  
                 "and ", 
                 "<span style = 'color:",species_colors['Spotted seal'],";'>spotted</span> seals ", 
-                "across multiple regions within the Bering, Chukchi, and western Beaufort seas.")) +
-  labs(caption = "shaded yellow region indicates spatial extent of aerial survey effort in US waters") +
+                "across multiple regions within the Bering, Chukchi, and western Beaufort seas."),
+       caption = "outlined region indicates spatial extent of aerial survey effort in US waters") +
   theme(legend.position = "none",
         axis.title = element_blank(),
         strip.background = element_blank(),
         strip.placement = "outside",
         strip.text.x = element_markdown(face = "bold"),
-        plot.subtitle = element_textbox_simple(margin = ggplot2::margin(b=12)))
+        plot.caption = element_markdown(color = "#A26E7C")
+  )
 
 p
 ```
@@ -494,7 +526,7 @@ often do not transmit while at sea), tag performance, duty cycling, and
 atmospheric interference. Fortunately, missing records do not substantially bias
 inference about haul-out probabilities [@conn2012b].
 
-```{r examplePlot, include=TRUE, fig.id="examplePlot", fig.cap="Haul-out behavior observations recorded by a bio-logger deployed on a ribbon seal over two years during the months of March, April, and May. This actogram plot represents the transmitted hourly percent-dry values. Areas indicated with an 'X' represent missing data that were not successfully recieved from the tag."}
+```{r examplePlot, include=TRUE, fig.id="examplePlot", fig.cap="Haul-out behavior observations recorded by a bio-logger deployed on a ribbon seal over two years during the months of March, April, and May. This actogram plot represents the transmitted hourly percent-dry values. Not all data during a deployment are reliably transmitted from the bio-logger and since data are transmitted in 24-hour chunks occasional missing days are present in the record. Here, missing data that were not successfully recieved from the device are represented as empty rectangles."}
 
 d <- analysis_data %>% 
   filter(speno == "HF2016_1002") %>% 
@@ -526,26 +558,58 @@ missing_hours <- tibble(haulout_dt = seq(min(d_deploy$haulout_dt),
          hour = lubridate::hour(haulout_dt))
 
 p <- ggplot(d,aes(day,hour,fill=percent_dry))+
-  geom_tile(color= "white",size=0) + 
-  scale_fill_gradientn(colors = rev(met.brewer("Hiroshige")),
+  geom_tile(linewidth = 0.1, color = "grey75") + 
+  scico::scale_fill_scico(palette = "nuuk", direction = 1,
                        name = "hourly percent dry", aesthetics = "fill",
     guide = guide_colorbar(title.position = "bottom", barwidth = 15,
                            barheight = 0.5, title.hjust = 0.5)
-    )
+    ) +
+  geom_tile(data = missing_hours, fill = NA, color = "grey30", linewidth = 0.2) +
+  coord_cartesian(clip = "off")
+
+label_df <- data.frame(year = 2016, month = "Apr",day = 1, hour = 12,
+                       percent_dry = 0,
+                       lab = "**Missing Data**<br>not all data are reliably received from the bio-logger") |> 
+  mutate(month = forcats::fct_relevel(month,c("Mar","Apr","May","Jun")))
+
+curve_df <- data.frame(year = 2016, 
+                       month = "Apr", 
+                       day = 1, day_end = 2, 
+                       hour = 8, hour_end = 0,
+                       percent_dry = 0) |> 
+  mutate(month = forcats::fct_relevel(month,c("Mar","Apr","May","Jun")))
+
+
+p <- p +
+  geom_textbox(
+    data = label_df,
+    mapping = aes(day, hour, label = lab),
+    width = grid::unit(0.65, "npc"), # 65% of plot panel width
+    halign = 0, valign = 0.5,
+    nudge_y = 2,
+    size = 2.75, box.size = NA,
+    lineheight = .9,
+    fill = NA, 
+    label.color = NA,
+  ) +
+  geom_curve(
+    data = curve_df,
+    mapping = aes(x = day, y = hour, xend = day_end, yend = hour_end),
+    curvature = 0
+  )
 
 p <- p + facet_grid(year~month, scales = "free_x")
 p <- p + scale_x_continuous(breaks = c(5,15,25), expand = c(0,0)) +
-  scale_y_continuous(breaks = c(4,12,20))
+  scale_y_continuous(breaks = c(4,12,20), labels = c("04:00","12:00","20:00"))
+
 p <- p + theme(legend.position = "bottom") +
   theme(strip.background = element_rect(colour="white")) +
   theme(axis.ticks=element_blank()) +
   theme(panel.spacing = unit(0,"line")) +
   ggtitle("Example percent-dry actogram from bio-logger data",
-          subtitle = str_wrap("Observation records shown are from a single ribbon seal across a two year deployment. Note that not all records are received from the device.", width = 85)) +
-  xlab("day of month") + ylab("hour (UTC)") 
-p <- p + 
-  geom_point(aes(x = day, y = hour), data = missing_hours, 
-             color = "black", shape = 4, size=0.8)
+          subtitle = "Observation records shown are from a single ribbon seal across a two year deployment.") +
+  xlab("day of month") + ylab("hour (UTC)")
+
 p
 ```
 
@@ -637,7 +701,6 @@ covariate_tbl <- tibble::tribble(
 )
 
 covariate_tbl %>% 
-  select(-Source) %>% 
   flextable() %>% 
   fontsize(size = 9, part = "all") %>% 
   hline(i=8) %>% 
@@ -768,7 +831,6 @@ model uncertainty.
 # Results {-}
 
 
-
 Figure \@ref(fig:dataMap) shows the
 spatial distribution of weighted locations with available haul-out behavior data
 used for analysis of each species across the study area.
@@ -792,7 +854,7 @@ locs_count <- hexgrid %>%
   ) %>% drop_na()
 ```
 
-(ref:mapCaption) Spatial distribution of haul-out records during the months of March through July 15 for each of the three species. Data were collated across all years between 2005 and 2020. Each hexagonal cell represents an area of 50 km^2^
+(ref:mapCaption) Spatial distribution of haul-out records during the months of March through July 15 for each of the three species. Linking location estimates with haul-out records in space and time allows for inclusion of weather covariates in the final model. For this visualization, data were collated across all years between 2005 and 2020 and each hexagonal cell represents an area of 50 km^2^
 
 ```{r dataMap, include=TRUE, fig.cap="(ref:mapCaption)"}
 
@@ -800,22 +862,38 @@ world <- ne_countries(scale = "medium", returnclass = "sf") %>%
   sf::st_transform(st_crs(locs_count))
 
 ggplot() +
-  annotation_spatial(world, 
-                     size = 0, 
+  annotation_spatial(world,
+                     linewidth = 0,
                      fill = "grey80") +
   layer_spatial(
-    data = locs_count, size = 0.125,
-    aes(fill = ct)
+    data = locs_count,
+    aes(fill = ct),
+    linewidth = 0.1,
+    color = "grey75"
   ) +
-  scale_fill_gradientn(colors = rev(met.brewer("Greek")),
-                    trans = "log10", aesthetics = "fill",
+  scico::scale_fill_scico(
+    palette = "imola",
+    trans = "log10",
+    aesthetics = "fill",
     name = "number of locations",
-    guide = guide_colorbar(title.position = "bottom", barwidth = 15, 
-                           barheight = 0.5, title.hjust = 0.5)) + 
-  facet_grid(~ species) +
-  theme(legend.position = "bottom") +
-  ggtitle("Spatial distribution of haul-out behavior records") +
-  labs(caption = bquote("One hexagonal cell represents 50"~km^2))
+    guide = guide_colorbar(
+      title.position = "bottom",
+      barwidth = 15,
+      barheight = 0.5,
+      title.hjust = 0.5
+    )
+  ) +
+  facet_grid( ~ species) +
+  labs(
+    title = "Spatial distribution of haul-out behavior records",
+    subtitle = "Location estimates were linked by time with haul-out records. 
+    Data are shown collated across 2005-2020 between 01 March-15 July
+    for each of the three species.",
+    caption = bquote("One hexagonal cell represents 50" ~ km ^ 2)
+  ) +
+  theme(
+    legend.position = "bottom"
+  )
 ```
 
 
@@ -836,7 +914,7 @@ fallen off or their batteries were depleted.
 
 ggplot(data = seal_hours_tbl, aes(x = yday, y = n, fill = n))+
   geom_col() +
-        scale_fill_gradientn(colors = rev(met.brewer("Greek"))) +
+        scico::scale_fill_scico(palette = "oslo", direction = -1) +
         scale_x_continuous(breaks = c(60, 91, 121, 152, 182),
                            labels = c("01 March", "01 April", "01 May", "01 June", "01 July"),
                            expand = expansion(mult = c(0, 0))) +
@@ -845,14 +923,20 @@ ggplot(data = seal_hours_tbl, aes(x = yday, y = n, fill = n))+
                                title.hjust = 0.5, barwidth = 15,
                                barheight = 0.5)) +
   facet_grid(species ~ .) + 
+  labs(fill = "seal-hours of bio-logger data",
+       title = "Seasonal density of haul-out behavior observations by species",
+       subtitle = "Data are grouped by day-of-year and presented in seal-hours collated across 
+       years (2005-2020) from March through July.") +
   theme(axis.text.x = element_text(hjust = 0),
         axis.text.y = element_blank(),
         axis.title = element_blank(),
         panel.grid = element_blank(),
-        legend.position = "bottom") +
-  labs(fill = "seal-hours of bio-logger data") +
-  ggtitle("Density of haul-out behavior observations by species",
-          subtitle = str_wrap("data are grouped by day-of-year and presented in seal-hours collated across years (2005-2020) from March through July"))
+        legend.position = "bottom",
+        plot.subtitle = element_textbox_simple(
+          color = "grey30",
+          margin = ggplot2::margin(t = 0, b = 0, r = 60)
+        )
+  )
 
 ```
 
@@ -926,26 +1010,33 @@ plot_df <- bearded_newdata %>%
          day = lubridate::day(date)) %>%
   filter(month != "Aug")
 
-p <- ggplot(plot_df,aes(day,solar_hour,fill = ho_prob))+
-  geom_tile(color= "white",size = 0) +
-  scale_fill_gradientn(colors = rev(met.brewer("Hiroshige")),
-                       name = "haul-out probability", aesthetics = "fill",
+p <- ggplot(plot_df, aes(day,solar_hour,fill = ho_prob, color = ho_prob)) +
+  geom_tile(linewidth = 0.15) +
+  scico::scale_fill_scico(palette = "navia", direction = 1,
+                          begin = 0.1, end = 1,
+                       name = "haul-out probability", 
                        limits = c(0,1), breaks = c(0.25, 0.50, 0.75),
                        guide = guide_colorbar(title.position = "bottom", barwidth = 15,
                                               barheight = 0.5, title.hjust = 0.5)
-  # scale_fill_viridis_c(name = "haul-out probability", aesthetics = "fill",
-  #                      guide = guide_colorbar(title.position = "bottom", barwidth = 15,
-  #                                             barheight = 0.5, title.hjust = 0.5)
-  )
-p <- p + facet_grid(age_sex~month)
+  ) +
+  scico::scale_color_scico(palette = "navia", direction = 1,
+                           begin = 0.1, end = 1,
+                           limits = c(0,1)) +
+  guides(col = FALSE)
+
+p <- p + facet_grid(age_sex~month,
+                    labeller = labeller(
+                      age_sex = age_sex_labels
+                    ))
 p <- p + scale_x_continuous(breaks = c(1,10,20,30)) +
-  scale_y_continuous(breaks = c(4,12,20))
-p <- p + theme(legend.position = "bottom") +
-  theme(strip.background = element_rect(colour="white")) +
-  theme(axis.ticks=element_blank()) +
+  scale_y_continuous(breaks = c(4,12,20), labels = c("04","12", "20"))
+p <- p + theme(legend.position = "bottom",
+               strip.background = element_rect(colour="white"),
+               axis.ticks=element_blank()) + 
   xlab("day of month") + ylab("local solar hour") +
-  ggtitle("Bearded seal predicted haul-out probability",
-          subtitle = str_wrap("Periods of highest haul-out probability for bearded seals appear to be centered around solar noon and midnight"))
+  labs(title = "Bearded seal predicted haul-out probability",
+       subtitle = "Our model predicts lower haul-out probability for bearded seals overall 
+       compared to ribbon and spotted seals. Highest probability is associated with solar noon and midnight.")
 p
 ```
 
@@ -964,7 +1055,7 @@ Additionally, wind chill was also a significant influence
 pressure or precipitation was less apparent.
 
 
-```{r beardedHOwx, fig.asp = 1, include=TRUE, fig.cap="Marginal effects of temperature, wind, pressure, and precipitation on the predicted haul-out probability of bearded seals combined across all age and sex classifications. Hour of the day was fixed at local solar noon and day-of-year held at the day of peak haul-out for bearded seals. Vertical lines represent the 95\\% confidence interval around the predicted haul-out probability."}
+```{r beardedHOwx, fig.asp = 1, include=TRUE, fig.cap="Marginal effects of temperature, wind, pressure, and precipitation on the predicted haul-out probability of bearded seals combined across all age and sex classifications. Hour of the day was fixed at local solar noon and day-of-year fixed at 15 May. Vertical lines represent the 95\\% confidence interval around the predicted haul-out probability."}
 
 targets::tar_load(bearded_wx_plot, store = here::here("_targets"))
 
@@ -991,7 +1082,7 @@ adult male ribbon seals completed their molt by the end of June. Lastly,
 for adults of both sexes there was some indication for a shift to a
 crepuscular haul-out pattern in late June and July.
 
-```{r ribbonHOCal, fig.asp = 0.9, include=TRUE, fig.cap="Predicted hourly haul-out probability of ribbon seals from 1 March to 15 July for each age and sex class used in the model. Adult females are indicated by 'ADULT.F' and 'ADULT.M' indicates adult males. 'SUBADULT' and 'YOUNG OF YEAR' age classes include both sexes. Hour of the day was fixed at local solar noon."}
+```{r ribbonHOCal, fig.asp = 0.9, include=TRUE, fig.cap="Predicted hourly haul-out probability of ribbon seals from 1 March to 15 July for each age and sex class used in the model. There is an apparent seasonal progression with subadults hauling out earlier in the season followed by adult males and, then, adult females. Predictions for young of the year show their transition from newly weaned pups resting on the ice to more in-water activities."}
 
 plot_df <- ribbon_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
@@ -999,26 +1090,34 @@ plot_df <- ribbon_newdata %>%
          day = lubridate::day(date)) %>%
   filter(month != "Aug")
 
-p <- ggplot(plot_df, aes(day,solar_hour,fill = ho_prob)) +
-  geom_tile(color = "white",size = 0) +
-  scale_fill_gradientn(colors = rev(met.brewer("Hiroshige")),
-                       name = "haul-out probability", aesthetics = "fill",
+p <- ggplot(plot_df, aes(day,solar_hour,fill = ho_prob, color = ho_prob)) +
+  geom_tile(linewidth = 0.15) +
+  scico::scale_fill_scico(palette = "navia", direction = 1,
+                          begin = 0.1, end = 1,
+                       name = "haul-out probability", 
                        limits = c(0,1), breaks = c(0.25, 0.50, 0.75),
                        guide = guide_colorbar(title.position = "bottom", barwidth = 15,
                                               barheight = 0.5, title.hjust = 0.5)
-  # scale_fill_viridis_c(name = "haul-out probability", aesthetics = "fill",
-  #                      guide = guide_colorbar(title.position = "bottom", barwidth = 15,
-  #                                             barheight = 0.5, title.hjust = 0.5)
-  )
-p <- p + facet_grid(age_sex~month)
+  ) +
+  scico::scale_color_scico(palette = "navia", direction = 1,
+                           begin = 0.1, end = 1,
+                           limits = c(0,1)) +
+  guides(col = FALSE)
+
+p <- p + facet_grid(age_sex~month,
+                    labeller = labeller(
+                      age_sex = age_sex_labels
+                    ))
 p <- p + scale_x_continuous(breaks = c(1,10,20,30)) +
-  scale_y_continuous(breaks = c(4,12,20))
-p <- p + theme(legend.position = "bottom") +
-  theme(strip.background = element_rect(colour = "white")) +
-  theme(axis.ticks = element_blank()) +
+  scale_y_continuous(breaks = c(4,12,20), labels = c("04","12", "20"))
+p <- p + theme(legend.position = "bottom",
+               strip.background = element_rect(colour = "white"),
+               axis.ticks = element_blank()) +
   xlab("day of month") + ylab("local solar hour") +
   ggtitle("Ribbon seal predicted haul-out probability.",
-          subtitle = str_wrap("Periods of highest haul-out probability for ribbon seals appear centered around solar noon and age-sex classes show differing seasonal patterns."))
+          subtitle = "Our model predicts increased haul-out probability 
+          for ribbon seals centered on solar noon and a sequential 
+          seasonal pattern linked to age and sex classifications.")
 p
 ```
 
@@ -1046,7 +1145,7 @@ ribbon seals across the range of weather conditions encountered in the
 observed data. Because our ribbon seal model included age and sex class, we can
 visualize the different influences of weather covariates on those classes. 
 
-```{r ribbonHOwx, fig.asp = 0.9, include=TRUE, fig.cap="Marginal effects of temperature, wind, pressure, and precipitation on the predicted haul-out probability of ribbon seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year held at the average day of peak haul-out for ribbon seals. Vertical lines represent the 95\\% confidence interval around the predicted haul-out probability."}
+```{r ribbonHOwx, fig.asp = 0.9, include=TRUE, fig.cap="Marginal effects of temperature, wind, pressure, and precipitation on the predicted haul-out probability of ribbon seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year fixed at 15 May. Vertical lines represent the 95\\% confidence interval around the predicted haul-out probability."}
 
 targets::tar_load(ribbon_wx_plot, store = here::here("_targets"))
 
@@ -1069,7 +1168,7 @@ ribbon seals, the young-of-the-year records began after weaning and the model
 predictions demonstrated the ontogeny of in-water activities (e.g. diving,
 foraging) in May.
 
-```{r spottedHOCal, fig.asp = 0.9, include=TRUE, fig.cap="Predicted hourly haul-out probability of spotted seals from 1 March to 15 July for each age and sex class used in the model. Adult females are indicated by 'ADULT.F' and 'ADULT.M' indicates adult males. 'SUBADULT' and 'YOUNG OF YEAR' age classes include both sexes. Hour of the day was fixed at local solar noon."}
+```{r spottedHOCal, fig.asp = 0.9, include=TRUE, fig.cap="Predicted hourly haul-out probability of spotted seals from 1 March to 15 July for each age and sex class used in the model. Compared to ribbon seals, the period of increased haul-out behavior is broader and there is more alignment in the seasonal timing of haul-out behavior across age and sex classifications. This likely reflects the triad behavior in spotted seals when suitor males haul out with nursing females. As with ribbon seals, redictions for young of the year show their transition from newly weaned pups resting on the ice to more in-water activities."}
 
 plot_df <- spotted_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
@@ -1077,26 +1176,34 @@ plot_df <- spotted_newdata %>%
          day = lubridate::day(date)) %>%
   filter(month != "Aug")
 
-p <- ggplot(plot_df,aes(day,solar_hour,fill=ho_prob))+
-  geom_tile(color= "white",size = 0) +
-  scale_fill_gradientn(colors = rev(met.brewer("Hiroshige")),
-                       name = "haul-out probability", aesthetics = "fill",
+p <- ggplot(plot_df, aes(day,solar_hour,fill = ho_prob, color = ho_prob)) +
+  geom_tile(linewidth = 0.15) +
+  scico::scale_fill_scico(palette = "navia", direction = 1,
+                          begin = 0.1, end = 1,
+                       name = "haul-out probability", 
                        limits = c(0,1), breaks = c(0.25, 0.50, 0.75),
                        guide = guide_colorbar(title.position = "bottom", barwidth = 15,
                                               barheight = 0.5, title.hjust = 0.5)
-  # scale_fill_viridis_c(name = "haul-out probability", aesthetics = "fill",
-  #                      guide = guide_colorbar(title.position = "bottom", barwidth = 15,
-  #                                             barheight = 0.5, title.hjust = 0.5)
-  )
-p <- p + facet_grid(age_sex~month)
+  ) +
+  scico::scale_color_scico(palette = "navia", direction = 1,
+                           begin = 0.1, end = 1,
+                           limits = c(0,1)) +
+  guides(col = FALSE)
+
+p <- p + facet_grid(age_sex~month,
+                    labeller = labeller(
+                      age_sex = age_sex_labels
+                    ))
 p <- p + scale_x_continuous(breaks = c(1,10,20,30)) +
-  scale_y_continuous(breaks = c(4,12,20))
+  scale_y_continuous(breaks = c(4,12,20), labels = c("04","12", "20"))
 p <- p + theme(legend.position = "bottom") +
   theme(strip.background = element_rect(colour="white")) +
   theme(axis.ticks=element_blank()) +
   xlab("day of month") + ylab("local solar hour") +
   ggtitle("Spotted seal predicted haul-out probability.",
-          subtitle = str_wrap("Periods of highest haul-out probability for spotted seals appear centered around solar noon and age-sex classes show differing seasonal patterns."))
+          subtitle = "Our model predicts increased haul-out probability 
+          for spotted seals centered on solar noon with general alignment in the
+          seasonal timing across age and sex classifications.")
 p
 ```
 
@@ -1119,7 +1226,7 @@ present and consistent across each of the weather covariates (Figure
 \@ref(fig:spottedHOwx)). There was a consistent ranking of adult males being the most
 likely to haul out, followed by adult females, and, then, subadults.
 
-```{r spottedHOwx,fig.asp = 0.9, include=TRUE, fig.cap="Marginal effects of temperature, wind, pressure, and precipitation on the predicted haul-out probability of spotted seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year held at the average day of peak haul-out for spotted seals. Vertical lines represent the 95\\% confidence interval around the predicted haul-out probability."}
+```{r spottedHOwx,fig.asp = 0.9, include=TRUE, fig.cap="Marginal effects of temperature, wind, pressure, and precipitation on the predicted haul-out probability of spotted seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year fixed at 15 May. Vertical lines represent the 95\\% confidence interval around the predicted haul-out probability."}
 
 targets::tar_load(spotted_wx_plot, store = here::here("_targets"))
 
@@ -1225,22 +1332,42 @@ peak_ho_df <- peak_ho_df %>%
   bind_rows(peak_ho_df2) %>% ungroup() %>% 
   mutate(year = forcats::fct_relevel(.$year, sort))
 
-pal <- c(RColorBrewer::brewer.pal(12, "Paired"), "black")
+pal <- c(rcartocolor::carto_pal(12,'Bold')[1:11],
+         rcartocolor::carto_pal(12,'Antique')[1:11])
 
-p <- ggplot(plot_df %>% filter(age_sex != "YOUNG OF YEAR"), aes(yday, ho_prob)) +
-  geom_pointrange(aes(ymin = lower95, ymax = upper95), alpha = 0.25, 
-                  stroke = 0, color = "grey80") +
-  geom_pointrange(data = peak_ho_df,
-                  mapping = aes(yday, ho_prob, ymin = 0, ymax = ho_prob, color = year),
-                  shape = 15) +
+p <-
+  ggplot(plot_df %>% filter(age_sex != "YOUNG OF YEAR"), aes(yday, ho_prob)) +
+  geom_pointrange(
+    aes(ymin = lower95, ymax = upper95),
+    alpha = 0.25,
+    stroke = 0,
+    color = "grey80"
+  ) +
+  geom_pointrange(
+    data = peak_ho_df,
+    mapping = aes(
+      yday,
+      ho_prob,
+      ymin = 0,
+      ymax = ho_prob,
+      color = year
+    ),
+    shape = 15
+  ) +
   scale_color_discrete(type = pal) +
-  scale_x_continuous(breaks = c(74,105,135,166),
-                     labels = c("15-Mar", "15-Apr", "15-May", "15-Jun")) +
-  facet_grid(age_sex~species) +
-  theme(legend.position = "bottom") +
-  xlab("") + ylab("haul-out probability") +
-  ggtitle("Annual variability in the timing of peak haul-out probability")
- p
+  scale_x_continuous(
+    breaks = c(74, 105, 135, 166),
+    labels = c("15-Mar", "15-Apr", "15-May", "15-Jun")
+  ) +
+  facet_grid(age_sex ~ species) +
+  ylab("haul-out probability") +
+  labs(title = "Annual variability in the timing of peak haul-out probability",
+       subtitle = "Predictions for ribbon and spotted seals are shown for local 
+       solar noon and under smoothed weather conditions") +
+  theme(legend.position = "bottom",
+        axis.title.x = element_blank()) 
+  
+  p
 ```
 
 ```{r}
