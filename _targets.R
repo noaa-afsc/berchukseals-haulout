@@ -66,6 +66,8 @@ list(
   tar_target(source_data, create_source_data(locs_sf, timeline_data)),
 
   tar_target(analysis_data, create_data_sf(locs_sf, source_data)),
+  tar_target(sea_ice_extent, get_sea_ice_extent(2005,2022,st_bbox(analysis_data),
+                                                st_crs(analysis_data,parameters=TRUE)$srid)),
   tar_target(analysis_data_ssrd, add_ssrd(analysis_data)),
   # tar_target(grid, create_grid_sf(analysis_data_ssrd)),
   tar_target(deploy_table, create_deploy_tbl(analysis_data_ssrd)),

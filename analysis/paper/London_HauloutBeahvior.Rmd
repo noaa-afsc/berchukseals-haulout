@@ -1371,22 +1371,23 @@ p <-
 ```
 
 ```{r}
-load(here::here('data/seaice_extent.Rdata'))
-
-extent_max <- extent_df %>% 
-  group_by(year) %>% 
-  slice_max(area_km2_epsg3571) %>% 
-  ungroup() %>% 
+tar_load(sea_ice_extent)
+extent_max <- sea_ice_extent %>%
+  dplyr::bind_rows() %>%
+  dplyr::mutate(year = lubridate::year(fdate) %>% forcats::as_factor(),
+                yday = lubridate::yday(fdate)) %>% 
+  dplyr::filter(area_km2_epsg3571 > 345609.6) %>%
+  slice_max(area_km2_epsg3571, by=year) %>% 
   rename(max_extent_km2 = area_km2_epsg3571,
          max_extent_yday = yday) %>% 
   dplyr::select(-fdate)
 
-extent_lookup <- extent_df %>% 
-  dplyr::select(fdate, area_km2_epsg3571) %>% 
+extent_lookup <- sea_ice_extent %>%
+  dplyr::bind_rows() %>% 
   rename(extent_km2 = area_km2_epsg3571)
 
 peak_ho_df <- peak_ho_df %>% left_join(extent_max, 
-                         by = "year") %>% 
+                                       by = "year") %>% 
   left_join(extent_lookup, by = c("date" = "fdate")) %>% 
   mutate(peak_diff_days = yday - max_extent_yday) %>% 
   distinct() %>% 
@@ -1416,7 +1417,7 @@ pl_subadult <- models %>% filter(species == "Spotted seal" & age_sex == "SUBADUL
 
 The timing of peak haul-out probability for ribbon and spotted seals
 appeared to have little to no relationship with the amount of
-yearly maximum sea ice extent. Adult female and subadult spotted seals
+yearly maximum sea ice extent in the study area. Adult female and subadult spotted seals
 show a negative relationship, but there was no indication that the observed
 trend is meaningful (spotted seal adult female: $R^{2}$ =
 `r pl_adultF$r.squared`, $p$ = `r pl_adultF$p.value`; spotted seal
@@ -1432,19 +1433,19 @@ adult males: $R^{2}$ = `r pl_adultM$r.squared`, $p$ =
 
 ```{r maxextentHO, fig.height = 5.5, include=FALSE, fig.cap="Annual timing of peak haul-out behavior analyzed against the yearly maximum area of sea ice extent in the study area. While spotted seal adult females and subadults show a negative trend line, none of the relationships were determined to be significant."}
 
-ggplot(data = peak_ho_df, aes(y = yday, x = max_extent_km2, color = species)) + 
+ggplot(data = peak_ho_df, aes(y = max_extent_km2, x = yday, color = species)) + 
   geom_smooth(method = "lm", alpha = 0.2, aes(fill = species)) +
   geom_point() +
   facet_grid(age_sex~.) +
-  scale_y_continuous(breaks = c(125,135,145, 156),
+  scale_x_continuous(breaks = c(125,135,145, 156),
                      labels = c("05-May", "15-May", "25-May", "05-Jun")) +
   scale_color_manual(values = c('#E66100','#5D3A9B'), name = "") +
   scale_fill_manual(values = c('#E66100','#5D3A9B'), name = "") +
   theme(legend.position = "top",
         legend.justification = "right") +
-  labs(y = "date of peak haul-out", x = "maximum sea ice extent (km<sup>2</sup> / 1000)",
-       title = "The connection between yearly maximum sea ice extent and the \ntiming of peak haul-out probability is limited") +
-  theme(axis.title.x = element_markdown())
+  labs(x = "date of peak haul-out", y = "maximum sea ice extent (km<sup>2</sup> / 1000)",
+       title = "The relationship between yearly maximum sea ice extent and the \nannual timing of peak haul-out probability") +
+  theme(axis.title.y = element_markdown())
   
 ```
 
