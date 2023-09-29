@@ -149,7 +149,7 @@ theme_update(
     color = "grey30",
     margin = ggplot2::margin(t = 0, b = 12, r = 60)
   ),
-  plot.caption = element_text(color = "grey30"),
+  plot.caption = element_markdown(color = "grey30"),
   # change color of caption
   panel.grid.minor = element_blank() # no minor grid lines
 )
@@ -352,7 +352,7 @@ p <- ggplot() +
   layer_spatial(survey_area, color = "#A26E7C", 
                 fill = "#A26E7C", 
                 alpha = 0.15,
-                linewidth = 0.5) +
+                linewidth = 0.35) +
   layer_spatial(deploy_sf, aes(fill=species),
                 linewidth=0) +
   annotation_spatial(world,
@@ -376,13 +376,12 @@ p <- ggplot() +
                 "and ", 
                 "<span style = 'color:",species_colors['Spotted seal'],";'>spotted</span> seals ", 
                 "across multiple regions within the Bering, Chukchi, and western Beaufort seas."),
-       caption = "outlined region indicates spatial extent of aerial survey effort in US waters") +
+       caption = "<span style = 'color: #A26E7C;'><span style = 'font-family: \"Font Awesome 6 Free Regular\";'>&#xf0c8;</span> spatial extent of aerial survey effort in US waters</span>") +
   theme(legend.position = "none",
         axis.title = element_blank(),
         strip.background = element_blank(),
         strip.placement = "outside",
-        strip.text.x = element_markdown(face = "bold"),
-        plot.caption = element_markdown(color = "#A26E7C")
+        strip.text.x = element_markdown(face = "bold")
   )
 
 p
@@ -1371,7 +1370,7 @@ p <-
 ```
 
 ```{r}
-tar_load(sea_ice_extent)
+targets::tar_load(sea_ice_extent, store = here::here("_targets"))
 extent_max <- sea_ice_extent %>%
   dplyr::bind_rows() %>%
   dplyr::mutate(year = lubridate::year(fdate) %>% forcats::as_factor(),
@@ -1415,21 +1414,23 @@ pl_subadult <- models %>% filter(species == "Spotted seal" & age_sex == "SUBADUL
 
 ```
 
-The timing of peak haul-out probability for ribbon and spotted seals
-appeared to have little to no relationship with the amount of
-yearly maximum sea ice extent in the study area. Adult female and subadult spotted seals
-show a negative relationship, but there was no indication that the observed
-trend is meaningful (spotted seal adult female: $R^{2}$ =
-`r pl_adultF$r.squared`, $p$ = `r pl_adultF$p.value`; spotted seal
-subadults: $R^{2}$ = `r pl_subadult$r.squared`, $p$ =
-`r pl_subadult$p.value`). For ribbon seals and adult male spotted seals,
+The annual timing of peak haul-out probability for ribbon seals and adult
+male spotted seals appeared to have
+no relationship with the amount of yearly maximum sea ice extent in the
+study area. For ribbon seals and adult male spotted seals,
 $p$-values were substantially larger than 0.05 (ribbon seal adult
 females; $R^{2}$ = `r hf_adultF$r.squared`, $p$ = `r hf_adultF$p.value`;
 ribbon seal adult males: $R^{2}$ = `r hf_adultM$r.squared`, $p$ =
 `r hf_adultM$p.value`; ribbon seal subadults: $R^{2}$ =
 `r hf_subadult$r.squared`, $p$ = `r hf_subadult$p.value`; spotted seals
 adult males: $R^{2}$ = `r pl_adultM$r.squared`, $p$ =
-`r pl_adultM$p.value`).
+`r pl_adultM$p.value`). Adult female and subadult spotted seals both
+showed a negative trend (peak haul-out occurs later in years with less
+sea ice) with a significant relationship for adult female spotted seals 
+(spotted seal adult female: $R^{2}$ =
+`r pl_adultF$r.squared`, $p$ = `r pl_adultF$p.value`; spotted seal
+subadults: $R^{2}$ = `r pl_subadult$r.squared`, $p$ =
+`r pl_subadult$p.value`). 
 
 ```{r maxextentHO, fig.height = 5.5, include=FALSE, fig.cap="Annual timing of peak haul-out behavior analyzed against the yearly maximum area of sea ice extent in the study area. While spotted seal adult females and subadults show a negative trend line, none of the relationships were determined to be significant."}
 
