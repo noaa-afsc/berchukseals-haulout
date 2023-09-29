@@ -41,8 +41,8 @@ get_sea_ice_extent <- function(min_year, max_year, bbox, epsg) {
   ymax <- bbox[4]
   
   for(y in names(res)) {
-    start_date <- paste0(substr(y,2,5),'-','03-01')
-    end_date <- paste0(substr(y,2,5),'-','07-31')
+    start_date <- paste0(substr(y,2,5),'-','02-15')
+    end_date <- paste0(substr(y,2,5),'-','07-15')
     res[[y]] <- qry_sea_ice_extent(con,
                                  xmin,ymin,xmax,ymax,
                                  epsg,
