@@ -40,7 +40,7 @@ abstract: >
   Improved estimates of seal population abundance are needed to properly monitor
   the impacts of these changes over time. In this paper, we use hourly
   percent-dry data from satellite-linked bio-loggers deployed
-  between 2005 and 2020 to quantify the proportion of seals hauled out on ice,
+  between 2005 and 2021 to quantify the proportion of seals hauled out on ice,
   which is needed to accurately estimate abundance from aerial survey counts of
   ice-associated seals (i.e., to correct for the proportion of animals that
   are in the water while surveys are conducted). In addition to providing
@@ -63,7 +63,7 @@ abstract: >
   timing and frequency of haul-out events also varied based on species and age-sex
   class. For ribbon and spotted seals, models with year effects were highly
   supported, indicating that the timing and magnitude of haul-out behavior varied
-  among years. However, we did not find evidence that haul-out timing was linked
+  among years. However, we did not find broad evidence that haul-out timing was linked
   to annual sea ice extent. Our analysis emphasizes the importance of accounting
   for seasonal and temporal variation in haul-out behavior, as well as associated
   environmental covariates, when interpreting the number of seals counted in
@@ -297,7 +297,7 @@ targets::tar_load(deploy_table, store = here::here("_targets"))
 For this study we used haul-out behavior data and location estimates from
 bio-loggers deployed on bearded, ribbon, and spotted seals in the Bering,
 Chukchi, and western Beaufort seas by multiple organizations as part of
-collaborative investigations from 2005 through 2020. Seals were captured using
+collaborative investigations from 2005 through 2021. Seals were captured using
 nets and bio-loggers were attached during studies based in coastal communities
 or on research ships. Ship-based capture events occurred during spring near the
 southern ice edge in the Bering Sea between 2005 and 2018. Land-based capture
@@ -811,7 +811,9 @@ across the study region. Such predictions were then used to develop haul-out
 probability surfaces, explore conditional effects of weather covariates, and
 determine annual peaks in haul-out activity. The timing of peak haul-out
 behavior was further used to regress against the annual maximum sea ice extent
-in the study region.
+in the study region. Predictions before 15 March and after 30 June were not
+included in visualizations or other evaluations to avoid spurious model
+predictions at the edge of the data range.
 
 Visualizing the marginal or conditional effect of an individual weather
 covariate on haul-out probability was difficult in this analysis because of the
@@ -822,7 +824,7 @@ variable than model coefficients would imply. That said,
 important insights can be gained from plots of marginal effects. To create these
 plots, we predicted haul-out probability across the full range
 of weather covariate values while fixing hour of the day at local solar noon and
-day-of-year at the average day of peak haul-out for each species. The
+day-of-year at 15 May. The
 visualizations also include vertical lines representing 95% confidence intervals
 around the predicted haul-out probability to better communicate the variation in
 model uncertainty.
@@ -1001,13 +1003,14 @@ the spring season compared to ribbon and spotted seals.
 targets::tar_load(bearded_newdata, store = here::here("_targets"))
 ```
 
-```{r beardedHOCal, include=TRUE, fig.cap="Predicted hourly haul-out probability of bearded seals (all ages and sex classes) from 1 March to 15 July for all and sex classes."}
+```{r beardedHOCal, include=TRUE, fig.cap="Predicted hourly haul-out probability of bearded seals (all ages and sex classes) from 1 March to 30 June for all age and sex classes combined. Predictions in July and before 15 March were not included to avoid spurious model predictions at the edge of the data range."}
 
 plot_df <- bearded_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
-         month = lubridate::month(date,label=TRUE),
+         month = lubridate::month(date,label = TRUE),
          day = lubridate::day(date)) %>%
-  filter(month != "Aug")
+  filter(!month %in% c("Jul","Aug"),
+         lubridate::yday(date) >73)
 
 p <- ggplot(plot_df, aes(day,solar_hour,fill = ho_prob, color = ho_prob)) +
   geom_tile(linewidth = 0.15) +
@@ -1023,15 +1026,20 @@ p <- ggplot(plot_df, aes(day,solar_hour,fill = ho_prob, color = ho_prob)) +
                            limits = c(0,1)) +
   guides(col = FALSE)
 
+
 p <- p + facet_grid(age_sex~month,
+                    scales = "free_x",
+                    space = "free_x",
                     labeller = labeller(
                       age_sex = age_sex_labels
                     ))
-p <- p + scale_x_continuous(breaks = c(1,10,20,30)) +
-  scale_y_continuous(breaks = c(4,12,20), labels = c("04","12", "20"))
-p <- p + theme(legend.position = "bottom",
+p <- p + scale_x_continuous(breaks = c(5,10,15,20,25)) +
+  scale_y_continuous(breaks = c(4,12,20), labels = c("04","12", "20")) +
+  coord_cartesian(expand=FALSE)
+p <- p + theme(panel.spacing = unit(0.1, "lines"),
+               legend.position = "bottom",
                strip.background = element_rect(colour="white"),
-               axis.ticks=element_blank()) + 
+               axis.ticks=element_blank()) +
   xlab("day of month") + ylab("local solar hour") +
   labs(title = "Bearded seal predicted haul-out probability",
        subtitle = "Our model predicts lower haul-out probability for bearded seals overall 
@@ -1074,20 +1082,19 @@ around local solar noon and expanded to other hours later in the spring
 as seals entered their molting period. Subadults showed an earlier start
 and more intense haul-out activity in April and May. The
 young-of-the-year records begin after weaning and the model predictions
-demonstrated the ontogeny of in-water activities (e.g. diving, foraging)
+demonstrated the ontogeny of in-water activities (e.g. swimming, foraging)
 in May. Adult females had a more protracted haul-out season compared to
-males, and more time was spent resting in June and July. The model suggested
-adult male ribbon seals completed their molt by the end of June. Lastly,
-for adults of both sexes there was some indication for a shift to a
-crepuscular haul-out pattern in late June and July.
+males, and more time was spent hauled out in June compared to adult males and
+subadults.
 
-```{r ribbonHOCal, fig.asp = 0.9, include=TRUE, fig.cap="Predicted hourly haul-out probability of ribbon seals from 1 March to 15 July for each age and sex class used in the model. There is an apparent seasonal progression with subadults hauling out earlier in the season followed by adult males and, then, adult females. Predictions for young of the year show their transition from newly weaned pups resting on the ice to more in-water activities."}
+```{r ribbonHOCal, fig.asp = 0.9, include=TRUE, fig.cap="Predicted hourly haul-out probability of ribbon seals from 15 March to 30 June for each age and sex class used in the model. There is an apparent seasonal progression with subadults hauling out earlier in the season followed by adult males and, then, adult females. Predictions for young of the year show their transition from newly weaned pups resting on the ice to more in-water activities. Predictions in July and before 15 March were not included to avoid spurious model predictions at the edge of the data range."}
 
 plot_df <- ribbon_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
          month = lubridate::month(date,label = TRUE),
          day = lubridate::day(date)) %>%
-  filter(month != "Aug")
+  filter(!month %in% c("Jul","Aug"),
+         lubridate::yday(date) >73)
 
 p <- ggplot(plot_df, aes(day,solar_hour,fill = ho_prob, color = ho_prob)) +
   geom_tile(linewidth = 0.15) +
@@ -1104,14 +1111,18 @@ p <- ggplot(plot_df, aes(day,solar_hour,fill = ho_prob, color = ho_prob)) +
   guides(col = FALSE)
 
 p <- p + facet_grid(age_sex~month,
+                    scales = "free_x",
+                    space = "free_x",
                     labeller = labeller(
                       age_sex = age_sex_labels
                     ))
-p <- p + scale_x_continuous(breaks = c(1,10,20,30)) +
-  scale_y_continuous(breaks = c(4,12,20), labels = c("04","12", "20"))
-p <- p + theme(legend.position = "bottom",
-               strip.background = element_rect(colour = "white"),
-               axis.ticks = element_blank()) +
+p <- p + scale_x_continuous(breaks = c(5,10,15,20,25)) +
+  scale_y_continuous(breaks = c(4,12,20), labels = c("04","12", "20")) +
+  coord_cartesian(expand=FALSE)
+p <- p + theme(panel.spacing = unit(0.1, "lines"),
+               legend.position = "bottom",
+               strip.background = element_rect(colour="white"),
+               axis.ticks=element_blank()) +
   xlab("day of month") + ylab("local solar hour") +
   ggtitle("Ribbon seal predicted haul-out probability.",
           subtitle = "Our model predicts increased haul-out probability 
@@ -1161,19 +1172,20 @@ Compared to ribbon seals, spotted seals showed a longer spring haul-out season
 that was less intensely centered on solar noon (Figure \@ref(fig:spottedHOCal)).
 Adults of both sexes spent considerable time in April, May and June hauled out.
 In contrast to ribbon seals, adult spotted seal males had a more protracted
-haul-out season compared to females, and more time out of the water in June and
-July (Figures \@ref(fig:ribbonHOCal) and \@ref(fig:spottedHOCal)). As with
+haul-out season compared to females, and more time out of the water in June 
+(Figures \@ref(fig:ribbonHOCal) and \@ref(fig:spottedHOCal)). As with
 ribbon seals, the young-of-the-year records began after weaning and the model
-predictions demonstrated the ontogeny of in-water activities (e.g. diving,
+predictions demonstrated the development of in-water activities (e.g. swimming,
 foraging) in May.
 
-```{r spottedHOCal, fig.asp = 0.9, include=TRUE, fig.cap="Predicted hourly haul-out probability of spotted seals from 1 March to 15 July for each age and sex class used in the model. Compared to ribbon seals, the period of increased haul-out behavior is broader and there is more alignment in the seasonal timing of haul-out behavior across age and sex classifications. This likely reflects the triad behavior in spotted seals when suitor males haul out with nursing females. As with ribbon seals, redictions for young of the year show their transition from newly weaned pups resting on the ice to more in-water activities."}
+```{r spottedHOCal, fig.asp = 0.9, include=TRUE, fig.cap="Predicted hourly haul-out probability of spotted seals from 1 March to 30 June for each age and sex class used in the model. Compared to ribbon seals, the period of increased haul-out behavior is broader and there is more alignment in the seasonal timing of haul-out behavior across age and sex classifications. This likely reflects the triad behavior in spotted seals when suitor males haul out with nursing females. As with ribbon seals, redictions for young of the year show their transition from newly weaned pups resting on the ice to more in-water activities. Predictions in July and before 15 March were not included to avoid spurious model predictions at the edge of the data range."}
 
 plot_df <- spotted_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
-         month = lubridate::month(date,label=TRUE),
+         month = lubridate::month(date,label = TRUE),
          day = lubridate::day(date)) %>%
-  filter(month != "Aug")
+  filter(!month %in% c("Jul","Aug"),
+         lubridate::yday(date) >73)
 
 p <- ggplot(plot_df, aes(day,solar_hour,fill = ho_prob, color = ho_prob)) +
   geom_tile(linewidth = 0.15) +
@@ -1190,14 +1202,18 @@ p <- ggplot(plot_df, aes(day,solar_hour,fill = ho_prob, color = ho_prob)) +
   guides(col = FALSE)
 
 p <- p + facet_grid(age_sex~month,
+                    scales = "free_x",
+                    space = "free_x",
                     labeller = labeller(
                       age_sex = age_sex_labels
                     ))
-p <- p + scale_x_continuous(breaks = c(1,10,20,30)) +
-  scale_y_continuous(breaks = c(4,12,20), labels = c("04","12", "20"))
-p <- p + theme(legend.position = "bottom") +
-  theme(strip.background = element_rect(colour="white")) +
-  theme(axis.ticks=element_blank()) +
+p <- p + scale_x_continuous(breaks = c(5,10,15,20,25)) +
+  scale_y_continuous(breaks = c(4,12,20), labels = c("04","12", "20")) +
+  coord_cartesian(expand=FALSE)
+p <- p + theme(panel.spacing = unit(0.1, "lines"),
+               legend.position = "bottom",
+               strip.background = element_rect(colour="white"),
+               axis.ticks=element_blank()) +
   xlab("day of month") + ylab("local solar hour") +
   ggtitle("Spotted seal predicted haul-out probability.",
           subtitle = "Our model predicts increased haul-out probability 
@@ -1288,7 +1304,7 @@ deployment in a species + age:sex group was present, there were still
 some years where the pattern shown was informed by a small number of
 individuals that may not represent population-level patterns.
 
-```{r annualHO, fig.asp = 0.75, include=TRUE, fig.cap="Annual variability in the timing of peak haul-out probability (colored markers) for ribbon and spotted seals across 13 years. Predictions are shown for local solar noon and under smoothed weather conditions. Only those groups (age:sex + year) that included observations from more than one seal are shown. Additionally, any groups where data were only available after 1 June or before 1 May are not included."}
+```{r annualHO, fig.asp = 0.75, include=TRUE, fig.cap="Annual variability in the timing of peak haul-out probability (colored markers) for ribbon and spotted seals across 14 years. The full seasonal range of annual predictions along with uncertainty are shown as grey lines. Covariates were fixed at local solar noon and under smoothed weather conditions. Only those groups (age:sex + year) that included observations from more than one seal are shown. Additionally, any groups where data were only available after 1 June or before 1 May are not included."}
 
 select_groups <- ribbon_year_fit$dataset %>%
   filter(age_sex != "YOUNG OF YEAR") %>%
@@ -1358,11 +1374,16 @@ p <-
     breaks = c(74, 105, 135, 166),
     labels = c("15-Mar", "15-Apr", "15-May", "15-Jun")
   ) +
-  facet_grid(age_sex ~ species) +
+  scale_y_continuous(breaks = c(0.2,0.4,0.6,0.8), labels = c("0.2","0.4", "0.6", "0.8")) +
+  guides(col = guide_legend(ncol = 7)) +
+  facet_grid(age_sex ~ species,
+             labeller = labeller(
+                      age_sex = age_sex_labels
+                    )) +
   ylab("haul-out probability") +
   labs(title = "Annual variability in the timing of peak haul-out probability",
-       subtitle = "Predictions for ribbon and spotted seals are shown for local 
-       solar noon and under smoothed weather conditions") +
+       subtitle = "Predictions of maximum annual haul-out probability for ribbon and spotted seals are indicated by the colored squares with grey lines showing the individual seasonal trajectories and uncertainty.",
+       caption = "predictions are shown for local solar noon and under smoothed weather conditions") +
   theme(legend.position = "bottom",
         axis.title.x = element_blank()) 
   
