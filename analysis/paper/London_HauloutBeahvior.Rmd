@@ -85,6 +85,7 @@ header-includes:
   - \newcommand {\elandscape}{\end{landscape}}
   - \usepackage {caption}
   - \captionsetup{font={normalsize,onehalfspacing}}
+  - \newcommand{\beginsupplement}{\setcounter{table}{0}\renewcommand{\thetable}{S\arabic{table}}\setcounter{figure}{0}\renewcommand{\thefigure}{S\arabic{figure}}}
 bibliography: references.json
 csl: peerj.csl
 ---
@@ -307,9 +308,9 @@ in the Chukchi Sea, and Nuiqsut in the Beaufort Sea. Data from additional
 deployments along the Kamchatka peninsula in the western Bering Sea are also
 included. We refer readers to Figure \@ref(fig:deployplot) and the primary literature
 for detailed capture and bio-logger attachment methods (see Supplemental
-Material, S1).
+Material, [S1](#s1)).
 
-(ref:deployMapCaption) Initial deployment areas for each seal species (bearded, ribbon, and spotted seals) in the study between 2005 and 2020. Solid regions shown for each species are minimum concave polygons buffered by 60 km for enhanced visibility. The larger, shaded region indicates the spatial extent of aerial survey effort to date in US waters of the Bering and Chukchi seas. Deployments were initiated across a range of months but only data from 1 March to 15 July were included in the analysis. See Figure \@ref(fig:dataMap) for the spatial distribution of observed data used in the study and Supplemental Materials 1 for additional deployment details.
+(ref:deployMapCaption) Initial deployment areas for each seal species (bearded, ribbon, and spotted seals) in the study between 2005 and 2020. Solid regions shown for each species are minimum concave polygons buffered by 60 km for enhanced visibility. The larger, shaded region indicates the spatial extent of aerial survey effort to date in US waters of the Bering and Chukchi seas. Deployments were initiated across a range of months but only data from 1 March to 15 July were included in the analysis. See Figure \@ref(fig:dataMap) for the spatial distribution of observed data used in the study and Supplemental Materials \@ref(tab:deploymentTable) for additional deployment details.
 
 ```{r deployplot, include=TRUE, fig.asp = 0.45, fig.cap = "(ref:deployMapCaption)"}
 targets::tar_load(deploy_details, store = here::here("_targets"))
@@ -1770,17 +1771,14 @@ N00014-16-1-3019). ADFG and NSB field work was covered by Research Permits Nos.
 ::: {#refs}
 :::
 
+\newpage
+\beginsupplement
 \blandscape
 # Supplemental Material {-} 
 
-# S1. Supplemental Table of Bio-logger Deployment Details
+## Additional Bio-logger Deployment Details
 
-The following table provides additional details about the timing, location, and
-institutions responsible for the bio-logger deployments used in this study.
-
-
-
-```{r, include=TRUE}
+```{r deploymentTable, include=TRUE, tab.cap="The following table provides additional details about the timing, location, and institutions responsible for the bio-logger deployments used in this study along with research permits and any associated publications."}
 library(gt)
 library(googlesheets4)
 library(glue)
@@ -1797,6 +1795,7 @@ deploy_tbl <- read_sheet("1MpCiyAKWLBXufwnzW8QTnb2SsTkrKSuPlWdpWMnqoto")
 
 deploy_tbl <- deploy_tbl %>% 
   dplyr::select(species, agency, deploy_year, permit, location, speno, sex, age, publications) %>% 
+  dplyr::mutate(deploy_year = forcats::as_factor(deploy_year)) %>%
   dplyr::group_by(species, agency, deploy_year, location, publications) %>% 
   dplyr::mutate(agency = 
                   case_when(
@@ -1809,11 +1808,15 @@ deploy_tbl <- deploy_tbl %>%
                    n_seals = n(),
                    sex = toString(unique(sex)),
                    age_class = tolower(toString(unique(age)))) %>% 
-  dplyr::arrange(species, agency, deploy_year) %>% 
-  gt(
-    groupname_col = "species"
-  ) %>% 
-  cols_label(
+  dplyr::arrange(species, agency, deploy_year)
+  
+  deploy_tbl <- as_grouped_data(deploy_tbl,groups="species") %>% 
+  flextable::as_flextable(hide_grouplabel = TRUE) %>% 
+    width(j = c('agency','deploy_year','location','publications','permits',
+                'n_seals', 'sex', 'age_class'), 
+          width = c(1, 0.8, 1.5, 1.5, 0.8, 0.8, 0.8, 1.5)) %>%
+    align(j = 'n_seals', align = 'left', part = 'all') %>%
+  set_header_labels(
     agency = "Institution",
     deploy_year = "Year Deployed",
     location = "Location",
@@ -1821,42 +1824,116 @@ deploy_tbl <- deploy_tbl %>%
     permits = "Permits",
     n_seals = "No. Seals",
     sex = "Sex",
-    age_class = "Age Class"
-  ) %>% 
-  tab_style(
-    style = list(
-      cell_text(style = "italic")
-    ),
-    locations = cells_body(
-      columns = publications
-    )
-  ) %>% 
-  cols_align(
-    align = "center",
-    columns = everything()
-  ) %>% 
-  cols_align(
-    align = "right",
-    columns = age_class
-  ) %>% 
-  tab_header(
-    title = "Data Contributions From Collaborators and Additional Deployment Details"
+    age_class = "Age_Class"
   ) %>%
-  tab_footnote(footnote = "ADF&G = Alaska Department of Fish and Game",
-               locations = cells_body(columns = agency, 
-                                      rows = agency == "ADFG")) %>%
-  tab_footnote(footnote = "NSB = North Slope Borough",
-               locations = cells_body(columns = agency, 
-                                      rows = agency == "NSB")) %>%
-  tab_footnote(footnote = "NMFS = NOAA National Marine Fisheries Service",
-               locations = cells_body(columns = agency, 
-                                      rows = agency == "NMFS")) %>%
-  tab_footnote(footnote = "NPWC = North Pacific Wildlife Consortium",
-               locations = cells_body(columns = agency, 
-                                      rows = agency == "NPWC"))
+  bold(j = 1, i = ~ !is.na(species), bold = TRUE, part = "body") %>%
+  bold(part = "header", bold = TRUE) %>%
+  add_footer_lines(as_paragraph(
+    as_b("ADFG"),"=Alaska Department of Fish and Game; ", as_b("NSB"),"=North Slope Borough; ", as_b("NMFS"),"=NOAA National Marine Fisheries Service; ", as_b("NPWC"),"=North Pacific Wildlife Consortium"
+  )) %>%
+    fontsize(size = 10, part ="header") %>%
+    fontsize(size = 9, part = "body") %>%
+    fontsize(size = 8, part = "footer") %>%
+  set_table_properties(layout = "fixed",
+                       opts_pdf = list('caption_repeat' = FALSE))
 
 deploy_tbl
   
 ```
 \elandscape
 
+## Supplemental Figures Showing Confidence Intervals Associated with Predictions
+
+The following series of figures show the seasonal variability in haul-out
+probability and the associated confidence intervals for bearded, ribbon, and
+spotted seals.
+
+```{r beardedPredSE,fig.asp = 0.5, include = TRUE, fig.cap="Seasonal variability in haul-out probability and the associated 95\\% confidence intervals (shaded area) for bearded seals. Model predictions are shown for local solar noon with smoothed weather covariates. Age and sex classes are combined into a single 'all ages' category."}
+plot_df <- bearded_newdata %>%
+  mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
+         month = lubridate::month(date,label = TRUE),
+         day = lubridate::day(date)) %>%
+  filter(!month %in% c("Jul","Aug"),
+         lubridate::yday(date) >73,
+         solar_hour == 12)
+
+bearded_predse <- ggplot(plot_df, aes(date,ho_prob)) +
+  geom_ribbon(aes(ymin=lower95,ymax=upper95), 
+              fill = species_colors['Bearded seal'], alpha = 0.3) +
+  geom_line(aes(date,ho_prob),
+            color = species_colors['Bearded seal']) +
+  facet_grid(age_sex ~ .,
+             scales = "free_x",
+                    space = "free_x",
+                    labeller = labeller(
+                      age_sex = age_sex_labels
+                    )) +
+  scale_y_continuous(breaks = c(0.2,0.4,0.6,0.8), labels = c("0.2","0.4", "0.6", "0.8"), limits = c(0,1)) +
+  xlab("day of year") +
+  ylab("haul-out probability") +
+  labs(title = "Bearded seal predicted haul-out probability",
+       subtitle = "predictions and associated 95% confidence intervals are shown for local solar noon and with smoothed weather covariates") +
+  theme(legend.position = "none")
+
+bearded_predse
+```
+
+```{r ribbonPredSE,fig.asp = 0.6, include = TRUE, fig.cap="Seasonal variability in haul-out probability and the associated 95\\% confidence intervals (shaded area) for ribbon seals. Model predictions are shown for local solar noon with smoothed weather covariates. Age and sex classes are separated to allow comparisons."}
+plot_df <- ribbon_newdata %>%
+  mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
+         month = lubridate::month(date,label = TRUE),
+         day = lubridate::day(date)) %>%
+  filter(!month %in% c("Jul","Aug"),
+         lubridate::yday(date) >73,
+         solar_hour == 12)
+
+ribbon_predse <- ggplot(plot_df, aes(date,ho_prob)) +
+  geom_ribbon(aes(ymin=lower95,ymax=upper95), 
+              fill = species_colors['Ribbon seal'], alpha = 0.3) +
+  geom_line(aes(date,ho_prob),
+            color = species_colors['Ribbon seal']) +
+  facet_grid(age_sex ~ .,
+             scales = "free_x",
+                    space = "free_x",
+                    labeller = labeller(
+                      age_sex = age_sex_labels
+                    )) +
+  scale_y_continuous(breaks = c(0.2,0.4,0.6,0.8), labels = c("0.2","0.4", "0.6", "0.8"), limits = c(0,1)) +
+  xlab("day of year") +
+  ylab("haul-out probability") +
+  labs(title = "Ribbon seal predicted haul-out probability",
+       subtitle = "predictions and associated 95% confidence intervals are shown for local solar noon and with smoothed weather covariates") +
+  theme(legend.position = "none")
+
+ribbon_predse
+```
+
+```{r spottedPredSE,fig.asp = 0.6, include = TRUE, fig.cap="Seasonal variability in haul-out probability and the associated 95\\% confidence intervals (shaded area) for spotted seals. Model predictions are shown for local solar noon with smoothed weather covariates. Age and sex classes are separated to allow comparisons."}
+plot_df <- spotted_newdata %>%
+  mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
+         month = lubridate::month(date,label = TRUE),
+         day = lubridate::day(date)) %>%
+  filter(!month %in% c("Jul","Aug"),
+         lubridate::yday(date) >73,
+         solar_hour == 12)
+
+spotted_predse <- ggplot(plot_df, aes(date,ho_prob)) +
+  geom_ribbon(aes(ymin=lower95,ymax=upper95), 
+              fill = species_colors['Spotted seal'], alpha = 0.3) +
+  geom_line(aes(date,ho_prob),
+            color = species_colors['Spotted seal']) +
+  facet_grid(age_sex ~ .,
+             scales = "free_x",
+                    space = "free_x",
+                    labeller = labeller(
+                      age_sex = age_sex_labels
+                    )) +
+  scale_y_continuous(breaks = c(0.2,0.4,0.6,0.8), labels = c("0.2","0.4", "0.6", "0.8"), limits = c(0,1)) +
+  xlab("day of year") +
+  ylab("haul-out probability") +
+  labs(title = "Spotted seal predicted haul-out probability",
+       subtitle = "predictions and associated 95% confidence intervals are shown for local solar noon and with smoothed weather covariates") +
+  theme(legend.position = "none")
+
+spotted_predse
+```
