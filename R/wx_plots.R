@@ -152,6 +152,7 @@ plot_spotted_wx <- function(spotted_fit_obj, age_sex_colors,age_sex_labels) {
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
     scale_color_manual(values= age_sex_colors,
+                       labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
                                             direction = "horizontal")) +
     theme(legend.title = element_blank(),
@@ -171,7 +172,8 @@ plot_spotted_wx <- function(spotted_fit_obj, age_sex_colors,age_sex_labels) {
     ggplot(aes(wind*10, ho_prob, color = age_sex)) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
-    scale_color_manual(values=age_sex_colors,
+    scale_color_manual(values= age_sex_colors,
+                       labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
                                             direction = "horizontal")) +
     theme(legend.title = element_blank(),
@@ -190,7 +192,8 @@ plot_spotted_wx <- function(spotted_fit_obj, age_sex_colors,age_sex_labels) {
     ggplot(aes(((pressure * 10000) + 100000)/1000, ho_prob, color = age_sex)) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
-    scale_color_manual(values=age_sex_colors,
+    scale_color_manual(values= age_sex_colors,
+                       labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
                                             direction = "horizontal")) +
     theme(legend.title = element_blank(),
@@ -210,7 +213,8 @@ plot_spotted_wx <- function(spotted_fit_obj, age_sex_colors,age_sex_labels) {
     ggplot(aes(precip/3, ho_prob, color = age_sex)) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
-    scale_color_manual(values=age_sex_colors,
+    scale_color_manual(values= age_sex_colors,
+                       labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
                                             direction = "horizontal")) +
     theme(legend.title = element_blank(),
