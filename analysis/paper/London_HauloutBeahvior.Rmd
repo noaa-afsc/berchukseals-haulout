@@ -119,6 +119,7 @@ library(glmmLDTS)
 library(mgcv)
 library(ragg)
 library(MetBrewer)
+library(terra)
 
 knitr::opts_chunk$set(dev = "ragg_png")
 
@@ -449,12 +450,12 @@ deploy_table %>%
    Subadult = "Age Class", Adult = "Age Class",
    top = TRUE ) %>%
   merge_h(part = "header") %>%
-  align(align = "left", part = "header") %>% 
-  align(i = 1, align = "center", part = "header") %>% 
+  flextable::align(align = "left", part = "header") %>% 
+  flextable::align(i = 1, align = "center", part = "header") %>% 
   fontsize(size = 9, part = "all") %>% 
-  width(width = 1.35) %>% 
-  width(j = ~ Species, width = 0.9) %>% 
-  width(j = ~ Sex, width = 0.4)
+  flextable::width(width = 1.35) %>% 
+  flextable::width(j = ~ Species, width = 0.9) %>% 
+  flextable::width(j = ~ Sex, width = 0.4)
 
 ```
 
@@ -704,8 +705,8 @@ covariate_tbl %>%
   flextable() %>% 
   fontsize(size = 9, part = "all") %>% 
   hline(i=8) %>% 
-  width(width = 1.0) %>% 
-  width(j = ~ Description, width = 2.5)
+  flextable::width(width = 1.0) %>% 
+  flextable::width(j = ~ Description, width = 2.5)
 ```
 
 ## Haul-out modeling {-}
@@ -1819,10 +1820,10 @@ deploy_tbl <- deploy_tbl %>%
   
   deploy_tbl <- as_grouped_data(deploy_tbl,groups="species") %>% 
   flextable::as_flextable(hide_grouplabel = TRUE) %>% 
-    width(j = c('agency','deploy_year','location','publications','permits',
+    flextable::width(j = c('agency','deploy_year','location','publications','permits',
                 'n_seals', 'sex', 'age_class'), 
           width = c(1, 0.8, 1.5, 1.5, 0.8, 0.8, 0.8, 1.5)) %>%
-    align(j = 'n_seals', align = 'left', part = 'all') %>%
+    flextable::align(j = 'n_seals', align = 'left', part = 'all') %>%
   set_header_labels(
     agency = "Institution",
     deploy_year = "Year Deployed",
@@ -1961,3 +1962,445 @@ spotted_predse <- ggplot(plot_df, aes(date,ho_prob)) +
 
 spotted_predse
 ```
+
+## Exploring Insolation (Solar Radiation) as a Model Covariate
+
+### Introduction
+
+During the peer review process for this manuscript, Anthony Fishbach suggested
+the possibility of using predicted insolation (or solar radiation) values from
+the reanalysis model as a more direct and, potentially, more informative
+predictor of the daily haul-out cycle in seals compared to time of day. The
+notion being that seals are directly responding to changes in solar radiation
+throughout the day and not what time of day it is (i.e. seals don't have
+watches). Additionally, given the energetic benefits of increased solar
+radiation it could be more informative as we would expect seals might have a
+higher haul-out probability on sunnier days and for there to be geographic
+variability in haul-out behavior associated with geographical differences in
+insolation. This approach has an additional benefit of being more parsimonious
+compared to our use of the Fourier series or other approaches to represent
+hour-of-day in the model (e.g. 24 factors for each hour).
+
+Because of these reasons, we spent some time considering and exploring this
+possibility for our model and the analysis presented in this manuscript. A key
+drawback to reliance on solar insolation, in our minds, is that we would lose
+insight regarding potential crepuscular patterns -- insolation does not 
+differentiate between dusk or dawn. Bi-modal patterns have been
+previously observed in ringed seals and our results in this analysis show some indication of
+increased haul-out probability during dawn and dusk periods for bearded seals.
+For other phocid speices, increased haul-out probability before solar noon or after
+solar noon has been observed. Importantly, understanding these relationships
+between haul-out probability and hour-of-day can have important ramifications
+on aerial survey study design -- a key focus of this paper.  
+Another hesitation we had was that insolation estimates from reanalysis models have
+not been previously used as a model covariate within a published study of 
+pinniped haul-out behavior. Thus, for this analysis, we chose to keep our
+original approach and rely on the Fourier series to capture any hour-of-day
+effects.
+
+That said, we think the idea of insolation as a model covariate in pinniped
+haul-out models is intriguing and worth further exploration. The current
+availability and increased accessibility to detailed climate reanalysis
+products that include insolation is exciting and we encrourage future, more
+detailed exploration of this as a component in pinniped haul-out analysis. To
+provide some inspiration, we present some initial efforts and model 
+comparisons.
+
+### Methods
+
+In this manuscript, we rely on the NARR reanalysis model as the source for our
+weather covariates. However, since our initiation of this analysis, the ERA5
+reanalysis model (https://doi.org/10.24381/cds.adbb2d47) has become one of the
+go-to standards for global climate reanalysis and provides an increased temporal
+resolution to hourly (compared to the 3-hour resolution of NARR). The global
+coverage of ERA5 provides additional flexibility in that the area of interest is
+not limited to North America. The ERA5 model provides a number of solar
+radiation parameters and it is important to evaluate and understand each of
+these estimates in order to select the one that is likely most relevant to
+seals. Here, we use the 'surface short-wave (solar) radiation downwards.' This
+parameter is described as _the amount of solar radiation (also known as shortwave radiation)
+that reaches a horizontal plane at the surface of the Earth and comprises both
+direct and diffuse solar radiation. To a reasonably good approximation, this
+parameter is the model equivalent of what would be measured by a pyranometer (an
+instrument used for measuring solar radiation) at the surface_ 
+(https://codes.ecmwf.int/grib/param-db/?id=169). Thus, this is the
+parameter which most closely represents the amount of solar radiation likely
+felt by a seal hauled out of the water.
+
+ERA5 data is available via the Copernicus climate data store API which can be
+queried with the CDS-API Python package 
+(https://cds.climate.copernicus.eu/api-how-to). The R code provided here
+documents the download of the _surface_solar_radiation_downwards_ parameter for
+our study area of interest and years of interest. The `reticulate` R package
+(https://CRAN.R-project.org/package=reticulate) allows interaction with Python.
+Additionally, note, extra steps are required to download data on either side
+of the 180 anti-meridian.
+
+```{r cdsapi, eval=FALSE, include=TRUE, echo = TRUE}
+library(tidyverse)
+library(reticulate)
+library(sf)
+library(terra)
+
+#import python CDS-API
+cdsapi <- import('cdsapi')
+#for this step there must exist the file .cdsapirc
+server = cdsapi$Client() #start the connection
+
+get_era5 <- function(y) {
+  #we create the query
+  query <- r_to_py(
+    list(
+      variable = "surface_solar_radiation_downwards",
+      product_type = "reanalysis",
+      area = "75/152/47/180", # North, West, South, East
+      year = y,
+      month = str_pad(2:7, 2, "left", "0"),
+      day = str_pad(1:31, 2, "left", "0"),
+      time = str_c(0:23, "00", sep = ":") %>% str_pad(5, "left", "0"),
+      format = "netcdf"
+    )
+  )
+  #query to get the ncdf
+  server$retrieve("reanalysis-era5-single-levels",
+                  query,
+                  paste0("era5_ssrd_", y, "_left.nc"))
+  
+  query <- r_to_py(
+    list(
+      variable = "surface_solar_radiation_downwards",
+      product_type = "reanalysis",
+      area = "75/-180/47/-142", # North, West, South, East
+      year = y,
+      month = str_pad(2:7, 2, "left", "0"),
+      day = str_pad(1:31, 2, "left", "0"),
+      time = str_c(0:23, "00", sep = ":") %>% str_pad(5, "left", "0"),
+      format = "netcdf"
+    )
+  )
+  #query to get the ncdf
+  server$retrieve("reanalysis-era5-single-levels",
+                  query,
+                  paste0("era5_ssrd_", y, "_right.nc"))
+
+}
+
+years <- as.character(2005:2021)
+for(i in 1:length(years)) {
+  get_era5(years[i])
+}
+
+```
+
+To explore performance of our solar radiation parameter within a haul-out model
+we replace the various Fourier series parameters in our model from the manuscript
+with the ERA5 _surface solar radiation downwards_ (`era_ssrd`) parameter. As
+with other reanalysis values (from NARR) in the manuscript, the `era-ssrd`
+values are matched in time and space to the seal haul-out observation data. We
+use the full hourly temporal resolution from ERA5. The glmmLDTS framework used
+in the paper does not allow for model comparisons with AIC because of
+the reliance on pseudo-likelihood. The `bam` function within the `mgcv` package
+provides a quick model fitting option that also allows us to do some model
+comparison with AIC. This is sufficient for the general demonstration and
+exploartion purposes here
+but future research should consider a range of model fitting frameworks and
+approaches that might be appropriate.
+
+```{r load-model-data, include=FALSE}
+library(targets)
+tar_load(spotted_model_data,store = here::here("_targets"))
+tar_load(ribbon_model_data,store = here::here("_targets"))
+tar_load(bearded_model_data, store = here::here("_targets"))
+```
+
+The model specification below was used to specify an `mgcv::bam()` model that
+matches the formula used in the manuscript for spotted seals. The `s(speno, bs = "re")` 
+term is the smooth term for the random effect. All other predictors are
+the same. 
+
+```{r bam-m1-spotted, include=TRUE, echo = TRUE}
+m1_spotted <- mgcv::bam(
+  dry ~ age_sex + s(speno, bs = "re") + 
+    sin1 + cos1 + sin2 + cos2 + sin3 + cos3 + 
+    poly(day, 3, raw=TRUE) + 
+    sin1:poly(day, 3, raw=TRUE) +
+    cos1:poly(day, 3, raw=TRUE) +
+    sin2:poly(day, 3, raw=TRUE) +
+    cos2:poly(day, 3, raw=TRUE) +
+    sin3:poly(day, 3, raw=TRUE) +
+    cos3:poly(day, 3, raw=TRUE) +
+    wind*temp2m + pressure + precip + 
+    age_sex:poly(day, 4, raw=TRUE),
+  data = spotted_model_data,
+  family = binomial,
+  discrete = TRUE)
+```
+
+
+```{r lag1-spotted, include=FALSE}
+lag1_spotted <- acf(resid(m1_spotted), plot=FALSE)[1][[1]]
+```
+
+Note, the specification for _m1_spotted_ here does not include
+any AR1 structure for temporal autocorrelation. To include this, we need to
+provide a value for $\rho$ (or _rho_). We can examine the autocorrelation within
+the model and use the lag-1 value for $\rho$ .The value for lag-1 
+autocorrelation is `r formatC(as.numeric(lag1_spotted))` which is
+rather high but not surprising. We can, now, update our model specification with
+a value for $\rho$ as well as the `A1.start` argument with specifies (TRUE/FALSE) the
+start point of each block.
+
+```{r bam-m2-spotted, include=TRUE, echo = TRUE}
+m2_spotted <- mgcv::bam(
+  dry ~ age_sex + s(speno, bs = "re") + 
+    sin1 + cos1 + sin2 + cos2 + sin3 + cos3 + 
+    poly(day, 3, raw=TRUE) + 
+    sin1:poly(day, 3, raw=TRUE) +
+    cos1:poly(day, 3, raw=TRUE) +
+    sin2:poly(day, 3, raw=TRUE) +
+    cos2:poly(day, 3, raw=TRUE) +
+    sin3:poly(day, 3, raw=TRUE) +
+    cos3:poly(day, 3, raw=TRUE) +
+    wind*temp2m + pressure + precip + 
+    age_sex:poly(day, 3, raw=TRUE),
+  data = spotted_model_data,
+  family = binomial,
+  AR.start = ar1_start,
+  rho = lag1_spotted,
+  discrete = TRUE)
+```
+
+The model specification for exploring the use of solar radiation is
+specified similarly but without all of the Fourier series parameters and
+interactions.
+
+```{r bam-ssrd-spotted, include=TRUE, echo = TRUE}
+m2_ssrd_spotted <- mgcv::bam(
+  dry ~ age_sex + s(speno, bs = "re") + 
+    era5_ssrd +
+    poly(day, 3, raw=TRUE) + 
+    era5_ssrd:poly(day, 3, raw=TRUE) +
+    wind*temp2m + pressure + precip + 
+    age_sex:poly(day, 3, raw=TRUE),
+  data = spotted_model_data,
+  family = binomial,
+  AR.start = ar1_start,
+  rho = lag1_spotted,
+  discrete = TRUE)
+```
+
+Lastly, the two models were compared with AIC to evaluate whether the
+reduction in degrees of freedom with fewer terms in the solar radiation
+model was matched with improved explanatory power in the model fit. While the
+model and code specified above is for spotted seals, the same approach was
+repeated for bearded and ribbon seals.
+
+```{r,bam-ssrd-ribbon-bearded}
+m1_ribbon <- mgcv::bam(
+  dry ~ age_sex + s(speno, bs = "re") + 
+    sin1 + cos1 + sin2 + cos2 + sin3 + cos3 + 
+    poly(day, 3, raw=TRUE) + 
+    sin1:poly(day, 3, raw=TRUE) +
+    cos1:poly(day, 3, raw=TRUE) +
+    sin2:poly(day, 3, raw=TRUE) +
+    cos2:poly(day, 3, raw=TRUE) +
+    sin3:poly(day, 3, raw=TRUE) +
+    cos3:poly(day, 3, raw=TRUE) +
+    wind*temp2m + pressure + precip + 
+    age_sex:poly(day, 4, raw=TRUE),
+  data = ribbon_model_data,
+  family = binomial,
+  discrete = TRUE)
+
+lag1_ribbon <- acf(resid(m1_ribbon), plot=FALSE)[1][[1]]
+
+m2_ribbon <- mgcv::bam(
+  dry ~ age_sex + s(speno, bs = "re") + 
+    sin1 + cos1 + sin2 + cos2 + sin3 + cos3 + 
+    poly(day, 3, raw=TRUE) + 
+    sin1:poly(day, 3, raw=TRUE) +
+    cos1:poly(day, 3, raw=TRUE) +
+    sin2:poly(day, 3, raw=TRUE) +
+    cos2:poly(day, 3, raw=TRUE) +
+    sin3:poly(day, 3, raw=TRUE) +
+    cos3:poly(day, 3, raw=TRUE) +
+    wind*temp2m + pressure + precip + 
+    age_sex:poly(day, 3, raw=TRUE),
+  data = ribbon_model_data,
+  family = binomial,
+  AR.start = ar1_start,
+  rho = lag1_ribbon,
+  discrete = TRUE)
+
+m2_ssrd_ribbon <- mgcv::bam(
+  dry ~ age_sex + s(speno, bs = "re") + 
+    era5_ssrd +
+    poly(day, 3, raw=TRUE) + 
+    era5_ssrd:poly(day, 3, raw=TRUE) +
+    wind*temp2m + pressure + precip + 
+    age_sex:poly(day, 3, raw=TRUE),
+  data = ribbon_model_data,
+  family = binomial,
+  AR.start = ar1_start,
+  rho = lag1_ribbon,
+  discrete = TRUE)
+
+m1_bearded <- mgcv::bam(
+  dry ~ s(speno, bs = "re") + 
+    sin1 + cos1 + sin2 + cos2 + sin3 + cos3 + 
+    poly(day, 3, raw=TRUE) + 
+    sin1:poly(day, 3, raw=TRUE) +
+    cos1:poly(day, 3, raw=TRUE) +
+    sin2:poly(day, 3, raw=TRUE) +
+    cos2:poly(day, 3, raw=TRUE) +
+    sin3:poly(day, 3, raw=TRUE) +
+    cos3:poly(day, 3, raw=TRUE) +
+    wind*temp2m + pressure + precip,
+  data = bearded_model_data,
+  family = binomial,
+  discrete = TRUE)
+
+lag1_bearded <- acf(resid(m1_bearded), plot=FALSE)[1][[1]]
+
+m2_bearded <- mgcv::bam(
+  dry ~ s(speno, bs = "re") + 
+    sin1 + cos1 + sin2 + cos2 + sin3 + cos3 + 
+    poly(day, 3, raw=TRUE) + 
+    sin1:poly(day, 3, raw=TRUE) +
+    cos1:poly(day, 3, raw=TRUE) +
+    sin2:poly(day, 3, raw=TRUE) +
+    cos2:poly(day, 3, raw=TRUE) +
+    sin3:poly(day, 3, raw=TRUE) +
+    cos3:poly(day, 3, raw=TRUE) +
+    wind*temp2m + pressure + precip,
+  data = ribbon_model_data,
+  family = binomial,
+  AR.start = ar1_start,
+  rho = lag1_bearded,
+  discrete = TRUE)
+
+m2_ssrd_bearded <- mgcv::bam(
+  dry ~ s(speno, bs = "re") + 
+    era5_ssrd +
+    poly(day, 3, raw=TRUE) + 
+    era5_ssrd:poly(day, 3, raw=TRUE) +
+    wind*temp2m + pressure + precip,
+  data = bearded_model_data,
+  family = binomial,
+  AR.start = ar1_start,
+  rho = lag1_bearded,
+  discrete = TRUE)
+```
+
+## Results
+
+To evaluate whether the solar radiation parameter matches our expectations and
+compares well with hour of the day, we can visualize the variability of the 
+`era5_ssrd` values within
+our study area as they relate to hour of the day. The unimodal distribution
+is centered around the middle of the solar day with peak solar radiation
+coinciding with 13:00 local solar. This suggests solar radiation could be an
+informative covariate for capturing unimodal diel patterns in haul-out
+behavior.
+
+```{r, include=FALSE}
+ssrd_dataset <- readRDS(file = here::here('data/ssrd_dataset.rds'))
+
+pt_ul = st_point(c(160, 70))
+pt_br = st_point(c(179, 60))
+poly_left <- st_bbox(st_sfc(pt_ul, pt_br,crs = 4326)) |> st_as_sfc()
+
+pt_ul = st_point(c(-160, 70))
+pt_br = st_point(c(-179, 60))
+poly_right <- st_bbox(st_sfc(pt_ul, pt_br,crs = 4326)) |> st_as_sfc()
+
+# how many random points do we want to generate
+n_pts <- 5000
+
+pts1 <- st_sample(poly_left,size = n_pts/2)
+pts2 <- st_sample(poly_right, size = n_pts/2)
+
+pts <- c(pts1,pts2)
+
+# Set the seed for reproducibility
+set.seed(123)
+
+# Generate random hourly timestamps
+get_random_times <- function(start_t, end_t, months, n) {
+  tibble(
+  time = seq(as.POSIXct(start_t, tz = "UTC"), as.POSIXct(end_t, tz = "UTC"), by = "hours")
+)  |> 
+  filter(month(time) %in% c(months))  |> 
+    filter(month(time) != 2 & mday(time) != 1) |> 
+  sample_n(n) %>%
+  pull(time)
+}
+
+random_times <- get_random_times(start_t = "2005-02-01", end_t = "2021-07-30",
+                                 months = c(2,3,4,5,6,7), n = n_pts)
+
+# create a dataset of points with those random times
+pts_sf <- st_sf(time=random_times,pts)
+pts_vec <- terra::vect(pts_sf)
+
+# list to store for-loop results
+pts_ssrd_list <- vector(mode = "list", length = length(years))
+
+years <- 2005:2021
+
+for (i in 1:length(years)) {
+  r <- terra::subset(ssrd_dataset, lubridate::year(time(ssrd_dataset)) == years[i])
+  v <- terra::subset(pts_vec, lubridate::year(pts_vec$time) == years[i])
+  tm <- match(v$time,time(r))
+  pts_ssrd_list[[i]] <- terra::extract(r,v,layer=tm, bind=TRUE)
+}
+
+library(solaR)
+
+pts_ssrd_sf <- vect(pts_ssrd_list) |> st_as_sf()
+
+pts_ssrd_sf <- pts_ssrd_sf |> 
+  mutate(lon = st_coordinates(geometry)[,1]) |> 
+  mutate(solar_hour = lubridate::hour(solaR::local2Solar(time,lon)))
+```
+
+```{r era5-ssrd-plot, fig.asp = 0.7, include=TRUE, fig.cap="Downward surface solar radiation estimates from the ERA5 climate reanalysis for 5000 random points within the study area between 2005 and 2021. Solar radiation values are presented in Watts per meter^2 and the smoothed line highlights the strong diel pattern."}
+ssrd_solarhour_plot <- ggplot(data = pts_ssrd_sf, aes(x=solar_hour, y=value)) + 
+  geom_point(size = 0.5, alpha = 0.2, color = "#edd9a3") + 
+  geom_smooth(se=TRUE, linewidth = 0.2, color = "#4b2991") +
+  # geom_vline(xintercept = 13, linetype="dashed", 
+  #               linewidth = 1) +
+  scale_x_continuous(breaks = c(3,6,9,12,15,18,21),
+                     labels = c("03:00","06:00","09:00","12:00","15:00","18:00",
+                                "21:00")) +
+  xlab("Local Solar Hour") +
+  ylab("Solar Radiation") +
+  labs(title = "Diel Pattern of Solar Radiation Values from ERA5 Reanalysis",
+       subtitle = "A random sample of hourly ERA5 downward surface solar radiation values for random points within the study area confirms the expected unimodal relationship with local solar hour.",
+       caption = "solar radiation values are presented in Watts per meter^2")
+
+ssrd_solarhour_plot
+```
+
+The spotted seal model matching the specification from the manuscript resulted in 
+`r AIC(m2_spotted,m2_ssrd_spotted)['m2_spotted','df']` degrees of freedom and an AIC value of
+`r AIC(m2_spotted,m2_ssrd_spotted)['m2_spotted','AIC']`. The model with solar radiation resulted in 
+`r AIC(m2_spotted,m2_ssrd_spotted)['m2_ssrd_spotted','df']` degrees of freedom and an AIC value of
+`r AIC(m2_spotted,m2_ssrd_spotted)['m2_ssrd_spotted','AIC']`. Despite the additional terms, the
+model with the Fourier series representation of hour of day resulted in a 
+lower AIC value and was still preferred for spotted seals. The ribbon seal model matching the specification from the manuscript resulted in 
+`r AIC(m2_ribbon,m2_ssrd_ribbon)['m2_ribbon','df']` degrees of freedom and an AIC value of
+`r AIC(m2_ribbon,m2_ssrd_ribbon)['m2_ribbon','AIC']`. The model with solar radiation resulted in 
+`r AIC(m2_ribbon,m2_ssrd_ribbon)['m2_ssrd_ribbon','df']` degrees of freedom and an AIC value of
+`r AIC(m2_ribbon,m2_ssrd_ribbon)['m2_ssrd_ribbon','AIC']`. Despite the additional terms, the
+model with the Fourier series representation of hour of day resulted in a 
+lower AIC value and was still preferred for bearded seals. The bearded seal model matching the specification from the manuscript resulted in 
+`r AIC(m2_bearded,m2_ssrd_bearded)['m2_bearded','df']` degrees of freedom and an AIC value of
+`r AIC(m2_bearded,m2_ssrd_bearded)['m2_bearded','AIC']`. The model with solar radiation resulted in 
+`r AIC(m2_bearded,m2_ssrd_bearded)['m2_ssrd_bearded','df']` degrees of freedom and an AIC value of
+`r AIC(m2_bearded,m2_ssrd_bearded)['m2_ssrd_bearded','AIC']`. Despite the additional terms, the
+model with the Fourier series representation of hour of day resulted in a 
+lower AIC value and was still preferred for bearded seals.
+
+
+
