@@ -59,7 +59,7 @@ Regarding the desire for specific examples of how the modeled availability would
 > *The findings are appear robust and intuitive. The authors need to improve the presentation of the findings to improve clarity and help the reader understand how they addressed the knowledge gap.*
 
 ::: author-response
-**\[author response\]** The reviewer provided numerous comments and suggestions annotated throughout the PDF that address the concern of presentation and clarity. In the next section we provide responses to those annotations as best as possible
+**\[author response\]** The reviewer provided numerous comments and suggestions annotated throughout the PDF that address the concern of presentation and clarity. In the next section we provide responses to those annotations
 :::
 
 ### **Reviewer 1 (A. Fishbach) - PDF Annotated Comments & Suggested Edits**
@@ -73,13 +73,13 @@ Regarding the desire for specific examples of how the modeled availability would
 > ***Abstract:** Can you make a statement in your abstract that use of modeled haulout behavior using covariates available from regional reananalysis data improved the confidence intervals on availability estimates and that this would improve aerial survey abundance estimation efforts?*
 
 ::: author-response
-**\[author response\]** We don't feel comfortable making a precision comparison, simply because there are too many differences between the analyses, including (1) the data sets are different (the present study has substantially more records), and (2) the model structures are different (the present study has more parameters). As such, it will be difficult to ascribe a specific reason to precision increases or decreases.
+**\[author response\]** We don't feel comfortable making a precision comparison with previous abundance estimates, simply because there are too many differences between the analyses, including (1) the data sets are different (the present study has substantially more records), and (2) the model structures are different (the present study has more parameters). As such, it will be difficult to ascribe a specific reason to precision increases or decreases.
 :::
 
 > *Please use direct language. You are not making findings on how seals rely on sea ice, rather you are improving methods to estimate their availability for improved aerial survey population estimation efforts. Here you are focused on modeling ice sea availability to aerial survey so that aerial survey counts may be appropriately interpreted. Please be clear that you are considering ice seal behaviors that may be telemtered as "dry out of water behaviors" that may be interpreted as behaviors that place the seal on top of the ice and available for observation by an aerial survey.*
 
 ::: author-response
-**\[author response\]** The opening sentence of the abstract is a statement regarding the reliance of ice-associated seals on sea-ice for a range of important life history behaviors. We think this statement is important introduction for readers who are not familiar with ice-associated seals. We do agree with the reviewer's suggestion for more direct language and have made edits to the beginning of the abstract with this in mind.
+**\[author response\]** The opening sentence of the abstract is a statement regarding the reliance of ice-associated seals on sea-ice for a range of important life history behaviors. We think this statement is an important introduction for readers who are not familiar with ice-associated seals. We do agree with the reviewer's suggestion for more direct language and have made edits to the beginning of the abstract with this in mind.
 :::
 
 > ***Abstract:** Did you use previously published data, or did you collect it?  Be specific using an active voice so that readers may understand your effort.*
@@ -198,7 +198,7 @@ To ensure the reader is clearly aware of which life-history behaviors/functions 
 > ***Line 124:** Please provide the geographic context of your tag deployments and data collection using a plot similar to that used by Jay et al. (2012: 10.3354/meps10057 figure 2). Please consider using a tabulation that enables readers to understand the geographic context of the deployments similar to that used by Jay et al. 2012, table 1.*
 
 ::: author-response
-**\[author response\]** We feel the spatial distribution of the actual transmitted data -- compared to the deployment location -- is most informative and relevant for the audience's understanding of how our data are distributed spatially and how well data represents the range of each species. We provide this visually in Figure 3 and adding an additional layer to that figure to show deployments would be an additional complication. To ensure the audience has a clear understanding of our study area, we have added an additional figure with a map of the Bering and Chukchi sea region that indicates generally where deployments were initiated.
+**\[author response\]** We feel the spatial distribution of the actual transmitted data -- compared to the deployment location -- is most informative and relevant for the audience's understanding of how our data are distributed spatially and how well data represents the range of each species. We provide this visually in Figure 3 and adding an additional layer to that figure to show deployments would be an additional complication. To ensure the audience has a clear understanding of our study area, we have added an additional figure (now, Figure 1) with a map of the Bering and Chukchi sea region that indicates generally where deployments were initiated. In response to other reviewer comments this figure also indicates the spatial range of aerial survey effort to date.
 :::
 
 > ***Line 126:** Please use active voice for all actions that you took in your data collection, preparation and analysis.*
@@ -329,9 +329,9 @@ To ensure the reader is clearly aware of which life-history behaviors/functions 
 ::: author-response
 **\[author response\]** We have removed the term 'major focus' and, as the reviewer suggests, simply state that this is the goal of the study. We have also added mention of the statutory requirements to paragraph 2 of the Introduction section and expanded the text to acknowledge the importance of understanding how seals use sea ice during this period of change but, ultimately, it's ancillary to the focus of this paper.
 
-As for providing the reader focus on why the Federal government is doing this study: this is a collaborative study across multiple organizations and the analysis/purpose is not limited to the Federal government. We've incorporated the reviewers suggests to expand discussion of the statutory requirements of the MMPA and ESA but don't feel we need to single out the motivations for the Federal government.
+As for providing the reader focus on why the Federal government is doing this study: this is a collaborative study across multiple organizations and the analysis/purpose is not limited to the Federal government. We've incorporated the reviewers suggestions to expand discussion of the statutory requirements of the MMPA and ESA but don't feel we need to single out the motivations for the Federal government.
 
-We have also added a figure depicting the estimated species range for bearded, ribbon, and spotted seals along with general representation of recent aerial survey effort. This should better communicate to the reader how the spatial distribution of our haul-out behavior overlaps with the species range and survey effort.
+We have also added additional general representation of recent aerial survey effort to the new Figure 1. This should better communicate to the reader how the spatial distribution of our haul-out behavior overlaps with the species range and survey effort.
 :::
 
 > ***Line 227:** Seals can just as happily be on foraging trips within the pack and marginal sea ice as in the open water, depending on the species. Suggesting that foraging trips are associated with ice-free conditions is misleading.*
@@ -345,11 +345,11 @@ We have also added a figure depicting the estimated species range for bearded, r
 > *Please help the reader understand how coarse your tracking data was for the flipper tagged animals and what proportion of each species was tracked with these flipper tags. Please also help the reader understand how the tracking data relates geographically to regions that may be subject to aerial survey efforts (i.e. are your tracking data collected from across the regions that may be surveyed during range-wide spring aerial surveys?).*
 
 ::: author-response
-**\[author response\]** We have re-organized this paragraph to, hopefully, better communicate our choice not to explore sea-ice related covariates. As the reviewer suggests, we have limited geolocation data for at-sea periods of our haul-out behavior data -- we know the seal was in the water but don't have any estimates of location when only a flipper tag is attached. By leading with this statement, we hope that communicates our primary rationale. But, the other rationales are also important and we still include them. We have also moved this section to the 'Discussion' in response to other reviewer comments.
+**\[author response\]** We have re-organized this paragraph to, hopefully, better communicate our choice not to explore sea-ice related covariates. As the reviewer suggests, we have limited geo-location data for at-sea periods of our haul-out behavior data -- we know the seal was in the water but don't have any estimates of location when only a flipper tag is attached. By leading with this statement, we hope that communicates our primary rationale. But, the other rationales are also important and we still include them. We have also moved this section to the 'Discussion' in response to other reviewer comments.
 
 We have provided some statistics regarding the percentage of the percent-dry timeline data that is not associated with a corresponding location estimate because the seal was in the water and no estimates were available from flipper mounted SPOT tags.
 
-We have also added a figure depicting the estimated species range for bearded, ribbon, and spotted seals along with general representation of recent aerial survey effort. This should better communicate to the reader how the spatial distribution of our haul-out behavior overlaps with the species range and survey effort.
+We have also added a figure 1 depicting a spatial representation of recent aerial survey effort (which reflects estimated species range for bearded, ribbon, and spotted seals in US waters). This should better communicate to the reader how the spatial distribution of our haul-out behavior overlaps with the species range and survey effort.
 :::
 
 > ***Line 229-230:** Please help the reader understand why you have not included a basic metric of sea ice geography, such as distance from marginal ice edge (from the NIC's daily Marginal Ice Zone charts), which is a metric that would be available for all data collected during an aerial survey.*
@@ -413,7 +413,7 @@ Lastly, our study was limited to the spring season when seal haul-out behaviors 
 > *Perhaps your motivation is to provide plots that appear intuitive with hours on the y-axis, day of year on the x-axis and haulout proportion as a "heat map".  However beautiful these plot are, I wonder if your goal for improving precision and reducing bias when estimating availability during an aerial survey would not be better served by  the alternative and simpler variables.*
 
 ::: author-response
-**\[author response\]** We appreciate the suggestion and find the possibility of using insolation values from reanalysis products as a covariate intriguing. As the reviewer suggests, such an approach could provide a less complicated and more parsimonious model than the approach we have taken with the Fourier series as a cyclic representation of hour-of day. We have taken the time to do some additional analysis and methodological exploration and provide additional details in Supplement 2. While promising, we feel the approach taken in the analysis is the most appropriate because it distinguishes daily bi-modal (e.g. crepuscular) patterns that might be important but would not be detected by insolation alone (i.e. insolation at dawn or dusk would be similar values but occur at different times of day that might be ecologically important). Additionally, as the reviewer points out, results from the analysis and haul-out predictions are more intuitive and human interpretable when using hour-of-day.
+**\[author response\]** We appreciate the suggestion and find the possibility of using insolation values from reanalysis products as a covariate intriguing. As the reviewer suggests, such an approach could provide a less complicated and more parsimonious model than the approach we have taken with the Fourier series as a cyclic representation of hour-of day. We have taken the time to do some additional analysis and methodological exploration and provide additional details in Supplement 2. Note, our initial exploration of this approach resulted in lower AIC values for the Fourier series approach presented in the analysis. While promising and worth even further exploration, we feel the approach taken in the analysis is the most appropriate because it distinguishes daily bi-modal (e.g. crepuscular) patterns that might be important but would not be detected by insolation alone (i.e. insolation at dawn or dusk would be similar values but occur at different times of day that might be ecologically important). Additionally, as the reviewer points out, results from the analysis and haul-out predictions are more intuitive and human interpretable when using hour-of-day.
 :::
 
 > ***Line 278:** Please help your reader understand what is meant by your term "horizontal shift".  It is clear that you have a graphical representation in your mind that has not been shared with your reader. Please rewrite to avoid "jargon".*
@@ -423,9 +423,9 @@ Lastly, our study was limited to the spring season when seal haul-out behaviors 
 > ***Figure 4:** Please use standard conventions for plot titles.  Your title deserves a statement in your Results or Discussion section.  It does not follow the expectations for a publication figure title.*
 
 ::: author-response
-**\[author response\]** The plot titles were developed with strong consideration for improving scientific communication over approaches that are more typically used in publications. They were developed with guidance from modern approaches to data visualization that recognize the plot title is often the very first thing the reader sees. Therefore it can serve as an effective communication tool to help the reader interpret the results.
+**\[author response\]** The plot titles were developed with strong consideration for improving scientific communication over approaches that are more typically used in publications. They were developed with guidance from modern approaches to data visualization that recognize the plot title is often the very first thing the reader sees and that data visualizations are often viewed and interpreted as standalone figures. Therefore it can serve as an effective communication tool to help the reader interpret the results.
 
-That said, we recognize that the approach may depart too much from the standard expectations and have made adjustments to each of the titles with the feedback in mind. We hope the new titles provide a balanced approach.
+That said, we recognize that the initial approach could still be improved and have made adjustments to each of the titles with the feedback in mind. We hope the new titles provide a balanced approach.
 :::
 
 > ***Figure 4:** Please scale your color ramp to enable better visualization of the subject: limit the color ramp to the modeled values (which appear to be from zero to \~0.5).*
@@ -437,7 +437,7 @@ That said, we recognize that the approach may depart too much from the standard 
 > ***Figure 4:** Please switch to a color ramp that is suitable for readers with color perception disabilities such as the viridis color ramps.*
 
 ::: author-response
-**\[author response\]** The color ramp used is the 'Hiroshige' color ramp from the MetBrewer R package and has been tested and confirmed to be colorblind friendly. We initially used the viridis color palette for these plots but the Hiroshige colors provided additional visual detail we feel is important.
+**\[author response\]** The color ramp used has been updated to use palettes from the R package 'scico' have been tested and confirmed to be colorblind friendly and appropriately balanced for scientific interpretation. We initially used the viridis color palette for these plots but the 'scico' palette colors provided additional visual detail we feel is important.
 :::
 
 > ***Figure 4:** This is unclear. Your plot indicates a y-axis of local solar hour which varies from 0 to 24.  This is clearly not fixed at local noon.*
