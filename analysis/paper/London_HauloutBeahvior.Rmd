@@ -1011,7 +1011,9 @@ the spring season compared to ribbon and spotted seals.
 targets::tar_load(bearded_newdata, store = here::here("_targets"))
 ```
 
-```{r beardedHOCal, include=TRUE, fig.cap="Predicted hourly haul-out probability of bearded seals (all ages and sex classes) from 1 March to 30 June for all age and sex classes combined. Predictions in July and before 15 March were not included to avoid spurious model predictions at the edge of the data range."}
+(ref:beardedHOCalCaption) **Bearded seal predicted haul-out probability** \linebreak Predicted hourly haul-out probability of bearded seals (all ages and sex classes) from 1 March to 30 June for all age and sex classes combined. Predictions in July and before 15 March were not included to avoid spurious model predictions at the edge of the data range. Note, our model predicts lower haul-out probability for bearded seals overall compared to ribbon and spotted seals and the color scales are not directly comparable.
+
+```{r beardedHOCal, include=TRUE, fig.cap="(ref:beardedHOCalCaption)"}
 
 plot_df <- bearded_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
@@ -1023,15 +1025,11 @@ plot_df <- bearded_newdata %>%
 p <- ggplot(plot_df, aes(day,solar_hour,fill = ho_prob, color = ho_prob)) +
   geom_tile(linewidth = 0.15) +
   scico::scale_fill_scico(palette = "navia", direction = 1,
-                          begin = 0.1, end = 1,
-                       name = "haul-out probability", 
-                       limits = c(0,1), breaks = c(0.25, 0.50, 0.75),
-                       guide = guide_colorbar(title.position = "bottom", barwidth = 15,
-                                              barheight = 0.5, title.hjust = 0.5)
+                       name = "Bearded seal haul-out probability", 
+                       guide = guide_colorbar(title.position = "top", barwidth = 15,
+                                              barheight = 0.5, title.hjust = 0)
   ) +
-  scico::scale_color_scico(palette = "navia", direction = 1,
-                           begin = 0.1, end = 1,
-                           limits = c(0,1)) +
+  scico::scale_color_scico(palette = "navia", direction = 1) +
   guides(col = FALSE)
 
 
@@ -1045,13 +1043,11 @@ p <- p + scale_x_continuous(breaks = c(5,10,15,20,25)) +
   scale_y_continuous(breaks = c(4,12,20), labels = c("04","12", "20")) +
   coord_cartesian(expand=FALSE)
 p <- p + theme(panel.spacing = unit(0.1, "lines"),
-               legend.position = "bottom",
+               legend.position = "top", legend.justification='left',
+               legend.text.align = 0,
                strip.background = element_rect(colour="white"),
                axis.ticks=element_blank()) +
-  xlab("day of month") + ylab("local solar hour") +
-  labs(title = "Bearded seal predicted haul-out probability",
-       subtitle = "Our model predicts lower haul-out probability for bearded seals overall 
-       compared to ribbon and spotted seals. Highest probability is associated with solar noon and midnight.")
+  xlab("day of month") + ylab("local solar hour") 
 p
 ```
 
@@ -1104,7 +1100,9 @@ in May. Adult females had a more protracted haul-out season compared to
 males, and more time was spent hauled out in June compared to adult males and
 subadults.
 
-```{r ribbonHOCal, fig.asp = 0.9, include=TRUE, fig.cap="Predicted hourly haul-out probability of ribbon seals from 15 March to 30 June for each age and sex class used in the model. There is an apparent seasonal progression with subadults hauling out earlier in the season followed by adult males and, then, adult females. Predictions for young of the year show their transition from newly weaned pups resting on the ice to more in-water activities. Predictions in July and before 15 March were not included to avoid spurious model predictions at the edge of the data range."}
+(ref:ribbonHOCalCaption) **Ribbon seal predicted haul-out probability** \linebreak Predicted hourly haul-out probability of ribbon seals from 15 March to 30 June for each age and sex class used in the model. There is an apparent seasonal progression with subadults hauling out earlier in the season followed by adult males and, then, adult females. Predictions for young of the year show their transition from newly weaned pups resting on the ice to more in-water activities. Predictions in July and before 15 March were not included to avoid spurious model predictions at the edge of the data range.
+
+```{r ribbonHOCal, fig.asp = 0.9, include=TRUE, fig.cap="(ref:ribbonHOCalCaption)"}
 
 plot_df <- ribbon_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
@@ -1117,10 +1115,10 @@ p <- ggplot(plot_df, aes(day,solar_hour,fill = ho_prob, color = ho_prob)) +
   geom_tile(linewidth = 0.15) +
   scico::scale_fill_scico(palette = "navia", direction = 1,
                           begin = 0.1, end = 1,
-                       name = "haul-out probability", 
+                       name = "Ribon seal haul-out probability", 
                        limits = c(0,1), breaks = c(0.25, 0.50, 0.75),
-                       guide = guide_colorbar(title.position = "bottom", barwidth = 15,
-                                              barheight = 0.5, title.hjust = 0.5)
+                       guide = guide_colorbar(title.position = "top", barwidth = 15,
+                                              barheight = 0.5, title.hjust = 0)
   ) +
   scico::scale_color_scico(palette = "navia", direction = 1,
                            begin = 0.1, end = 1,
@@ -1137,14 +1135,11 @@ p <- p + scale_x_continuous(breaks = c(5,10,15,20,25)) +
   scale_y_continuous(breaks = c(4,12,20), labels = c("04","12", "20")) +
   coord_cartesian(expand=FALSE)
 p <- p + theme(panel.spacing = unit(0.1, "lines"),
-               legend.position = "bottom",
+               legend.position = "top", legend.justification='left',
+               legend.text.align = 0,
                strip.background = element_rect(colour="white"),
                axis.ticks=element_blank()) +
-  xlab("day of month") + ylab("local solar hour") +
-  ggtitle("Ribbon seal predicted haul-out probability",
-          subtitle = "Our model predicts increased haul-out probability 
-          for ribbon seals centered on solar noon and a sequential 
-          seasonal pattern linked to age and sex classifications.")
+  xlab("day of month") + ylab("local solar hour") 
 p
 ```
 
@@ -1195,7 +1190,9 @@ time out of the water in June (Figures \@ref(fig:ribbonHOCal) and
 began after weaning and the model predictions demonstrated the development of
 in-water activities (e.g. swimming, foraging) in May.
 
-```{r spottedHOCal, fig.asp = 0.9, include=TRUE, fig.cap="Predicted hourly haul-out probability of spotted seals from 1 March to 30 June for each age and sex class used in the model. Compared to ribbon seals, the period of increased haul-out behavior is broader and there is more alignment in the seasonal timing of haul-out behavior across age and sex classifications. This likely reflects the triad behavior in spotted seals when suitor males haul out with nursing females. As with ribbon seals, redictions for young of the year show their transition from newly weaned pups resting on the ice to more in-water activities. Predictions in July and before 15 March were not included to avoid spurious model predictions at the edge of the data range."}
+(ref:spottedHOCalCaption) **Spotted seal predicted haul-out probability** \linebreak Predicted hourly haul-out probability of spotted seals from 1 March to 30 June for each age and sex class used in the model. Compared to ribbon seals, the period of increased haul-out behavior is broader and there is more alignment in the seasonal timing of haul-out behavior across age and sex classifications. This likely reflects the triad behavior in spotted seals when suitor males haul out with nursing females. As with ribbon seals, redictions for young of the year show their transition from newly weaned pups resting on the ice to more in-water activities. Predictions in July and before 15 March were not included to avoid spurious model predictions at the edge of the data range.
+
+```{r spottedHOCal, fig.asp = 0.9, include=TRUE, fig.cap="(ref:spottedHOCalCaption)"}
 
 plot_df <- spotted_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
@@ -1208,10 +1205,10 @@ p <- ggplot(plot_df, aes(day,solar_hour,fill = ho_prob, color = ho_prob)) +
   geom_tile(linewidth = 0.15) +
   scico::scale_fill_scico(palette = "navia", direction = 1,
                           begin = 0.1, end = 1,
-                       name = "haul-out probability", 
+                       name = "Spotted seal haul-out probability", 
                        limits = c(0,1), breaks = c(0.25, 0.50, 0.75),
-                       guide = guide_colorbar(title.position = "bottom", barwidth = 15,
-                                              barheight = 0.5, title.hjust = 0.5)
+                       guide = guide_colorbar(title.position = "top", barwidth = 15,
+                                              barheight = 0.5, title.hjust = 0)
   ) +
   scico::scale_color_scico(palette = "navia", direction = 1,
                            begin = 0.1, end = 1,
@@ -1228,14 +1225,11 @@ p <- p + scale_x_continuous(breaks = c(5,10,15,20,25)) +
   scale_y_continuous(breaks = c(4,12,20), labels = c("04","12", "20")) +
   coord_cartesian(expand=FALSE)
 p <- p + theme(panel.spacing = unit(0.1, "lines"),
-               legend.position = "bottom",
+               legend.position = "top", legend.justification='left',
+               legend.text.align = 0,
                strip.background = element_rect(colour="white"),
                axis.ticks=element_blank()) +
-  xlab("day of month") + ylab("local solar hour") +
-  ggtitle("Spotted seal predicted haul-out probability",
-          subtitle = "Our model predicts increased haul-out probability 
-          for spotted seals centered on solar noon with general alignment in the
-          seasonal timing across age and sex classifications.")
+  xlab("day of month") + ylab("local solar hour") 
 p
 ```
 
