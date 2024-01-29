@@ -111,7 +111,6 @@ plot_ribbon_wx <- function(ribbon_fit_obj,age_sex_colors,age_sex_labels) {
   
   p_combo <- p_temp + p_wind + p_pressure + p_precip +
     plot_annotation(
-      title = 'Influece of weather covariates on ribbon seal haul-out probability',
       caption = 'marginal effects are calculated for local solar noon on the day of peak haul out')
   
   p_combo <- apply_consistent_y_lims(p_combo)
@@ -231,7 +230,6 @@ plot_spotted_wx <- function(spotted_fit_obj, age_sex_colors,age_sex_labels) {
   
   p_combo <- p_temp + p_wind + p_pressure + p_precip +
     plot_annotation(
-      title = 'Influece of weather covariates on spotted seal haul-out probability',
       caption = 'marginal effects are calculated for local solar noon on the day of peak haul out')
   
   p_combo <- apply_consistent_y_lims(p_combo)
@@ -347,7 +345,6 @@ plot_bearded_wx <- function(bearded_fit_obj, age_sex_colors,age_sex_labels) {
   
   p_combo <- p_temp + p_wind + p_pressure + p_precip +
     plot_annotation(
-      title = 'Influece of weather covariates on bearded seal haul-out probability',
       caption = 'marginal effects are calculated for local solar noon on the day of peak haul out')
   
   p_combo <- apply_consistent_y_lims(p_combo)
