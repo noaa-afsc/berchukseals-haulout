@@ -880,9 +880,9 @@ locs_count <- hexgrid %>%
   ) %>% drop_na()
 ```
 
-(ref:mapCaption) Spatial distribution of haul-out records during the months of March through July 15 for each of the three species. Linking location estimates with haul-out records in space and time allows for inclusion of weather covariates in the final model. For this visualization, data were collated across all years between 2005 and 2020 and each hexagonal cell represents an area of 50 km^2^
+(ref:mapCaption) **Spatial distribution of haul-out records from 1 March through July 15 for each of the three species.** \linebreak Linking location estimates with haul-out records in space and time allows for inclusion of weather covariates in the final model. For this visualization, data were collated across all years between 2005 and 2020 and each hexagonal cell represents an area of 50 km^2^
 
-```{r dataMap, include=TRUE, fig.cap="(ref:mapCaption)"}
+```{r dataMap, include=TRUE, fig.asp = 0.5, fig.cap="(ref:mapCaption)"}
 
 world <- ne_countries(scale = "medium", returnclass = "sf") %>% 
   sf::st_transform(st_crs(locs_count))
@@ -911,10 +911,6 @@ ggplot() +
   ) +
   facet_grid( ~ species) +
   labs(
-    title = "Spatial distribution of haul-out behavior records",
-    subtitle = "Location estimates were linked by time with haul-out records. 
-    Data are shown collated across 2005-2020 between 01 March-15 July
-    for each of the three species.",
     caption = "One hexagonal cell represents 50 km^2^"
   ) +
   theme(
