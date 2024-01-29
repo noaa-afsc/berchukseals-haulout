@@ -918,21 +918,9 @@ ggplot() +
   )
 ```
 
+(ref:dataDistributionCaption) **Seasonal density of haul-out behavior observations by species** \linebreak Distribution of hourly percent-dry bio-logger data from 1 March to 15 July for each species. Data are grouped by day-of-year and presented in seal-hours collated across all years between 2005 and 2020. Density values are represented as a color gradient and bar height. The higher density of data from May and June in ribbon and spotted seals coincides with peak molting when seals (and their attached bio-loggers) are more likely hauled out. Additionally, many bio-logger deployments started in April and May. The overall reduced quantity of observations from bearded seals is reflective of the lower number of bio-logger deployments in the study.
 
-Figure \@ref(fig:dataCal) shows the temporal distribution of all
-haul-out data across the study season for each species. Observations for ribbon
-and spotted seals were concentrated in the months of May and June due to the
-timing of deployment (April and May) and the timing of molt (May and June).
-During molt, seals (and their attached bio-loggers) spend more time out of the
-water and more data are transmitted. Molt timing also impacts when many
-deployments end as any bio-loggers adhered to the hair will fall off. Relative
-to the other species in the study, there were fewer deployments of bio-loggers
-on bearded seals. This resulted in fewer data observations overall and
-noticeably lower in numbers May and June. The majority of bearded seal
-deployments started later in the summer and, by May, bio-loggers had either
-fallen off or their batteries were depleted.
-
-```{r dataCal, include=TRUE, fig.cap = "Distribution of hourly percent-dry bio-logger data from 1 March to 15 July for each species. Data are grouped by day-of-year and presented in seal-hours collated across all years between 2005 and 2020. The higher density of data from May and June in ribbon and spotted seals coincides with peak molting when seals (and their attached bio-loggers) are more likely hauled out. Additionally, many bio-logger deployments started in April and May. The overall reduced quantity of observations from bearded seals is reflective of the lower number of bio-logger deployments in the study."}
+```{r dataCal, include=TRUE, fig.cap = "(ref:dataDistributionCaption)"}
 
 ggplot(data = seal_hours_tbl, aes(x = yday, y = n, fill = n))+
   geom_col() +
@@ -944,12 +932,10 @@ ggplot(data = seal_hours_tbl, aes(x = yday, y = n, fill = n))+
   guides(fill = guide_colorbar(title.position = "bottom", 
                                title.hjust = 0.5, barwidth = 15,
                                barheight = 0.5)) +
-  facet_grid(species ~ .) + 
-  labs(fill = "seal-hours of bio-logger data",
-       title = "Seasonal density of haul-out behavior observations by species",
-       subtitle = "Data are grouped by day-of-year and presented in seal-hours collated across 
-       years (2005-2020) from March through July.") +
+  facet_wrap(species ~ ., nrow=3) + 
+  labs(fill = "seal-hours of bio-logger data") +
   theme(axis.text.x = element_text(hjust = 0),
+        strip.text.x = element_text(hjust = 0, margin=margin(l=15)),
         axis.text.y = element_blank(),
         axis.title = element_blank(),
         panel.grid = element_blank(),
