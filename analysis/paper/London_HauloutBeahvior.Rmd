@@ -695,7 +695,9 @@ with greater than 15% concentration for each year.
 
 (ref:kgm2) kg/m^2^
 
-```{r tblCovariates, include=TRUE, tab.cap = "Explanatory covariates used in analyses of binary haul-out records for bearded, spotted, and ribbon seals. Note that we also considered select interactions (see article text) between these primary covariates.  For instance, wind chill was represented by the interaction temperature:wind."}
+(ref:tblCovariatesCaption) **Explanatory covariates used in analyses of binary haul-out records for bearded, spotted, and ribbon seals.** \linebreak Note that we also considered select interactions (see article text) between these primary covariates.  For instance, wind chill was represented by the interaction temperature:wind.
+
+```{r tblCovariates, include=TRUE, tab.cap = "(ref:tblCovariatesCaption)"}
 
 covariate_tbl <- tibble::tribble(
   ~Covariate, ~Type, ~Description,
