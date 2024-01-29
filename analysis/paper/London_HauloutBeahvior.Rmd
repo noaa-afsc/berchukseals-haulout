@@ -623,7 +623,9 @@ p
 ```
 
 Of key interest in this study was the relationship between haul-out behavior and
-weather covariates that vary with time and seal location. We explored the use
+weather covariates that vary with time and seal location. The use of modern
+bio-loggers that record and transmit behavioral data while simultaneously
+providing location estimates was key to this objective. We explored the use
 of a continuous-time correlated random walk [@johnson2008a] movement model
 to predict locations at specific times. However, the sparse nature of data from
 some bio-loggers, especially those mounted to the rear flipper, resulted in poor
@@ -679,7 +681,7 @@ occupy a substantial range during the spring and we were interested in possible
 differences in the timing of haul-out behavior along a latitudinal gradient. We
 omitted the latitudinal effect from ribbon and spotted seal models because,
 during the spring, these species are most prevalent near the southern ice edge
-in the Bering Sea [@conn2013b].
+in the Bering Sea [@conn2014a].
 
 We did assess whether the annual variation in maximum spring sea ice extent in the
 Bering Sea influenced the seasonal peak of seal haul-out probability. In
