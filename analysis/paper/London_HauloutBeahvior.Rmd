@@ -311,7 +311,7 @@ coastal communities of Scammon Bay, Alaska in the Bering Sea, Utqiaġvik, Alaska
 in the Chukchi Sea, and Nuiqsut in the Beaufort Sea. Data from additional
 deployments along the Kamchatka peninsula in the western Bering Sea are also
 included. We refer readers to Figure \@ref(fig:deployplot) and the primary literature
-for detailed capture and bio-logger attachment methods (see Supplemental
+for detailed capture and bio-logger attachment methods (see also Supplemental
 Material, [S1](#s1)).
 
 (ref:deployMapCaption) **Initial bio-logger deployment areas for each seal species (bearded, ribbon, and spotted seals) in the study between 2005 and 2020 across multiple regions within the Bering, Chukchi, and western Beaufort seas.** \linebreak Solid regions shown for each species are minimum concave polygons buffered by 60 km for enhanced visibility. The larger, shaded region indicates the spatial extent of aerial survey effort to date in the Bering, Chukchi, and Beaufort seas. Deployments were initiated across a range of months but only data from 1 March to 15 July were included in the analysis. See Figure \@ref(fig:dataMap) for the spatial distribution of observed data used in the study and Supplemental Materials \@ref(tab:deploymentTable) for additional deployment details.
@@ -402,21 +402,25 @@ to include only records from 1 March to 15 July between
 `r min(lubridate::year(analysis_data$haulout_dt))` and 
 `r max(lubridate::year(analysis_data$haulout_dt))`. Bio-loggers were of the
 'SPLASH' or 'SPOT' family of tags developed by Wildlife Computers (Redmond,
-Washington, USA) and we either adhered them to the hair on the seal or attached
-them through the rear flipper inter-digital webbing. The use of bio-loggers
-adhered to the back or head provides some benefits over flipper mounted devices
-(e.g. increased satellite transmittal rates, locations at sea) but these are
-lost during the following annual molt, which, depending on deployment date,
-limits the duration of haul-out data they provide. Additionally, bio-loggers
-attached to the head or dorsal region are often dry while the seal is floating
-at the surface, inducing a slight positive bias in the hourly percent-dry values
-reported by the bio-logger. For this study, in cases where both bio-logger types
-were deployed, we preferred hourly percent-dry observations from the flipper tag. 
+Washington, USA). Deployments consisted of either a single 'SPLASH' device, a
+single 'SPOT' device, or both types. Devices were either adhered to the hair
+on the seal or attached through the rear flipper inter-digital webbing. The use
+of bio-loggers adhered to the back or head provides some benefits over flipper
+mounted devices (e.g. increased satellite transmittal rates, locations at sea)
+but these are lost during the following annual molt, which, depending on
+deployment date, limits the duration of haul-out data they provide.
+Additionally, bio-loggers attached to the head or dorsal region are often dry
+while the seal is floating at the surface, inducing a slight positive bias in
+the hourly percent-dry values reported by the bio-logger. For this study, in
+cases where both bio-logger types were deployed, we preferred hourly percent-dry
+observations from the flipper tag. All data were transmitted by the deployed
+instruments via the Argos satellite network and location data were either
+derived from Argos transmissions or transmitted FastLoc GPS data.
 
 Sex as well as age class (non-dependent _young-of-the-year_, sexually immature
 _subadults_, and mature _adults_) were estimated at the time of deployment by
 various combinations of length, claw growth ridges [@mclaren1958a], and pelage
-characteristics for some species. Seals determined to be less than one year were
+characteristics. Seals determined to be less than one year were
 classified as young-of-the-year. For those bio-loggers deployed on
 young-of-the-year and transmitting into the next year, the age class was
 advanced to subadult on 1 March of the following year. Subadults are those seals
@@ -486,23 +490,6 @@ seal_hours_tbl <- analysis_data %>%
   dplyr::count()
 ```
 
-Tags that fall off due to molt, attachment failure, or seal mortality and remain
-on ice or land may continue to send data to satellites; i.e., a detached
-bio-logger that is dry (either on ice or land) will record and transmit data
-suggesting the seal is hauled out. Therefore, end times of each deployment were
-identified by examining bio-logger locations, percent-dry records, and dive
-behavior (if available) to determine when bio-loggers ceased providing data
-consistent with seal behavior. For example, a data record that ends with several
-consecutive days (~10+ days) of 100% dry observations and with locations
-indicating the tag was on land would be truncated to not include the final
-stretch of 100% dry observations. The vast majority of deployments end with the
-device detaching in the water and the deployment end date is obvious. There is
-no perfect algorithm for identifying deployment end dates and each deployment in
-question must be considered separately. While not perfect, we are confident our
-reliance on expert opinion and examination of multiple data streams provides the
-best option. Data outside of the deployment start and end times were discarded
-prior to analysis. 
-
 Haul-out behavior data were recorded in a manner standard across Wildlife Computers
 bio-loggers and transmitted via the Argos satellite
 network as hourly percent-dry timelines. For each hour of a day, the wet/dry
@@ -523,6 +510,23 @@ atmospheric interference. Fortunately, missing records do not substantially bias
 inference about haul-out probabilities [@conn2012c].
 
 ```{r examplePlot, include=TRUE, fig.id="examplePlot", fig.cap="Haul-out behavior observations recorded by a bio-logger deployed on a ribbon seal over two years during the months of March, April, and May. This actogram plot represents the transmitted hourly percent-dry values. Not all data during a deployment are reliably transmitted from the bio-logger and since data are transmitted in 24-hour chunks occasional missing days are present in the record. Here, missing data that were not successfully recieved from the device are represented as empty rectangles."}
+Tags that fall off due to molt, attachment failure, or seal mortality and remain
+on ice or land may continue to send data to satellites; i.e., a detached
+bio-logger that is dry (either on ice or land) will record and transmit data
+suggesting the seal is hauled out. Therefore, end times of each deployment were
+identified by examining bio-logger locations, percent-dry records, and dive
+behavior (if available) to determine when bio-loggers ceased providing data
+consistent with seal behavior. For example, a data record that ends with several
+consecutive days (~10+ days) of 100% dry observations and with locations
+indicating the tag was on land would be truncated to not include the final
+stretch of 100% dry observations. The vast majority of deployments end with the
+device detaching in the water and the deployment end date is obvious. There is
+no perfect algorithm for identifying deployment end dates and each deployment in
+question must be considered separately. While not perfect, we are confident our
+reliance on expert opinion and examination of multiple data streams provides the
+best option. Data outside of the deployment start and end times were discarded
+prior to analysis. 
+
 
 d <- analysis_data %>% 
   filter(speno == "HF2016_1002") %>% 
