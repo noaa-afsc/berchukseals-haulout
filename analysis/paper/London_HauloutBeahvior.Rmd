@@ -428,7 +428,9 @@ likely greater than one year of age but less than four years. Adults are
 individuals that are likely older than four years. Table \@ref(tab:tblDeploy)
 provides a summary of these deployments and data received from them.
 
-```{r tblDeploy, include=TRUE, tab.cap = "Summary of bio-logger data across seal species and age classification from 1 March to 15 July 2005-2020. Total seal hours represents the sum of hourly observations across all seals used in the analysis. Because young-of-the-year are advanced to subadult on 1 March of the following year, some individual seals are represented in both columns in this table"}
+(ref:deployTblCaption) **Summary of bio-logger data across seal species and age classification from 1 March to 15 July 2005-2021.** \linebreak Total seal hours represents the sum of hourly observations across all seals used in the analysis. Because young-of-the-year are advanced to subadult on 1 March of the following year, some individual seals are represented in both columns in this table
+
+```{r tblDeploy, include=TRUE, tab.cap = "(ref:deployTblCaption)"}
 
 deploy_table %>%
   dplyr::group_by(species, sex, age) %>%
