@@ -511,7 +511,6 @@ often do not transmit while at sea), tag performance, duty cycling, and
 atmospheric interference. Fortunately, missing records do not substantially bias
 inference about haul-out probabilities [@conn2012c].
 
-```{r examplePlot, include=TRUE, fig.id="examplePlot", fig.cap="Haul-out behavior observations recorded by a bio-logger deployed on a ribbon seal over two years during the months of March, April, and May. This actogram plot represents the transmitted hourly percent-dry values. Not all data during a deployment are reliably transmitted from the bio-logger and since data are transmitted in 24-hour chunks occasional missing days are present in the record. Here, missing data that were not successfully recieved from the device are represented as empty rectangles."}
 Tags that fall off due to molt, attachment failure, or seal mortality and remain
 on ice or land may continue to send data to satellites; i.e., a detached
 bio-logger that is dry (either on ice or land) will record and transmit data
@@ -529,6 +528,16 @@ reliance on expert opinion and examination of multiple data streams provides the
 best option. Data outside of the deployment start and end times were discarded
 prior to analysis. 
 
+(ref:examplePlotCaption) **Example percent-dry actogram from bio-logger data**
+\linebreak Haul-out behavior observations recorded by a bio-logger deployed on a
+ribbon seal over two years during the months of March, April, and May. This
+actogram plot represents the transmitted hourly percent-dry values. Not all data
+during a deployment are reliably transmitted from the bio-logger and since data
+are transmitted in 24-hour chunks occasional missing days are present in the
+record. Here, missing data that were not successfully recieved from the device
+are represented as empty rectangles.
+
+```{r examplePlot, include=TRUE, fig.id="examplePlot", fig.cap="(ref:examplePlotCaption)"}
 
 d <- analysis_data %>% 
   filter(speno == "HF2016_1002") %>% 
@@ -608,8 +617,6 @@ p <- p + theme(legend.position = "bottom") +
   theme(strip.background = element_rect(colour="white")) +
   theme(axis.ticks=element_blank()) +
   theme(panel.spacing = unit(0,"line")) +
-  ggtitle("Example percent-dry actogram from bio-logger data",
-          subtitle = "Observation records shown are from a single ribbon seal across a two year deployment.") +
   xlab("day of month") + ylab("hour (UTC)")
 
 p
