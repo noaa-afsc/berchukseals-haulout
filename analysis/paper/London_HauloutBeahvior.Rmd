@@ -204,14 +204,14 @@ needed -- and, must be paired with improved knowledge of haul-out behavior to
 ensure appropriate survey design, robust methods, and accurate estimates.
 Several studies have contributed estimates of the distribution and abundance of
 ice-associated seal species in the Arctic using aerial surveys (e.g.,
-[@bengtson2005a], [@conn2013b], and [@verhoef2014a]) and more recent efforts
+@bengtson2005a, @conn2014a, and @verhoef2014a) and more recent efforts
 have significantly expanded on previous survey effort. Such abundance studies
 are conducted over very large areas and estimation of absolute abundance
 requires making inference about numerous issues affecting the observation of
 seals on ice. These include availability (only seals on ice are available to
 be counted), detection probability (observers or automated detection systems may
 miss some seals on ice), species misclassification, and possible
-disturbance of seals by aircraft [@conn2013b; @verhoef2014a]. Refining these
+disturbance of seals by aircraft [@conn2014a; @verhoef2014a]. Refining these
 inferences will improve the accuracy of abundance estimates and, hopefully,
 allow credible predictions about the effects of climate disruptions on the
 abundance and distribution of Arctic seal populations.
@@ -256,8 +256,8 @@ regression-style analyses to estimate the time-specific probability of being
 hauled out based on 'wet/dry' data relayed by bio-loggers. In these models,
 haul-out probabilities were expressed as a function of predictive covariates,
 such as time-of-day, day-of-year, sex, age class, and environmental conditions
-(e.g., [@reder2003], [@bengtson2004], [@bengtson2005a], [@udevitz2009],
-[@verhoef2014a], [@southwell2008], and [@niemi2023]). However, sample sizes have often been
+(e.g., @reder2003, @bengtson2004, @bengtson2005a, @udevitz2009, @lonergan2013,
+@verhoef2014a, @southwell2008, and @niemi2023). However, sample sizes have often been
 insufficient to permit strong inference about demographic and/or seasonal
 variation in haul-out probabilities. For instance, Bengtson and Cameron's
 [-@bengtson2004] study included 5 adult and 2 juvenile crabeater seals, while
@@ -277,7 +277,7 @@ the chronology of haul-out behavior in the critical spring season for each
 species across different age and sex classes. Second, we sought to refine
 estimates of haul-out availability corrections for aerial surveys in order to
 improve estimates of seal abundance. Previously estimated availability
-correction factors (e.g., [@bengtson2005a], [@conn2013b], and [@verhoef2014a])
+correction factors (e.g., @bengtson2005a, @conn2014a, and @verhoef2014a)
 accounted for variables such as the time-of-day and day-of-year, but did not
 investigate meteorological variables that have been shown to influence haul-out
 behavior of walruses [@udevitz2009]. Third, we aimed to assess the annual
@@ -1651,8 +1651,7 @@ ramifications on calculations of abundance and trend. Those ramifications will
 only be exacerbated if climate variability amplifies interannual differences.
 
 Previous attempts to estimate the abundance of phocid seals from aerial survey
-data in the Bering and Chukchi seas (e.g. [@bengtson2005a], [@conn2013b],
-[@verhoef2014a]) have used estimated haul-out probabilities to correct for the
+data in the Bering and Chukchi seas (e.g. @bengtson2005a, @conn2014a,
 proportion of animals that are in the water and thus unavailable to be counted.
 Although several of these studies allowed haul-out probabilities to vary by
 day-of-year and time-of-day, they have not accounted for variability among
@@ -1679,7 +1678,7 @@ attributable to changes in abundance or changes in haul-out behavior.
 Predictions of absolute haul-out probability in this paper were somewhat
 different than those previously reported for these species, especially for
 bearded seals. For instance, Ver Hoef et al. [-@verhoef2014a] and Conn et al.
-[-@conn2013b] used haul-out correction factors with maximums of 0.66 for bearded
+[-@conn2014a] used haul-out correction factors with maximums of 0.66 for bearded
 seals, 0.62 for ribbon seals, and 0.54 for spotted seals, where these maximums
 corresponded to times near solar noon in mid-late May. Our current estimates
 of haul-out probability reflect increased sample sizes in terms of
