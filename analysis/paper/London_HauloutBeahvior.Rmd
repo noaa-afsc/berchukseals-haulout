@@ -8,7 +8,7 @@ author:
     corresponding: true
   - name: Paul B. Conn
     affiliation: 1
-  - name: Stacie K. Hardy
+  - name: Stacie M. Koslovsky
     affiliation: 1
   - name: Erin L. Richmond
     affiliation: 1
