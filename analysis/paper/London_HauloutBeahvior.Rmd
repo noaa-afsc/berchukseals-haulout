@@ -279,13 +279,15 @@ estimates of haul-out availability corrections for aerial surveys in order to
 improve estimates of seal abundance. Previously estimated availability
 correction factors (e.g., @bengtson2005a, @conn2014a, and @verhoef2014a)
 accounted for variables such as the time-of-day and day-of-year, but did not
-investigate meteorological variables that have been shown to influence haul-out
-behavior of walruses [@udevitz2009]. Third, we aimed to assess the annual
-variability in haul-out timing and possible linkage to changes in the extent of
-seasonal sea ice between 2005 and 2020. Our work extends the scope of previous
-haul-out analyses, includes the influence of meteorological variability, and
-investigates the potential impact of changing sea-ice extent on the behavior of
-these species.
+investigate the impact of meteorological variables. Such variables have been
+shown to influence walrus haul-out behavior [@udevitz2009] and we expect weather
+conditions to also influence seal haul-out behavior and including them within
+the model framework will benefit our estimates of seal availability during
+aerial surveys. Third, we aimed to assess the annual variability in haul-out
+timing and possible linkage to changes in the extent of seasonal sea ice between
+2005 and 2020. Our work extends the scope of previous haul-out analyses,
+includes the influence of meteorological variability, and investigates the
+potential impact of changing sea-ice extent on the behavior of these species.
 
 # Methods {-}
 
