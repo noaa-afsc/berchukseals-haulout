@@ -314,9 +314,9 @@ included. We refer readers to Figure \@ref(fig:deployplot) and the primary liter
 for detailed capture and bio-logger attachment methods (see Supplemental
 Material, [S1](#s1)).
 
-(ref:deployMapCaption) Initial deployment areas for each seal species (bearded, ribbon, and spotted seals) in the study between 2005 and 2020. Solid regions shown for each species are minimum concave polygons buffered by 60 km for enhanced visibility. The larger, shaded region indicates the spatial extent of aerial survey effort to date in US waters of the Bering and Chukchi seas. Deployments were initiated across a range of months but only data from 1 March to 15 July were included in the analysis. See Figure \@ref(fig:dataMap) for the spatial distribution of observed data used in the study and Supplemental Materials \@ref(tab:deploymentTable) for additional deployment details.
+(ref:deployMapCaption) **Initial bio-logger deployment areas for each seal species (bearded, ribbon, and spotted seals) in the study between 2005 and 2020 across multiple regions within the Bering, Chukchi, and western Beaufort seas.** \linebreak Solid regions shown for each species are minimum concave polygons buffered by 60 km for enhanced visibility. The larger, shaded region indicates the spatial extent of aerial survey effort to date in the Bering, Chukchi, and Beaufort seas. Deployments were initiated across a range of months but only data from 1 March to 15 July were included in the analysis. See Figure \@ref(fig:dataMap) for the spatial distribution of observed data used in the study and Supplemental Materials \@ref(tab:deploymentTable) for additional deployment details.
 
-```{r deployplot, include=TRUE, fig.asp = 0.45, fig.cap = "(ref:deployMapCaption)"}
+```{r deployplot, include=TRUE, fig.asp = 0.4, fig.cap = "(ref:deployMapCaption)"}
 targets::tar_load(deploy_details, store = here::here("_targets"))
 targets::tar_load(survey_area, store = here::here("_targets"))
 
@@ -337,13 +337,13 @@ survey_area <- survey_area %>%
 
 species_labels <- c("Bearded seal" = paste0("<span style = 'color:",
                                             species_colors['Bearded seal'],
-                                            ";'>Bearded seal</span>"),
+                                            ";'>Bearded seal<br />Deployments</span>"),
                     "Ribbon seal" = paste0("<span style = 'color:",
                                            species_colors['Ribbon seal'],
-                                           ";'>Ribbon seal</span>"),
+                                           ";'>Ribbon seal<br />Deployments</span>"),
                     "Spotted seal" = paste0("<span style = 'color:",
                                             species_colors['Spotted seal'],
-                                            ";'>Spotted seal</span>")
+                                            ";'>Spotted seal<br />Deployments</span>")
 ) %>% as_labeller()
 
 label_coords_bering <- st_sfc(st_point(c(178.5,57)), crs = 4326) %>%
@@ -363,25 +363,17 @@ p <- ggplot() +
   annotation_spatial(world,
                      linewidth=0,
                      fill = "grey80") +
-  geom_sf_text(data = label_coords_bering, aes(label = "Bering sea"), size = 1.65, color = "grey30") +
+  geom_sf_text(data = label_coords_bering, aes(label = "Bering sea"), size = 2, color = "grey30") +
   geom_sf_text(data = label_coords_chukchi, 
-               aes(label = "Chuckchi \nsea"), size = 1.65, lineheight = .85, color = "grey30") +
+               aes(label = "Chuckchi \nsea"), size = 2, lineheight = .85, color = "grey30") +
   geom_sf_text(data = label_coords_beaufort, 
-               aes(label = "Beaufort \nsea"), size = 1.65, lineheight = .85, color = "grey30") +
+               aes(label = "Beaufort \nsea"), size = 2, lineheight = .85, color = "grey30") +
   facet_grid(cols = vars(species), labeller = species_labels,
              switch="x") +
   scale_fill_manual(values = species_colors,
                     aesthetics = "fill", 
                     name = "species") + 
-  labs(title = "Initial bio-logger deployment locations by species",
-          subtitle = 
-                 paste0("Bio-loggers were initially deployed on ",
-                "<span style = 'color:",species_colors['Bearded seal'],";'>bearded,</span> ", 
-                "<span style = 'color:",species_colors['Ribbon seal'],";'>ribbon,</span> ",  
-                "and ", 
-                "<span style = 'color:",species_colors['Spotted seal'],";'>spotted</span> seals ", 
-                "across multiple regions within the Bering, Chukchi, and western Beaufort seas."),
-       caption = "<span style = 'color: #A26E7C;'><span style = 'font-family: \"Font Awesome 6 Free Regular\";'>&#xf0c8;</span> spatial extent of aerial survey effort in US waters</span>") +
+  labs(caption = "<span style = 'color: #A26E7C;'><span style = 'font-family: \"Font Awesome 6 Free Regular\";'>&#xf0c8;</span> spatial extent of aerial survey effort in US waters</span>") +
   theme(legend.position = "none",
         axis.title = element_blank(),
         strip.background = element_blank(),
