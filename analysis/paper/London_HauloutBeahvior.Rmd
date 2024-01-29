@@ -846,9 +846,20 @@ model uncertainty.
 # Results {-}
 
 
-Figure \@ref(fig:dataMap) shows the
-spatial distribution of weighted locations with available haul-out behavior data
-used for analysis of each species across the study area.
+Figure \@ref(fig:dataMap) shows the spatial distribution of weighted locations
+with available haul-out behavior data used for analysis of each species across
+the study area. Figure \@ref(fig:dataCal) shows the temporal distribution of all
+haul-out data across the study season for each species. Observations for ribbon
+and spotted seals were concentrated in the months of May and June due to the
+timing of deployment (April and May) and the timing of molt (May and June).
+During molt, seals (and their attached bio-loggers) spend more time out of the
+water and more data are transmitted. Molt timing also impacts when many
+deployments end as any bio-loggers adhered to the hair will fall off. Relative
+to the other species in the study, there were fewer deployments of bio-loggers
+on bearded seals. This resulted in fewer data observations overall and
+noticeably lower in numbers May and June. The majority of bearded seal
+deployments started later in the summer and, by May, bio-loggers had either
+fallen off or their batteries were depleted.
 
 ```{r locs-count-mapdata}
 haulout_locs <- analysis_data %>% 
