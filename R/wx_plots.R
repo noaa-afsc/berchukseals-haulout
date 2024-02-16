@@ -29,14 +29,22 @@ plot_ribbon_wx <- function(ribbon_fit_obj,age_sex_colors,age_sex_labels) {
     group_by(age_sex) %>% 
     
     ggplot(aes(temp2m*27, ho_prob, color = age_sex)) +
+    geom_ribbon(aes(ymin = lower95, ymax = upper95, 
+                    fill = age_sex), linetype = 0, alpha = 0.2,
+                show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
+                       name = "Ribbon seal",
                        guide = guide_legend(override.aes = list(alpha = 1),
+                                            title.position = "top",
+                                            title.hjust = 0,
                                             direction = "horizontal")) +
-    theme(legend.title = element_blank(),
-          legend.position = "none") +
+    scale_fill_manual(values = age_sex_colors,
+                      labels = age_sex_labels) +
+    theme(legend.position = "top",
+          legend.justification = "left") +
     xlab("temperature (C)") + ylab("haul-out probability")
   
   p_wind <- create_ribbon_newdata(ribbon_fit_obj, 
@@ -50,14 +58,19 @@ plot_ribbon_wx <- function(ribbon_fit_obj,age_sex_colors,age_sex_labels) {
     group_by(age_sex) %>% 
     
     ggplot(aes(wind*10, ho_prob, color = age_sex)) +
+    geom_ribbon(aes(ymin = lower95, ymax = upper95, 
+                    fill = age_sex), linetype = 0, alpha = 0.2,
+                show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
                                             direction = "horizontal")) +
+    scale_fill_manual(values = age_sex_colors,
+                      labels = age_sex_labels) +
     theme(legend.title = element_blank(),
-          legend.position = "top") +
+          legend.position = "none") +
     xlab("wind (m/s)") + ylab("haul-out probability")
   
   p_pressure <- create_ribbon_newdata(ribbon_fit_obj, margins=TRUE, 
@@ -70,12 +83,17 @@ plot_ribbon_wx <- function(ribbon_fit_obj,age_sex_colors,age_sex_labels) {
     group_by(age_sex) %>% 
     
     ggplot(aes(((pressure * 10000) + 100000)/1000, ho_prob, color = age_sex)) +
+    geom_ribbon(aes(ymin = lower95, ymax = upper95, 
+                    fill = age_sex), linetype = 0, alpha = 0.2,
+                show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
                                             direction = "horizontal")) +
+    scale_fill_manual(values = age_sex_colors,
+                      labels = age_sex_labels) +
     theme(legend.title = element_blank(),
           legend.position = "none") +
     xlab("pressure (kPa)") + ylab("haul-out probability")
@@ -91,12 +109,17 @@ plot_ribbon_wx <- function(ribbon_fit_obj,age_sex_colors,age_sex_labels) {
     group_by(age_sex) %>% 
     
     ggplot(aes(precip/3, ho_prob, color = age_sex)) +
+    geom_ribbon(aes(ymin = lower95, ymax = upper95, 
+                    fill = age_sex), linetype = 0, alpha = 0.2,
+                show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
                                             direction = "horizontal")) +
+    scale_fill_manual(values = age_sex_colors,
+                      labels = age_sex_labels) +
     theme(legend.title = element_blank(),
           legend.position = "none") +
     xlab("precip (mm/hr)") + ylab("haul-out probability")
@@ -111,7 +134,7 @@ plot_ribbon_wx <- function(ribbon_fit_obj,age_sex_colors,age_sex_labels) {
   
   p_combo <- p_temp + p_wind + p_pressure + p_precip +
     plot_annotation(
-      caption = 'marginal effects are calculated for local solar noon on the day of peak haul out')
+      caption = 'marginal effects are calculated for 15 May at local solar noon')
   
   p_combo <- apply_consistent_y_lims(p_combo)
   
@@ -148,14 +171,23 @@ plot_spotted_wx <- function(spotted_fit_obj, age_sex_colors,age_sex_labels) {
     group_by(age_sex) %>% 
     
     ggplot(aes(temp2m*27, ho_prob, color = age_sex)) +
+    geom_ribbon(aes(ymin = lower95, ymax = upper95, 
+                    fill = age_sex), linetype = 0, alpha = 0.2,
+                show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
+                       name = "Spotted seal",
                        guide = guide_legend(override.aes = list(alpha = 1),
+                                            title.position = "top",
+                                            title.hjust = 0,
                                             direction = "horizontal")) +
-    theme(legend.title = element_blank(),
-          legend.position = "none") +
+    scale_fill_manual(values = age_sex_colors,
+                      labels = age_sex_labels,
+                      guide = "none") +
+    theme(legend.position = "top",
+          legend.justification = "left") +
     xlab("temperature (C)") + ylab("haul-out probability")
   
   p_wind <- create_spotted_newdata(spotted_fit_obj, 
@@ -169,14 +201,20 @@ plot_spotted_wx <- function(spotted_fit_obj, age_sex_colors,age_sex_labels) {
     group_by(age_sex) %>% 
     
     ggplot(aes(wind*10, ho_prob, color = age_sex)) +
+    geom_ribbon(aes(ymin = lower95, ymax = upper95, 
+                    fill = age_sex), linetype = 0, alpha = 0.2,
+                show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
                                             direction = "horizontal")) +
+    scale_fill_manual(values = age_sex_colors,
+                      labels = age_sex_labels,
+                      guide = "none") +
     theme(legend.title = element_blank(),
-          legend.position = "top") +
+          legend.position = "none") +
     xlab("wind (m/s)") + ylab("haul-out probability")
   
   p_pressure <- create_spotted_newdata(spotted_fit_obj, margins=TRUE, 
@@ -189,12 +227,18 @@ plot_spotted_wx <- function(spotted_fit_obj, age_sex_colors,age_sex_labels) {
     group_by(age_sex) %>% 
     
     ggplot(aes(((pressure * 10000) + 100000)/1000, ho_prob, color = age_sex)) +
+    geom_ribbon(aes(ymin = lower95, ymax = upper95, 
+                    fill = age_sex), linetype = 0, alpha = 0.2) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
-                    size = 0.25, alpha = 1, stroke = 0) +
+                    size = 0.25, alpha = 1, stroke = 0,
+                    show.legend = FALSE) +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
                                             direction = "horizontal")) +
+    scale_fill_manual(values = age_sex_colors,
+                      labels = age_sex_labels,
+                      guide = "none") +
     theme(legend.title = element_blank(),
           legend.position = "none") +
     xlab("pressure (kPa)") + ylab("haul-out probability")
@@ -210,12 +254,18 @@ plot_spotted_wx <- function(spotted_fit_obj, age_sex_colors,age_sex_labels) {
     group_by(age_sex) %>% 
     
     ggplot(aes(precip/3, ho_prob, color = age_sex)) +
+    geom_ribbon(aes(ymin = lower95, ymax = upper95, 
+                    fill = age_sex), linetype = 0, alpha = 0.2,
+                show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
                                             direction = "horizontal")) +
+    scale_fill_manual(values = age_sex_colors,
+                      labels = age_sex_labels,
+                      guide = "none") +
     theme(legend.title = element_blank(),
           legend.position = "none") +
     xlab("precip (mm/hr)") + ylab("haul-out probability")
@@ -230,7 +280,7 @@ plot_spotted_wx <- function(spotted_fit_obj, age_sex_colors,age_sex_labels) {
   
   p_combo <- p_temp + p_wind + p_pressure + p_precip +
     plot_annotation(
-      caption = 'marginal effects are calculated for local solar noon on the day of peak haul out')
+      caption = 'marginal effects are calculated for 15 May at local solar noon')
   
   p_combo <- apply_consistent_y_lims(p_combo)
   
@@ -266,14 +316,23 @@ plot_bearded_wx <- function(bearded_fit_obj, age_sex_colors,age_sex_labels) {
     group_by(age_sex) %>% 
     
     ggplot(aes(temp2m*27, ho_prob, color = age_sex)) +
+    geom_ribbon(aes(ymin = lower95, ymax = upper95, 
+                    fill = age_sex), linetype = 0, alpha = 0.2,
+                show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
+                       name = "Bearded seal",
                        guide = guide_legend(override.aes = list(alpha = 1),
+                                            title.position = "top",
+                                            title.hjust = 0,
                                             direction = "horizontal")) +
-    theme(legend.title = element_blank(),
-          legend.position = "none") +
+    scale_fill_manual(values = age_sex_colors,
+                      labels = age_sex_labels,
+                      guide = "none") +
+    theme(legend.position = "top",
+          legend.justification = "left") +
     xlab("temperature (C)") + ylab("haul-out probability")
   
   p_wind <- create_bearded_newdata(bearded_fit_obj, 
@@ -286,14 +345,20 @@ plot_bearded_wx <- function(bearded_fit_obj, age_sex_colors,age_sex_labels) {
     group_by(age_sex) %>% 
     
     ggplot(aes(wind*10, ho_prob, color = age_sex)) +
+    geom_ribbon(aes(ymin = lower95, ymax = upper95, 
+                    fill = age_sex), linetype = 0, alpha = 0.2,
+                show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
                                             direction = "horizontal")) +
+    scale_fill_manual(values = age_sex_colors,
+                      labels = age_sex_labels,
+                      guide = "none") +
     theme(legend.title = element_blank(),
-          legend.position = "top") +
+          legend.position = "none") +
     xlab("wind (m/s)") + ylab("haul-out probability")
   
   p_pressure <- create_bearded_newdata(bearded_fit_obj, margins=TRUE, 
@@ -305,12 +370,18 @@ plot_bearded_wx <- function(bearded_fit_obj, age_sex_colors,age_sex_labels) {
     group_by(age_sex) %>% 
     
     ggplot(aes(((pressure * 10000) + 100000)/1000, ho_prob, color = age_sex)) +
+    geom_ribbon(aes(ymin = lower95, ymax = upper95, 
+                    fill = age_sex), linetype = 0, alpha = 0.2,
+                show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
                                             direction = "horizontal")) +
+    scale_fill_manual(values = age_sex_colors,
+                      labels = age_sex_labels,
+                      guide = "none") +
     theme(legend.title = element_blank(),
           legend.position = "none") +
     xlab("pressure (kPa)") + ylab("haul-out probability")
@@ -325,12 +396,18 @@ plot_bearded_wx <- function(bearded_fit_obj, age_sex_colors,age_sex_labels) {
     group_by(age_sex) %>% 
     
     ggplot(aes(precip/3, ho_prob, color = age_sex)) +
+    geom_ribbon(aes(ymin = lower95, ymax = upper95, 
+                    fill = age_sex), linetype = 0, alpha = 0.2,
+                show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
                     size = 0.25, alpha = 1, stroke = 0) +
-    scale_color_manual(values= age_sex_colors,
+    scale_color_manual(values = age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
                                             direction = "horizontal")) +
+    scale_fill_manual(values = age_sex_colors,
+                      labels = age_sex_labels,
+                      guide = "none") +
     theme(legend.title = element_blank(),
           legend.position = "none") +
     xlab("precip (mm/hr)") + ylab("haul-out probability")
@@ -345,7 +422,7 @@ plot_bearded_wx <- function(bearded_fit_obj, age_sex_colors,age_sex_labels) {
   
   p_combo <- p_temp + p_wind + p_pressure + p_precip +
     plot_annotation(
-      caption = 'marginal effects are calculated for local solar noon on the day of peak haul out')
+      caption = 'marginal effects are calculated for 15 May at local solar noon')
   
   p_combo <- apply_consistent_y_lims(p_combo)
   
