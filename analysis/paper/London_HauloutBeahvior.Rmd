@@ -241,8 +241,7 @@ bearded, ribbon, and spotted seals using much larger sample sizes. Olnes et al.
 [-@olnes2020] showed that the proportion of time bearded seals spent hauled out
 progressively increased through spring and summer, and Ver Hoef et al.
 [-@verhoef2014a] found haul-out probabilities increased gradually starting in
-March and peaked in May and June for bearded, ribbon, and spotted seals. Recent
-Such
+March and peaked in May and June for bearded, ribbon, and spotted seals. Such
 analyses have not been limited to the Arctic. In the Antarctic, Bengtson and
 Cameron [-@bengtson2004] relied on bio-logging data to demonstrate greater
 haul-out propensity in juvenile crabeater seals (_Lobodon carcinophaga_) than
@@ -492,24 +491,24 @@ seal_hours_tbl <- analysis_data %>%
   dplyr::count()
 ```
 
-Haul-out behavior data were recorded in a manner standard across Wildlife Computers
-bio-loggers and transmitted via the Argos satellite
-network as hourly percent-dry timelines. For each hour of a day, the wet/dry
-sensor was polled by the tag firmware every few seconds and the percent of the
-hour in the dry state was calculated (Figure \@ref(fig:examplePlot)). On board
-the bio-logger, hourly percent-dry calculations were rounded to the nearest 10%
-inclusive of 0% and 100% along with additional values at 3% and 98%. This
-compression resulted in additional data transmission as each message consisted
-of two complete 24-hour records. Memory capacity allowed caching of percent-dry
-records for several weeks or months and each message was transmitted several
-times to ensure reception at the satellite. Bio-loggers were, typically,
-deployed and programmed in a manner to maximize data transmission during the
-spring pupping and molting period, though hourly percent-dry data were not
-always successfully transmitted. This is due to a variety of factors including
-satellite coverage, tag availability (e.g., tags mounted to the rear flipper
-often do not transmit while at sea), tag performance, duty cycling, and
-atmospheric interference. Fortunately, missing records do not substantially bias
-inference about haul-out probabilities [@conn2012c].
+Haul-out behavior data were recorded in a manner standard across Wildlife
+Computers bio-loggers and transmitted via the Argos satellite network as hourly
+percent-dry timelines. For each hour of a day, the wet/dry sensor was polled by
+the tag firmware every few seconds and the percent of the hour in the dry state
+was calculated (Figure \@ref(fig:examplePlot)). On board the bio-logger, hourly
+percent-dry calculations were rounded to the nearest 10% inclusive of 0% and
+100% along with additional values at 3% and 98%. This compression resulted in
+additional data transmission as each message consisted of two complete 24-hour
+records. Memory capacity allowed caching of percent-dry records for several
+weeks or months and each message was transmitted several times to ensure
+reception at the satellite. Bio-loggers were deployed and programmed in a manner
+to maximize data transmission during the spring pupping and molting period,
+though hourly percent-dry data were not always successfully transmitted. This is
+due to a variety of factors including satellite coverage, tag availability
+(e.g., tags mounted to the rear flipper often do not transmit while at sea), tag
+performance, duty cycling, and atmospheric interference. Fortunately, missing
+records do not substantially bias inference about haul-out probabilities
+[@conn2012c].
 
 Tags that fall off due to molt, attachment failure, or seal mortality and remain
 on ice or land may continue to send data to satellites; i.e., a detached
@@ -659,7 +658,7 @@ for Environmental Prediction [@mesinger2006a]. The NARR model assimilates
 observational data to produce a long-term picture of weather over North America
 and portions of the surrounding seas. Weather variables are made available
 across the region 8 times daily. For this study, NARR weather values were subset
-to the extent of our study area over the Bering and Chukchi seas at 3-hr
+to the extent of our study area over the Bering, Chukchi, and Beaufort seas at 3-hr
 intervals based on the native grid resolution of 32 km (1024 km^2^). The
 following meteorological variables are known to affect haul-out behavior in
 other Arctic pinnipeds [@reder2003; @udevitz2009; @perry2017] and were
@@ -780,7 +779,7 @@ apparent peaks in haul-out behavior. For both models, we assumed an hourly
 Bernoulli response (i.e., whether tags were mostly dry or mostly wet) where
 the linear predictor was modeled on the logit scale. This is consistent with
 previous approaches [@verhoef2014a, @london2012] and only
-`r (1 - round((portion_10(analysis_data) + portion_90(analysis_data))) * 100)`% of our
+`r (1 - (portion_10(analysis_data) + portion_90(analysis_data))) * 100`% of our
 observations fell between 10% and 90% hourly percent-dry.
 
 We followed Ver Hoef et al. [-@verhoef2014a] in using linear, quadratic, and cubic
@@ -849,7 +848,7 @@ model uncertainty.
 Figure \@ref(fig:dataMap) shows the spatial distribution of weighted locations
 with available haul-out behavior data used for analysis of each species across
 the study area. Figure \@ref(fig:dataCal) shows the temporal distribution of all
-haul-out data across the study season for each species. Observations for ribbon
+haul-out data across the study season for each species. Observations of ribbon
 and spotted seals were concentrated in the months of May and June due to the
 timing of deployment (April and May) and the timing of molt (May and June).
 During molt, seals (and their attached bio-loggers) spend more time out of the
@@ -1088,12 +1087,12 @@ targets::tar_load(ribbon_newdata, store = here::here("_targets"))
 Ribbon seals exhibited a pattern of gradually increasing haul-out probability
 in April that peaks in late May for subadults and in early June for
 adults (Figure \@ref(fig:ribbonHOCal); see also 
-@\ref(fig:ribbonPredSE)). The behavior was clearly centered
+\@ref(fig:ribbonPredSE)). The behavior was clearly centered
 around local solar noon and expanded to other hours later in the spring
 as seals entered their molting period. Subadults showed an earlier start
 and more intense haul-out activity in April and May. The
 young-of-the-year records begin after weaning and the model predictions
-demonstrated the ontogeny of in-water activities (e.g. swimming, foraging)
+demonstrated the development of in-water activities (e.g. swimming, foraging)
 in May. Adult females had a more protracted haul-out season compared to
 males, and more time was spent hauled out in June compared to adult males and
 subadults.
@@ -1530,7 +1529,7 @@ resting metabolic rates.
 
 Unlike previous analyses of seal haul-out behavior in spotted and ribbon seals
 (e.g. [@verhoef2010a], [@conn2014a]), we also investigated the influence of
-sex-age class on haul-out probabilities for both species (not for bearded seals
+sex-age class on haul-out probabilities of both species (but not for bearded seals
 because of low sample size). Field identification of age class can be inexact,
 particularly when differentiating subadults from adults. In the case of ribbon
 seals, subadults often have less distinct ribbons than adults. Spotted seal
@@ -1559,26 +1558,26 @@ during the pupping period, aligning with the hypothesis that ribbon seal females
 continue foraging while nursing. Subadult ribbon and spotted seals begin
 elevated haul-out behavior earlier in the spring and follow a pattern seen in
 other phocids where yearlings and subadults molt first followed by adult females
-and males [@reder2003, @thompson1987, @kirkman2003].
+and males [@reder2003; @thompson1987; @kirkman2003].
 
 We also investigated the influence of weather on haul-out probabilities,
 including wind speed, temperature, barometric pressure, precipitation, and wind
 chill. These have been investigated for walruses (e.g. Udevitz et al.
 [-@udevitz2009]) and a few select studies of ice-associated seals
-[@hamilton2018, @perry2017]. In our study, ribbon seals seemed to be the most
+[@hamilton2018; @perry2017]. In our study, ribbon seals seemed to be the most
 influenced by weather, with wind, temperature, and barometric pressure all being
 important components of the model. Spotted seals were most affected by wind and
-barometric pressure. For bearded seals, the model indicated wind and
-temperature had the greatest impact. In general, and as might be expected, seals
-were more likely to haul-out when daily temperatures were warmer, winds speeds
-were lower, barometric pressure was higher, and precipitation was lower. Those
-weather conditions are general indicators of increased solar radiation and lower
-convective heat loss, both of which provides energetic benefits (see additonal
-discussion in Supplemental Material [S3][#s3] regarding the potential use of
-solar radiation directly). Low winds and
-precipitation could also enhance predator detection. Our results highlight the
-importance of incorporating weather covariates when analyzing haul-out behavior
-and calculating availability corrections for aerial surveys.
+barometric pressure. For bearded seals, the model indicated wind and temperature
+had the greatest impact. In general, and as might be expected, seals were more
+likely to haul-out when daily temperatures were warmer, winds speeds were lower,
+barometric pressure was higher, and precipitation was lower. Those weather
+conditions are general indicators of increased solar radiation and lower
+convective heat loss, both of which provides energetic benefits (see additional
+discussion in Supplemental Material [Exploring Insolation (Solar Radiation) as a
+Model Covariate] regarding the potential use of solar radiation directly). Low
+winds and precipitation could also enhance predator detection. Our results
+highlight the importance of incorporating weather covariates when analyzing
+haul-out behavior and calculating availability corrections for aerial surveys.
 
 Notably missing from our list of explanatory variables is any spatial-temporal
 representation of sea ice concentration, area, or extent. This may seem
@@ -1610,7 +1609,7 @@ example, that detection probability of seals on ice is 1.0, and that the
 entirety of the ice covered region is censused. In case (1), our aerial survey
 count is $C = 0.5 \cdot N$, with a population-level availability probability of
 $\hat{a} = 0.5$. A Horvitz-Thompson-type estimator for abundance is simply 
-$\hat{N} = C \div \hat{a}$, which has expectation 
+$\hat{N} = \frac{C}{\hat{a}}$, which has expectation 
 $\mathbb{E}(\hat{a}) = \frac{0.5 \cdot N}{0.5} = N$, as desired.  Now
 consider case (2).  In this case, the probability of hauling out is 1.0 for
 seals in the ice-covered area, so we have 
@@ -1663,7 +1662,9 @@ Although several of these studies allowed haul-out probabilities to vary by
 day-of-year and time-of-day, they have not accounted for variability among
 years, in weather conditions, and in the age-sex class of the sample. In this
 paper, we have shown that there can be considerable differences in the number of
-seals hauled out on ice based on these factors. We recommend that future
+seals hauled out on ice based on these factors and subsequent analyses have shown
+the potential for considerable bias in abundance estimates if such covariates
+are unaccounted for [@conn2023]. We recommend that future
 abundance analyses employ availability models that account for them. For
 instance, it is relatively straightforward to obtain weather reanalysis products
 for times and locations that are surveyed and to construct a relevant correction
@@ -1727,7 +1728,7 @@ a bio-logger could indicate that an animal is hauled out, but if it is within a
 lair, it is not available to be detected during an aerial survey. We hope to
 address availability of ringed seals using data from satellite tags, replicate
 survey tracks, and auxiliary information about snow depth and timing of melt in
-a future study.
+a future study (see, e.g., @lindsay2021).
 
 Our analysis emphasizes the importance of accounting for seasonal and temporal
 variation in haul-out behavior, as well as associated environmental covariates,
