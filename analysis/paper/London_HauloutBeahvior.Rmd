@@ -49,7 +49,7 @@ abstract: >
   factors affecting haul-out behavior by ice-associated seals. We specifically
   focused on bearded (_Erignathus barbatus_), ribbon (_Histriophoca fasciata_),
   and spotted seals (_Phoca largha_) in the Bering and Chukchi seas. Because
-  ringed seals (_Phoca hispida_) can be out of the water but hidden from view in
+  ringed seals (_Phoca (pusa) hispida_) can be out of the water but hidden from view in
   snow lairs analysis of their 'availability' to surveys requires special
   consideration; therefore,they were not included in this analysis. Using
   generalized linear mixed pseudo-models to properly account for temporal
@@ -177,10 +177,10 @@ age_sex_labels <- c(
 
 # Introduction {-}
 
-The global climate disruption is causing considerable reduction in Arctic sea
+Global climate disruption is causing considerable reduction in Arctic sea
 ice extent, volume, and seasonal presence [@kwok2018;
 @meier2014; @overland2021; @wang2018]. These changes have tangible effects on
-Arctic organisms, ecosystems, and the human communities who live in the region
+Arctic organisms, ecosystems, and the people who live in the region
 [@huntington2020]. Such disruptions are a particular cause of concern for the
 ice-associated seals that depend on spring and early summer sea ice (March-June)
 in the Bering and Chukchi seas as a platform for important life history
@@ -192,7 +192,7 @@ date, indices of seal health sampled during periods of declining sea ice differ
 regionally [@crawford2015; @harwood2020]. Knowledge about evolutionary
 constraints on the timing of reproductive and molting behavior is generally
 lacking, so it is difficult to predict how or if ice-associated seal species
-adapt to future changes (e.g., by adjusting pupping or molting schedules to
+will adjust to future changes (e.g., by adjusting pupping or molting schedules to
 earlier dates or different locales). This is further complicated by the
 spatio-temporal variation in the phenology of these life history events within
 regions and throughout their full ranges. Additionally, trends in abundance of
@@ -219,13 +219,13 @@ accuracy of abundance estimates and, hopefully, allow credible predictions about
 the effects of climate disruptions on the abundance and distribution of Arctic
 seal populations.
 
-How ice-associated seals use sea ice as a haul-out platform varies between
+How ice-associated seals use sea ice as a haul-out platform varies among
 species. Ribbon seals (_Histriophoca fasciata_) haul out of the water almost
 exclusively on sea ice and are mostly pelagic outside the spring pupping,
 breeding, and molting season [@boveng2018a]. Although spotted (_Phoca largha_)
 and bearded (_Erignathus barbatus_) seals occasionally rest on coastal land,
 they primarily use sea ice as a haul-out platform during the spring and early
-summer [@frost2018]. Ringed seals (_Phoca hispida_) --- not included in this
+summer [@frost2018]. Ringed seals (_Phoca (pusa) hispida_) --- not included in this
 study --- haul out on sea-ice but primarily use snow lairs on sea-ice during
 winter and spring.
 
@@ -310,7 +310,7 @@ nets and bio-loggers were attached during studies based in coastal communities
 or on research ships. Ship-based capture events occurred during spring near the
 southern ice edge in the Bering Sea between 2005 and 2018. Land-based capture
 events occurred between 2005 and 2020 from May to October, generally between the
-coastal communities of Scammon Bay, Alaska in the Bering Sea, Utqiaġvik, Alaska
+Alaska coastal communities of Scammon Bay in the Bering Sea, Utqiaġvik
 in the Chukchi Sea, and Nuiqsut in the Beaufort Sea (Supplemental
 Material, [S1](#s1)). Data from additional
 deployments along the Kamchatka peninsula in the western Bering Sea are also
@@ -433,7 +433,7 @@ Adults are individuals that are likely older than four years. Table
 \@ref(tab:tblDeploy) provides a summary of these deployments and data received
 from them.
 
-(ref:deployTblCaption) **Summary of bio-logger data across seal species and age classification from 1 March to 15 July 2005-2021.** \linebreak Total seal hours represents the sum of hourly observations across all seals used in the analysis. Because young-of-the-year are advanced to subadult on 1 March of the following year, some individual seals are represented in both columns in this table
+(ref:deployTblCaption) **Summary of bio-logger data by seal species and age classification from 1 March to 15 July 2005-2021.** \linebreak Seal hours represents the sum of hourly observations across all seals used in the analysis. Because young-of-the-year are advanced to subadult on 1 March of the following year, some individual seals are represented in both columns in this table
 
 ```{r tblDeploy, include=TRUE, tab.cap = "(ref:deployTblCaption)"}
 
@@ -537,7 +537,7 @@ prior to analysis.
 \linebreak Haul-out behavior observations recorded by a bio-logger deployed on a
 ribbon seal over two years during the months of March, April, and May. This
 actogram plot represents the transmitted hourly percent-dry values. Not all data
-during a deployment are reliably transmitted from the bio-logger and since data
+during a deployment are reliably transmitted from the bio-logger and because data
 are transmitted in 24-hour chunks occasional missing days are present in the
 record. Here, missing data that were not successfully received from the device
 are represented as empty rectangles.
@@ -665,7 +665,7 @@ observational data to produce a long-term picture of weather over North America
 and portions of the surrounding seas. Weather variables are made available
 across the region 8 times daily. For this study, NARR weather values were limited
 to the extent of our study area over the Bering, Chukchi, and Beaufort seas at 3-hr
-intervals based on the native grid resolution of 32 km (1024 km^2^). The
+intervals based on the original grid resolution of 32 km (1024 km^2^). The
 following weather variables are known to affect haul-out behavior in
 other Arctic pinnipeds [@reder2003; @udevitz2009; @perry2017] and were
 interpolated and assigned to daily seal locations using a bilinear method: 1)
@@ -681,7 +681,7 @@ barometric pressure, precipitation, and wind chill (represented by a
 included age-sex class and interactions between day-of-year and age-sex class,
 but we omitted these from bearded seal models due to poor representation of
 age-sex classes (Table \@ref(tab:tblDeploy)). Bearded seal models included a
-latitudinal effect (and an interaction with day-of-year), since bearded seals
+latitudinal effect (and an interaction with day-of-year), because bearded seals
 occupy a substantial range during the spring and we were interested in possible
 differences in the timing of haul-out behavior along a latitudinal gradient. We
 omitted the latitudinal effect from ribbon and spotted seal models because,
@@ -775,7 +775,7 @@ peaks in haul-out behavior. For both models, we assumed an hourly Bernoulli
 response (a binary 0-1 response dependent upon whether the tag was greater than 
 50% dry for a given hour) where the linear predictor was 
 modeled on the logit scale. This is
-consistent with previous approaches [@verhoef2014a, @london2012] and only
+consistent with previous approaches [@verhoef2014a; @london2012] and only
 `r (1 - (portion_10(analysis_data) + portion_90(analysis_data))) * 100`% of our
 observations fell between 10% and 90% hourly percent-dry.
 
@@ -1792,7 +1792,8 @@ and present-day environs of the Inpuiat and Yup'ik people who, through many
 uncredited contributions of traditional knowledge, provided early western
 naturalists and scientists with much of what gets described as the ‘basic
 biology’ of Arctic seals. The deployment of bio-logging devices used in this
-study were often done in collaboration with Alaska Native seal hunters near
+study were often done in collaboration with Alaska Native seal hunters and the
+approval of
 their communities. We would like to especially acknowledge the communities of
 Kotzebue, Koyuk, Nome, Nuiqsut, Scammon Bay, St. Michael, Utqiaġvik, and Ulguniq
 (Wainwright) and the following individuals: James Adams, Jeff Barger, David
@@ -1800,13 +1801,13 @@ Barr, Wendell Booth, Cyrus Harris, Nereus 'Doc' Harris, Grover Harris, Lee
 Harris, Tom Jones, Frank Garfield, Brenda Goodwin, Henry Goodwin, John Goodwin,
 Pearl Goodwin, Willie Goodwin, Brett Kirk, Noah Naylor, Virgil Naylor Jr.,
 Virgil Naylor Sr., Dan Savetilik, Chuck Schaeffer, Ross Schaeffer, Allen Stone,
-and Randy Toshavik from Kotzebue, Alaska; Merlin Henry from Koyuk, Alaska; Tom
-Gray from Nome; Vernon Long and Richard Tukle from Nuiqsuit, Alaska; Morgan
-Simon, River Simon, and Al Smith from Scammon Bay, Alaska; Alex Niksik Jr. from
-St. Michael, Alaska; Billy Adams, James Aiken, Tim Aiken, Howard Kittick,
+and Randy Toshavik from Kotzebue; Merlin Henry from Koyuk; Tom
+Gray from Nome; Vernon Long and Richard Tukle from Nuiqsuit; Morgan
+Simon, River Simon, and Al Smith from Scammon Bay; Alex Niksik Jr. from
+St. Michael; Billy Adams, James Aiken, Tim Aiken, Howard Kittick,
 Gilbert Leavitt, Isaac Leavitt, J.R. Leavitt, and Joe Skin from Utqiaġvik,
 Alaska; Mary Ellen Ahmaogak, Enoch Oktollik, Shawn Oktollik, Stacey Osborn, and
-Fred Rexford from Ulguniq, Alaska.
+Fred Rexford from Ulguniq.
 
 We are grateful for the assistance in catching and sampling seals by Ryan Adam,
 James Bailey, Michelle Barbieri, John Bengtson, Gavin Brady, Vladamir Burkanov,
@@ -1819,7 +1820,7 @@ Heather Ziel. We also appreciate the commitment to science and safety by all
 officers and crew of the NOAA ship _Oscar Dyson_, the NOAA ship _MacArthur II_, and
 the RV _Thomas G. Thompson_.
 
-Telemetry data from the Alaska Department of Fish and Game (ADFG) and the North
+Telemetry data from the Alaska Department of Fish and Game (ADF&G) and the North
 Slope Borough Department of Wildlife Management (NSB) were important
 contributions to the findings presented here. Deployments in the western Bering
 Sea were done in collaboration with Russian colleagues and North Pacific
@@ -1835,9 +1836,9 @@ authority of Marine Mammal Protection Act Research Permits Nos. 782-1676,
 Letters of Assurance of Compliance with Animal Welfare Act regulations, Nos.
 A/NW 2010-3 and A/NW 2016-1 from the Alaska Fisheries Science Center/Northwest
 Fisheries Science Center Institutional Animal Care and Use Committee (IACUC). ).
-Funding to ADFG for tagging seals was provided by the Bureau of Ocean Energy
+Funding to ADF&G for tagging seals was provided by the Bureau of Ocean Energy
 Management (No. M13PC0015 for work in Kotzebue, Alaska in 2009) and the Office
-of Naval Research (No. N00014-16-1-3019). ADFG and NSB field work was covered by
+of Naval Research (No. N00014-16-1-3019). ADF&G and NSB field work was covered by
 Research Permits Nos. 358-1585, 358-1787, 15324, and 20466 and by ADF&G IACUC
 permits Nos. 06-16, 09-21, 2014-03, 2015-25, 2016-23, 0027-2017-27,
 0027-2018-29, 0027-2019-041.
@@ -1925,7 +1926,7 @@ and \@ref(fig:spottedPredSE)) show the seasonal variability in predicted haul-ou
 probability and the associated 95% confidence intervals for bearded, ribbon, and
 spotted seals. The predictions shown are based on the same data used in
 \@ref(fig:beardedHOCal), \@ref(fig:ribbonHOCal), and \@ref(fig:spottedHOCal) but
-selected for three to local solar hours (07:00, 12:00, and 17:00) so the 
+selected for three local solar hours (07:00, 12:00, and 17:00) so the 
 confidence intervals can also be shown and comparisons can be made.
 
 ```{r}
@@ -2040,7 +2041,7 @@ the possibility of using predicted insolation (or solar radiation) values from
 the reanalysis model as a more direct and, potentially, more informative
 predictor of the daily haul-out cycle in seals compared to time of day. The
 notion being that seals are, likely, directly responding to changes in solar radiation
-throughout the day and not what time of day it is (i.e. seals don't have
+throughout the day and not what time of day it is (i.e. seals don't have human
 watches). Additionally, given the energetic benefits of increased solar
 radiation it could be more informative as we would expect seals might have a
 higher haul-out probability on sunnier days and for there to be geographic
