@@ -20,7 +20,7 @@ author:
     affiliation: 2
   - name: Andrew L. Von Duyke
     affiliation: 3
-  - name: Lori T. Quakenbush
+  - name: Lori Quakenbush
     affiliation: 2
   - name: Peter L. Boveng
     affiliation: 1
@@ -65,7 +65,7 @@ abstract: >
   also varied based on species and age-sex class. For ribbon and spotted seals,
   models with year effects were highly supported, indicating that the timing and
   magnitude of haul-out behavior varied among years. However, we did not find
-  broad evidence that haul-out timing was linked to annual sea ice extent. Our
+  broad evidence that haul-out timing was linked to annual sea-ice extent. Our
   analysis emphasizes the importance of accounting for seasonal and temporal
   variation in haul-out behavior, as well as associated environmental
   covariates, when interpreting the number of seals counted in aerial surveys.
@@ -197,7 +197,7 @@ earlier dates or different locales). This is further complicated by the
 spatio-temporal variation in the phenology of these life history events within
 regions and throughout their full ranges. Additionally, trends in abundance of
 these species are unknown, so it is difficult to assess the effect, if any,
-declines in sea ice habitat have had, or will have, on seal demography.
+declines in sea-ice habitat have had, or will have, on seal demography.
 
 Statutory requirements (e.g., United States Marine Mammal Protection Act (MMPA),
 United States Endangered Species Act (ESA)) for timely estimates of population
@@ -226,7 +226,7 @@ breeding, and molting season [@boveng2018a]. Although spotted (_Phoca largha_)
 and bearded (_Erignathus barbatus_) seals occasionally rest on coastal land,
 they primarily use sea ice as a haul-out platform during the spring and early
 summer [@frost2018]. Ringed seals (_Phoca (pusa) hispida_) --- not included in this
-study --- haul out on sea-ice but primarily use snow lairs on sea-ice during
+study --- haul out on sea ice but primarily use snow lairs on sea ice during
 winter and spring.
 
 The remoteness of the Bering and Chukchi seas means direct scientific
@@ -288,7 +288,7 @@ conditions to also influence seal haul-out behavior and including them within
 the model framework will benefit our estimates of seal availability during
 aerial surveys. Third, we aimed to assess the annual variability in haul-out
 timing and possible linkage to changes in the extent of seasonal sea ice between
-2005 and 2020. Our work extends the scope of previous haul-out analyses,
+2005 and 2021. Our work extends the scope of previous haul-out analyses,
 includes the influence of weather variability, and investigates the
 potential impact of changing sea-ice extent on the behavior of these species.
 
@@ -705,7 +705,7 @@ covariate_tbl <- tibble::tribble(
   "Wind", "Continuous",
   "northerly and easterly vector components for wind (NARR) converted into a single wind speed via the Euclidean norm",
   "Northing", "Continuous", "latitude divided by the mean latitude across all locations (for bearded seals only)",
-  "Year", "Continuous", "For the set of models examining inter-annual variation in sea ice use, we fitted models with the addition of year by day-of-year interactions." 
+  "Year", "Continuous", "For the set of models examining inter-annual variation in sea-ice use, we fitted models with the addition of year by day-of-year interactions." 
 )
 
 covariate_tbl %>% 
@@ -756,25 +756,25 @@ portion_90 <- function(d) {
 
 To properly account for temporal dependence and to take advantage of
 computational efficiency, we used generalized linear mixed pseudo-models
-(GLMPMs; [@verhoef2010a]) to model variation in haul-out behavior as a function
-of (1) covariate predictors, (2) temporally autocorrelated random effects, and
-(3) individual random effects representing heterogeneity in individual behavior.
-We used the glmmLDTS package [@verhoef2010a] to implement GLMPMs. We explored
-two different model formulations for our data and we fit separate models to
-bearded, ribbon, and spotted seal data sets as we expected differing behavior by
-species. Separate models for each species were also needed because a single,
-very large data set proved computationally intractable. In our first model
-formulation and for each species, we fitted a year-independent model that
-predicted average haul-out behavior as a function of demographic, weather,
-seasonal, and diurnal effects. Second, for ribbon and spotted seals (which had
-considerably more data than bearded seals), we fitted models that included all
-the effects from the first model, but also permitted annual variation in
-haul-out timing. This second set of models was used to examine whether
-haul-out patterns varied by year and to determine the annual timing of apparent
-peaks in haul-out behavior. For both models, we assumed an hourly Bernoulli
-response (a binary 0-1 response dependent upon whether the tag was greater than 
-50% dry for a given hour) where the linear predictor was 
-modeled on the logit scale. This is
+(GLMPMs; Ver Hoef, London & Boveng [-@verhoef2010a]) to model variation in
+haul-out behavior as a function of (1) covariate predictors, (2) temporally
+autocorrelated random effects, and (3) individual random effects representing
+heterogeneity in individual behavior. We used the glmmLDTS package
+[@verhoef2010a] to implement GLMPMs. We explored two different model
+formulations for our data and we fit separate models to bearded, ribbon, and
+spotted seal data sets as we expected differing behavior by species. Separate
+models for each species were also needed because a single, very large data set
+proved computationally intractable. In our first model formulation and for each
+species, we fitted a year-independent model that predicted average haul-out
+behavior as a function of demographic, weather, seasonal, and diurnal effects.
+Second, for ribbon and spotted seals (which had considerably more data than
+bearded seals), we fitted models that included all the effects from the first
+model, but also permitted annual variation in haul-out timing. This second set
+of models was used to examine whether haul-out patterns varied by year and to
+determine the annual timing of apparent peaks in haul-out behavior. For both
+models, we assumed an hourly Bernoulli response (a binary 0-1 response dependent
+upon whether the tag was greater than 50% dry for a given hour) where the linear
+predictor was modeled on the logit scale. This is
 consistent with previous approaches [@verhoef2014a; @london2012] and only
 `r (1 - (portion_10(analysis_data) + portion_90(analysis_data))) * 100`% of our
 observations fell between 10% and 90% hourly percent-dry.
@@ -797,7 +797,7 @@ $$
 where $H_t$ gives the effect for solar hour $t$ and $\alpha_{i}$ are
 estimated parameters (regression coefficients).
 
-For the second set of models examining inter-annual variation in sea ice use, we
+For the second set of models examining inter-annual variation in sea-ice use, we
 fitted models with year by day-of-year interactions. However, in this case we
 only included *year:day* and *year:day^2^*, omitting the main effects of year as
 well as *year:day^3^* interactions because models with the latter effects were
@@ -820,7 +820,7 @@ predictions were based on daily or hourly smoothed weather covariate values
 across the study region. Such predictions were then used to develop haul-out
 probability surfaces, explore conditional effects of weather covariates, and
 determine annual peaks in haul-out activity. The timing of peak haul-out
-behavior was further used to regress against the annual maximum sea ice extent
+behavior was further used to regress against the annual maximum sea-ice extent
 in the study region. Predictions before 15 March and after 30 June were not
 included in visualizations or other evaluations to avoid spurious model
 predictions at the edge of the data range.
@@ -846,18 +846,18 @@ also include vertical lines representing 95% confidence intervals around the
 predicted haul-out probability to better communicate the variation in model
 uncertainty.
 
-We also assessed whether the annual variation in maximum spring sea ice extent in the
+We also assessed whether the annual variation in maximum spring sea-ice extent in the
 Bering Sea influenced the seasonal peak of seal haul-out probability. In
-particular, we used sea ice concentration data from the Nimbus-7 SMMR and DMSP
+particular, we used sea-ice concentration data from the Nimbus-7 SMMR and DMSP
 SSM/I-SSMIS Passive Microwave Dataset, Version 1 [@cavalieri1996] to calculate
-maximum sea ice extent. All sea ice concentration grid cells (25 km^2^) in the
+maximum sea-ice extent. All sea-ice concentration grid cells (25 km^2^) in the
 study area with greater than 15% concentration were counted daily to get the total sea
 ice extent for each day between 15 February and 15 July across all years.
-Maximum spring sea ice extent was simply the largest daily count of grid cells
+Maximum spring sea-ice extent was simply the largest daily count of grid cells
 with greater than 15% concentration for each year. A separate regression model,
 built on the results of the haul-out model, was used to evaluate the relationship
 between the annual computed peak haul-out day (as the response) with the
-maximum sea ice extent (as the predictor).
+maximum sea-ice extent (as the predictor).
 
 # Results {-}
 
@@ -1012,7 +1012,7 @@ shown for all ages (Figure \@ref(fig:beardedHOCal); see also
 \@ref(fig:beardedPredSE)). Additionally, after approximately 9 months, 7 devices
 deployed on the rear flipper of bearded seals reported implausible hourly
 percent-dry data (100% dry for several weeks but indicative of movement and
-increasing transmission rates (see @boveng2013)). All data after the first
+increasing transmission rates (see Boveng & Cameron [-@boveng2013])). All data after the first
 instance of unrealistic values were censored from this analysis. In addition to
 a peak around local solar noon, the bearded seal model predicted additional
 haul-out activity around local midnight. In concert with the lower magnitude of
@@ -1492,7 +1492,7 @@ pl_subadult <- models %>% filter(species == "Spotted seal" & age_sex == "SUBADUL
 
 The annual timing of peak haul-out probability for ribbon seals and adult
 male spotted seals appeared to have
-no relationship with the amount of yearly maximum sea ice extent in the
+no relationship with the amount of yearly maximum sea-ice extent in the
 study area. For ribbon seals and adult male spotted seals,
 $p$-values were substantially larger than 0.05 (ribbon seal adult
 females; $R^{2}$ = `r hf_adultF$r.squared`, $p$ = `r hf_adultF$p.value`;
@@ -1508,7 +1508,7 @@ sea ice) with a significant relationship for adult female spotted seals
 subadults: $R^{2}$ = `r pl_subadult$r.squared`, $p$ =
 `r pl_subadult$p.value`). 
 
-```{r maxextentHO, fig.height = 5.5, include=FALSE, fig.cap="Annual timing of peak haul-out behavior analyzed against the yearly maximum area of sea ice extent in the study area. While spotted seal adult females and subadults show a negative trend line, none of the relationships were determined to be significant."}
+```{r maxextentHO, fig.height = 5.5, include=FALSE, fig.cap="Annual timing of peak haul-out behavior analyzed against the yearly maximum area of sea-ice extent in the study area. While spotted seal adult females and subadults show a negative trend line, none of the relationships were determined to be significant."}
 
 ggplot(data = peak_ho_df, aes(y = max_extent_km2, x = yday, color = species)) + 
   geom_smooth(method = "lm", alpha = 0.2, aes(fill = species)) +
@@ -1520,8 +1520,8 @@ ggplot(data = peak_ho_df, aes(y = max_extent_km2, x = yday, color = species)) +
   scale_fill_manual(values = c('#E66100','#5D3A9B'), name = "") +
   theme(legend.position = "top",
         legend.justification = "right") +
-  labs(x = "date of peak haul-out", y = "maximum sea ice extent (km<sup>2</sup> / 1000)",
-       title = "The relationship between yearly maximum sea ice extent and the \nannual timing of peak haul-out probability") +
+  labs(x = "date of peak haul-out", y = "maximum sea-ice extent (km<sup>2</sup> / 1000)",
+       title = "The relationship between yearly maximum sea-ice extent and the \nannual timing of peak haul-out probability") +
   theme(axis.title.y = element_markdown())
   
 ```
@@ -1609,17 +1609,17 @@ highlight the importance of incorporating weather covariates when analyzing
 haul-out behavior and calculating availability corrections for aerial surveys.
 
 Notably missing from our list of haul-out model explanatory variables is any
-spatial-temporal representation of sea ice concentration, area, or extent. This
+spatial-temporal representation of sea-ice concentration, area, or extent. This
 may seem counterintuitive when modeling the haul-out behavior of seal species
 with such a close association to sea ice; seals haul out in the presence of sea
 ice, and we could assess the local concentration of sea ice during these events
 (see [@olnes2020]). This, however, expands the scope of our analysis into the
 realm of habitat selection and many of our deployments consisted of a single
 device attached to the rear flipper of the seal which meant we only received
-locations when seals were hauled out on sea-ice, limiting our ability to fully
-evaluate fine-scale habitat preferences related to sea-ice. Insight into how
-seals use and interact with sea-ice during an extended period when the
-availability and characteristics of sea-ice is rapidly changing is important
+locations when seals were hauled out on sea ice, limiting our ability to fully
+evaluate fine-scale habitat preferences related to sea ice. Insight into how
+seals use and interact with sea ice during an extended period when the
+availability and characteristics of sea ice is rapidly changing is important
 [@breed2018; @cameron2018] but ancillary to the focus of this analysis -- and,
 in the end, not possible given key limitations of our data. Additionally, our
 study was limited to the spring season when seal haul-out behaviors are strongly
@@ -1628,7 +1628,7 @@ likely more influential on haul-out behavior than sea-ice concentration.
 Crawford et al. [-@crawford2019] compared haul-out probability models for ringed
 seals and found those that only included season (and not sea-ice concentration)
 were the most parsimonious. For all of these reasons, we have elected not to use
-sea ice concentration _as a predictor for haul-out probability_ in the present
+sea-ice concentration _as a predictor for haul-out probability_ in the present
 study.
 
 Our models detected small deviations in the timing and magnitude of annual peaks
@@ -1644,17 +1644,18 @@ yearly maximum sea ice. This could indicate that, while the extent of spring sea
 ice in the Bering Sea varied widely during our study period, seals were still
 able to locate sea ice and haul out. Only a small portion of our data was from
 2018 – 2019, years of extreme low spring ice extent in the Bering Sea that
-appeared to impact body condition of ribbon and spotted seals [@boveng2020], so we may
-currently lack sufficient contrast in ice extent to characterize an effect on
-the timing of peak haul-out probability. We should expect, however, that some minimal threshold in
-the spatial extent or density of sea ice will have a meaningful impact on the
-timing of peak haul-out behavior --- if there is no sea-ice, seals will not haul
-out or they will be forced to use terrestrial haul-out sites which were not part of the
-evolution of their normal behaviors. Additionally, while from an
-ecological perspective the haul-out behavior appears consistent, the interannual
-differences in timing and magnitude are large enough to have important
-ramifications on calculations of abundance and trend. Those ramifications will
-only be exacerbated if climate variability amplifies interannual differences.
+appeared to impact body condition of ribbon and spotted seals [@boveng2020], so
+we may currently lack sufficient contrast in ice extent to characterize an
+effect on the timing of peak haul-out probability. We should expect, however,
+that some minimal threshold in the spatial extent or density of sea ice will
+have a meaningful impact on the timing of peak haul-out behavior --- if there is
+no sea-ice, seals will not haul out or they will be forced to use terrestrial
+haul-out sites which were not part of the evolution of their normal behaviors.
+Additionally, while from an ecological perspective the haul-out behavior appears
+consistent, the interannual differences in timing and magnitude are large enough
+to have important ramifications on calculations of abundance and trend. Those
+ramifications will only be exacerbated if climate variability amplifies
+interannual differences.
 
 Previous attempts to estimate the abundance of phocid seals from aerial survey
 data in the Bering and Chukchi seas (e.g. @bengtson2005a, @conn2014a,

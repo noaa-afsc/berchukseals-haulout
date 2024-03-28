@@ -12,11 +12,7 @@ environments: [author-response]
 editor: visual
 ---
 
-```{=tex}
 \newenvironment{author-response}{\color{Bittersweet}}
-
-```
-
 
 Josh M. London, PhD\newline
 7600 Sand Point Way NE\newline Seattle, Washington,
@@ -36,19 +32,19 @@ revisions or tasks associated with this manuscript and we look forward to a
 final publication in *PeerJ*.
 
 While many of the comments and suggestions from reviewers were minor, we feel
-they deserved appropriate time, consideration, and exploration. We hope our
-responses here reflect that consideration and we are grateful to the reviewers
-for their thoughtful comments. Lastly, we also used this opportunity to improve
-the quality of the underlying telemetry data set and expand the reproducibility
-of the analysis to meet or exceed expectations for open science, data
-availability, and code availability.
+they deserved appropriate time, consideration, and exploration. We have made
+several changes to the manuscript. We hope our responses here reflect that
+consideration and communicate our edits. We are grateful to the reviewers for
+their thoughtful comments. Lastly, we also used this opportunity to improve the
+quality of the underlying telemetry data set and expand the reproducibility of
+the analysis to meet or exceed expectations for open science, data availability,
+and code availability.
 
 Below, please find detailed responses to each of the reviewer comments. In
-addition to this letter, several of the suggestions are documented as specific
-issues within the GitHub repository and the full suite of updates are all
-contained and documented within a single pull request. We have also provided a
-pdf document that indicates all changes between the revised manuscript and the
-submitted manuscript.
+addition to this letter, the full suite of updates are all contained and
+documented within a single pull request. We have also provided a pdf document
+that indicates all changes between the revised manuscript and the submitted
+manuscript.
 
 Thank you, again, for your time and consideration. And, additionally, thank you
 to the reviewers for their time. It is much appreciated and we feel the
@@ -123,12 +119,12 @@ of seals in the Bering and Chukchi seas
 > would improve aerial survey abundance estimation efforts?*
 
 ::: author-response
-**\[author response\]** Unfortunately, we can't make this statement because 
+**\[author response\]** Unfortunately, we can't make this statement because
 inclusion of additional covariates (such as weather products) in haul-out models
-only serves to increase standard errors in predictions.  The benefit of
-including weather covariates is to more accurately explain variation in survey
-counts; it is thus more relevant to reducing bias in aerial survey estimates
-than it is to increasing precision.
+only serves to increase standard errors in predictions. The benefit of including
+weather covariates is to more accurately explain variation in survey counts; it
+is thus more relevant to reducing bias in aerial survey estimates than it is to
+increasing precision.
 :::
 
 > *Please use direct language. You are not making findings on how seals rely on
@@ -192,10 +188,10 @@ list the covariates of interest
 > sea ice has effects on those communities and activities too.*
 
 ::: author-response
-**\[author response\]** Clearly there are a large number impacts of loss of
-sea ice to human communities (and ecosystems) beyond the Arctic region to the
-rest of the world. However, for this sentence, we wanted to keep the reader
-focused on the Arctic region.
+**\[author response\]** Clearly there are a large number impacts of loss of sea
+ice to human communities (and ecosystems) beyond the Arctic region to the rest
+of the world. However, for this sentence, we wanted to keep the reader focused
+on the Arctic region.
 :::
 
 > ***Line 44:** Please use direct language you mean biologically important
@@ -302,7 +298,7 @@ used consistently throughout the manuscript
 "For this study we used haul-out behavior data and location estimates from
 bio-loggers deployed on bearded, ribbon, and spotted seals in the Bering,
 Chukchi, and western Beaufort seas by multiple organizations as part of
-collaborative investigations from 2005 through 2020."
+collaborative investigations from 2005 through 2021."
 :::
 
 > ***Line 120:** You summarize the years during which land-based studies applied
@@ -410,12 +406,12 @@ mind
 
 "For example, a data record that ends with several consecutive days (\~10+ days)
 of 100% dry observations and with locations indicating the tag was on land would
-be truncated to the final stretch of 100% dry observations. The vast
-majority of deployments end with the device detaching in the water and the
-deployment end date is obvious. There is no perfect algorithm for identifying
-deployment end dates and each deployment in question must be considered
-separately. While not perfect, we are confident our reliance on expert judgement
-and examination of multiple data streams provides the best option."
+be truncated to the final stretch of 100% dry observations. The vast majority of
+deployments end with the device detaching in the water and the deployment end
+date is obvious. There is no perfect algorithm for identifying deployment end
+dates and each deployment in question must be considered separately. While not
+perfect, we are confident our reliance on expert judgement and examination of
+multiple data streams provides the best option."
 :::
 
 > ***Line 152:** Deployment activity is known to disrupt normal pinniped
@@ -533,8 +529,8 @@ our data loggers. We have edited the sentence for additional clarity.
 **\[author response\]** We're not sure why the reviewer would recommend omitting
 a 'procedural detail' as part of our methods. We feel it is important to clearly
 communicate our procedure for processing the large NARR data set and that we
-used the original grid size of 32km. Regarding the calculation of wind vectors, we
-include this detail because many readers, like us initially, may not be well
+used the original grid size of 32km. Regarding the calculation of wind vectors,
+we include this detail because many readers, like us initially, may not be well
 versed in how wind vectors components are converted to wind speed.
 :::
 
@@ -624,7 +620,6 @@ species range and survey effort.
 > (from the NIC's daily Marginal Ice Zone charts), which is a metric that would
 > be available for all data collected during an aerial survey.*
 
-::: author-response
 **\[author response\]** We have revised the text in this section to try to
 provide a clearer understanding of our reasoning. Also, note this has been moved
 to the Discussion section.
@@ -636,24 +631,23 @@ spatial-temporal representation of sea ice concentration, area, or extent. This
 may seem counterintuitive when modeling the haul-out behavior of seal species
 with such a close association to sea ice; seals haul out in the presence of sea
 ice, and we could assess the local concentration of sea ice during these events
-(see [@olnes2020]). This, however, expands the scope of our analysis into the
-realm of habitat selection and many of our deployments consisted of a single
+(see Olnes et al., 2020). This, however, expands the scope of our analysis into
+the realm of habitat selection and many of our deployments consisted of a single
 device attached to the rear flipper of the seal which meant we only received
 locations when seals were hauled out on sea-ice, limiting our ability to fully
 evaluate fine-scale habitat preferences related to sea-ice. Insight into how
 seals use and interact with sea-ice during an extended period when the
 availability and characteristics of sea-ice is rapidly changing is important
-[@breed2018; @cameron2018] but ancillary to the focus of this analysis -- and,
-in the end, not possible given key limitations of our data. Additionally, our
-study was limited to the spring season when seal haul-out behaviors are strongly
-influenced by pupping, nursing, breeding behavior, and molt. These drivers are
-likely more influential on haul-out behavior than sea-ice concentration.
-Crawford et al. [-@crawford2019] compared haul-out probability models for ringed
-seals and found those that only included season (and not sea-ice concentration)
-were the most parsimonious. For all of these reasons, we have elected not to use
-sea ice concentration _as a predictor for haul-out probability_ in the present
-study.
-:::
+(Breed et al., 2018; Cameron et al., 2018) but ancillary to the focus of this
+analysis -- and, in the end, not possible given key limitations of our data.
+Additionally, our study was limited to the spring season when seal haul-out
+behaviors are strongly influenced by pupping, nursing, breeding behavior, and
+molt. These drivers are likely more influential on haul-out behavior than
+sea-ice concentration. Crawford et al. (2019) compared haul-out probability
+models for ringed seals and found those that only included season (and not
+sea-ice concentration) were the most parsimonious. For all of these reasons, we
+have elected not to use sea ice concentration *as a predictor for haul-out
+probability* in the present study.
 
 > ***Table 2:** It is a bit misleading to indicate that the NARR variables were
 > sourced from NARR alone. Their values were interpolated onto a geogrpahic
@@ -781,7 +775,7 @@ in the analysis is the most appropriate because it distinguishes daily bi-modal
 insolation alone (i.e. insolation at dawn or dusk would be similar values but
 occur at different times of day that might be ecologically important).
 Additionally, as the reviewer points out, results from the analysis and haul-out
-predictions are more intuitive and applicable to aerial survey methods when 
+predictions are more intuitive and applicable to aerial survey methods when
 using hour-of-day.
 :::
 
@@ -800,10 +794,10 @@ using hour-of-day.
 ::: author-response
 **\[author response\]** We have removed plot titles and edited the figure
 captions to include the title information to be consistent with the journal
-styling and requirements. We've also revised many of the
-figure legends to better communicate the information to the reader and ensure
-if any figures are presented out of context (e.g. without the figure caption) in
-other venues the information is clear.
+styling and requirements. We've also revised many of the figure legends to
+better communicate the information to the reader and ensure if any figures are
+presented out of context (e.g. without the figure caption) in other venues the
+information is clear.
 :::
 
 > ***Figure 4:** Please scale your color ramp to enable better visualization of
@@ -874,8 +868,8 @@ paper so it has been removed.
 > should below in a PowerPoint slide or in your Results and Discussion section.*
 >
 > ***Figure 6:** Please use standard conventions for plot titles. Your title
-> deserves a statement in your Results or Discussion section. It does not
-> follow the expectations for a publication figure title.*
+> deserves a statement in your Results or Discussion section. It does not follow
+> the expectations for a publication figure title.*
 
 ::: author-response
 **\[author response\]** See previous response regarding our choice in plot
@@ -935,8 +929,8 @@ insolation values from reanalysis products
 > haulout behavior and confidence intervals on that behavior state, then
 > compared that with your estimated haulout behavior modeled with the use of
 > co-variates. Once you perform this, you may state that inclusion of weather
-> co-variates improved haulout state estimates. However, you have not done
-> this. If you wish to state this, please do this.*
+> co-variates improved haulout state estimates. However, you have not done this.
+> If you wish to state this, please do this.*
 
 ::: author-response
 **\[author response\]** Here we simply state that 'our results highlight the
@@ -964,20 +958,19 @@ previous analysis results here to provide additional comparative context.
 ::: author-response
 **\[author response\]** We have edited this statement to now read:
 
-The most challenging element in developing
-availability correction factors is with annual variability. It can be difficult
-to get a sufficient sample size to estimate year-specific correction factors,
-particularly because research teams would likely need to deploy bio-loggers on
-seals and conduct aerial surveys concurrently, requiring considerably more
-personnel and money. One possible suggestion is to include year as a random
-effect within models for aerial survey counts such that, without specific
-knowledge of any particular year, the among-year variance is included in the
-modeled standard errors. Regardless of the specific approach, future estimates
-of Arctic seal abundance will require specific consideration of annual
-variability and changes in the timing of peak haul-out behavior when estimating
-trends, as one will not know if moderate differences in abundance estimates are
-attributable to changes in abundance or changes in haul-out behavior.
-
+The most challenging element in developing availability correction factors is
+with annual variability. It can be difficult to get a sufficient sample size to
+estimate year-specific correction factors, particularly because research teams
+would likely need to deploy bio-loggers on seals and conduct aerial surveys
+concurrently, requiring considerably more personnel and money. One possible
+suggestion is to include year as a random effect within models for aerial survey
+counts such that, without specific knowledge of any particular year, the
+among-year variance is included in the modeled standard errors. Regardless of
+the specific approach, future estimates of Arctic seal abundance will require
+specific consideration of annual variability and changes in the timing of peak
+haul-out behavior when estimating trends, as one will not know if moderate
+differences in abundance estimates are attributable to changes in abundance or
+changes in haul-out behavior.
 
 The interpreted emphasis on 'Arctic seals' was not intended. Instead, the key
 point is that there is likely unmodeled heterogeneity related to the seasonal
@@ -1042,8 +1035,8 @@ picture to the reader regarding limits of our analysis.
 reviewer #1. We think the inclusion of sea ice as a predictor is better suited
 for a habitat use/habitat preference study and we hope to pursue that in future
 analyses. We have also emphasized that our reliance on flipper-mounted
-bio-loggers for a portion of our data limited our understanding of movement
-and use away from sea-ice.
+bio-loggers for a portion of our data limited our understanding of movement and
+use away from sea-ice.
 :::
 
 > *The authors need to explain more how they are attributing statistical

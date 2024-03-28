@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.27)  28 MAR 2024 11:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.27)  28 MAR 2024 14:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1218,7 +1218,7 @@ Underfull \vbox (badness 6284) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [23] [24] [25]
-Underfull \hbox (badness 2080) in paragraph at lines 1414--1416
+Underfull \hbox (badness 2080) in paragraph at lines 1415--1417
 []\T1/stix2/m/n/10 (+20) Cameron MF, Bengt-son JL, Boveng PL, Jansen JK(JohnK, Kelly BP, Dahle SP, Loger-well
  []
 
@@ -1232,7 +1232,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1568 ...p{0.80in}|p{0.80in}|p{0.80in}|p{1.50in}}
+l.1569 ...p{0.80in}|p{0.80in}|p{0.80in}|p{1.50in}}
                                                    [30
 
 ] [31] [32]
@@ -1242,32 +1242,32 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <../figures/beardedPredSE-1.png, id=476, 433.62pt x 216.81pt>
 File: ../figures/beardedPredSE-1.png Graphic file (type png)
 <use ../figures/beardedPredSE-1.png>
-Package pdftex.def Info: ../figures/beardedPredSE-1.png  used on input line 1934.
+Package pdftex.def Info: ../figures/beardedPredSE-1.png  used on input line 1935.
 (pdftex.def)             Requested size: 415.12572pt x 207.57281pt.
 <../figures/ribbonPredSE-1.png, id=477, 433.62pt x 303.41354pt>
 File: ../figures/ribbonPredSE-1.png Graphic file (type png)
 <use ../figures/ribbonPredSE-1.png>
-Package pdftex.def Info: ../figures/ribbonPredSE-1.png  used on input line 1940.
+Package pdftex.def Info: ../figures/ribbonPredSE-1.png  used on input line 1941.
 (pdftex.def)             Requested size: 415.12572pt x 290.48663pt.
 <../figures/spottedPredSE-1.png, id=478, 433.62pt x 303.41354pt>
 File: ../figures/spottedPredSE-1.png Graphic file (type png)
 <use ../figures/spottedPredSE-1.png>
-Package pdftex.def Info: ../figures/spottedPredSE-1.png  used on input line 1946.
+Package pdftex.def Info: ../figures/spottedPredSE-1.png  used on input line 1947.
 (pdftex.def)             Requested size: 415.12572pt x 290.48663pt.
 [34
 
 
 ] [35 <../figures/beardedPredSE-1.png>] [36 <../figures/ribbonPredSE-1.png>] [37 <../figures/spottedPredSE-1.png>]
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/sb/it' aliased to
-(Font)              `T1/SourceSansPro-TLF/semibold/it' on input line 1955.
+(Font)              `T1/SourceSansPro-TLF/semibold/it' on input line 1956.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/semibold/it' will be
-(Font)              scaled to size 9.0pt on input line 1955.
+(Font)              scaled to size 9.0pt on input line 1956.
 [38
 
 ]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 2036.
-LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 2037.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 2037.
+LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 2038.
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 )
@@ -1276,25 +1276,25 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Overfull \vbox (0.88728pt too high) detected at line 2084
+Overfull \vbox (0.88728pt too high) detected at line 2085
  []
 
 [39] [40] [41]
 <../figures/era5-ssrd-plot-1.png, id=536, 433.62pt x 325.215pt>
 File: ../figures/era5-ssrd-plot-1.png Graphic file (type png)
 <use ../figures/era5-ssrd-plot-1.png>
-Package pdftex.def Info: ../figures/era5-ssrd-plot-1.png  used on input line 2206.
+Package pdftex.def Info: ../figures/era5-ssrd-plot-1.png  used on input line 2207.
 (pdftex.def)             Requested size: 415.12572pt x 311.35924pt.
 [42 <../figures/era5-ssrd-plot-1.png>]
 <../figures/ssrd-prediction-heatmap-1.png, id=548, 433.62pt x 390.258pt>
 File: ../figures/ssrd-prediction-heatmap-1.png Graphic file (type png)
 <use ../figures/ssrd-prediction-heatmap-1.png>
-Package pdftex.def Info: ../figures/ssrd-prediction-heatmap-1.png  used on input line 2242.
+Package pdftex.def Info: ../figures/ssrd-prediction-heatmap-1.png  used on input line 2243.
 (pdftex.def)             Requested size: 415.12572pt x 373.63109pt.
 <../figures/ssrd-ribbonPredSE-1.png, id=549, 433.62pt x 303.41354pt>
 File: ../figures/ssrd-ribbonPredSE-1.png Graphic file (type png)
 <use ../figures/ssrd-ribbonPredSE-1.png>
-Package pdftex.def Info: ../figures/ssrd-ribbonPredSE-1.png  used on input line 2248.
+Package pdftex.def Info: ../figures/ssrd-ribbonPredSE-1.png  used on input line 2249.
 (pdftex.def)             Requested size: 415.12572pt x 290.48663pt.
 [43] [44 <../figures/ssrd-prediction-heatmap-1.png>] [45 <../figures/ssrd-ribbonPredSE-1.png>] 
 enddocument/afterlastpage: lastpage setting LastPage.
@@ -1307,18 +1307,18 @@ Package rerunfilecheck Info: File `London_HauloutBehavior.out' has not changed.
 (rerunfilecheck)             Checksum: C9AA70933E4DF37596BB78B3638E9C34;3682.
  ) 
 Here is how much of TeX's memory you used:
- 22498 strings out of 476044
- 371688 string characters out of 5790551
+ 22500 strings out of 476044
+ 371732 string characters out of 5790551
  2028493 words of memory out of 5000000
  43763 multiletter control sequences out of 15000+600000
- 834396 words of font info for 362 fonts, out of 8000000 for 9000
+ 834607 words of font info for 363 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  94i,11n,107p,2840b,718s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{s1} has been referenced but does not exist, replaced by a fixed one
 
 </Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Math.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Bold.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Italic.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Regular.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Regular.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Semibold.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-SemiboldIt.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>
-Output written on London_HauloutBehavior.pdf (45 pages, 7904862 bytes).
+Output written on London_HauloutBehavior.pdf (45 pages, 7904749 bytes).
 PDF statistics:
  666 PDF objects out of 1000 (max. 8388607)
  568 compressed objects within 6 object streams
