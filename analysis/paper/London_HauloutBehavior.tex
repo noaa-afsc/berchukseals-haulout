@@ -995,7 +995,7 @@ covariates.
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/spottedHOwx-1} \caption{\textbf{Influence of weather covariates on spotted seal haul-out probability} \linebreak Marginal effects of temperature, wind, barometric pressure, and precipitation on the predicted haul-out probability of spotted seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year fixed at 15 May. The other weather covariate values were predicted from a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season.. While the marginal effect of the covariate is continuous, points and vertical lines representing the 95\% confidence interval around the predicted haul-out probability are shown only at observed weather values to give an indication of how the observations are distributed across the range of weather values.}\label{fig:spottedHOwx}
+\includegraphics[width=1\linewidth]{../figures/spottedHOwx-1} \caption{\textbf{Influence of weather covariates on spotted seal haul-out probability} \linebreak Marginal effects of temperature, wind, barometric pressure, and precipitation on the predicted haul-out probability of spotted seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year fixed at 15 May. The other weather covariate values were predicted from a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. While the marginal effect of the covariate is continuous, points and vertical lines representing the 95\% confidence interval around the predicted haul-out probability are shown only at observed weather values to give an indication of how the observations are distributed across the range of weather values.}\label{fig:spottedHOwx}
 \end{figure}
 
 \hypertarget{annual-variation-in-haul-out-timing}{%
@@ -1030,7 +1030,7 @@ individuals that may not represent population-level patterns.
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/annualHO-1} \caption{\textbf{Annual variability in the timing of peak haul-out probability for ribbon and spotted seals.} \linebreak Spring haul-out probability (colored markers) for ribbon and spotted seals across 14 years are shown. The full seasonal range of annual predictions along with uncertainty are presented as grey lines. Covariates were fixed at local solar noon and under smoothed weather conditions. Only those groups (age:sex + year) that included observations from more than one seal are shown. Additionally, any groups where data were only available after 1 June or before 1 May are not included.}\label{fig:annualHO}
+\includegraphics[width=1\linewidth]{../figures/annualHO-1} \caption{\textbf{Annual variability in the timing of peak haul-out probability for ribbon and spotted seals.} \linebreak Spring haul-out probability (colored markers) for ribbon and spotted seals across 14 years are shown. The full seasonal range of annual predictions along with uncertainty are presented as grey lines. Covariates were fixed at local solar noon and weather covariate values were predicted from a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Only those groups (age:sex + year) that included observations from more than one seal are shown. Additionally, any groups where data were only available after 1 June or before 1 May are not included.}\label{fig:annualHO}
 \end{figure}
 
 The annual timing of peak haul-out probability for ribbon seals and adult
@@ -1915,6 +1915,8 @@ Wang M, Yang Q, Overland JE, Stabeno P. 2018. Sea-ice cover timing in the Pacifi
 
 \end{landscape}
 
+\clearpage
+
 \hypertarget{supplemental-figures-showing-confidence-intervals-associated-with-predictions}{%
 \subsection{Supplemental Figures Showing Confidence Intervals Associated with Predictions}\label{supplemental-figures-showing-confidence-intervals-associated-with-predictions}}
 
@@ -1926,17 +1928,25 @@ spotted seals. The predictions shown are based on the same data used in
 selected for three local solar hours (07:00, 12:00, and 17:00) so the
 confidence intervals can also be shown and comparisons can be made.
 
-\begin{figure}
-\includegraphics[width=1\linewidth]{../figures/beardedPredSE-1} \caption{Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for bearded seals. Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00) with smoothed weather covariates. Age and sex classes are combined into a single 'all ages' category.}\label{fig:beardedPredSE}
-\end{figure}
+
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/ribbonPredSE-1} \caption{Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for ribbon seals. Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00) with smoothed weather covariates. Age and sex classes are separated to allow comparisons.}\label{fig:ribbonPredSE}
+\includegraphics[width=1\linewidth]{../figures/beardedPredSE-1} \caption{\textbf{Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for bearded seals.} \linebreak Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00). Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Age and sex classes are combined into a single `all ages' category.}\label{fig:beardedPredSE}
 \end{figure}
 
+
+
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/spottedPredSE-1} \caption{Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for spotted seals. Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00) with smoothed weather covariates. Age and sex classes are separated to allow comparisons.}\label{fig:spottedPredSE}
+\includegraphics[width=1\linewidth]{../figures/ribbonPredSE-1} \caption{\textbf{Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for ribbon seals.} \linebreak Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00). Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Age and sex classes are separated to allow comparisons.}\label{fig:ribbonPredSE}
 \end{figure}
+
+
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{../figures/spottedPredSE-1} \caption{\textbf{Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for spotted seals.} \linebreak Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00). Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Age and sex classes are separated to allow comparisons.}\label{fig:spottedPredSE}
+\end{figure}
+
+\clearpage
 
 \hypertarget{exploring-insolation-solar-radiation-as-a-model-covariate}{%
 \subsection{Exploring Insolation (Solar Radiation) as a Model Covariate}\label{exploring-insolation-solar-radiation-as-a-model-covariate}}
@@ -2190,8 +2200,10 @@ coinciding with 13:00 local solar. This suggests solar radiation could be an
 informative covariate for capturing unimodal diel patterns in haul-out
 behavior.
 
+
+
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/era5-ssrd-plot-1} \caption{Downward surface solar radiation estimates from the ERA5 climate reanalysis for 5000 random points within the study area between 2005 and 2021. Solar radiation values are presented in Watts per square-meter and the smoothed line highlights the strong diel pattern.}\label{fig:era5-ssrd-plot}
+\includegraphics[width=1\linewidth]{../figures/era5-ssrd-plot-1} \caption{\textbf{Diel Pattern of Solar Radiation Values from ERA5 Reanalysis.} \linebreak Downward surface solar radiation estimates from the ERA5 climate reanalysis for 5000 random points within the study area between 2005 and 2021. Solar radiation values are presented in Watts per square-meter and the smoothed line highlights the strong diel pattern.}\label{fig:era5-ssrd-plot}
 \end{figure}
 
 The bearded seal model matching the specification from the manuscript resulted in
@@ -2224,41 +2236,45 @@ confidence intervals also provided comparable insights (see figures
 \ref{fig:ribbonPredSE} and \ref{fig:ssrd-ribbonPredSE}). That said, subtle
 differences in the shape and extent of confidence limits were present.
 
-\begin{figure}
-\includegraphics[width=1\linewidth]{../figures/ssrd-prediction-heatmap-1} \caption{Predicted haul-out probability of ribbon seals from 15 March to 30 June for each age and sex class used in the model. In this model, solar radiation was used in lieu of hour of day. The apparent seasonal progression with subadults hauling out earlier in the season followed by adult males and, then, adult females is still notable although maybe not as clear. Predictions for young of the year still show their transition from newly weaned pups resting on the ice to more in-water activities. The overall pattern is in agreement with a one-sided view of Figure 7 where maximum solar radiation is equivalent to local solar noon.}\label{fig:ssrd-prediction-heatmap}
-\end{figure}
+
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/ssrd-ribbonPredSE-1} \caption{Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for ribbon seals. In this model predictions are shown for low, medium, and high values of solar radiation (as percentages of the maximum value observed) in lieu of local solar hour. There's general agreement in the overall seasonal patterns between the two approaches but sublte differences in shape and extent of the confidence limits were present (see Figure S2 for comparisons).}\label{fig:ssrd-ribbonPredSE}
+\includegraphics[width=1\linewidth]{../figures/ssrd-prediction-heatmap-1} \caption{\textbf{Solar radiation as a predictor of ribbon seal haul-out probability.} \linebreak Predicted haul-out probability of ribbon seals from 15 March to 30 June for each age and sex class used in the model. In this model, solar radiation was used in lieu of hour of day. The apparent seasonal progression with subadults hauling out earlier in the season followed by adult males and, then, adult females is still notable although maybe not as clear. Predictions for young of the year still show their transition from newly weaned pups resting on the ice to more in-water activities. The overall pattern is in agreement with a one-sided view of Figure 7 where maximum solar radiation is equivalent to local solar noon.}\label{fig:ssrd-prediction-heatmap}
+\end{figure}
+
+
+
+\begin{figure}
+\includegraphics[width=1\linewidth]{../figures/ssrd-ribbonPredSE-1} \caption{\textbf{Solar radiation as a predictor of ribbon seal haul-out probability (with uncertainty).} \linebreak Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for ribbon seals. In this model predictions are shown for low, medium, and high values of solar radiation (as percentages of the maximum value observed) in lieu of local solar hour. There's general agreement in the overall seasonal patterns between the two approaches but sublte differences in shape and extent of the confidence limits were present (see Figure S2 for comparisons).}\label{fig:ssrd-ribbonPredSE}
 \end{figure}
 
 \hypertarget{discussion-1}{%
 \subsubsection{Discussion}\label{discussion-1}}
 
-Solar radiation has potential as an informative
-covariate in pinniped haul-out models that can be directly linked to seal
-physiology and expected behavioral changes. The ERA5's \emph{surface solar radiation downwards}
-values aligned with hour of day and maximum values
-occurred at or just after local solar noon. This highlighted the informative
-potential for this approach. However, despite an overall reduction in the
-total number of parameters and degrees of freedom, AIC comparison still favored
-the models for each species that included hour of day as a Fourier series. This
-analysis was not intended to be a full comparison -- we simply want to
-demonstrate the potential and inspire further investigation -- but, there are
-three possibilities that might explain the preference for hour of day.
+Solar radiation has potential as an informative covariate in pinniped haul-out
+models that can be directly linked to seal physiology and expected behavioral
+changes. The ERA5's \emph{surface solar radiation downwards} values aligned with hour
+of day and maximum values occurred at or just after local solar noon. This
+highlighted the informative potential for this approach. However, despite an
+overall reduction in the total number of parameters and degrees of freedom, AIC
+comparison still favored the models for each species that included hour of day
+as a Fourier series.
 
-First,
-there are a broad range of solar radiation values represented for each hour of the
-day. Cloud cover, fog, and precipitation all reduce downward solar radiation at
-the surface and we might expect this to impact haul-out probability. However, the photoperiod and the timing of sunrise and sunset are
+This analysis was not intended to be a full comparison --
+we simply want to demonstrate the potential and inspire further investigation --
+but, there are three possibilities that might explain the preference for hour of
+day. First, there are a broad range of solar radiation values represented for each
+hour of the day. Cloud cover, fog, and precipitation all reduce downward solar
+radiation at the surface and we might expect this to impact haul-out
+probability. However, the photoperiod and the timing of sunrise and sunset are
 not impacted by weather and seals may be responding to these signals more than
 the amount of solar radiation. Additionally, this study spans a range of
-physiological cycles and energetic needs and higher solar radiation may not be
-a consistently driving influence on seals. Increased energy from the sun may
-be important during molt but less so during pupping and breeding periods. Second,
+physiological cycles and energetic needs and higher solar radiation may not be a
+consistent driving influence on seals. Increased energy from the sun may be
+important during molt but less so during pupping and breeding periods. Second,
 the timing and duration of haul-out behavior may also be influenced by diel
-patterns in weather (e.g.~lower winds in the morning) or ecosystem dynamics (e.g.
-prey availability) that lead to a skewness in the distribution of haul-out
+patterns in weather (e.g.~lower winds in the morning) or ecosystem dynamics
+(e.g.~prey availability) that lead to a skewness in the distribution of haul-out
 behavior that wouldn't be reliably captured by solar radiation values. Third,
 this effort is only an initial effort to explore the use of solar radiation in
 pinniped haul-out models. A more in depth and rigorous exploration of this topic

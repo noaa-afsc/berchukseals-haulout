@@ -1283,7 +1283,7 @@ from ribbon seals which showed more overlap between adult males and adult female
 and that subadults were most likely to haul out across the presented range of weather
 covariates.
 
-(ref:spottedHOwxCaption) **Influence of weather covariates on spotted seal haul-out probability** \linebreak Marginal effects of temperature, wind, barometric pressure, and precipitation on the predicted haul-out probability of spotted seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year fixed at 15 May. The other weather covariate values were predicted from a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season.. While the marginal effect of the covariate is continuous, points and vertical lines representing the 95% confidence interval around the predicted haul-out probability are shown only at observed weather values to give an indication of how the observations are distributed across the range of weather values.
+(ref:spottedHOwxCaption) **Influence of weather covariates on spotted seal haul-out probability** \linebreak Marginal effects of temperature, wind, barometric pressure, and precipitation on the predicted haul-out probability of spotted seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year fixed at 15 May. The other weather covariate values were predicted from a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. While the marginal effect of the covariate is continuous, points and vertical lines representing the 95% confidence interval around the predicted haul-out probability are shown only at observed weather values to give an indication of how the observations are distributed across the range of weather values.
 
 ```{r spottedHOwx,fig.asp = 0.9, include=TRUE, fig.cap="(ref:spottedHOwxCaption)"}
 
@@ -1349,7 +1349,7 @@ deployment in a species + age:sex group was present, there were still
 some years where the pattern shown was informed by a small number of
 individuals that may not represent population-level patterns.
 
-(ref:annualHOcaption) **Annual variability in the timing of peak haul-out probability for ribbon and spotted seals.** \linebreak Spring haul-out probability (colored markers) for ribbon and spotted seals across 14 years are shown. The full seasonal range of annual predictions along with uncertainty are presented as grey lines. Covariates were fixed at local solar noon and under smoothed weather conditions. Only those groups (age:sex + year) that included observations from more than one seal are shown. Additionally, any groups where data were only available after 1 June or before 1 May are not included.
+(ref:annualHOcaption) **Annual variability in the timing of peak haul-out probability for ribbon and spotted seals.** \linebreak Spring haul-out probability (colored markers) for ribbon and spotted seals across 14 years are shown. The full seasonal range of annual predictions along with uncertainty are presented as grey lines. Covariates were fixed at local solar noon and weather covariate values were predicted from a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Only those groups (age:sex + year) that included observations from more than one seal are shown. Additionally, any groups where data were only available after 1 June or before 1 May are not included.
 
 ```{r annualHO, fig.asp = 0.75, include=TRUE, fig.cap="(ref:annualHOcaption)"}
 
@@ -1438,7 +1438,6 @@ p <-
                       age_sex = age_sex_labels
                     )) +
   ylab("haul-out probability") +
-  labs(caption = "predictions are shown for local solar noon and under mean weather conditions") +
   theme(legend.position = "top",
         legend.justification='left',
         axis.title.x = element_blank()) 
@@ -1919,6 +1918,7 @@ deploy_tbl
 ```
 \elandscape
 
+\clearpage
 ## Supplemental Figures Showing Confidence Intervals Associated with Predictions
 
 The following series of figures (\@ref(fig:beardedPredSE), \@ref(fig:ribbonPredSE),
@@ -1937,22 +1937,27 @@ local_solar_labels <- c(
 )
 ```
 
+(ref:beardedPredSEcaption) **Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for bearded seals.** \linebreak Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00). Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Age and sex classes are combined into a single 'all ages' category.
 
-
-```{r beardedPredSE,fig.asp = 0.5, include = TRUE, fig.cap="Seasonal variability in haul-out probability and the associated 95\\% confidence intervals (shaded area) for bearded seals. Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00) with smoothed weather covariates. Age and sex classes are combined into a single 'all ages' category."}
+```{r beardedPredSE,fig.asp = 0.5, include = TRUE, fig.cap="(ref:beardedPredSEcaption)"}
 plot_df <- bearded_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
          month = lubridate::month(date,label = TRUE),
          day = lubridate::day(date)) %>%
   filter(!month %in% c("Jul","Aug"),
          lubridate::yday(date) >73,
-         solar_hour %in% c(7,12,17))
+         solar_hour %in% c(7,12,17)) |> 
+  mutate(species = 'Bearded seal')
 
 bearded_predse <- ggplot(plot_df, aes(date,ho_prob)) +
-  geom_ribbon(aes(ymin=lower95,ymax=upper95), 
+  geom_ribbon(aes(ymin=lower95,ymax=upper95, fill = age_sex), 
               fill = species_colors['Bearded seal'], alpha = 0.3) +
-  geom_line(aes(date,ho_prob),
-            color = species_colors['Bearded seal']) +
+  geom_line(aes(date,ho_prob, color = species)) +
+  scale_color_manual(name = 'Predicted haul-out probability',
+                     values = "#E58606",
+                     guide = guide_legend(title.position = "top",
+                                          title.hjust = 0,
+                                          direction = "horizontal")) +
   facet_grid(age_sex ~ solar_hour,
              scales = "free_x",
                     space = "free_x",
@@ -1960,30 +1965,38 @@ bearded_predse <- ggplot(plot_df, aes(date,ho_prob)) +
                       age_sex = age_sex_labels,
                       solar_hour = local_solar_labels
                     )) +
-  scale_y_continuous(breaks = c(0.2,0.4,0.6,0.8), labels = c("0.2","0.4", "0.6", "0.8"), limits = c(0,1)) +
+  scale_y_continuous(breaks = c(0.2,0.4,0.6,0.8), 
+                     labels = c("0.2","0.4", "0.6", "0.8"), 
+                     limits = c(0,1)) +
   xlab("day of year") +
   ylab("haul-out probability") +
-  labs(title = "Bearded seal predicted haul-out probability with uncertainty",
-       subtitle = "Predictions and associated 95% confidence intervals are shown for three **local solar** times and with smoothed weather covariates") +
-  theme(legend.position = "none")
+  theme(legend.position = "top",
+        legend.justification = "left")
 
 bearded_predse
 ```
 
-```{r ribbonPredSE,fig.asp = 0.7, include = TRUE, fig.cap="Seasonal variability in haul-out probability and the associated 95\\% confidence intervals (shaded area) for ribbon seals. Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00) with smoothed weather covariates. Age and sex classes are separated to allow comparisons."}
+(ref:ribbonPredSEcaption) **Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for ribbon seals.** \linebreak Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00). Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Age and sex classes are separated to allow comparisons.
+
+```{r ribbonPredSE,fig.asp = 0.7, include = TRUE, fig.cap="(ref:ribbonPredSEcaption)"}
 plot_df <- ribbon_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
          month = lubridate::month(date,label = TRUE),
          day = lubridate::day(date)) %>%
   filter(!month %in% c("Jul","Aug"),
          lubridate::yday(date) >73,
-         solar_hour %in% c(7,12,17))
+         solar_hour %in% c(7,12,17)) |> 
+  mutate(species = 'Ribbon seal')
 
 ribbon_predse <- ggplot(plot_df, aes(date,ho_prob)) +
   geom_ribbon(aes(ymin=lower95,ymax=upper95), 
               fill = species_colors['Ribbon seal'], alpha = 0.3) +
-  geom_line(aes(date,ho_prob),
-            color = species_colors['Ribbon seal']) +
+  geom_line(aes(date,ho_prob, color = species)) +
+  scale_color_manual(name = 'Predicted haul-out probability',
+                     values = rep("#5D69B1",4),
+                     guide = guide_legend(title.position = "top",
+                                          title.hjust = 0,
+                                          direction = "horizontal")) +
   facet_grid(age_sex ~ solar_hour,
              scales = "free_x",
                     space = "free_x",
@@ -1994,27 +2007,33 @@ ribbon_predse <- ggplot(plot_df, aes(date,ho_prob)) +
   scale_y_continuous(breaks = c(0.2,0.4,0.6,0.8), labels = c("0.2","0.4", "0.6", "0.8"), limits = c(0,1)) +
   xlab("day of year") +
   ylab("haul-out probability") +
-  labs(title = "Ribbon seal predicted haul-out probability with uncertainty",
-       subtitle = "Predictions and associated 95% confidence intervals are shown for three **local solar** times and with smoothed weather covariates") +
-  theme(legend.position = "none")
+  theme(legend.position = "top",
+        legend.justification = "left")
 
 ribbon_predse
 ```
 
-```{r spottedPredSE,fig.asp = 0.7, include = TRUE, fig.cap="Seasonal variability in haul-out probability and the associated 95\\% confidence intervals (shaded area) for spotted seals. Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00) with smoothed weather covariates. Age and sex classes are separated to allow comparisons."}
+(ref:spottedPredSEcaption) **Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for spotted seals.** \linebreak Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00). Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Age and sex classes are separated to allow comparisons.
+
+```{r spottedPredSE,fig.asp = 0.7, include = TRUE, fig.cap="(ref:spottedPredSEcaption)"}
 plot_df <- spotted_newdata %>%
   mutate(date = lubridate::as_date(yday, origin = "2015-01-01"),
          month = lubridate::month(date,label = TRUE),
          day = lubridate::day(date)) %>%
   filter(!month %in% c("Jul","Aug"),
          lubridate::yday(date) >73,
-         solar_hour %in% c(7,12,17))
+         solar_hour %in% c(7,12,17)) |> 
+  mutate(species = 'Spotted seal')
 
 spotted_predse <- ggplot(plot_df, aes(date,ho_prob)) +
   geom_ribbon(aes(ymin=lower95,ymax=upper95), 
               fill = species_colors['Spotted seal'], alpha = 0.3) +
-  geom_line(aes(date,ho_prob),
-            color = species_colors['Spotted seal']) +
+  geom_line(aes(date,ho_prob, color = species)) +
+  scale_color_manual(name = 'Predicted haul-out probability',
+                     values = rep("#52BCA3",4),
+                     guide = guide_legend(title.position = "top",
+                                          title.hjust = 0,
+                                          direction = "horizontal")) +
   facet_grid(age_sex ~ solar_hour,
              scales = "free_x",
                     space = "free_x",
@@ -2025,13 +2044,13 @@ spotted_predse <- ggplot(plot_df, aes(date,ho_prob)) +
   scale_y_continuous(breaks = c(0.2,0.4,0.6,0.8), labels = c("0.2","0.4", "0.6", "0.8"), limits = c(0,1)) +
   xlab("day of year") +
   ylab("haul-out probability") +
-  labs(title = "Spotted seal predicted haul-out probability with uncertainty",
-       subtitle = "Predictions and associated 95% confidence intervals are shown for three **local solar** times and with smoothed weather covariates") +
-  theme(legend.position = "none")
+  theme(legend.position = "top",
+        legend.justification = "left")
 
 spotted_predse
 ```
 
+\clearpage
 ## Exploring Insolation (Solar Radiation) as a Model Covariate
 
 ### Introduction
@@ -2461,12 +2480,22 @@ pts_ssrd_sf <- pts_ssrd_sf |>
   mutate(solar_hour = lubridate::hour(solaR::local2Solar(time,lon)))
 ```
 
-```{r era5-ssrd-plot, fig.asp = 0.75, include=TRUE, fig.cap="Downward surface solar radiation estimates from the ERA5 climate reanalysis for 5000 random points within the study area between 2005 and 2021. Solar radiation values are presented in Watts per square-meter and the smoothed line highlights the strong diel pattern."}
+(ref:era5ssrdcaption) **Diel Pattern of Solar Radiation Values from ERA5 Reanalysis.** \linebreak Downward surface solar radiation estimates from the ERA5 climate reanalysis for 5000 random points within the study area between 2005 and 2021. Solar radiation values are presented in Watts per square-meter and the smoothed line highlights the strong diel pattern.
 
-pts_ssrd_sf <- readRDS(here::here('data/random_ssrd_pts.rds'))
+```{r era5-ssrd-plot, fig.asp = 0.75, include=TRUE, fig.cap="(ref:era5ssrdcaption)"}
+
+pts_ssrd_sf <- readRDS(here::here('data/random_ssrd_pts.rds')) |> 
+  mutate(era5_value = "downward surface solar radiation")
 
 ssrd_solarhour_plot <- ggplot(data = pts_ssrd_sf, aes(x=solar_hour, y=value)) + 
-  geom_point(size = 0.5, alpha = 0.3, color = "#edd9a3") + 
+  geom_point(aes(color = era5_value), size = 0.8, alpha = 0.3) +
+  scale_color_manual(name = 'ERA5 Reanalysis',
+                     values = "#edd9a3",
+                     guide = guide_legend(title.position = "top",
+                                          title.hjust = 0,
+                                          direction = "horizontal",
+                                          override.aes = list(alpha = 1,
+                                                              size = 2))) +
   geom_smooth(se=TRUE, linewidth = 0.2, color = "#4b2991") +
   scale_x_continuous(breaks = c(3,6,9,12,15,18,21),
                      labels = c("03:00","06:00","09:00","12:00","15:00","18:00",
@@ -2474,9 +2503,9 @@ ssrd_solarhour_plot <- ggplot(data = pts_ssrd_sf, aes(x=solar_hour, y=value)) +
   scale_y_continuous(labels = scales::label_scientific()) +
   xlab("Local Solar Hour") +
   ylab("Solar Radiation") +
-  labs(title = "Diel Pattern of Solar Radiation Values from ERA5 Reanalysis",
-       subtitle = "A random sample of hourly ERA5 downward surface solar radiation values for points within the study area confirms a unimodal relationship with local solar hour.",
-       caption = "solar radiation values are presented in Watts per meter^2")
+  labs(caption = "solar radiation values are presented in Watts per meter^2") +
+  theme(legend.position = "top",
+        legend.justification = "left")
 
 ssrd_solarhour_plot
 ```
@@ -2511,8 +2540,9 @@ confidence intervals also provided comparable insights (see figures
 \@ref(fig:ribbonPredSE) and \@ref(fig:ssrd-ribbonPredSE)). That said, subtle
 differences in the shape and extent of confidence limits were present.
 
+(ref:ssrdHeatMapcaption) **Solar radiation as a predictor of ribbon seal haul-out probability.** \linebreak Predicted haul-out probability of ribbon seals from 15 March to 30 June for each age and sex class used in the model. In this model, solar radiation was used in lieu of hour of day. The apparent seasonal progression with subadults hauling out earlier in the season followed by adult males and, then, adult females is still notable although maybe not as clear. Predictions for young of the year still show their transition from newly weaned pups resting on the ice to more in-water activities. The overall pattern is in agreement with a one-sided view of Figure 7 where maximum solar radiation is equivalent to local solar noon.
 
-```{r ssrd-prediction-heatmap, include = TRUE, fig.asp=0.9, fig.cap="Predicted haul-out probability of ribbon seals from 15 March to 30 June for each age and sex class used in the model. In this model, solar radiation was used in lieu of hour of day. The apparent seasonal progression with subadults hauling out earlier in the season followed by adult males and, then, adult females is still notable although maybe not as clear. Predictions for young of the year still show their transition from newly weaned pups resting on the ice to more in-water activities. The overall pattern is in agreement with a one-sided view of Figure 7 where maximum solar radiation is equivalent to local solar noon."}
+```{r ssrd-prediction-heatmap, include = TRUE, fig.asp=0.9, fig.cap="(ref:ssrdHeatMapcaption)"}
 r <- ribbon_newdata |> 
   group_by(age_sex,day,yday) |> 
   summarize(across(c(northing,temp2m,wind,pressure,precip), 
@@ -2549,10 +2579,10 @@ p <- ggplot(plot_df, aes(day, ssrd_quants, fill = fit, color = fit)) +
   geom_tile(linewidth = 0.15) +
   scico::scale_fill_scico(palette = "navia", direction = 1,
                           begin = 0.1, end = 1,
-                       name = "haul-out probability", 
+                       name = "Ribbon seal haul-out probability", 
                        limits = c(0,1), breaks = c(0.25, 0.50, 0.75),
-                       guide = guide_colorbar(title.position = "bottom", barwidth = 15,
-                                              barheight = 0.5, title.hjust = 0.5)
+                       guide = guide_colorbar(title.position = "top", barwidth = 15,
+                                              barheight = 0.5, title.hjust = 0)
   ) +
   scico::scale_color_scico(palette = "navia", direction = 1,
                            begin = 0.1, end = 1,
@@ -2568,19 +2598,20 @@ p <- p + facet_grid(age_sex~month,
 p <- p + scale_x_continuous(breaks = c(5,10,15,20,25)) +
   scale_y_discrete(breaks = c("20%","60%","95%"), labels = c("15%","50%","100%")) +
   coord_cartesian(expand=FALSE)
-p <- p + theme(panel.spacing.x = unit(0.1, "lines"),
-               panel.spacing.y = unit(0.2, "lines"),
-               legend.position = "bottom",
+
+p <- p + theme(panel.spacing = unit(0.1, "lines"),
+               legend.position = "top", legend.justification='left',
+               legend.text.align = 0,
                strip.background = element_rect(colour="white"),
                axis.ticks=element_blank()) +
-  xlab("day of month") + ylab("% of max solar radiation") +
-  ggtitle("Solar radiation as a predictor of ribbon seal haul-out probability",
-          subtitle = "Increased haul-out probability at higher levels of solar
-          radiation is consistent with maximum predicted haul-out at solar noon")
+  xlab("day of month") + ylab("% of max solar radiation")
+  
 p
 ```
 
-```{r ssrd-ribbonPredSE,fig.asp = 0.7, include = TRUE, fig.cap="Seasonal variability in haul-out probability and the associated 95\\% confidence intervals (shaded area) for ribbon seals. In this model predictions are shown for low, medium, and high values of solar radiation (as percentages of the maximum value observed) in lieu of local solar hour. There's general agreement in the overall seasonal patterns between the two approaches but sublte differences in shape and extent of the confidence limits were present (see Figure S2 for comparisons)."}
+(ref:ssrdRibbonPredSEcaption) **Solar radiation as a predictor of ribbon seal haul-out probability (with uncertainty).** \linebreak Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for ribbon seals. In this model predictions are shown for low, medium, and high values of solar radiation (as percentages of the maximum value observed) in lieu of local solar hour. There's general agreement in the overall seasonal patterns between the two approaches but sublte differences in shape and extent of the confidence limits were present (see Figure S2 for comparisons).
+
+```{r ssrd-ribbonPredSE,fig.asp = 0.7, include = TRUE, fig.cap="(ref:ssrdRibbonPredSEcaption)"}
 
 ssrd_facet_labels <- c(
   '35%' = 'Low Solar Radiation (35% of max value)',
@@ -2598,13 +2629,18 @@ plot_df <- ribbon_ssrd_predict %>%
          lubridate::yday(date) >73,
          ssrd_quants %in% c("35%","65%","100%")) |> 
   inner_join(ssrd_facet_labels, by = join_by(ssrd_quants == ssrd_facet)) |> 
-  rename(ssrd_facet_label = value)
+  rename(ssrd_facet_label = value) |> 
+  mutate(species = 'Ribbon seal')
 
 ssrd_ribbon_predse <- ggplot(plot_df, aes(date,fit)) +
   geom_ribbon(aes(ymin=fit-(1.96*se.fit),ymax=fit + (1.96*se.fit)), 
               fill = species_colors['Ribbon seal'], alpha = 0.3) +
-  geom_line(aes(date,fit),
-            color = species_colors['Ribbon seal']) +
+  geom_line(aes(date,fit, color = species)) +
+  scale_color_manual(name = 'Predicted haul-out probability',
+                     values = "#5D69B1",
+                     guide = guide_legend(title.position = "top",
+                                          title.hjust = 0,
+                                          direction = "horizontal")) +
   facet_grid(age_sex ~ ssrd_facet_label,
              scales = "free_x",
                     space = "free_x",
@@ -2615,54 +2651,42 @@ ssrd_ribbon_predse <- ggplot(plot_df, aes(date,fit)) +
   scale_y_continuous(breaks = c(0.2,0.4,0.6,0.8), labels = c("0.2","0.4", "0.6", "0.8"), limits = c(0,1)) +
   xlab("day of year") +
   ylab("haul-out probability") +
-  labs(title = "Solar radiation as a predictor of haul-out probability (with uncertainty)",
-       subtitle = "Predictions and associated 95% confidence intervals for three **solar radiation** quantile categories show similar seasonal patterns to those based on local solar hour") +
-  theme(legend.position = "none")
+  theme(legend.position = "top",
+        legend.justification = "left")
 
 ssrd_ribbon_predse
 ```
 
 ### Discussion
 
-<!-- - ear5 solar radiation has potential as an informative covariate that is a more -->
-<!-- directly linked with seal behavior and physiology -->
-<!-- - the unimodal distribution and correlation with hour of day also demonstrates -->
-<!-- it could be considered a replacement for hour of day; though, with increased -->
-<!-- variability given the impact of cloud cover and other weather parameters -->
-<!-- - despite the reduced number of parameters, AIC comparison for all species -->
-<!-- still preferred the model with local solar hour.  -->
-<!-- - there is some a slight skewness present in the predicted distributions with -->
-<!-- higher predictions in the morning compared to the late afternoon; this isn't -->
-<!-- captured with solar radiation alone -->
+Solar radiation has potential as an informative covariate in pinniped haul-out
+models that can be directly linked to seal physiology and expected behavioral
+changes. The ERA5's _surface solar radiation downwards_ values aligned with hour
+of day and maximum values occurred at or just after local solar noon. This
+highlighted the informative potential for this approach. However, despite an
+overall reduction in the total number of parameters and degrees of freedom, AIC
+comparison still favored the models for each species that included hour of day
+as a Fourier series. 
 
-Solar radiation has potential as an informative
-covariate in pinniped haul-out models that can be directly linked to seal
-physiology and expected behavioral changes. The ERA5's _surface solar radiation downwards_
-values aligned with hour of day and maximum values
-occurred at or just after local solar noon. This highlighted the informative
-potential for this approach. However, despite an overall reduction in the
-total number of parameters and degrees of freedom, AIC comparison still favored
-the models for each species that included hour of day as a Fourier series. This
-analysis was not intended to be a full comparison -- we simply want to 
-demonstrate the potential and inspire further investigation -- but, there are
-three possibilities that might explain the preference for hour of day. 
-
-First,
-there are a broad range of solar radiation values represented for each hour of the
-day. Cloud cover, fog, and precipitation all reduce downward solar radiation at
-the surface and we might expect this to impact haul-out probability. However, the photoperiod and the timing of sunrise and sunset are
+This analysis was not intended to be a full comparison --
+we simply want to demonstrate the potential and inspire further investigation --
+but, there are three possibilities that might explain the preference for hour of
+day. First, there are a broad range of solar radiation values represented for each
+hour of the day. Cloud cover, fog, and precipitation all reduce downward solar
+radiation at the surface and we might expect this to impact haul-out
+probability. However, the photoperiod and the timing of sunrise and sunset are
 not impacted by weather and seals may be responding to these signals more than
-the amount of solar radiation. Additionally, this study spans a range of 
-physiological cycles and energetic needs and higher solar radiation may not be
-a consistently driving influence on seals. Increased energy from the sun may
-be important during molt but less so during pupping and breeding periods. Second,
+the amount of solar radiation. Additionally, this study spans a range of
+physiological cycles and energetic needs and higher solar radiation may not be a
+consistent driving influence on seals. Increased energy from the sun may be
+important during molt but less so during pupping and breeding periods. Second,
 the timing and duration of haul-out behavior may also be influenced by diel
-patterns in weather (e.g. lower winds in the morning) or ecosystem dynamics (e.g.
-prey availability) that lead to a skewness in the distribution of haul-out 
+patterns in weather (e.g. lower winds in the morning) or ecosystem dynamics
+(e.g. prey availability) that lead to a skewness in the distribution of haul-out
 behavior that wouldn't be reliably captured by solar radiation values. Third,
 this effort is only an initial effort to explore the use of solar radiation in
 pinniped haul-out models. A more in depth and rigorous exploration of this topic
-might discover an approach that results in a more parsimonious and preferred 
+might discover an approach that results in a more parsimonious and preferred
 model formulation.
 
 Again, we want to acknowledge Anthony Fischbach for the suggestion during the
