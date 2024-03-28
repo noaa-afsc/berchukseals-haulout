@@ -33,7 +33,9 @@ plot_ribbon_wx <- function(ribbon_fit_obj,age_sex_colors,age_sex_labels) {
                     fill = age_sex), linetype = 0, alpha = 0.2,
                 show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
-                    size = 0.25, alpha = 1, stroke = 0) +
+                    size = 0, alpha = 0.25, stroke = 0,
+                    show.legend = FALSE) +
+    geom_line() +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        name = "Ribbon seal",
@@ -62,7 +64,8 @@ plot_ribbon_wx <- function(ribbon_fit_obj,age_sex_colors,age_sex_labels) {
                     fill = age_sex), linetype = 0, alpha = 0.2,
                 show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
-                    size = 0.25, alpha = 1, stroke = 0) +
+                    size = 0, alpha = 0.25, stroke = 0) +
+    geom_line() +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
@@ -87,7 +90,8 @@ plot_ribbon_wx <- function(ribbon_fit_obj,age_sex_colors,age_sex_labels) {
                     fill = age_sex), linetype = 0, alpha = 0.2,
                 show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
-                    size = 0.25, alpha = 1, stroke = 0) +
+                    size = 0, alpha = 0.25, stroke = 0) +
+    geom_line() +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
@@ -113,7 +117,8 @@ plot_ribbon_wx <- function(ribbon_fit_obj,age_sex_colors,age_sex_labels) {
                     fill = age_sex), linetype = 0, alpha = 0.2,
                 show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
-                    size = 0.25, alpha = 1, stroke = 0) +
+                    size = 0, alpha = 0.25, stroke = 0) +
+    geom_line() +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
@@ -125,11 +130,7 @@ plot_ribbon_wx <- function(ribbon_fit_obj,age_sex_colors,age_sex_labels) {
     xlab("precip (mm/hr)") + ylab("haul-out probability")
   
   apply_consistent_y_lims <- function(this_plot){
-    num_plots <- length(this_plot$layers)
-    y_lims <- lapply(1:num_plots, function(x) ggplot_build(this_plot[[x]])$layout$panel_scales_y[[1]]$range$range)
-    min_y <- min(unlist(y_lims))
-    max_y <- max(unlist(y_lims))
-    this_plot & ylim(min_y, max_y)
+    this_plot & ylim(0, 1)
   }
   
   p_combo <- p_temp + p_wind + p_pressure + p_precip +
@@ -175,7 +176,9 @@ plot_spotted_wx <- function(spotted_fit_obj, age_sex_colors,age_sex_labels) {
                     fill = age_sex), linetype = 0, alpha = 0.2,
                 show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
-                    size = 0.25, alpha = 1, stroke = 0) +
+                    size = 0, alpha = 0.25, stroke = 0,
+                    show.legend = FALSE) +
+    geom_line() +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        name = "Spotted seal",
@@ -205,7 +208,8 @@ plot_spotted_wx <- function(spotted_fit_obj, age_sex_colors,age_sex_labels) {
                     fill = age_sex), linetype = 0, alpha = 0.2,
                 show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
-                    size = 0.25, alpha = 1, stroke = 0) +
+                    size = 0, alpha = 0.25, stroke = 0) +
+    geom_line() +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
@@ -228,10 +232,11 @@ plot_spotted_wx <- function(spotted_fit_obj, age_sex_colors,age_sex_labels) {
     
     ggplot(aes(((pressure * 10000) + 100000)/1000, ho_prob, color = age_sex)) +
     geom_ribbon(aes(ymin = lower95, ymax = upper95, 
-                    fill = age_sex), linetype = 0, alpha = 0.2) +
+                    fill = age_sex), linetype = 0, alpha = 0.2,
+                show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
-                    size = 0.25, alpha = 1, stroke = 0,
-                    show.legend = FALSE) +
+                    size = 0, alpha = 0.25, stroke = 0) +
+    geom_line() +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
@@ -258,7 +263,8 @@ plot_spotted_wx <- function(spotted_fit_obj, age_sex_colors,age_sex_labels) {
                     fill = age_sex), linetype = 0, alpha = 0.2,
                 show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
-                    size = 0.25, alpha = 1, stroke = 0) +
+                    size = 0, alpha = 0.25, stroke = 0) +
+    geom_line() +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
@@ -271,11 +277,7 @@ plot_spotted_wx <- function(spotted_fit_obj, age_sex_colors,age_sex_labels) {
     xlab("precip (mm/hr)") + ylab("haul-out probability")
   
   apply_consistent_y_lims <- function(this_plot){
-    num_plots <- length(this_plot$layers)
-    y_lims <- lapply(1:num_plots, function(x) ggplot_build(this_plot[[x]])$layout$panel_scales_y[[1]]$range$range)
-    min_y <- min(unlist(y_lims))
-    max_y <- max(unlist(y_lims))
-    this_plot & ylim(min_y, max_y)
+    this_plot & ylim(0, 1)
   }
   
   p_combo <- p_temp + p_wind + p_pressure + p_precip +
@@ -320,7 +322,9 @@ plot_bearded_wx <- function(bearded_fit_obj, age_sex_colors,age_sex_labels) {
                     fill = age_sex), linetype = 0, alpha = 0.2,
                 show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
-                    size = 0.25, alpha = 1, stroke = 0) +
+                    size = 0, alpha = 0.25, stroke = 0,
+                    show.legend = FALSE) +
+    geom_line() +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        name = "Bearded seal",
@@ -349,7 +353,8 @@ plot_bearded_wx <- function(bearded_fit_obj, age_sex_colors,age_sex_labels) {
                     fill = age_sex), linetype = 0, alpha = 0.2,
                 show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
-                    size = 0.25, alpha = 1, stroke = 0) +
+                    size = 0, alpha = 0.25, stroke = 0) +
+    geom_line() +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
@@ -374,7 +379,8 @@ plot_bearded_wx <- function(bearded_fit_obj, age_sex_colors,age_sex_labels) {
                     fill = age_sex), linetype = 0, alpha = 0.2,
                 show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
-                    size = 0.25, alpha = 1, stroke = 0) +
+                    size = 0, alpha = 0.25, stroke = 0) +
+    geom_line() +
     scale_color_manual(values= age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
@@ -400,7 +406,8 @@ plot_bearded_wx <- function(bearded_fit_obj, age_sex_colors,age_sex_labels) {
                     fill = age_sex), linetype = 0, alpha = 0.2,
                 show.legend = FALSE) +
     geom_pointrange(aes(ymin = lower95, ymax = upper95), 
-                    size = 0.25, alpha = 1, stroke = 0) +
+                    size = 0, alpha = 0.25, stroke = 0) +
+    geom_line() +
     scale_color_manual(values = age_sex_colors,
                        labels = age_sex_labels,
                        guide = guide_legend(override.aes = list(alpha = 1),
@@ -413,13 +420,8 @@ plot_bearded_wx <- function(bearded_fit_obj, age_sex_colors,age_sex_labels) {
     xlab("precip (mm/hr)") + ylab("haul-out probability")
   
   apply_consistent_y_lims <- function(this_plot){
-    num_plots <- length(this_plot$layers)
-    y_lims <- lapply(1:num_plots, function(x) ggplot_build(this_plot[[x]])$layout$panel_scales_y[[1]]$range$range)
-    min_y <- min(unlist(y_lims))
-    max_y <- max(unlist(y_lims))
-    this_plot & ylim(min_y, max_y)
+    this_plot & ylim(0, 1)
   }
-  
   p_combo <- p_temp + p_wind + p_pressure + p_precip +
     plot_annotation(
       caption = 'marginal effects are calculated for 15 May at local solar noon')
