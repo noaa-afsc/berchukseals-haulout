@@ -42,9 +42,11 @@ and code availability.
 
 Below, please find detailed responses to each of the reviewer comments. In
 addition to this letter, the full suite of updates are all contained and
-documented within a single pull request. We have also provided a pdf document
-that indicates all changes between the revised manuscript and the submitted
-manuscript.
+documented within a single pull request (see
+<https://github.com/noaa-afsc/berchukseals-haulout/pull/51>). We have also
+provided a pdf document (*\[Compare Report\] London_HauloutBehavior.pdf\]*) that
+indicates all changes between the compedium supporting this revised manuscript
+and the compendium supporting the originally submitted manuscript.
 
 Thank you, again, for your time and consideration. And, additionally, thank you
 to the reviewers for their time. It is much appreciated and we feel the
