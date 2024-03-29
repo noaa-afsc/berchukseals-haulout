@@ -18,7 +18,7 @@ adfg_clean_deploy <- function(file1,file2) {
                                                    'America/Anchorage')) %>%
     dplyr::mutate(DateTagged = lubridate::as_datetime(DateTagged,
                                                       tz = 'America/Anchorage')) %>%
-    dplyr::filter( ! (DeployIDs %in% c("EB16SMK-158429")) )
+    dplyr::filter( ! (DeployIDs %in% c("EB16SMK-158429")) ) #included in adfg file2
 
   cols <- readr::cols(
     DeployIDs = readr::col_character(),
@@ -48,7 +48,7 @@ adfg_clean_deploy <- function(file1,file2) {
     dplyr::mutate(species = tolower(species),
                   age = tolower(age),
                   age = case_when(
-                    age %in% c("1","3") ~ "SUBADULT",
+                    age %in% c("1","3") ~ "subadult",
                     TRUE ~ age
                   ),
                   sex = tolower(sex)) %>%
@@ -82,7 +82,7 @@ adfg_clean_locs <- function(file1, file2, adfg_deployments) {
     dplyr::mutate(Date = as.Date(Date, origin = "1899-12-30", tz ="UTC") %>%
                     lubridate::as_datetime(),
                   Ptt = as.integer(Ptt)) %>%
-    dplyr::filter( ! (DeployID %in% c("EB16SMK-158429")) )
+    dplyr::filter( ! (DeployID %in% c("EB16SMK-158429")) ) # included in adfg file2
 
   cols <- readr::cols(
     DeployID = readr::col_character(),
@@ -162,6 +162,11 @@ adfg_clean_tl <- function(file1,file2, adfg_deployments) {
                   hist_type = HistType,
                   timeline_start_dt = GMTDate) %>%
     dplyr::rename_all(tolower) %>%
+    dplyr::mutate(tag_family = case_when(
+      ptt %in% c(110597, 158422) ~ "SPLASH",
+      ptt %in% c(167946, 137526) ~ "SPOT",
+      TRUE ~ tag_family
+    )) %>% 
     dplyr::left_join(adfg_deployments, by = c("speno","tag_family")) %>%
     mutate(species_code = case_when(
       species == "bearded" ~ "EB",

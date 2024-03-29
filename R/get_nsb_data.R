@@ -1,15 +1,14 @@
 get_nsb_deployments <- function(con) {
-  stopifnot(
-    "PEP Postgres Database Not Available; did you start VPN? ;)" =
-      pingr::is_up("161.55.120.122", "5432")
-  )
-
-  con <- dbConnect(
-    odbc::odbc(),
-    dsn = "PostgreSQL pep",
-    uid = keyringr::get_kc_account("pgpep_londonj"),
-    pwd = keyringr::decrypt_kc_pw("pgpep_londonj")
-  )
+  tryCatch({
+    con <- dbConnect(RPostgres::Postgres(),
+                     dbname = 'pep', 
+                     host = Sys.getenv('PEP_PG_IP'),
+                     user = keyringr::get_kc_account("pgpep_londonj"),
+                     password = keyringr::decrypt_kc_pw("pgpep_londonj"))
+  },
+  error = function(cond) {
+    print("Unable to connect to Database.")
+  })
   on.exit(odbc::dbDisconnect(con))
 
   deploy_qry <- "select speno, deployid, common_name as species, age_class as age, sex, tag_family, deploy_dt, end_dt
@@ -42,17 +41,16 @@ using (sex_lku)"
 }
 
 get_nsb_locs <- function(nsb_deployments) {
-  stopifnot(
-    "PEP Postgres Database Not Available; did you start VPN? ;)" =
-      pingr::is_up("161.55.120.122", "5432")
-  )
-
-  con <- dbConnect(
-    odbc::odbc(),
-    dsn = "PostgreSQL pep",
-    uid = keyringr::get_kc_account("pgpep_londonj"),
-    pwd = keyringr::decrypt_kc_pw("pgpep_londonj")
-  )
+  tryCatch({
+    con <- dbConnect(RPostgres::Postgres(),
+                     dbname = 'pep', 
+                     host = Sys.getenv('PEP_PG_IP'),
+                     user = keyringr::get_kc_account("pgpep_londonj"),
+                     password = keyringr::decrypt_kc_pw("pgpep_londonj"))
+  },
+  error = function(cond) {
+    print("Unable to connect to Database.")
+  })
   on.exit(odbc::dbDisconnect(con))
 
   locs2 <- readr::read_csv(here::here("data_raw/nsb/iceSeals_NSB_Alaska_vonDuyke.csv")) %>%
@@ -92,17 +90,16 @@ get_nsb_locs <- function(nsb_deployments) {
 }
 
 get_nsb_timelines <- function(nsb_deployments) {
-  stopifnot(
-    "PEP Postgres Database Not Available; did you start VPN? ;)" =
-      pingr::is_up("161.55.120.122", "5432")
-  )
-
-  con <- dbConnect(
-    odbc::odbc(),
-    dsn = "PostgreSQL pep",
-    uid = keyringr::get_kc_account("pgpep_londonj"),
-    pwd = keyringr::decrypt_kc_pw("pgpep_londonj")
-  )
+  tryCatch({
+    con <- dbConnect(RPostgres::Postgres(),
+                     dbname = 'pep', 
+                     host = Sys.getenv('PEP_PG_IP'),
+                     user = keyringr::get_kc_account("pgpep_londonj"),
+                     password = keyringr::decrypt_kc_pw("pgpep_londonj"))
+  },
+  error = function(cond) {
+    print("Unable to connect to Database.")
+  })
   on.exit(odbc::dbDisconnect(con))
 
   nsb_timelines2 <- wcUtils::read_histos(

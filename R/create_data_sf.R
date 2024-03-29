@@ -34,9 +34,11 @@ create_data_sf <- function(locs_sf, source_data) {
     mutate(age = forcats::fct_relevel(age, c("ADULT", "SUBADULT", "YOUNG OF YEAR"))) %>%
     dplyr::select(-c(bday,age_days)) %>%
     relocate(deploy_dt, .after = age) %>%
-    filter(!(species == "Bearded seal" & age == "YOUNG OF YEAR"))
+    filter(!(species == "Bearded seal" & age == "YOUNG OF YEAR"),
+           !(speno %in% c("EB2009_7010","EB2009_3002")) #Sea of Okhotsk bearded seals
+           ) 
 
-  # read in world land polygons and buffer in by 100m; want to ensure only locations well
+  # read in world land polygons and buffer in by 100m; want to ensure only locations well inland filtered out
   world <- ne_countries(scale = "large", returnclass = "sf") %>%
     filter(continent != "Antarctica") %>%
     st_wrap_dateline() %>% st_transform(st_crs(dat.sf)) %>%

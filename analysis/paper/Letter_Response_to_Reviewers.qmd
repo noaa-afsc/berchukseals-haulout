@@ -1,0 +1,1271 @@
+---
+title: " "
+subtitle: Maunscript 2022:04:72978
+format: 
+  pdf:
+    include-in-header:
+      text: |
+        \usepackage[dvipsnames]{xcolor}
+filters:
+   - latex-environment
+environments: [author-response]
+editor: visual
+---
+
+\newenvironment{author-response}{\color{Bittersweet}}
+
+Josh M. London, PhD\newline
+7600 Sand Point Way NE\newline Seattle, Washington,
+98115\newline josh.london\@noaa.gov\newline
+
+**Manuscript 2022:04:72978**
+
+\hfill \break
+
+Dr. Prange,
+
+First, please accept my apologies for the significant delay in returning
+revisions on this manuscript. A number of life and work priorities interfered
+with a more timely response schedule and I sincerely appreciate the flexibility
+*PeerJ* extends to authors. We are commited to a quick turnaround on any future
+revisions or tasks associated with this manuscript and we look forward to a
+final publication in *PeerJ*.
+
+While many of the comments and suggestions from reviewers were minor, we feel
+they deserved appropriate time, consideration, and exploration. We have made
+several changes to the manuscript. We hope our responses here reflect that
+consideration and communicate our edits. We are grateful to the reviewers for
+their thoughtful comments. Lastly, we also used this opportunity to improve the
+quality of the underlying telemetry data set and expand the reproducibility of
+the analysis to meet or exceed expectations for open science, data availability,
+and code availability.
+
+Below, please find detailed responses to each of the reviewer comments. In
+addition to this letter, the full suite of updates are all contained and
+documented within a single pull request (see
+<https://github.com/noaa-afsc/berchukseals-haulout/pull/51>). We have also
+provided a pdf document (*\[Compare Report\] London_HauloutBehavior.pdf\]*) that
+indicates all changes between the compedium supporting this revised manuscript
+and the compendium supporting the originally submitted manuscript.
+
+Thank you, again, for your time and consideration. And, additionally, thank you
+to the reviewers for their time. It is much appreciated and we feel the
+manuscript is a better product as a result.
+
+Regards
+
+Josh M London, PhD
+
+\pagebreak
+
+# Response to Reviewers
+
+Here, we respond directly to each of the suggested edits and comments. These
+responses are organized by reviewer. All responses are prefaced with **\[author
+response\]** and line numbers in the original submission are used as reference.
+\hfill \break
+
+\hrule
+
+## **Reviewer 1 (A. Fischbach)**
+
+> *The authors have put substantial efforts into setting the context for their
+> analysis, citing relevant studies. I would like to see a more direct approach
+> in the framing of their problem: the improvements of abundance estimates
+> required by the Marine Mammal Protection Act and Endangered Species Act. I
+> would like to see a specific example of how the modeled availability would
+> have affect population abundance estimates by apply the availability model to
+> aerial survey data and providing an adjusted abundance estimate.*
+
+::: author-response
+**\[author response\]** We address this in the manuscript by introducing the
+importance of the statutory requirements of the MMPA and ESA early in the second
+paragraph of the introduction. We hope this frames the important link in the
+mind of the reader between the work described here and the need for improved
+abundance estimates.
+
+Regarding the desire for specific examples of how the modeled availability would
+have impacted population abundance estimates from aerial survey data, we don’t
+have the ability to provide a full example because the aerial survey data are
+not yet published and available. However, we note that Conn and Trukhanova
+(2023, Marine Mammal Science 39:648-661) used some of our preliminary estimates
+to assess potential aerial survey bias in using telemetered samples that are
+biased towards younger age-sex classes. Their analysis is based on bias(N) =
+bias(1/a) where a is availability (i.e., proportion hauled out).
+:::
+
+> *The findings are appear robust and intuitive. The authors need to improve the
+> presentation of the findings to improve clarity and help the reader understand
+> how they addressed the knowledge gap.*
+
+::: author-response
+**\[author response\]** The reviewer provided numerous comments and suggestions
+annotated throughout the PDF that address the concern of presentation and
+clarity. In the next section we provide responses to those annotations
+:::
+
+### **Reviewer 1 (A. Fischbach) - PDF Annotated Comments & Suggested Edits**
+
+> ***Title:** The reviewer suggests removing and aerial survey detectability
+> from the title of the manuscript and suggests adding the seasonal time period
+> our study focused on.*
+
+::: author-response
+**\[author response\]** We have changed the title to: Spring haul-out behavior
+of seals in the Bering and Chukchi seas
+:::
+
+> ***Abstract:** Can you make a statement in your abstract that use of modeled
+> haulout behavior using covariates available from regional reananalysis data
+> improved the confidence intervals on availability estimates and that this
+> would improve aerial survey abundance estimation efforts?*
+
+::: author-response
+**\[author response\]** Unfortunately, we can't make this statement because
+inclusion of additional covariates (such as weather products) in haul-out models
+only serves to increase standard errors in predictions. The benefit of including
+weather covariates is to more accurately explain variation in survey counts; it
+is thus more relevant to reducing bias in aerial survey estimates than it is to
+increasing precision.
+:::
+
+> *Please use direct language. You are not making findings on how seals rely on
+> sea ice, rather you are improving methods to estimate their availability for
+> improved aerial survey population estimation efforts. Here you are focused on
+> modeling ice sea availability to aerial survey so that aerial survey counts
+> may be appropriately interpreted. Please be clear that you are considering ice
+> seal behaviors that may be telemtered as "dry out of water behaviors" that may
+> be interpreted as behaviors that place the seal on top of the ice and
+> available for observation by an aerial survey.*
+
+::: author-response
+**\[author response\]** The opening sentence of the abstract is a statement
+regarding the reliance of ice-associated seals on sea-ice for a range of
+important life history behaviors. We think this statement is an important
+introduction for readers who are not familiar with ice-associated seals. We do
+agree with the reviewer's suggestion for more direct language and have made
+edits to the beginning of the abstract with this in mind.
+:::
+
+> ***Abstract:** Did you use previously published data, or did you collect it? 
+> Be specific using an active voice so that readers may understand your effort.*
+>
+> *For better flow, please indicate the behavioral data logging time scale here
+> when you describe the data collection, not later when you speak to the
+> analytical construct.*
+
+::: author-response
+**\[author response\]** We have edited this to simply state *data from
+satellite-linked bio-loggers* ... we have also altered this sentence to
+specifically mention the hourly timescale for the bio-logger data
+:::
+
+> *The term "basking" implies a subset of activities that ice seals may engage
+> in when hauled out on sea ice and not an activity that can be directly
+> telemetered using your data logger.  Yet, what you are describing is "haul-out
+> behavior".  Please use this term here.*
+
+::: author-response
+**\[author response\]** edited to remove use of 'basking'
+:::
+
+> *Can you help your naive reader understand why you consider these covariates
+> to be of interest and why others were not considered.*
+
+::: author-response
+**\[author response\]** The main body of the paper includes this discussion.
+Given the limited space and purpose of the abstract we feel it best to simply
+list the covariates of interest
+:::
+
+> ***Line 41:** Please use specific terms and not metaphors so that
+> second-language English readers may better understand your writing.*
+
+::: author-response
+**\[author response\]** We have edited 'ripple effects' to 'tangible effects'
+:::
+
+> ***Line 41:** What about human communities that don't live in the region, but
+> that send large LNG tankers and other vessel through the region?  The loss of
+> sea ice has effects on those communities and activities too.*
+
+::: author-response
+**\[author response\]** Clearly there are a large number impacts of loss of sea
+ice to human communities (and ecosystems) beyond the Arctic region to the rest
+of the world. However, for this sentence, we wanted to keep the reader focused
+on the Arctic region.
+:::
+
+> ***Line 44:** Please use direct language you mean biologically important
+> functions?*
+
+::: author-response
+**\[author response\]** The term 'life history function' is a commonly used,
+direct term.
+
+Here is a definition from Oxford:
+
+"The life history of an organism is its pattern of survival and reproduction,
+along with the traits that directly affect survival and the timing or amount of
+reproduction. Rates of survival and reproduction can be estimated across age
+classes, or across different stages in organisms with complex life cycles. Life
+history traits include growth rate; age and size at sexual maturity; the
+temporal pattern or schedule of reproduction; the number, size, and sex ratio of
+offspring; the distribution of intrinsic or extrinsic mortality rates (e.g.,
+patterns of senescence); and patterns of dormancy and dispersal."
+
+To ensure the reader is clearly aware of which life-history behaviors/functions
+we are referring to we provide specific examples within the sentence.
+:::
+
+> ***Line 50:** What does "readiness" mean in the context of a marine mammal?*
+
+::: author-response
+**\[author response\]** This is a good catch and we have edited the sentence to,
+now, read:
+
+"Knowledge about evolutionary constraints on the timing of reproductive and
+molting behavior is generally lacking, so it is difficult to predict how or if
+ice-associated seal species will adjust to future changes (e.g., by adjusting
+pupping or molting schedules to earlier dates or different locales)"
+:::
+
+> ***Line 56:** Perhaps you mean to offer a topic sentence, stating "How
+> ice-assoicated seals use sea ice as a haulout platform varies betweens
+> species".*
+
+::: author-response
+**\[author response\]** We have adopted this suggestion
+:::
+
+> ***Line 66-68:** There is so much to state about ice-associated seals in the
+> Pacific Arctic that this reference to Antarctic work seems out of place here.*
+
+::: author-response
+**\[author response\]** We have moved this reference to later in the paragraph
+so the first references are about Arctic work. While the example is from the
+Antarctic, it is an important, early example of analysis using bio-logger data
+to estimate haul-out behavior in seals.
+:::
+
+> ***Line 77:** suggested edit*
+
+::: author-response
+**\[author response\]** We have adopted the suggested edit
+:::
+
+> ***Line 84:** Do you mean age-class? The term life-history implies knowledge
+> of previous behavioral efforts or occupancy of regions of interest.   Here you
+> are specifically interested in age-class.*
+
+::: author-response
+**\[author response\]** We have edited to use the term 'demographic'
+:::
+
+> ***Line 92:** Please help your reader understand why are you doing your
+> analysis and not offer a wide and jargon rich inventory of concepts that may
+> be considered.*
+
+> ***Line 93-94:** Please keep your introduction focused on establishing the
+> knowledge gap that you are seeking to fill. Please do not lead your reader to
+> the numerous other knowledge gaps that are not being addressed by your current
+> study.*
+
+::: author-response
+**\[author response\]** We have removed the sentence in question
+:::
+
+> ***Line 99:** Please use the term "hauled-out". Neither the biologger nor the
+> aerial survey is able to distinguish among the various seal behaviors that
+> result in them being hauled out and available for view by an aerial survey.*
+
+::: author-response
+**\[author response\]** noted, and the terms "hauled out", "to haul out", etc is
+used consistently throughout the manuscript
+:::
+
+> ***Line 114:** You have indicate that you would consider sea ice extent. Here
+> you introduce the concept of icescape. Please introduce this concept earlier
+> and indicate how you will incorporate this into your analysis.*
+
+::: author-response
+**\[author response\]** changed "icescape" to "sea-ice extent"
+:::
+
+> ***Line 117:** Please use an active voice for clarity.*
+
+::: author-response
+**\[author response\]** This sentence has been changed to:
+
+"For this study we used haul-out behavior data and location estimates from
+bio-loggers deployed on bearded, ribbon, and spotted seals in the Bering,
+Chukchi, and western Beaufort seas by multiple organizations as part of
+collaborative investigations from 2005 through 2021."
+:::
+
+> ***Line 120:** You summarize the years during which land-based studies applied
+> bio-loggers.\
+> Please do the same for the offshore deployments.*
+
+::: author-response
+**\[author response\]** This sentence now reads:
+
+"Ship-based capture events occurred during spring near the southern ice edge in
+the Bering Sea between 2005 and 2018."
+:::
+
+> ***Line 124:** Please provide the geographic context of your tag deployments
+> and data collection using a plot similar to that used by Jay et al. (2012:
+> 10.3354/meps10057 figure 2). Please consider using a tabulation that enables
+> readers to understand the geographic context of the deployments similar to
+> that used by Jay et al. 2012, table 1.*
+
+::: author-response
+**\[author response\]** We feel the spatial distribution of the actual
+transmitted data -- compared to the deployment location -- is most informative
+and relevant for the audience's understanding of how our data are distributed
+spatially and how well data represents the range of each species. We provide
+this visually in Figure 3 and adding an additional layer to that figure to show
+deployments would be an additional complication. To ensure the audience has a
+clear understanding of our study area, we have added an additional figure (now,
+Figure 1) with a map of the Bering and Chukchi sea region that indicates
+generally where deployments were initiated. In response to other reviewer
+comments this figure also indicates the spatial range of aerial survey effort to
+date.
+:::
+
+> ***Line 126:** Please use active voice for all actions that you took in your
+> data collection, preparation and analysis.*
+
+::: author-response
+**\[author response\]** Noted and addressed
+:::
+
+> ***Line 129-135:** Please move this to the discussion. This is a summary of
+> your data findings, not a description of your methods.*
+
+::: author-response
+**\[author response\]** We can see the reviewer's point. However, we do not feel
+this topic is a summary of our data findings in this paper. Instead, our view is
+that this information provides the context and rationale for our methodological
+choice regarding bio-logger type and attachment methods. It is also important
+regarding the analytic methods -- preference for flipper tag haul-out data over
+those from a tag adhered to the dorsal/head. If we were to move these important
+points to the discussion, we worry those points would be left disconnected.
+:::
+
+> ***Line 136:** This is a discussion of your methods. This is not your methods.
+> Please state how the data was collected in your Methods section and discuss
+> how data collection have been uncertain or biased in your discussion section.*
+
+> ***Line 141-143:** Please move to your discussion.*
+
+::: author-response
+**\[author response\]** We appreciate this suggestion from the reviewer and we
+have moved large portions of this paragraph to the discussion. However, some
+information regarding age/sex class determination is left here so the reader has
+context for Table 1.
+:::
+
+> ***Line 144:** Please indicate how this was determined during data
+> collection.*
+
+::: author-response
+**\[author response\]** We have edited this sentence some to clearly communicate
+that field determination of reproductive status (and, thus ideal delineation of
+sub-adult and adult age class) was not possible.
+:::
+
+> ***Line 147-148:** Please allow your readers the opportunity to understand the
+> geographic context of these deployments through use of symbols that maybe used
+> to cross-reference the deployment locations in a map that indicates deployment
+> locations along with filtered movement tracks.*
+
+::: author-response
+**\[author response\]** As previously addressed, there are now two figures
+available that provide geographic context of the deployments. Figure 3 shows the
+geographic distribution of the data from the deployments. The paper is not
+presenting or discussing movement ecology and, therefore, we do not present
+filtered movement tracks. We keep the focus on haul-out behavior data.
+:::
+
+> ***Figure 1:** Please consider bar plot similar to that used by Jay et al.
+> (2012: 10.3354/meps10057 figure 3), replacing the region with the seal
+> species.*
+
+::: author-response
+**\[author response\]** This figure has been updated with this suggestion in
+mind
+:::
+
+> ***Line 151:** Please state clearly how you determined the end of a
+> deployment. Here you indicate various elements of the haulout chronology,
+> movement and dive chronology that may have been used, however not reader could
+> replicate your methods base don this text.*
+
+::: author-response
+**\[author response\]** We've added the following text to the paragraph:
+
+"For example, a data record that ends with several consecutive days (\~10+ days)
+of 100% dry observations and with locations indicating the tag was on land would
+be truncated to the final stretch of 100% dry observations. The vast majority of
+deployments end with the device detaching in the water and the deployment end
+date is obvious. There is no perfect algorithm for identifying deployment end
+dates and each deployment in question must be considered separately. While not
+perfect, we are confident our reliance on expert judgement and examination of
+multiple data streams provides the best option."
+:::
+
+> ***Line 152:** Deployment activity is known to disrupt normal pinniped
+> behavior. Did you censure some period of data collection during and after the
+> deployment to ensure that that disruptions from the deployment activity did
+> not bias your analysis?*
+
+::: author-response
+**\[author response\]** For these phocid species, we have no empirical data (or
+even anecdotal observational data) on how captures may or may not disrupt
+'normal' behavior. This is likely to be influenced by the capture method, how
+long the animal was restrained, whether the animal was with a dependent pup,
+whether the animal was molting, environmental variables such as wind and
+temperature, etc etc. Given all these unknowns, we have not applied a censure to
+the beginning of our deployment data. We can't 100% ensure this choice doesn't
+result in some level of bias. However, given the large sample size and duration
+of deployments we expect any bias imposed is negligible.
+:::
+
+> ***Line 154:** This is a result. Please indicate the method that you used to
+> distinguish "plausible" from "implausible" telemetered seal behavior. In your
+> Results section, you may indicate how method was able to identify occasions of
+> implausible seal behavior and any patterns that arose relative to tag model or
+> attachment.*
+
+::: author-response
+**\[author response\]** This sentence has been moved to the results section.
+Additionally, we've provided a brief explanation of implausible along with a
+reference for more details. For these devices, the percent-dry timeline reported
+100% dry for several weeks followed by an additional period of time that was
+more typical of expected bearded seal behavior. During the extended dry time the
+locations indicated movement of the tag that would not be simply drifting ice.
+We also observed increasing transmission rates. The working hypothesis (i.e.
+unconfirmed guess) is that the wet/dry sensor surface became obscured by some
+corrosive element such that when in the water conductivity was prevented and,
+thus, recorded as dry.
+:::
+
+> ***Line 156-164:** Please move to the Results section. Please move the
+> discussion of how molt timing affects termination of tag deployments to the
+> discussion section.*
+
+::: author-response
+**\[author response\]** This figure has been moved to the results section along
+with additional descriptive text. We have left the discussion regarding molt
+timing and termination of the data record here to better communicate the point
+to the reader and prevent an isolated mention in the discussion that has no
+anchor.
+:::
+
+> ***Line 169-170:** Thus, the a successful transmission of data was required at
+> no greater than 48 h intervals.*
+
+::: author-response
+**\[author response\]** We're not sure how to interpret this comment. The main
+point of the sentence is to explain the rationale/benefits of transmitting the
+limited selection of percent dry values. We have expanded the text to provide
+more details regarding the caching of messages and data transmission.
+:::
+
+> ***Line 174:** Do you mean "atmospheric" magnetic interference.\
+> Presumably "extra-terrestrial atmospheric" events (such as events on Venus or
+> Mars) played no role in the transmission of the data signal to the Argos
+> receivers in orbit around Earth.*
+
+::: author-response
+**\[author response\]** We've edited to 'atmospheric interference'
+:::
+
+> ***Line 174-175:** This note belongs in the Discussion, not the Results.*
+
+::: author-response
+**\[author response\]** We feel this note is important to acknowledge in the
+methods because it speaks to the rationale for our methodological choices
+(bio-logger type, programming choices, analytic choices).
+:::
+
+> ***Figure 3:** Do you mean that each cell "encompasses" and area of 50 km\^2?*
+
+::: author-response
+**\[author response\]** We have edited to the reviewer's suggested word
+'encompasses'
+:::
+
+> ***Line 197:** Please use the active voice.*
+
+::: author-response
+**\[author response\]** Thank you for catching this. We have edited this
+sentence to active voice
+:::
+
+> ***Line 198-199:** For most tags, your daily locations are from the Argos
+> system, not from your data loggers. However, you included some FastLoc tag
+> deployments. Please re-write for clarity of what these location are.*
+
+::: author-response
+**\[author response\]** The previous paragraph describes how we determined daily
+locations. We see the reviewers point re: the data not technically coming from
+our data loggers. We have edited the sentence for additional clarity.
+:::
+
+> ***Line 199:** What is a "key" weather variable? Please write for clarity.*
+
+::: author-response
+**\[author response\]** We've edited this sentence and removed the word 'key'
+:::
+
+> ***Line 203:** This is a procedural detail. Other readers may replicate your
+> method without needing to do this. Please omit this detail.*
+
+> ***Line 207-208:** Readers can replicate your methods without the details on
+> converting the NARR wind vectors into wind speed.*
+
+::: author-response
+**\[author response\]** We're not sure why the reviewer would recommend omitting
+a 'procedural detail' as part of our methods. We feel it is important to clearly
+communicate our procedure for processing the large NARR data set and that we
+used the original grid size of 32km. Regarding the calculation of wind vectors,
+we include this detail because many readers, like us initially, may not be well
+versed in how wind vectors components are converted to wind speed.
+:::
+
+> ***Line 210:** Please use an active voice: "For all seal species we considered
+> the following variables when modeling the hourly haulout behavior..."*
+
+::: author-response
+**\[author response\]** We have adopted the reviewer's suggestion
+:::
+
+> ***Line 224:** Using the term "major focus" implies that there may be numerous
+> minor foci. Can you not state that this is the goal of the study? Ancillary
+> natural history insights can be discussed incidental to this, but are not
+> driving the research. The statutory requirements of the MMPA and ESA are
+> driving your study. These Federal laws require robust methods to monitor
+> population status. Your study seeks to build this method. Discussion of
+> natural history belong in your Discussion section and not in the framing of
+> your study. Please help the reader focus on why the Federal government is
+> doing this study.*
+
+> *Understanding pinniped haulout behavior is essential to designing and
+> interpreting population estimation aerial surveys. Understanding how they use
+> sea ice during a time when sea ice availability is rapidly changing is also
+> important, but is ancillary to the paper's focus.*
+
+::: author-response
+**\[author response\]** We have removed the term 'major focus' and, as the
+reviewer suggests, simply state that this is the goal of the study. We have also
+added mention of the statutory requirements to paragraph 2 of the Introduction
+section and expanded the text to acknowledge the importance of understanding how
+seals use sea ice during this period of change but, ultimately, it's ancillary
+to the focus of this paper.
+
+As for providing the reader focus on why the Federal government is doing this
+study: this is a collaborative study across multiple organizations and the
+analysis/purpose is not limited to the Federal government. We've incorporated
+the reviewers suggestions to expand discussion of the statutory requirements of
+the MMPA and ESA but don't feel we need to single out the motivations for the
+Federal government.
+
+We have also added additional general representation of recent aerial survey
+effort to the new Figure 1. This should better communicate to the reader how the
+spatial distribution of our haul-out behavior overlaps with the species range
+and survey effort.
+:::
+
+> ***Line 227:** Seals can just as happily be on foraging trips within the pack
+> and marginal sea ice as in the open water, depending on the species.
+> Suggesting that foraging trips are associated with ice-free conditions is
+> misleading.*
+
+::: author-response
+**\[author response\]** We have removed 'e.g., foraging trips' from this
+sentence so as not to mislead the reader.
+:::
+
+> ***Line 229-230:** This is your primary reason for not including sea ice
+> geography in your analysis: you simply lacked geolocation of much of your
+> haulout behavior data.*
+>
+> *Please help the reader understand how coarse your tracking data was for the
+> flipper tagged animals and what proportion of each species was tracked with
+> these flipper tags. Please also help the reader understand how the tracking
+> data relates geographically to regions that may be subject to aerial survey
+> efforts (i.e. are your tracking data collected from across the regions that
+> may be surveyed during range-wide spring aerial surveys?).*
+
+::: author-response
+**\[author response\]** We have re-organized this paragraph to, hopefully,
+better communicate our choice not to explore sea-ice related covariates. As the
+reviewer suggests, we have limited geo-location data for in-water periods of our
+haul-out behavior data -- we know the seal was in the water but don't have any
+estimates of location when only a flipper tag is attached. By leading with this
+statement, we hope that communicates our primary rationale. But, the other
+rationales are also important and we still include them. We have also moved this
+section to the 'Discussion' in response to other reviewer comments.
+
+We have also added a figure 1 depicting a spatial representation of recent
+aerial survey effort (which reflects estimated species range for bearded,
+ribbon, and spotted seals in US waters). This should better communicate to the
+reader how the spatial distribution of our haul-out behavior overlaps with the
+species range and survey effort.
+:::
+
+> ***Line 229-230:** Please help the reader understand why you have not included
+> a basic metric of sea ice geography, such as distance from marginal ice edge
+> (from the NIC's daily Marginal Ice Zone charts), which is a metric that would
+> be available for all data collected during an aerial survey.*
+
+**\[author response\]** We have revised the text in this section to try to
+provide a clearer understanding of our reasoning. Also, note this has been moved
+to the Discussion section.
+
+The text now reads:
+
+Notably missing from our list of haul-out model explanatory variables is any
+spatial-temporal representation of sea ice concentration, area, or extent. This
+may seem counterintuitive when modeling the haul-out behavior of seal species
+with such a close association to sea ice; seals haul out in the presence of sea
+ice, and we could assess the local concentration of sea ice during these events
+(see Olnes et al., 2020). This, however, expands the scope of our analysis into
+the realm of habitat selection and many of our deployments consisted of a single
+device attached to the rear flipper of the seal which meant we only received
+locations when seals were hauled out on sea-ice, limiting our ability to fully
+evaluate fine-scale habitat preferences related to sea-ice. Insight into how
+seals use and interact with sea-ice during an extended period when the
+availability and characteristics of sea-ice is rapidly changing is important
+(Breed et al., 2018; Cameron et al., 2018) but ancillary to the focus of this
+analysis -- and, in the end, not possible given key limitations of our data.
+Additionally, our study was limited to the spring season when seal haul-out
+behaviors are strongly influenced by pupping, nursing, breeding behavior, and
+molt. These drivers are likely more influential on haul-out behavior than
+sea-ice concentration. Crawford et al. (2019) compared haul-out probability
+models for ringed seals and found those that only included season (and not
+sea-ice concentration) were the most parsimonious. For all of these reasons, we
+have elected not to use sea ice concentration *as a predictor for haul-out
+probability* in the present study.
+
+> ***Table 2:** It is a bit misleading to indicate that the NARR variables were
+> sourced from NARR alone. Their values were interpolated onto a geogrpahic
+> location that was widely variable in precision and that precision relates to
+> the both the tag attachment (glued on or flipper attached) and the seal
+> behavior (in water, hauled out).*
+>
+> *Indicating that your "Northing" variable was from the "Bio-logger" is also
+> misleading because your locations was determined by either the Doppler
+> inflection point time, satellite orbitography and a model of the Earth (the
+> Argos relocation method) or by reprocessing of GNSS signals that were logged
+> and then transmitted via the Argos system as a data message. Really, neither
+> of these were determined by the "Bio-logger", rather they were determined by a
+> very complex system of geolocation.*
+
+> *Your readers may be better served by not including this "Source" field, given
+> that you describe how you obtained or estimated these variable values in your
+> methods text. Offering an over-simplified "Source" in the table obscures your
+> actual methods.*
+
+::: author-response
+**\[author response\]** We appreciate the reviewer's thoughts on this and agree
+with that removing the 'Source' column better serves the readers.
+:::
+
+> ***Line 244:** Neither your telemetry data nor aerial surveys can distinguish
+> "basking" as a behavioral state. You are measuring "hauled out" behavior and
+> aerial surveys observe "hauled out" seals. I encourage you to use these terms
+> and not mix in ideas of "basking", "nursing", "breeding", "taking refuge from
+> marine predators" etc.*
+
+::: author-response
+**\[author response\]** As previously mentioned, we've addressed this and
+consistently use "hauled out" and not "basking"
+:::
+
+> ***Line 254:** It is nice that you have sufficient data to do this. However,
+> the reason for having separate models for each species is because you expect
+> different behaviors from each specifies and because you expect that aerial
+> efforts will be able to distinguish sea species and be able to apply an
+> availability correction factor for each species. Please correct me if I am
+> wrong, else, please keep your reader focused on the value that you are
+> bringing to the analysis here in the Methods section and the good fortune that
+> you have in the sample size, which should be noted in the Results and
+> Discussion section.*
+
+::: author-response
+**\[author response\]** We have rephrased this sentence to emphasize that we fit
+each species separately because a) we expected differing behaviors across
+species and b) fitting a single model was not possible with such a large data
+set (even with the advantages provided by the glmmLDTS package).
+:::
+
+> ***Line 263:** Please clarify what is intended by the notation "only -99% or
+> our observations".*
+
+::: author-response
+**\[author response\]** This is an error in the code that has been fixed.
+:::
+
+> ***Line 263:** Also, please consider using consistent terms for "behavior
+> records".  Perhaps it could be fair to term your telemetered haulout status as
+> an "observation", however, it seems more intuitive to reference this a
+> "record"*
+
+::: author-response
+**\[author response\]** We have made edits throughout the manuscript to use
+consistent terms for 'behavior records'
+:::
+
+> ***Line 263:** Please help your reader understand why you have not adopted use
+> of a classified variable for each telemetered behavior interval whereby it
+> could be either "wet" or "dry" based on a threshold proportion of readings
+> reported as "dry".  This has two advantages: (1) were this enabled through
+> processing on-board the tags, it would greatly increase your data compression
+> and collection; (2) it may enable greater analytical power in your modeling
+> effort.*
+
+::: author-response
+**\[author response\]** We provide fairly clear and detailed information on the
+haul-out behavior records, how they are recorded and transmitted in the methods
+section. We have further edited this to make sure it is clear that these are
+standard settings within the Wildlife Computers tag platform -- we do not have
+direct control over the details for on-board processing or transmission. As
+stated in the text, for this analysis, the linear predictor was modeled on the
+logit scale as a Bernoulli response where tags are either 'wet' or 'dry' for a
+given hour based on whether the tag was greater than 50% dry. This is a
+classified variable as suggested. The difference is that we conducted this
+classification post-transmission instead of on-board the tag. We feel the
+transmission of various percent-dry values for a given hour provide more
+flexibility in the types of analyses and insights that can be gained from
+deployments.
+:::
+
+> ***Line 265-272:** Please seek input from a competent biometrician. I am not
+> able to offer any guidance on this other than to muse why you are pushing to
+> estimate six parameters for a time of day covariate when your seals are not
+> known to keep track of time.*
+>
+> *It would be reasonable to assume that seals respond to insolation or the
+> angular height of the sun in its daily arc.  Please help your reader
+> understand why you have sought to model a complex representation of hourly
+> time when you could have pulled insolation from NARR or calculated sun angular
+> altitude (perhaps as a linear proportion of the day's maximum sun angular
+> altitude) from standard astronomical functions.*
+>
+> *Perhaps your motivation is to provide plots that appear intuitive with hours
+> on the y-axis, day of year on the x-axis and haulout proportion as a "heat
+> map".  However beautiful these plot are, I wonder if your goal for improving
+> precision and reducing bias when estimating availability during an aerial
+> survey would not be better served by  the alternative and simpler variables.*
+
+::: author-response
+**\[author response\]** We appreciate the suggestion and find the possibility of
+using insolation values from reanalysis products as a covariate intriguing. As
+the reviewer suggests, such an approach could provide a less complicated and
+more parsimonious model than the approach we have taken with the Fourier series
+as a cyclic representation of hour-of day. We have taken the time to do some
+additional analysis and methodological exploration and provide additional
+details in Supplement 2. Note, our initial exploration of this approach resulted
+in lower AIC values for the Fourier series approach presented in the analysis.
+While promising and worth even further exploration, we feel the approach taken
+in the analysis is the most appropriate because it distinguishes daily bi-modal
+(e.g. crepuscular) patterns that might be important but would not be detected by
+insolation alone (i.e. insolation at dawn or dusk would be similar values but
+occur at different times of day that might be ecologically important).
+Additionally, as the reviewer points out, results from the analysis and haul-out
+predictions are more intuitive and applicable to aerial survey methods when
+using hour-of-day.
+:::
+
+> ***Line 278:** Please help your reader understand what is meant by your term
+> "horizontal shift".  It is clear that you have a graphical representation in
+> your mind that has not been shared with your reader. Please rewrite to avoid
+> "jargon".*
+
+> ***Line 285:** Please help your reader understand what could be "important"
+> about these terms. Please write for clarity, avoiding jargon.*
+
+> ***Figure 4:** Please use standard conventions for plot titles.  Your title
+> deserves a statement in your Results or Discussion section.  It does not
+> follow the expectations for a publication figure title.*
+
+::: author-response
+**\[author response\]** We have removed plot titles and edited the figure
+captions to include the title information to be consistent with the journal
+styling and requirements. We've also revised many of the figure legends to
+better communicate the information to the reader and ensure if any figures are
+presented out of context (e.g. without the figure caption) in other venues the
+information is clear.
+:::
+
+> ***Figure 4:** Please scale your color ramp to enable better visualization of
+> the subject: limit the color ramp to the modeled values (which appear to be
+> from zero to \~0.5).*
+
+::: author-response
+**\[author response\]** We have adjusted the color ramp such that the pattern
+for bearded seals is more visible. We've also noted this change/difference in
+the figure caption so the reader is aware.
+:::
+
+> ***Figure 4:** Please switch to a color ramp that is suitable for readers with
+> color perception disabilities such as the viridis color ramps.*
+
+::: author-response
+**\[author response\]** The color ramp used has been updated to use palettes
+from the R package 'scico' have been tested and confirmed to be colorblind
+friendly and appropriately balanced for scientific interpretation. We initially
+used the viridis color palette for these plots but the 'scico' palette colors
+provided additional visual detail we feel is important.
+:::
+
+> ***Figure 4:** This is unclear. Your plot indicates a y-axis of local solar
+> hour which varies from 0 to 24. This is clearly not fixed at local noon.*
+
+::: author-response
+**\[author response\]** This was an error and has been fixed. We thank the
+reviewer for recognizing this and highlighting the mistake.
+:::
+
+> ***Line 323:** Please use standard English. "Ontongeny" is generally
+> understood to describe the physical development of an individual organism.
+> Here you are referencing the onset of of behaviors within the life of an
+> organism. It may benefit your readers to use a term that is more direct, such
+> as "development".*
+
+::: author-response
+**\[author response\]** We have replaced 'ontongeny' with 'development' as
+suggested
+:::
+
+> ***Line 326-327:** Given that Ribbon seals occupy a high latitude region
+> during this time and given that there is scarcely any twilight during this
+> season, please consider using a term other than "crepuscular".*
+
+::: author-response
+**\[author response\]** Subsequent model runs (with improved QA/QC on telemetry
+data) have reduced the indication of any crepuscular or bi-modal haul-out
+behavior of ribbon seals and we no longer feel it is worth mentioning in the
+paper so it has been removed.
+:::
+
+> ***Line 331-332:** This is a fair summary of your modeling efforts. However,
+> it raises the questions as to what these seals are responding to. Do they
+> sense air pressure and make a decision on their haulout behavior or are low
+> pressure conditions associated with low insolation and they are responding to
+> that?  Given that you can readily extract insolation from the NARR, please
+> consider use of insolation as a covariate that may more directly relate to
+> seal behavior.*
+
+::: author-response
+**\[author response\]** See previous responses regarding the potential use of
+'insolation' from NARR or other reanalysis products.
+:::
+
+> ***Figure 5:** Please use standard figure titling and not use a statement that
+> should below in a PowerPoint slide or in your Results and Discussion section.*
+>
+> ***Figure 6:** Please use standard conventions for plot titles. Your title
+> deserves a statement in your Results or Discussion section. It does not follow
+> the expectations for a publication figure title.*
+
+::: author-response
+**\[author response\]** See previous response regarding our choice in plot
+titles and subsequent edits
+:::
+
+> ***Figure 8:** Please label your plots using standard capitalization and
+> words, instead of all capitalized abbreviations.*
+
+::: author-response
+**\[author response\]** We have made edits based on this suggestion
+:::
+
+> ***Line 360-362:** This belongs in the discussion, not results.*
+
+::: author-response
+**\[author response\]** The suggestion to move the mention that there "were
+still some years where the pattern shown was informed by a small number of
+individuals that may not represent population-level patterns" to the discussion
+is noted and changes have been made.
+:::
+
+> ***Line 371-372:** Please indicate the season (or months of the year) in this
+> statement.*
+
+::: author-response
+**\[author response\]** Noted and edited to include mention of the spring season
+:::
+
+> ***Line 375-376:** Do you mean to state that "haulout behavior modeled from
+> telemetered haulout behavior records may represent population-level behavior
+> patterns."*
+
+::: author-response
+**\[author response\]** Noted and edited accordingly
+:::
+
+> ***Line 377-378:** Feltz and Fay (1966) offer (an amazingly cool) functional
+> explanation of the thermal constraints on hair follicle growth.  Whether seals
+> during specific study times are optimizing hair follicle growth is unknown.*
+
+::: author-response
+**\[author response\]** We have edited this statement for additional clarity
+:::
+
+> ***Line 418-419:** Yes, and you have had access to direct estimates of
+> insolation from the NARR.  Can you incorporate that and find a tighter model
+> of haulout behavior.  This would be an improvement for design and
+> interpretation of aerial survey efforts.*
+
+::: author-response
+**\[author response\]** See previous comments regarding the potential use of
+insolation values from reanalysis products
+:::
+
+> ***Line 420-421:** You may state this if you first offered an estimate of
+> haulout behavior and confidence intervals on that behavior state, then
+> compared that with your estimated haulout behavior modeled with the use of
+> co-variates. Once you perform this, you may state that inclusion of weather
+> co-variates improved haulout state estimates. However, you have not done this.
+> If you wish to state this, please do this.*
+
+::: author-response
+**\[author response\]** Here we simply state that 'our results highlight the
+importance of incorporating weather covariates' and that importance is indicated
+with the reported 'type III' F statistics for the weather covariate terms in the
+results section. We are clear in our methods that the use of pseudo-likelihoods
+in the analysis prevent us from conducting typical model selection with AIC or
+similar as suggested. We have moved a separate discussion of comparison with
+previous analysis results here to provide additional comparative context.
+:::
+
+> ***Line 425:** This term suggests some evaluation of a threshold above which
+> haulout behavior shifts. Please write for clarity and for what you have
+> presented in your results.*
+
+::: author-response
+**\[author response\]** We have edited this sentence for improved clarity
+:::
+
+> ***Line 455:** Please be clear as to why you anticipate greater unmodeled
+> heterogeneity of availability for Arctic seals? Here you have considered
+> Arctic seals, have you not? Or are you using a different definition of the
+> Arctic other than the ice bearing waters occupied by ice-associated seals?*
+
+::: author-response
+**\[author response\]** We have edited this statement to now read:
+
+The most challenging element in developing availability correction factors is
+with annual variability. It can be difficult to get a sufficient sample size to
+estimate year-specific correction factors, particularly because research teams
+would likely need to deploy bio-loggers on seals and conduct aerial surveys
+concurrently, requiring considerably more personnel and money. One possible
+suggestion is to include year as a random effect within models for aerial survey
+counts such that, without specific knowledge of any particular year, the
+among-year variance is included in the modeled standard errors. Regardless of
+the specific approach, future estimates of Arctic seal abundance will require
+specific consideration of annual variability and changes in the timing of peak
+haul-out behavior when estimating trends, as one will not know if moderate
+differences in abundance estimates are attributable to changes in abundance or
+changes in haul-out behavior.
+
+The interpreted emphasis on 'Arctic seals' was not intended. Instead, the key
+point is that there is likely unmodeled heterogeneity related to the seasonal
+distribution and annual timing of peak haul-out behavior. This is an
+acknowledgement that our model is not a complete picture or perfect
+representation of seal haul-out behavior. In an environment like the Arctic that
+is undergoing dramatic change and inter-annual variation in climate and sea-ice
+distribution, this is important to keep in mind.
+:::
+
+> ***Line 459-464:** Here you provide the discussion required to make the
+> statement that inclusion of weather and other covariates results in a
+> different estimate of haulout proportion. Can you extend this to indicate an
+> improvement in the confidence interval on this estimated proportion?*
+
+::: author-response
+**\[author response\]** Noted and this section has been moved to that discussion
+:::
+
+> ***Line 465-466:** Please be specific. Here you linked the telemetered haulout
+> behavior to available covariate data then modeled haulout behavior.*
+
+::: author-response
+**\[author response\]** Noted and additional specifics have been added to this
+statement
+:::
+
+> ***Line 467-473:** This can be stated in the introduction so that you can
+> clearly indicate the framing of your study. "We modeled availability from
+> telemetered haulout behavior records of seals that haulout on ice where they
+> may be viewed by aerial surveys (list the species considered).*
+
+::: author-response
+**\[author response\]** This section has been moved to the introduction.
+:::
+
+## Reviewer 2
+
+> *One suggestion I would share with the authors is the addition of a
+> limitations section in the discussion. The limitations were outlined
+> throughout the methods, but a succinct accounting of these limitations in the
+> discussion would allow readers who do not want to carefully dissect all of the
+> modeling in the methods to be able to better interpret the robustness of the
+> results and conclusions.*
+
+::: author-response
+**\[author response\]** We thank the reviewer for this question and, in response
+to this and other reviewer feedback, have moved much of the limitations outlined
+in the methods to the Discussion section and hope this provides a clearer
+picture to the reader regarding limits of our analysis.
+:::
+
+> *I still had one remaining question on why the authors couldn't run the models
+> with and without the sea ice concentration as a predictor. The comparative
+> results might be interesting (I understand why the correction factor might be
+> biased...but given that this is a baseline study, it would have been an
+> interesting comparison to see whether it was or wasn't a decent predictor for
+> the different seal species).*
+
+::: author-response
+**\[author response\]** We think we've addressed this in edits and comments to
+reviewer #1. We think the inclusion of sea ice as a predictor is better suited
+for a habitat use/habitat preference study and we hope to pursue that in future
+analyses. We have also emphasized that our reliance on flipper-mounted
+bio-loggers for a portion of our data limited our understanding of movement and
+use away from sea-ice.
+:::
+
+> *The authors need to explain more how they are attributing statistical
+> significance. For example, in lines 344-345, they ascribe strong influence of
+> temperature with a p-value of 0.064.\
+> \
+> Not to be one who is fixated on a p-value of 0.05 denoting significance, I was
+> a bit surprised to see the same authors, in lines 364-366, to state that there
+> is 'no indication that the observed trend is meaningful'for spotted seal adult
+> females having an R2 of 0.767, p=0.022. If the extent of sea ice explains
+> nearly 80% of the variance in peak haul-out probability, how is it that the
+> author's call this a 'trend'? This requires more explanation. As does the
+> statement in line 427-428.*
+
+::: author-response
+**\[author response\]** We appreciate the reviewer highlighting this confusion
+and apologize for it. These were typos or mis-coded values that snuck into the
+section. We have reviewed and revised all of them to ensure they are correct and
+that we are consistent in our attribution of significance. We have tried to be
+judicious in our use of the work 'significant'.
+:::
+
+> *I found 463-464 confusing. This is an important part of the discussion (using
+> your framework to assess previous results from another study), but it could be
+> more clearly written. The sentence, 'Applying models that ignore age, sex, and
+> year effects...under the current analysis framework' is very confusing and
+> doesn't seem to follow the argument of the paper easily. Could this be
+> reworded so that the full intent of the paragraph is communicated?*
+
+::: author-response
+**\[author response\]** Reviewer #1 also commented on this section and offered
+suggestions for editing. With both comments in mind, we have made edits to the
+text and hope this, now, more clearly communicates how our results compare with
+previous approaches.
+:::
+
+> *I appreciate the acknowledgement that it is difficult to know whether
+> differences in abundance estimates are attributable to changes in abundance or
+> changes in haul-out behavior and the potential proposed solution (lines
+> 450-458) Has anyone done a smaller-scale study that would address this
+> inherent problem?*
+
+::: author-response
+**\[author response\]** To our knowledge a smaller-scale study addressing this
+issue has not been done
+:::
+
+## Reviewer 3 (M. Carter)
+
+> *I have only a few minor comments, mostly where the text would benefit from
+> extra clarity:\
+> *
+>
+> ***L43:** Word missing? ...Bearing \[and\] Chukchi Seas...*\
+
+::: author-response
+**\[author response\]** noted and fixed
+:::
+
+> **L63:** It may be useful to highlight somewhere that matching seal haulout
+> behaviour to environmental conditions with any degree of certainty requires
+> location data as well as wet-dry data, and that modern bio-logging devices can
+> collect both data streams simultaneously.\
+
+::: author-response
+**\[author response\]** thank you for this suggestion and we have edited this
+paragraph to include mention regarding the ability of modern bio-logging devices
+to collect both behavioral and location data streams which allows inclusion of
+environmental covariates.
+:::
+
+> **L82-83:** All citations given here relate to ice-associated seals, but these
+> techniques are also relevant to seals that haul-out on land. Lonergan et al.
+> (2013) Aquatic Conservation: Marine and Freshwater Ecosystems 23: 135-144 is a
+> key example from non-polar regions.\
+
+::: author-response
+**\[author response\]** we have expanded the list of references to include
+Lonergan et al
+:::
+
+> **L110:** Clarify why meteorological factors affecting walruses may be
+> relevant to the study species.\
+
+::: author-response
+**\[author response\]** thank you for the suggestion. We've edited the sentence
+to, now, read:
+
+"Previously estimated availability correction factors accounted for variables
+such as time-of-day and day-of-year but did not investigate the impact of
+meteorological variables. Such variables have been shown to influence walrus
+haul-out behavior and we expect weather conditions to also influence seal
+haul-out behavior and including them within the model framework will benefit our
+estimates of seal availability during aerial surveys."
+:::
+
+> **L120-124:** A map of the study area with deployment areas indicated would be
+> useful for those readers not familiar with the local geography.\
+
+::: author-response
+**\[author response\]** Reviewer 1 had a similar suggestion and we now include
+such a figure.
+:::
+
+> **L126-128:** More information is required on the location data type (e.g. GPS
+> or ARGOS?) and data retrieval (e.g. archival loggers or ARGOS-relay?).\
+
+::: author-response
+**\[author response\]** we have added the following sentence:
+
+"All data were transmitted by the deployed instruments via the Argos satellite
+network and location data were either derived from Argos transmissions or
+transmitted FastLoc GPS data."
+:::
+
+> **L133-135:** Please clarify, were there any cases where only
+> head/back-mounted tags were deployed? If so, how did you deal with the
+> potential for false haul-out records due to prolonged surface activity?\
+
+::: author-response
+**\[author response\]** we've clarified the language in this paragraph so it's
+clear that deployments consisted of head/back tag only, flipper tag only, and
+combined. Examination of the haul-out records hasn't indicated there's a
+propensity for these tags to record extended dry periods when surface resting at
+sea for the head/back tags.
+:::
+
+> **L135:** At this stage you have not yet explained what type of data each
+> device collects, so we do not know what the hourly percent-dry observations
+> from the flipper tag were preferred to.\
+
+::: author-response
+**\[author response\]** thank you for noting this. we have moved the later
+paragraph (starting line 165) up so it is before this section.
+:::
+
+> **L139:** Which species?\
+
+::: author-response
+**\[author response\]** we have removed the 'for some species' from this
+sentence
+:::
+
+> **L136-144:** This could be clearer. I assume the "some species" part refers
+> only to pelage, but it appears at first read to refer to the whole list of
+> metrics. I would suggest re-wording this section to improve clarity regarding
+> which factors were used for which species and with what degree of certainty
+> age class could be determined.\
+
+::: author-response
+**\[author response\]** as noted in the previous response, we've removed the
+'for some species' and think this improves the clarity of this section.
+Unfortunately, we don't have any way to quantify a degree of certainty for age
+class determination across the various field teams responsible for field
+identification.
+:::
+
+> **L146:** How many YOY were advanced to subadult?\
+
+::: author-response
+**\[author response\]** there were 11 YOY advanced to subadult. We considered
+adding this into the results but struggled to find a place where the information
+fit and was relevant.
+:::
+
+> **L188:** On land as well as ice?\
+
+::: author-response
+**\[author response\]** we have edited this sentence to state 'also haul out on
+land'
+:::
+
+> **L194:** It is not clear to me if all tags for a given species were deployed
+> in the same region, or across multiple regions (a map of the study area with
+> deployment regions per species would help here). Given regional differences in
+> phenology mentioned in the Introduction (L52-53), did you consider whether
+> region should be included as a covariate?\
+
+::: author-response
+**\[author response\]** we have added a figure/map as suggested
+:::
+
+> **Figs 4, 6, 8:** How is that hour of the day is fixed at local solar noon if
+> predictions are shown for all hours? Also, is it possible to show uncertainty
+> (lower and upper CIs) for these figures, perhaps in Supplementary Materials?\
+
+::: author-response
+**\[author response\]** Reviewer 1 also noted the incorrect statement that hour
+of day was fixed at local solar noon and this has been corrected. We have taken
+the reviewer's suggestion and added supplemental materials with plots (this time
+fixed at solar noon) that indicated the lower/upper CIs.
+:::
+
+> **L316:** Use of "additionally" negates the need for "also".\
+
+::: author-response
+**\[author response\]** noted and removed 'also'
+:::
+
+> **L341:** Word missing? ...and \[spent\] more time out of the water...\
+
+::: author-response
+**\[author response\]** noted and we've made the suggested correction
+:::
+
+> **L387-390:** It is not clear what species was studied by Thometz et al, and
+> thus maybe a citation is needed for the information relating to ribbon and
+> spotted seals.\
+
+::: author-response
+**\[author response\]** we've added a clarification that the Thometz et al study
+and data presented was for bearded seals.
+:::
+
+> **L393:** Use "both species" instead of "all species" to avoid confusion.\
+
+::: author-response
+**\[author response\]** we've edited to specifically state 'ribbon and spotted
+seals' to avoid any confusion
+:::
+
+> \
+> The paper could benefit from a brief concluding paragraph summarising the
+> importance of the work in the context of climate change and population trends,
+> as outlined in the Introduction.
+
+::: author-response
+**\[author response\]** thank you for this suggestion. we've added a concluding
+paragraph that addresses this comment.
+:::
