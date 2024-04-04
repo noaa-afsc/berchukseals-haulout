@@ -1,9 +1,9 @@
 get_age_sex_colors <- function() {
   age_sex_colors <- c(
-    "ADULT.F" = "#E73F74",
-    "SUBADULT" = "#11A579",
-    "ADULT.M" = "#3969AC",
-    "ALL AGES" = "#F2B701"
+    "ADULT.F" = "#CC6677",
+    "SUBADULT" = "#117733",
+    "ADULT.M" = "#88CCEE",
+    "ALL AGES" = "#DDCC77"
   )
   return(age_sex_colors)
 }
