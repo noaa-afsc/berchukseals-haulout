@@ -1396,8 +1396,10 @@ peak_ho_df <- peak_ho_df %>%
   mutate(year_shape = if_else(as.numeric(paste(year)) < 2015,"a","b"))
 
 
-pal <- c(rcartocolor::carto_pal(12,'Bold')[1:11],
-         rcartocolor::carto_pal(12,'Antique')[1:3])
+# pal <- c(rcartocolor::carto_pal(12,'Bold')[1:11],
+#          rcartocolor::carto_pal(12,'Antique')[1:3])
+pal <- c("#A6CEE3","#3385BB","#84BF96","#6DBD57","#F3E587","#F57C7C","#E42622",
+         "#FBB268","#FE8D19","#DE9E83","#9D7BBA", "#977899","#7F9D55","#B15928")
 names(pal) <- as.character(sort(unique(peak_ho_df$year)))
 
 shapes <- c(rep(15,7), rep(19,7))

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.27)  28 MAR 2024 14:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.27)  4 APR 2024 14:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1318,7 +1318,7 @@ Here is how much of TeX's memory you used:
 pdfTeX warning (dest): name{s1} has been referenced but does not exist, replaced by a fixed one
 
 </Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Math.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Bold.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Italic.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Regular.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Regular.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Semibold.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-SemiboldIt.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>
-Output written on London_HauloutBehavior.pdf (45 pages, 7904749 bytes).
+Output written on London_HauloutBehavior.pdf (45 pages, 7918692 bytes).
 PDF statistics:
  666 PDF objects out of 1000 (max. 8388607)
  568 compressed objects within 6 object streams
