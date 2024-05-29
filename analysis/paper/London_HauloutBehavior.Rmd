@@ -310,17 +310,24 @@ nets and bio-loggers were attached during studies based in coastal communities
 or on research ships. Ship-based capture events occurred during spring near the
 southern ice edge in the Bering Sea between 2005 and 2018. Land-based capture
 events occurred between 2005 and 2020 from May to October, generally between the
-Alaska coastal communities of Scammon Bay in the Bering Sea, Utqiaġvik
-in the Chukchi Sea, and Nuiqsut in the Beaufort Sea (Supplemental
-Material, [S1](#s1)). Data from additional
-deployments along the Kamchatka peninsula in the western Bering Sea are also
-included. We refer readers to Figure \@ref(fig:deployplot) and the primary literature
-for detailed capture and bio-logger attachment methods (see also Supplemental
-Material, [S1](#s1)).
+Alaska coastal communities of Scammon Bay in the Bering Sea, Utqiaġvik in the
+Chukchi Sea, and Nuiqsut in the Beaufort Sea (Supplemental Material, [S1](#s1)).
+Data from additional deployments along the Kamchatka peninsula in the western
+Bering Sea are also included. We refer readers to Figure \@ref(fig:deployplot)
+and the primary literature for detailed capture and bio-logger attachment
+methods (see also Supplemental Material, [S1](#s1)). NOAA-led research was
+conducted under the authority of Marine Mammal Protection Act Research Permits
+Nos. 782-1676, 782-1765, 15126, and 19309 issued by the National Marine
+Fisheries Service, and Letters of Assurance of Compliance with Animal Welfare
+Act regulations, Nos. A/NW 2010-3 and A/NW 2016-1 from the Alaska Fisheries
+Science Center/Northwest Fisheries Science Center Institutional Animal Care and
+Use Committee (IACUC). ADF&G and NSB field work was covered by Research Permits
+Nos. 358-1585, 358-1787, 15324, and 20466 and by ADF&G IACUC permits Nos. 06-16,
+09-21, 2014-03, 2015-25, 2016-23, 0027-2017-27, 0027-2018-29, 0027-2019-041.
 
 (ref:deployMapCaption) **Initial bio-logger deployment areas for bearded, ribbon, and spotted seals in the study between 2005 and 2020 across multiple regions within the Bering, Chukchi, and western Beaufort seas.** \linebreak Solid regions shown for each species are minimum concave polygons buffered by 60 km for enhanced visibility. The larger, shaded region indicates the spatial extent of aerial survey effort to date in the Bering, Chukchi, and Beaufort seas. Deployments were initiated across a range of months but only haul-out data from 1 March to 15 July were included in the analysis. See Figure \@ref(fig:dataMap) for the spatial distribution of observed data used in the study and Supplemental Materials \@ref(tab:deploymentTable) for additional deployment details.
 
-```{r deployplot, include=TRUE, fig.asp = 0.4, fig.cap = "(ref:deployMapCaption)"}
+```{r deployplot, include=TRUE, fig.asp = 0.42, fig.cap = "(ref:deployMapCaption)"}
 targets::tar_load(deploy_details, store = here::here("_targets"))
 targets::tar_load(survey_area, store = here::here("_targets"))
 
@@ -376,7 +383,7 @@ p <- ggplot() +
   scale_fill_manual(values = species_colors,
                     aesthetics = "fill", 
                     name = "species") + 
-  labs(caption = "<span style = 'color: #A26E7C;'><span style = 'font-family: \"Font Awesome 6 Free Regular\";'>&#xf0c8;</span> spatial extent of aerial survey effort in US and Russian waters</span>") +
+  labs(caption = "<span style = 'color: #A26E7C;'><span style = 'font-family: \"Font Awesome 6 Free Regular\";'>&#xf0c8;</span> spatial extent of aerial survey effort in US and Russian waters</span><br />world land vector data from naturalearthdata.com") +
   theme(legend.position = "none",
         axis.title = element_blank(),
         strip.background = element_blank(),
@@ -928,7 +935,7 @@ ggplot() +
   ) +
   facet_grid( ~ species) +
   labs(
-    caption = "One hexagonal cell represents 50 km^2^"
+    caption = "One hexagonal cell represents 50 km^2^<br />world land vector data from naturalearthdata.com"
   ) +
   theme(
     legend.position = "bottom"
@@ -1832,18 +1839,9 @@ The findings and conclusions in the paper are those of the author(s) and do not
 necessarily represent the views of the National Marine Fisheries Service, NOAA.
 Any use of trade, product, or firm names does not imply an endorsement by the
 U.S. Government. Funding for this study was provided by the U.S. National
-Oceanic and Atmospheric Administration. The field work was conducted under the
-authority of Marine Mammal Protection Act Research Permits Nos. 782-1676,
-782-1765, 15126, and 19309 issued by the National Marine Fisheries Service, and
-Letters of Assurance of Compliance with Animal Welfare Act regulations, Nos.
-A/NW 2010-3 and A/NW 2016-1 from the Alaska Fisheries Science Center/Northwest
-Fisheries Science Center Institutional Animal Care and Use Committee (IACUC). ).
-Funding to ADF&G for tagging seals was provided by the Bureau of Ocean Energy
+Oceanic and Atmospheric Administration. Funding to ADF&G for tagging seals was provided by the Bureau of Ocean Energy
 Management (No. M13PC0015 for work in Kotzebue, Alaska in 2009) and the Office
-of Naval Research (No. N00014-16-1-3019). ADF&G and NSB field work was covered by
-Research Permits Nos. 358-1585, 358-1787, 15324, and 20466 and by ADF&G IACUC
-permits Nos. 06-16, 09-21, 2014-03, 2015-25, 2016-23, 0027-2017-27,
-0027-2018-29, 0027-2019-041.
+of Naval Research (No. N00014-16-1-3019).
 
 # References {-}
 
