@@ -1024,8 +1024,8 @@ instance of unrealistic values were censored from this analysis. In addition to
 a peak around local solar noon, the bearded seal model predicted additional
 haul-out activity around local midnight. In concert with the lower magnitude of
 haul-out probability, bearded seal haul-out behavior was also more protracted
-throughout the spring season compared to ribbon (Figure \@ref(fig:ribbonHOCal))
-and spotted seals (Figure \@ref(fig:spottedHOCal)). Overall, bearded seals were
+throughout the spring season compared to ribbon
+and spotted seals (see below). Overall, bearded seals were
 less likely to haul out and had a bi-modal distribution of haul-out probability
 across the day.
 
