@@ -137,6 +137,20 @@ knitr::opts_chunk$set(
   tab.topcaption = TRUE
 )
 
+make_plot_namer <- function(prefix="Figure-", fig_n=1L, width=2){
+  function(x){
+    x2 <- file.path(dirname(x), 
+                    paste0(prefix, 
+                           formatC(fig_n, width=width, flag="0"),
+                           ".", 
+                           tools::file_ext(x)))
+    fig_n <<- fig_n + 1L
+    if (file.rename(x, x2)) x2 else x
+  }
+}
+
+knitr::opts_chunk$set(fig.process = make_plot_namer(width=3))
+
 options(scipen = 3, digits = 3)
 
 theme_set(theme_minimal(base_family = 'Spline Sans',
