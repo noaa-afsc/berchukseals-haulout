@@ -1838,10 +1838,7 @@ Wildlife.
 The findings and conclusions in the paper are those of the author(s) and do not
 necessarily represent the views of the National Marine Fisheries Service, NOAA.
 Any use of trade, product, or firm names does not imply an endorsement by the
-U.S. Government. Funding for this study was provided by the U.S. National
-Oceanic and Atmospheric Administration. Funding to ADF&G for tagging seals was provided by the Bureau of Ocean Energy
-Management (No. M13PC0015 for work in Kotzebue, Alaska in 2009) and the Office
-of Naval Research (No. N00014-16-1-3019).
+U.S. Government. 
 
 # References {-}
 
