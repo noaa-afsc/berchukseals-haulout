@@ -1782,17 +1782,17 @@ project administration, writing: review and editing
 
 # Data Availability {-}
 
-This manuscript was developed as a reproducible research compendium. All data and
-code are available on GitHub (https://github.com/noaa-afsc/berchukseals-haulout) and
-major versions archived at Zenodo (https://doi.org/10.5281/zenodo.4638221).
-Original data sources for telemetry are archived
-at the United States Animal Telemetry Network, archived at Movebank, or
-associated with other published manuscripts (see supplemental 
-material \@ref(tab:deploymentTable)). Collated and cleaned data products
-needed to replicate the analysis along with the results of all model fits are 
-also available and versioned as an R package on 
-GitHub (https://github.com/noaa-afsc/berchuksealsHauloutFits) and archived at 
-Zenodo.
+This manuscript was developed as a reproducible research compendium and was
+originally published as a pre-print (https://doi.org/10.1101/2022.04.07.487572).
+All data and code are available on GitHub
+(https://github.com/noaa-afsc/berchukseals-haulout) and major versions archived
+at Zenodo (https://doi.org/10.5281/zenodo.4638221). Original data sources for
+telemetry are archived at the United States Animal Telemetry Network, archived
+at Movebank, or associated with other published manuscripts (see supplemental
+material \@ref(tab:deploymentTable)). Collated and cleaned data products needed
+to replicate the analysis along with the results of all model fits are also
+available and versioned as an R package on GitHub
+(https://github.com/noaa-afsc/berchuksealsHauloutFits) and archived at Zenodo.
 
 # Acknowledgments {-}
 
