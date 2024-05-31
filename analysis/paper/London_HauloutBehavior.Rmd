@@ -130,7 +130,7 @@ knitr::opts_chunk$set(
   echo = FALSE,
   include = FALSE,
   fig.path = "../figures/",
-  dpi = 600,
+  dpi = 500,
   fig.width = 6,
   fig.asp = 0.618,
   out.width = "100%",

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.30)  31 MAY 2024 10:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.30)  31 MAY 2024 11:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1146,11 +1146,11 @@ File: ../figures/Figure-001.png Graphic file (type png)
 Package pdftex.def Info: ../figures/Figure-001.png  used on input line 338.
 (pdftex.def)             Requested size: 415.12572pt x 174.36118pt.
 [4 <../figures/Figure-001.png>] [5]
-<../figures/Figure-002.png, id=136, 433.62pt x 267.8808pt>
+<../figures/Figure-002.png, id=136, 433.62pt x 267.97716pt>
 File: ../figures/Figure-002.png Graphic file (type png)
 <use ../figures/Figure-002.png>
 Package pdftex.def Info: ../figures/Figure-002.png  used on input line 516.
-(pdftex.def)             Requested size: 415.12572pt x 256.46776pt.
+(pdftex.def)             Requested size: 415.12572pt x 256.56pt.
 [6] [7 <../figures/Figure-002.png>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 640.
@@ -1160,16 +1160,16 @@ File: ../figures/Figure-003.png Graphic file (type png)
 <use ../figures/Figure-003.png>
 Package pdftex.def Info: ../figures/Figure-003.png  used on input line 826.
 (pdftex.def)             Requested size: 415.12572pt x 207.57281pt.
-<../figures/Figure-004.png, id=172, 433.62pt x 267.8808pt>
+<../figures/Figure-004.png, id=172, 433.62pt x 267.97716pt>
 File: ../figures/Figure-004.png Graphic file (type png)
 <use ../figures/Figure-004.png>
 Package pdftex.def Info: ../figures/Figure-004.png  used on input line 832.
-(pdftex.def)             Requested size: 415.12572pt x 256.46776pt.
-<../figures/Figure-005.png, id=175, 433.62pt x 267.8808pt>
+(pdftex.def)             Requested size: 415.12572pt x 256.56pt.
+<../figures/Figure-005.png, id=175, 433.62pt x 267.97716pt>
 File: ../figures/Figure-005.png Graphic file (type png)
 <use ../figures/Figure-005.png>
 Package pdftex.def Info: ../figures/Figure-005.png  used on input line 866.
-(pdftex.def)             Requested size: 415.12572pt x 256.46776pt.
+(pdftex.def)             Requested size: 415.12572pt x 256.56pt.
 [11]
 <../figures/Figure-006.png, id=185, 433.62pt x 433.62pt>
 File: ../figures/Figure-006.png Graphic file (type png)
@@ -1243,16 +1243,16 @@ File: ../figures/Figure-013.png Graphic file (type png)
 <use ../figures/Figure-013.png>
 Package pdftex.def Info: ../figures/Figure-013.png  used on input line 1924.
 (pdftex.def)             Requested size: 415.12572pt x 207.57281pt.
-<../figures/Figure-014.png, id=468, 433.62pt x 303.41354pt>
+<../figures/Figure-014.png, id=468, 433.62pt x 303.38947pt>
 File: ../figures/Figure-014.png Graphic file (type png)
 <use ../figures/Figure-014.png>
 Package pdftex.def Info: ../figures/Figure-014.png  used on input line 1930.
-(pdftex.def)             Requested size: 415.12572pt x 290.48663pt.
-<../figures/Figure-015.png, id=469, 433.62pt x 303.41354pt>
+(pdftex.def)             Requested size: 415.12572pt x 290.46358pt.
+<../figures/Figure-015.png, id=469, 433.62pt x 303.38947pt>
 File: ../figures/Figure-015.png Graphic file (type png)
 <use ../figures/Figure-015.png>
 Package pdftex.def Info: ../figures/Figure-015.png  used on input line 1936.
-(pdftex.def)             Requested size: 415.12572pt x 290.48663pt.
+(pdftex.def)             Requested size: 415.12572pt x 290.46358pt.
 [35
 
 
@@ -1290,11 +1290,11 @@ File: ../figures/Figure-017.png Graphic file (type png)
 <use ../figures/Figure-017.png>
 Package pdftex.def Info: ../figures/Figure-017.png  used on input line 2228.
 (pdftex.def)             Requested size: 415.12572pt x 373.63109pt.
-<../figures/Figure-018.png, id=537, 433.62pt x 303.41354pt>
+<../figures/Figure-018.png, id=537, 433.62pt x 303.38947pt>
 File: ../figures/Figure-018.png Graphic file (type png)
 <use ../figures/Figure-018.png>
 Package pdftex.def Info: ../figures/Figure-018.png  used on input line 2234.
-(pdftex.def)             Requested size: 415.12572pt x 290.48663pt.
+(pdftex.def)             Requested size: 415.12572pt x 290.46358pt.
 [44] [45 <../figures/Figure-017.png>] [46 <../figures/Figure-018.png>] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (./London_HauloutBehavior.aux)
@@ -1320,7 +1320,7 @@ Here is how much of TeX's memory you used:
  36 hyphenation exceptions out of 8191
  94i,11n,107p,2840b,715s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Math.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Bold.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Italic.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Regular.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Regular.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Semibold.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-SemiboldIt.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>
-Output written on London_HauloutBehavior.pdf (46 pages, 7864459 bytes).
+Output written on London_HauloutBehavior.pdf (46 pages, 6521729 bytes).
 PDF statistics:
  647 PDF objects out of 1000 (max. 8388607)
  548 compressed objects within 6 object streams
