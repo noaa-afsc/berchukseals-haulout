@@ -71,7 +71,8 @@ create_source_data <- function(locs_sf, timeline_data) {
                      dbname = 'pep', 
                      host = Sys.getenv('PEP_PG_IP'),
                      user = keyringr::get_kc_account("pgpep_sa"),
-                     password = keyringr::decrypt_kc_pw("pgpep_sa"))
+                     password = keyringr::decrypt_kc_pw("pgpep_sa")
+                     )
   },
   error = function(cond) {
     print("Unable to connect to Database.")

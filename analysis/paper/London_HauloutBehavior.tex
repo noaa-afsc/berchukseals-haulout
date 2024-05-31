@@ -74,29 +74,35 @@
 \makesavenoteenv{longtable}
 
 % Pandoc citation processing
+%From Pandoc 3.1.8
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
 \newlength{\csllabelwidth}
 \setlength{\csllabelwidth}{3em}
-\newlength{\cslentryspacingunit} % times entry-spacing
-\setlength{\cslentryspacingunit}{\parskip}
-% for Pandoc 2.8 to 2.10.1
-\newenvironment{cslreferences}%
-  {}%
-  {\par}
-% For Pandoc 2.11+
-\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
- {% don't indent paragraphs
-  \setlength{\parindent}{0pt}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
   % turn on hanging indent if param 1 is 1
   \ifodd #1
-  \let\oldpar\par
-  \def\par{\hangindent=\cslhangindent\oldpar}
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
   \fi
   % set entry spacing
-  \setlength{\parskip}{#2\cslentryspacingunit}
- }%
- {}
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
 \usepackage{calc}
 \newcommand{\CSLBlock}[1]{#1\hfill\break}
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
@@ -180,8 +186,7 @@ Ice-associated seals rely on sea ice for a variety of activities, including pupp
 \maketitle
 \thispagestyle{empty}
 
-\hypertarget{introduction}{%
-\section*{Introduction}\label{introduction}}
+\section*{Introduction}\label{introduction}
 \addcontentsline{toc}{section}{Introduction}
 
 Global climate disruption is causing considerable reduction in Arctic sea
@@ -298,12 +303,10 @@ timing and possible linkage to changes in the extent of seasonal sea ice between
 includes the influence of weather variability, and investigates the
 potential impact of changing sea-ice extent on the behavior of these species.
 
-\hypertarget{methods}{%
-\section*{Methods}\label{methods}}
+\section*{Methods}\label{methods}
 \addcontentsline{toc}{section}{Methods}
 
-\hypertarget{data-collection}{%
-\subsection*{Data collection}\label{data-collection}}
+\subsection*{Data collection}\label{data-collection}
 \addcontentsline{toc}{subsection}{Data collection}
 
 For this study we used haul-out behavior data and location estimates from
@@ -314,18 +317,25 @@ nets and bio-loggers were attached during studies based in coastal communities
 or on research ships. Ship-based capture events occurred during spring near the
 southern ice edge in the Bering Sea between 2005 and 2018. Land-based capture
 events occurred between 2005 and 2020 from May to October, generally between the
-Alaska coastal communities of Scammon Bay in the Bering Sea, Utqiaġvik
-in the Chukchi Sea, and Nuiqsut in the Beaufort Sea (Supplemental
-Material, \protect\hyperlink{s1}{S1}). Data from additional
-deployments along the Kamchatka peninsula in the western Bering Sea are also
-included. We refer readers to Figure \ref{fig:deployplot} and the primary literature
-for detailed capture and bio-logger attachment methods (see also Supplemental
-Material, \protect\hyperlink{s1}{S1}).
+Alaska coastal communities of Scammon Bay in the Bering Sea, Utqiaġvik in the
+Chukchi Sea, and Nuiqsut in the Beaufort Sea (Supplemental Material, \hyperref[s1]{S1}).
+Data from additional deployments along the Kamchatka peninsula in the western
+Bering Sea are also included. We refer readers to Figure \ref{fig:deployplot}
+and the primary literature for detailed capture and bio-logger attachment
+methods (see also Supplemental Material, \hyperref[s1]{S1}). NOAA-led research was
+conducted under the authority of Marine Mammal Protection Act Research Permits
+Nos. 782-1676, 782-1765, 15126, and 19309 issued by the National Marine
+Fisheries Service, and Letters of Assurance of Compliance with Animal Welfare
+Act regulations, Nos. A/NW 2010-3 and A/NW 2016-1 from the Alaska Fisheries
+Science Center/Northwest Fisheries Science Center Institutional Animal Care and
+Use Committee (IACUC). ADF\&G and NSB field work was covered by Research Permits
+Nos. 358-1585, 358-1787, 15324, and 20466 and by ADF\&G IACUC permits Nos. 06-16,
+09-21, 2014-03, 2015-25, 2016-23, 0027-2017-27, 0027-2018-29, 0027-2019-041.
 
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/deployplot-1} \caption{\textbf{Initial bio-logger deployment areas for bearded, ribbon, and spotted seals in the study between 2005 and 2020 across multiple regions within the Bering, Chukchi, and western Beaufort seas.} \linebreak Solid regions shown for each species are minimum concave polygons buffered by 60 km for enhanced visibility. The larger, shaded region indicates the spatial extent of aerial survey effort to date in the Bering, Chukchi, and Beaufort seas. Deployments were initiated across a range of months but only haul-out data from 1 March to 15 July were included in the analysis. See Figure \ref{fig:dataMap} for the spatial distribution of observed data used in the study and Supplemental Materials \ref{tab:deploymentTable} for additional deployment details.}\label{fig:deployplot}
+\includegraphics[width=1\linewidth]{../figures/Figure-001} \caption{\textbf{Initial bio-logger deployment areas for bearded, ribbon, and spotted seals in the study between 2005 and 2020 across multiple regions within the Bering, Chukchi, and western Beaufort seas.} \linebreak Solid regions shown for each species are minimum concave polygons buffered by 60 km for enhanced visibility. The larger, shaded region indicates the spatial extent of aerial survey effort to date in the Bering, Chukchi, and Beaufort seas. Deployments were initiated across a range of months but only haul-out data from 1 March to 15 July were included in the analysis. See Figure \ref{fig:dataMap} for the spatial distribution of observed data used in the study and Supplemental Materials \ref{tab:deploymentTable} for additional deployment details.}\label{fig:deployplot}
 \end{figure}
 
 We created a subset of haul-out behavior data from
@@ -335,7 +345,7 @@ We created a subset of haul-out behavior data from
 105 spotted seals
 to include only records from 1 March to 15 July between
 2005 and
-2021. Bio-loggers were of the
+2022. Bio-loggers were of the
 `SPLASH' or `SPOT' family of tags developed by Wildlife Computers (Redmond,
 Washington, USA). Deployments consisted of either a single `SPLASH' device, a
 single `SPOT' device, or both types. Devices were either adhered to the hair on
@@ -358,12 +368,12 @@ Sex and age class (non-dependent \emph{young-of-the-year}, sexually immature
 various combinations of length, claw growth ridges (McLaren, 1958), and pelage
 characteristics. Seals determined to be less than one year were classified as
 young-of-the-year. For those bio-loggers deployed on young-of-the-year and
-transmitting into the next year, the age class was advanced to subadult on 1
-March of the following year -- the assumed anniversary of their birth. Subadults
-are those seals likely greater than one year of age but less than four years.
-Adults are individuals that are likely older than four years. Table
-\ref{tab:tblDeploy} provides a summary of these deployments and data received
-from them.
+transmitting into the next year (6 ribbon seals; 3 spotted seals), the age class
+was advanced to subadult on 1 March of the following year -- the assumed
+anniversary of their birth. Subadults are those seals likely greater than one
+year of age but less than four years. Adults are individuals that are likely
+older than four years. Table \ref{tab:tblDeploy} provides a summary of these
+deployments and data received from them.
 
 
 
@@ -371,7 +381,7 @@ from them.
 
 \global\setlength{\Oldtabcolsep}{\tabcolsep}
 
-\setlength{\tabcolsep}{0pt}
+\setlength{\tabcolsep}{2pt}
 
 \renewcommand*{\arraystretch}{1.5}
 
@@ -433,7 +443,7 @@ from them.
 
 
 
-\multicolumn{1}{>{\raggedright}m{\dimexpr 0.9in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Spotted\ seal}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.4in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{F}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.35in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{23\ (21,588\ seal\ hours)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.35in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{21\ (19,559\ seal\ hours)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.35in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{11\ (13,417\ seal\ hours)}}} \\
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.9in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{Spotted\ seal}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.4in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{F}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.35in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{23\ (21,970\ seal\ hours)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.35in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{21\ (19,559\ seal\ hours)}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.35in+0\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{9}{9}\selectfont{11\ (13,417\ seal\ hours)}}} \\
 
 
 
@@ -503,7 +513,7 @@ prior to analysis.
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/examplePlot-1} \caption{\textbf{Example percent-dry actogram from bio-logger data}
+\includegraphics[width=1\linewidth]{../figures/Figure-002} \caption{\textbf{Example percent-dry actogram from bio-logger data}
 \linebreak Haul-out behavior observations recorded by a bio-logger deployed on a
 ribbon seal over two years during the months of March, April, and May. This
 actogram plot represents the transmitted hourly percent-dry values. Not all data
@@ -537,8 +547,7 @@ land was outside the scope of this study. Additionally, any daily locations on
 land were likely more reflective of coordinate averaging and measurement error,
 rather than actual use of coastal features.
 
-\hypertarget{explanatory-variables}{%
-\subsection*{Explanatory variables}\label{explanatory-variables}}
+\subsection*{Explanatory variables}\label{explanatory-variables}
 \addcontentsline{toc}{subsection}{Explanatory variables}
 
 In addition to sex and age class, we analyzed variables that might help explain
@@ -584,7 +593,7 @@ in the Bering Sea (Conn et al., 2014).
 
 \global\setlength{\Oldtabcolsep}{\tabcolsep}
 
-\setlength{\tabcolsep}{0pt}
+\setlength{\tabcolsep}{2pt}
 
 \renewcommand*{\arraystretch}{1.5}
 
@@ -676,8 +685,7 @@ in the Bering Sea (Conn et al., 2014).
 
 \renewcommand*{\arraystretch}{1}
 
-\hypertarget{haul-out-modeling}{%
-\subsection*{Haul-out modeling}\label{haul-out-modeling}}
+\subsection*{Haul-out modeling}\label{haul-out-modeling}
 \addcontentsline{toc}{subsection}{Haul-out modeling}
 
 Haul-out records for seals are often characterized by sequential hours spent
@@ -710,7 +718,7 @@ models, we assumed an hourly Bernoulli response (a binary 0-1 response dependent
 upon whether the tag was greater than 50\% dry for a given hour) where the linear
 predictor was modeled on the logit scale. This is
 consistent with previous approaches (London et al., 2012; Ver Hoef et al., 2014) and only
-6.995\% of our
+7.005\% of our
 observations fell between 10\% and 90\% hourly percent-dry.
 
 We followed Ver Hoef et al. (2014) in using linear, quadratic, and cubic
@@ -793,8 +801,7 @@ built on the results of the haul-out model, was used to evaluate the relationshi
 between the annual computed peak haul-out day (as the response) with the
 maximum sea-ice extent (as the predictor).
 
-\hypertarget{results}{%
-\section*{Results}\label{results}}
+\section*{Results}\label{results}
 \addcontentsline{toc}{section}{Results}
 
 Figure \ref{fig:dataMap} shows the spatial distribution of weighted locations
@@ -816,13 +823,13 @@ seals were concentrated in March (Figure \ref{fig:dataCal}).
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/dataMap-1} \caption{\textbf{Spatial distribution of haul-out records from 1 March through July 15 for bearded, ribbon, and spotted seal.} \linebreak Linking location estimates with haul-out records in space and time allows for inclusion of weather covariates in the final model. For this visualization, data were collated across all years between 2005 and 2020 and each hexagonal cell represents an area of 50 km\textsuperscript{2}}\label{fig:dataMap}
+\includegraphics[width=1\linewidth]{../figures/Figure-003} \caption{\textbf{Spatial distribution of haul-out records from 1 March through July 15 for bearded, ribbon, and spotted seal.} \linebreak Linking location estimates with haul-out records in space and time allows for inclusion of weather covariates in the final model. For this visualization, data were collated across all years between 2005 and 2020 and each hexagonal cell represents an area of 50 km\textsuperscript{2}}\label{fig:dataMap}
 \end{figure}
 
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/dataCal-1} \caption{\textbf{Seasonal distribution of haul-out behavior observations by species} \linebreak Distribution of hourly percent-dry bio-logger data from 1 March to 15 July for each species. Data are grouped by day-of-year and presented in seal-hours collated across all years between 2005 and 2020. Seal-hours of data are represented as a color gradient and bar height. The higher amount of data from May and June in ribbon and spotted seals coincides with peak molting when seals (and their attached bio-loggers) are more likely hauled out. Additionally, many bio-logger deployments started in April and May. The overall reduced quantity of observations from bearded seals is reflective of the lower number of bio-logger deployments in the study and the fact that the majority of deployments on bearded seals occurred in August and September; therefore most bio-loggers deployed had exhausted their batteries.}\label{fig:dataCal}
+\includegraphics[width=1\linewidth]{../figures/Figure-004} \caption{\textbf{Seasonal distribution of haul-out behavior observations by species} \linebreak Distribution of hourly percent-dry bio-logger data from 1 March to 15 July for each species. Data are grouped by day-of-year and presented in seal-hours collated across all years between 2005 and 2020. Seal-hours of data are represented as a color gradient and bar height. The higher amount of data from May and June in ribbon and spotted seals coincides with peak molting when seals (and their attached bio-loggers) are more likely hauled out. Additionally, many bio-logger deployments started in April and May. The overall reduced quantity of observations from bearded seals is reflective of the lower number of bio-logger deployments in the study and the fact that the majority of deployments on bearded seals occurred in August and September; therefore most bio-loggers deployed had exhausted their batteries.}\label{fig:dataCal}
 \end{figure}
 
 Across all three seal species, generally, models omitting year effects suggested
@@ -834,8 +841,7 @@ April, reaching a peak in May and early June before declining again. Diurnal
 patterns were present, with maximum haul-out behavior centered around local
 solar noon.
 
-\hypertarget{bearded-seals}{%
-\subsection*{Bearded Seals}\label{bearded-seals}}
+\subsection*{Bearded Seals}\label{bearded-seals}
 \addcontentsline{toc}{subsection}{Bearded Seals}
 
 Age and sex class were not included in the model for bearded seals due to our
@@ -849,15 +855,15 @@ instance of unrealistic values were censored from this analysis. In addition to
 a peak around local solar noon, the bearded seal model predicted additional
 haul-out activity around local midnight. In concert with the lower magnitude of
 haul-out probability, bearded seal haul-out behavior was also more protracted
-throughout the spring season compared to ribbon (Figure \ref{fig:ribbonHOCal})
-and spotted seals (Figure \ref{fig:spottedHOCal}). Overall, bearded seals were
+throughout the spring season compared to ribbon
+and spotted seals (see below). Overall, bearded seals were
 less likely to haul out and had a bi-modal distribution of haul-out probability
 across the day.
 
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/beardedHOCal-1} \caption{\textbf{Bearded seal predicted haul-out probability} \linebreak Predicted hourly haul-out probability of bearded seals (all ages and sex classes) from 15 March to 30 June for all age and sex classes combined. Predictions in July and before 15 March were not included to avoid spurious model predictions at the edge of the data range. Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Note, our model predicts lower haul-out probability for bearded seals overall compared to ribbon and spotted seals and the color scales are not directly comparable.}\label{fig:beardedHOCal}
+\includegraphics[width=1\linewidth]{../figures/Figure-005} \caption{\textbf{Bearded seal predicted haul-out probability} \linebreak Predicted hourly haul-out probability of bearded seals (all ages and sex classes) from 15 March to 30 June for all age and sex classes combined. Predictions in July and before 15 March were not included to avoid spurious model predictions at the edge of the data range. Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Note, our model predicts lower haul-out probability for bearded seals overall compared to ribbon and spotted seals and the color scales are not directly comparable.}\label{fig:beardedHOCal}
 \end{figure}
 
 When exploring the influence of weather, bearded seal haul-out probability
@@ -885,11 +891,10 @@ was not a significant influence on haul-out probability
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/beardedHOwx-1} \caption{\textbf{Influence of weather covariates on bearded seal haul-out probability} \linebreak Marginal effects of temperature, wind, barometric pressure, and precipitation on the predicted haul-out probability of bearded seals combined across all age and sex classifications. Hour of the day was fixed at local solar noon and day-of-year fixed at 15 May. The other weather covariate values were predicted from a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. While the marginal effect of the covariate is continuous, points and vertical lines representing the 95\% confidence interval around the predicted haul-out probability are shown only at observed weather values to give an indication of how the observations are distributed across the range of weather values.}\label{fig:beardedHOwx}
+\includegraphics[width=1\linewidth]{../figures/Figure-006} \caption{\textbf{Influence of weather covariates on bearded seal haul-out probability} \linebreak Marginal effects of temperature, wind, barometric pressure, and precipitation on the predicted haul-out probability of bearded seals combined across all age and sex classifications. Hour of the day was fixed at local solar noon and day-of-year fixed at 15 May. The other weather covariate values were predicted from a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. While the marginal effect of the covariate is continuous, points and vertical lines representing the 95\% confidence interval around the predicted haul-out probability are shown only at observed weather values to give an indication of how the observations are distributed across the range of weather values.}\label{fig:beardedHOwx}
 \end{figure}
 
-\hypertarget{ribbon-seals}{%
-\subsection*{Ribbon Seals}\label{ribbon-seals}}
+\subsection*{Ribbon Seals}\label{ribbon-seals}
 \addcontentsline{toc}{subsection}{Ribbon Seals}
 
 Ribbon seals exhibited a pattern of gradually increasing haul-out probability in
@@ -908,7 +913,7 @@ compared to adult males and subadults.
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/ribbonHOCal-1} \caption{\textbf{Ribbon seal predicted haul-out probability} \linebreak Predicted hourly haul-out probability of ribbon seals from 15 March to 30 June for each age and sex class used in the model. Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Predictions for young of the year show their transition from newly weaned pups resting on the ice to more in-water activities. Predictions in July and before 15 March were not included to avoid spurious model predictions at the edge of the data range.}\label{fig:ribbonHOCal}
+\includegraphics[width=1\linewidth]{../figures/Figure-007} \caption{\textbf{Ribbon seal predicted haul-out probability} \linebreak Predicted hourly haul-out probability of ribbon seals from 15 March to 30 June for each age and sex class used in the model. Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Predictions for young of the year show their transition from newly weaned pups resting on the ice to more in-water activities. Predictions in July and before 15 March were not included to avoid spurious model predictions at the edge of the data range.}\label{fig:ribbonHOCal}
 \end{figure}
 
 The haul-out probability for ribbon seals was mostly influenced by
@@ -938,11 +943,10 @@ that subadults differ from adult males and females (Figure \ref{fig:ribbonHOwx})
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/ribbonHOwx-1} \caption{\textbf{Influence of weather covariates on ribbon seal haul-out probability} \linebreak Marginal effects of temperature, wind, barometric pressure, and precipitation on the predicted haul-out probability of ribbon seals within each age and sex classifications. Hour of the day was fixed at local solar noon and day-of-year fixed at 15 May. The other weather covariate values were predicted from a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. While the marginal effect of the covariate is continuous, points and vertical lines representing the 95\% confidence interval around the predicted haul-out probability are shown only at observed weather values to give an indication of how the observations are distributed across the range of weather values.}\label{fig:ribbonHOwx}
+\includegraphics[width=1\linewidth]{../figures/Figure-008} \caption{\textbf{Influence of weather covariates on ribbon seal haul-out probability} \linebreak Marginal effects of temperature, wind, barometric pressure, and precipitation on the predicted haul-out probability of ribbon seals within each age and sex classifications. Hour of the day was fixed at local solar noon and day-of-year fixed at 15 May. The other weather covariate values were predicted from a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. While the marginal effect of the covariate is continuous, points and vertical lines representing the 95\% confidence interval around the predicted haul-out probability are shown only at observed weather values to give an indication of how the observations are distributed across the range of weather values.}\label{fig:ribbonHOwx}
 \end{figure}
 
-\hypertarget{spotted-seals}{%
-\subsection*{Spotted Seals}\label{spotted-seals}}
+\subsection*{Spotted Seals}\label{spotted-seals}
 \addcontentsline{toc}{subsection}{Spotted Seals}
 
 Compared to ribbon seals, spotted seals showed a longer spring haul-out season
@@ -959,30 +963,30 @@ swimming, foraging) in May.
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/spottedHOCal-1} \caption{\textbf{Spotted seal predicted haul-out probability} \linebreak Predicted hourly haul-out probability of spotted seals from 1 March to 30 June for each age and sex class used in the model. Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. As with ribbon seals, predictions for young of the year show their transition from newly weaned pups resting on the ice to more in-water activities. Predictions in July and before 15 March were not included to avoid spurious model predictions at the edge of the data range.}\label{fig:spottedHOCal}
+\includegraphics[width=1\linewidth]{../figures/Figure-009} \caption{\textbf{Spotted seal predicted haul-out probability} \linebreak Predicted hourly haul-out probability of spotted seals from 1 March to 30 June for each age and sex class used in the model. Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. As with ribbon seals, predictions for young of the year show their transition from newly weaned pups resting on the ice to more in-water activities. Predictions in July and before 15 March were not included to avoid spurious model predictions at the edge of the data range.}\label{fig:spottedHOCal}
 \end{figure}
 
 Spotted seal haul-out behavior was less affected by the weather covariates
 compared to ribbon and bearded seals but their influence on the model was still
 significant in some cases.
 Temperature
-(\(F_{1,114807}\)
-= 5.462; \(p\) = 0.019), wind
-(\(F_{1,114807}\)
-= 46.954; \(p\) = \textless0.001),
+(\(F_{1,115189}\)
+= 5.384; \(p\) = 0.020), wind
+(\(F_{1,115189}\)
+= 45.718; \(p\) = \textless0.001),
 and barometric pressure
-(\(F_{1,114807}\)
-= 10.214; \(p\) =
-0.001) were all significant. Spotted seals were more likely to be on the ice when
+(\(F_{1,115189}\)
+= 9.445; \(p\) =
+0.002) were all significant. Spotted seals were more likely to be on the ice when
 temperatures were relatively warm and less likely to
 haul out at higher wind speeds. Wind chill
-(\(F_{1,114807}\)
-= 0.559; \(p\) =
-0.455) and
+(\(F_{1,115189}\)
+= 0.72; \(p\) =
+0.396) and
 precipitation
-(\(F_{1,114807}\)
-= 0.763; \(p\) =
-0.382)
+(\(F_{1,115189}\)
+= 0.773; \(p\) =
+0.379)
 were not as influential as the other covariates.
 Differences in the magnitude of response between the age-sex classes were
 present and consistent across each of the weather covariates (Figure
@@ -995,21 +999,20 @@ covariates.
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/spottedHOwx-1} \caption{\textbf{Influence of weather covariates on spotted seal haul-out probability} \linebreak Marginal effects of temperature, wind, barometric pressure, and precipitation on the predicted haul-out probability of spotted seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year fixed at 15 May. The other weather covariate values were predicted from a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. While the marginal effect of the covariate is continuous, points and vertical lines representing the 95\% confidence interval around the predicted haul-out probability are shown only at observed weather values to give an indication of how the observations are distributed across the range of weather values.}\label{fig:spottedHOwx}
+\includegraphics[width=1\linewidth]{../figures/Figure-010} \caption{\textbf{Influence of weather covariates on spotted seal haul-out probability} \linebreak Marginal effects of temperature, wind, barometric pressure, and precipitation on the predicted haul-out probability of spotted seals within each age and sex classification. Hour of the day was fixed at local solar noon and day-of-year fixed at 15 May. The other weather covariate values were predicted from a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. While the marginal effect of the covariate is continuous, points and vertical lines representing the 95\% confidence interval around the predicted haul-out probability are shown only at observed weather values to give an indication of how the observations are distributed across the range of weather values.}\label{fig:spottedHOwx}
 \end{figure}
 
-\hypertarget{annual-variation-in-haul-out-timing}{%
-\subsection*{Annual variation in haul-out timing}\label{annual-variation-in-haul-out-timing}}
+\subsection*{Annual variation in haul-out timing}\label{annual-variation-in-haul-out-timing}
 \addcontentsline{toc}{subsection}{Annual variation in haul-out timing}
 
 The second set of models, which included annual variation in haul-out
 patterns, uncovered significant contributions for linear and quadratic
 interactions between day and year for only spotted seals (day:year,
-\(F_{15,114762}\)
-= 4.345; \(p\) =
+\(F_{15,115144}\)
+= 4.445; \(p\) =
 \textless0.001; day\textsuperscript{2}:year,
-\(F_{15,114762}\)
-= 5.827; \(p\) =
+\(F_{15,115144}\)
+= 5.854; \(p\) =
 \textless0.001). Ribbon seals showed no significant
 contribution for interactions between day and year (day:year,
 \(F_{10,99510}\)
@@ -1030,7 +1033,7 @@ individuals that may not represent population-level patterns.
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/annualHO-1} \caption{\textbf{Annual variability in the timing of peak haul-out probability for ribbon and spotted seals.} \linebreak Spring haul-out probability (colored markers) for ribbon and spotted seals across 14 years are shown. The full seasonal range of annual predictions along with uncertainty are presented as grey lines. Covariates were fixed at local solar noon and weather covariate values were predicted from a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Only those groups (age:sex + year) that included observations from more than one seal are shown. Additionally, any groups where data were only available after 1 June or before 1 May are not included.}\label{fig:annualHO}
+\includegraphics[width=1\linewidth]{../figures/Figure-011} \caption{\textbf{Annual variability in the timing of peak haul-out probability for ribbon and spotted seals.} \linebreak Spring haul-out probability (colored markers) for ribbon and spotted seals across 14 years are shown. The full seasonal range of annual predictions along with uncertainty are presented as grey lines. Covariates were fixed at local solar noon and weather covariate values were predicted from a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Only those groups (age:sex + year) that included observations from more than one seal are shown. Additionally, any groups where data were only available after 1 June or before 1 May are not included.}\label{fig:annualHO}
 \end{figure}
 
 The annual timing of peak haul-out probability for ribbon seals and adult
@@ -1042,17 +1045,16 @@ females; \(R^{2}\) = 0.004, \(p\) = 0.896;
 ribbon seal adult males: \(R^{2}\) = 0.059, \(p\) =
 0.693; ribbon seal subadults: \(R^{2}\) =
 0.007, \(p\) = 0.828; spotted seals
-adult males: \(R^{2}\) = 0.003, \(p\) =
-0.903). Adult female and subadult spotted seals both
+adult males: \(R^{2}\) = 0.004, \(p\) =
+0.889). Adult female and subadult spotted seals both
 showed a negative trend (peak haul-out occurs later in years with less
 sea ice) with a significant relationship for adult female spotted seals
 (spotted seal adult female: \(R^{2}\) =
-0.663, \(p\) = 0.049; spotted seal
-subadults: \(R^{2}\) = 0.384, \(p\) =
-0.056).
+0.456, \(p\) = 0.141; spotted seal
+subadults: \(R^{2}\) = 0.369, \(p\) =
+0.062).
 
-\hypertarget{discussion}{%
-\section*{Discussion}\label{discussion}}
+\section*{Discussion}\label{discussion}
 \addcontentsline{toc}{section}{Discussion}
 
 We modeled data from bio-loggers deployed on bearded, ribbon, and spotted seals
@@ -1129,7 +1131,7 @@ likely to haul-out when daily temperatures were warmer, winds speeds were lower,
 barometric pressure was higher, and precipitation was lower. Those weather
 conditions are general indicators of increased solar radiation and lower
 convective heat loss, both of which provides energetic benefits (see additional
-discussion in Supplemental Material \protect\hyperlink{exploring-insolation-solar-radiation-as-a-model-covariate}{Exploring Insolation (Solar Radiation) as a
+discussion in Supplemental Material \hyperref[exploring-insolation-solar-radiation-as-a-model-covariate]{Exploring Insolation (Solar Radiation) as a
 Model Covariate} regarding the potential use of solar radiation directly). Low
 winds and precipitation could also enhance predator detection. Our results
 highlight the importance of incorporating weather covariates when analyzing
@@ -1225,10 +1227,10 @@ for bearded seals across all age and sex classes,
 (95\% CI: 0.62 -- 0.794) for
 adult male ribbon seals, 0.661
 (95\% CI: 0.576 -- 0.738) for
-adult female ribbon seals, 0.742
-(95\% CI: 0.655 -- 0.813) for
-adult male spotted seals, and 0.663
-(95\% CI: 0.574 -- 0.742) for
+adult female ribbon seals, 0.74
+(95\% CI: 0.654 -- 0.811) for
+adult male spotted seals, and 0.66
+(95\% CI: 0.571 -- 0.739) for
 adult female spotted seals. Our estimates
 of haul-out probability reflect increased sample sizes in terms of
 number of individuals, inclusion of weather covariates, and improvements to the
@@ -1260,8 +1262,7 @@ assessment of seal haul-out behavior to allow credible predictions about the
 effects of climate disruptions on the abundance and distribution of Arctic seal
 populations.
 
-\hypertarget{author-contributions}{%
-\section*{Author Contributions}\label{author-contributions}}
+\section*{Author Contributions}\label{author-contributions}
 \addcontentsline{toc}{section}{Author Contributions}
 
 \begin{itemize}
@@ -1300,24 +1301,25 @@ populations.
   project administration, writing: review and editing
 \end{itemize}
 
-\hypertarget{data-availability}{%
-\section*{Data Availability}\label{data-availability}}
+\section*{Data Availability}\label{data-availability}
 \addcontentsline{toc}{section}{Data Availability}
 
-This manuscript was developed as a reproducible research compendium. All data and
-code are available on GitHub (\url{https://github.com/noaa-afsc/berchukseals-haulout}) and
+This manuscript was developed as a reproducible research compendium and was
+originally published as a pre-print at bioRxiv (London et al. (2022);
+\url{https://doi.org/10.1101/2022.04.07.487572}). All data used in the study and code
+are available on GitHub (\url{https://github.com/noaa-afsc/berchukseals-haulout}) and
 major versions archived at Zenodo (\url{https://doi.org/10.5281/zenodo.4638221}).
-Original data sources for telemetry are archived
-at the United States Animal Telemetry Network, archived at Movebank, or
-associated with other published manuscripts (see supplemental
-material \ref{tab:deploymentTable}). Collated and cleaned data products
-needed to replicate the analysis along with the results of all model fits are
-also available and versioned as an R package on
-GitHub (\url{https://github.com/noaa-afsc/berchuksealsHauloutFits}) and archived at
-Zenodo.
+Original data sources for telemetry are archived as part of datasets at
+the United States Animal Telemetry Network (\url{https://portal.atn.ioos.us/}), archived at Movebank (see
+Movebank ID 732321226), or associated
+with other published manuscripts (see supplemental material
+\ref{tab:deploymentTable}). Collated and cleaned data products needed to
+replicate the analysis along with the results of all model fits are also
+available and versioned as an R package on GitHub
+(\url{https://github.com/noaa-afsc/berchuksealsHauloutFits}) and archived at Zenodo
+(\url{https://doi.org/10.5281/zenodo.10056308}).
 
-\hypertarget{acknowledgments}{%
-\section*{Acknowledgments}\label{acknowledgments}}
+\section*{Acknowledgments}\label{acknowledgments}
 \addcontentsline{toc}{section}{Acknowledgments}
 
 We recognize that the species and ecosystems we studied are within the ancestral
@@ -1362,183 +1364,173 @@ Wildlife.
 The findings and conclusions in the paper are those of the author(s) and do not
 necessarily represent the views of the National Marine Fisheries Service, NOAA.
 Any use of trade, product, or firm names does not imply an endorsement by the
-U.S. Government. Funding for this study was provided by the U.S. National
-Oceanic and Atmospheric Administration. The field work was conducted under the
-authority of Marine Mammal Protection Act Research Permits Nos. 782-1676,
-782-1765, 15126, and 19309 issued by the National Marine Fisheries Service, and
-Letters of Assurance of Compliance with Animal Welfare Act regulations, Nos.
-A/NW 2010-3 and A/NW 2016-1 from the Alaska Fisheries Science Center/Northwest
-Fisheries Science Center Institutional Animal Care and Use Committee (IACUC). ).
-Funding to ADF\&G for tagging seals was provided by the Bureau of Ocean Energy
-Management (No.~M13PC0015 for work in Kotzebue, Alaska in 2009) and the Office
-of Naval Research (No.~N00014-16-1-3019). ADF\&G and NSB field work was covered by
-Research Permits Nos. 358-1585, 358-1787, 15324, and 20466 and by ADF\&G IACUC
-permits Nos. 06-16, 09-21, 2014-03, 2015-25, 2016-23, 0027-2017-27,
-0027-2018-29, 0027-2019-041.
+U.S. Government.
 
-\hypertarget{references}{%
-\section*{References}\label{references}}
+\section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
 
-\hypertarget{refs}{}
+\phantomsection\label{refs}
 \begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-bengtson2004}{}}%
+\bibitem[\citeproctext]{ref-bengtson2004}
 Bengtson JL, Cameron MF. 2004. Seasonal haulout patterns of crabeater seals (\emph{Lobodon carcinophaga}). \emph{Polar Biology} 27:344--349. DOI: \href{https://doi.org/DOI\%2010.1007/s00300-004-0597-1}{DOI 10.1007/s00300-004-0597-1}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-bengtson2005a}{}}%
+\bibitem[\citeproctext]{ref-bengtson2005a}
 Bengtson JL, Hiruki-Raring LM, Simpkins MA, Boveng PL. 2005. Ringed and bearded seal densities in the eastern Chukchi Sea, 1999-2000. \emph{Polar Biology} 28:833--845.
 
-\leavevmode\vadjust pre{\hypertarget{ref-betts2006}{}}%
+\bibitem[\citeproctext]{ref-betts2006}
 Betts MG, Diamond A, Forbes G, Villard M-A, Gunn J. 2006. The importance of spatial autocorrelation, extent and resolution in predicting forest bird occurrence. \emph{Ecological Modelling} 191:197--224.
 
-\leavevmode\vadjust pre{\hypertarget{ref-boveng2009}{}}%
+\bibitem[\citeproctext]{ref-boveng2009}
 Boveng PL, Bengtson JL, Buckley TW, Cameron MF, Dahle SP, Kelly BP, Megrey BA, Overland JE, Williamson NJ. 2009. \href{https://repository.library.noaa.gov/view/noaa/3671}{Status review of the spotted seal (\emph{Phoca largha})}. \emph{U.S. Dep. Commer., NOAA Tech. Memo.} NMFS-AFSC-200:153.
 
-\leavevmode\vadjust pre{\hypertarget{ref-boveng2013a}{}}%
+\bibitem[\citeproctext]{ref-boveng2013a}
 Boveng PL, Bengtson JL, Cameron MF, Dahle SP, Logerwell EA(ElizabethA), London JM, Overland JE, Sterling JT, Stevenson DE 1970-, Taylor BL 1954-, Ziel HL 1974-. 2013. \href{https://repository.library.noaa.gov/view/noaa/4451}{Status review of the ribbon seal (\emph{Histriophoca fasciata})}. \emph{U.S. Dep. Commer., NOAA Tech. Memo.} NMFS-AFSC-255:174.
 
-\leavevmode\vadjust pre{\hypertarget{ref-boveng2013}{}}%
+\bibitem[\citeproctext]{ref-boveng2013}
 Boveng PL, Cameron MF. 2013. \emph{Pinniped movements and foraging: seasonal movements, habitat selection, foraging and haul-out behavior of adult bearded seals in the Chukchi Sea. Final Report, BOEM Report 2013-01150}. Anchorage, Alaska: Bureau of Ocean Energy Management, Alaska Outer Continental Shelf Region.
 
-\leavevmode\vadjust pre{\hypertarget{ref-boveng2018a}{}}%
+\bibitem[\citeproctext]{ref-boveng2018a}
 Boveng P, Lowry L. 2018. Ribbon seal (\emph{Histriophoca fasciata}). In: Bernd Würsig, J. G. M. Thewissen, Kit Kovacs eds. \emph{Encyclopedia of Marine Mammals: Third Edition}. London: Academic Press, 811--813.
 
-\leavevmode\vadjust pre{\hypertarget{ref-boveng2020}{}}%
+\bibitem[\citeproctext]{ref-boveng2020}
 Boveng PL, Ziel HL, McClintock BT, Cameron MF. 2020. Body condition of phocid seals during a period of rapid environmental change in the Bering Sea and Aleutian Islands, Alaska. \emph{Deep Sea Research Part II: Topical Studies in Oceanography} 181-182:104904. DOI: \href{https://doi.org/10.1016/j.dsr2.2020.104904}{10.1016/j.dsr2.2020.104904}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-breed2018}{}}%
+\bibitem[\citeproctext]{ref-breed2018}
 Breed GA, Cameron MF, Ver Hoef JM, Boveng PL, Whiting A, Frost KJ. 2018. Seasonal sea ice dynamics drive movement and migration of juvenile bearded seals \emph{Erignathus barbatus}. \emph{Marine Ecology Progress Series} 600:223--237.
 
-\leavevmode\vadjust pre{\hypertarget{ref-bronson2009}{}}%
+\bibitem[\citeproctext]{ref-bronson2009}
 Bronson FH. 2009. Climate change and seasonal reproduction in mammals. \emph{Philosophical Transactions of the Royal Society B} 364:3331--3340. DOI: \href{https://doi.org/10.1098/rstb.2009.0140}{10.1098/rstb.2009.0140}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-cameron2010}{}}%
+\bibitem[\citeproctext]{ref-cameron2010}
 Cameron MF, Bengtson JL, Boveng PL, Jansen JK(JohnK, Kelly BP, Dahle SP, Logerwell EA(ElizabethA), Overland JE, Sabine CL, Waring GT, Wilder JM. 2010. \href{https://repository.library.noaa.gov/view/noaa/3761}{Status review of the bearded seal (\emph{Erignathus barbatus})}. \emph{U.S. Dep. Commer., NOAA Tech. Memo.} NMFS-AFSC-211:246.
 
-\leavevmode\vadjust pre{\hypertarget{ref-cameron2018}{}}%
+\bibitem[\citeproctext]{ref-cameron2018}
 Cameron MF, Frost KJ, Ver Hoef JM, Breed GA, Whiting AV, Goodwin J, Boveng PL. 2018. Habitat selection and seasonal movements of young bearded seals (\emph{Erignathus barbatus}) in the Bering Sea. \emph{PLoS ONE} 13:e0192743. DOI: \href{https://doi.org/10.1371/journal.pone.0192743}{10.1371/journal.pone.0192743}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-cavalieri1996}{}}%
+\bibitem[\citeproctext]{ref-cavalieri1996}
 Cavalieri DJ, Parkinson CL, Gloersen P, Zwally H. 1996.Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center
 
-\leavevmode\vadjust pre{\hypertarget{ref-conn2014a}{}}%
+\bibitem[\citeproctext]{ref-conn2014a}
 Conn PB, Hoef JMV, McClintock BT, Moreland EE, London JM, Cameron MF, Dahle SP, Boveng PL. 2014. \href{https://onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.12127}{Estimating multispecies abundance using automated detection systems: Ice-associated seals in the Bering Sea}. \emph{Methods in Ecology and Evolution} 5:1280--1293.
 
-\leavevmode\vadjust pre{\hypertarget{ref-conn2012c}{}}%
+\bibitem[\citeproctext]{ref-conn2012c}
 Conn PB, Johnson DS, London JM, Boveng PL. 2012. Accounting for missing data when assessing availability in animal population surveys: an application to ice-associated seals in the Bering Sea. \emph{Methods in Ecology and Evolution}:1039--1046.
 
-\leavevmode\vadjust pre{\hypertarget{ref-conn2023}{}}%
+\bibitem[\citeproctext]{ref-conn2023}
 Conn PB, Trukhanova IS. 2023. Modeling vital rates and age-sex structure of Pacific Arctic phocids: influence on aerial survey correction factors. \emph{Marine Mammal Science} 39:648--661. DOI: \href{https://doi.org/10.1111/mms.12992}{10.1111/mms.12992}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-crawford2019}{}}%
+\bibitem[\citeproctext]{ref-crawford2019}
 Crawford JA, Frost KJ, Quakenbush LT, Whiting A. 2019. Seasonal and diel differences in dive and haul-out behavior of adult and subadult ringed seals (\emph{Pusa hispida}) in the Bering and Chukchi seas. \emph{Polar Biology} 42:65--80. DOI: \href{https://doi.org/10.1007/s00300-018-2399-x}{10.1007/s00300-018-2399-x}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-crawford2015}{}}%
+\bibitem[\citeproctext]{ref-crawford2015}
 Crawford JA, Quakenbush LT, Citta JJ. 2015. A comparison of ringed and bearded seal diet, condition and productivity between historical (1975-1984) and recent (2003-2012) periods in the Alaskan Bering and Chukchi seas. \emph{Progress in Oceanography} 136:133--150. DOI: \href{https://doi.org/10.1016/j.pocean.2015.05.011}{10.1016/j.pocean.2015.05.011}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-feltz1966}{}}%
+\bibitem[\citeproctext]{ref-feltz1966}
 Feltz ET, Fay FH. 1966. Thermal requirements in vitro of epidermal cells from seals. \emph{Cryobiology} 3:261--264.
 
-\leavevmode\vadjust pre{\hypertarget{ref-frost2018}{}}%
+\bibitem[\citeproctext]{ref-frost2018}
 Frost KJ, Burns JJ. 2018. Spotted Seal: \emph{Phoca largha}. In: Würsig B, Thewissen JGM, Kovacs KM eds. \emph{Encyclopedia of Marine Mammals (Third Edition)}. Academic Press, 928--931. DOI: \href{https://doi.org/10.1016/B978-0-12-804327-1.00244-2}{10.1016/B978-0-12-804327-1.00244-2}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-frost2004}{}}%
+\bibitem[\citeproctext]{ref-frost2004}
 Frost KJ, Lowry LF, Pendleton G, Nute HR. 2004. Factors affecting the observed densities of ringed seals, \emph{Phoca hispida}, in the Alaskan Beaufort Sea, 1996-99. \emph{Arctic} 57:115--128.
 
-\leavevmode\vadjust pre{\hypertarget{ref-hamilton2018}{}}%
+\bibitem[\citeproctext]{ref-hamilton2018}
 Hamilton V, Evans K. 2018. Establishing growth chronologies from marine mammal teeth: a method applicable across species. \emph{Journal of Experimental Marine Biology and Ecology} 505:24--34. DOI: \url{https://doi.org/10.1016/j.jembe.2018.04.006}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-harwood2020}{}}%
+\bibitem[\citeproctext]{ref-harwood2020}
 Harwood LA, Smith TG, Alikamik J, Alikamik E, Lea EV, Stirling I, Wright H, Melling H, Zhu X. 2020. Long-term, harvest-based monitoring of ringed seal body condition and reproduction in Canada's western arctic: an update through 2019. \emph{Arctic} 73:206--220. DOI: \href{https://doi.org/10.14430/arctic70428}{10.14430/arctic70428}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-huntington2020}{}}%
+\bibitem[\citeproctext]{ref-huntington2020}
 Huntington HP, Danielson SL, Wiese FK, Baker M, Boveng P, Citta JJ, De Robertis A, Dickson DMS, Farley E, George JC, Iken K, Kimmel DG, Kuletz K, Ladd C, Levine R, Quakenbush L, Stabeno P, Stafford KM, Stockwell D, Wilson C. 2020. Evidence suggests potential transformation of the Pacific Arctic ecosystem is underway. \emph{Nature Climate Change}:342--348. DOI: \href{https://doi.org/10.1038/s41558-020-0695-2}{10.1038/s41558-020-0695-2}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-johnson2008a}{}}%
+\bibitem[\citeproctext]{ref-johnson2008a}
 Johnson DS, London JM, Lea M-A, Durban JW. 2008. Continuous-time correlated random walk model for animal telemetry data. \emph{Ecology} 89:1208--1215.
 
-\leavevmode\vadjust pre{\hypertarget{ref-kelly2010}{}}%
+\bibitem[\citeproctext]{ref-kelly2010}
 Kelly BP, Bengtson JL, Boveng PL, Cameron MF, Dahle SP, Jansen JK, Logerwell EA, Overland JE, Sabine CL, Waring GT, Wilder JM. 2010. \emph{\href{https://repository.library.noaa.gov/view/noaa/3762}{Status review of the ringed seal (\emph{Phoca hispida})}}. U.S. Department of Commerce.
 
-\leavevmode\vadjust pre{\hypertarget{ref-kelly1990c}{}}%
+\bibitem[\citeproctext]{ref-kelly1990c}
 Kelly BP, Quakenbush LT. 1990. Spatiotemporal use of lairs by ringed seals (\emph{Phoca hispida}). \emph{Canadian Journal of Zoology} 68:2503--2512.
 
-\leavevmode\vadjust pre{\hypertarget{ref-kirkman2003}{}}%
+\bibitem[\citeproctext]{ref-kirkman2003}
 Kirkman SP, Bester MN, Pistorius PA, Hofmeyr GJG, Jonker FC, Owen R, Strydom N. 2003. Variation in the timing of moult in southern elephant seals at Marion Island : research article. \emph{South African Journal of Wildlife Research - 24-month delayed open access} 33:79--84. DOI: \href{https://doi.org/10.10520/EJC117173}{10.10520/EJC117173}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-kwok2018}{}}%
+\bibitem[\citeproctext]{ref-kwok2018}
 Kwok R. 2018. Arctic sea ice thickness, volume, and multiyear ice coverage: losses and coupled variability (1958--2018). \emph{Environmental Research Letters} 13:105005. DOI: \href{https://doi.org/10.1088/1748-9326/aae3ec}{10.1088/1748-9326/aae3ec}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-lindsay2021}{}}%
+\bibitem[\citeproctext]{ref-lindsay2021}
 Lindsay JM, Laidre KL, Conn PB, Moreland EE, Boveng PL. 2021. \href{https://www.int-res.com/abstracts/esr/v46/p1-17/}{Modeling ringed seal \emph{Pusa hispida} habitat and lair emergence timing in the eastern Bering and Chukchi Seas}. \emph{Endangered Species Research} 46:1--17.
 
-\leavevmode\vadjust pre{\hypertarget{ref-london2012}{}}%
+\bibitem[\citeproctext]{ref-london2022}
+London JM, Conn PB, Hardy SK, Richmond EL, Ver Hoef JM, Cameron MF, Crawford JA, Von Duyke AL, Quakenbush LT, Boveng PL. 2022. Spring haul-out behavior of seals in the Bering and Chukchi seas. \emph{bioRxiv}:2022--04. DOI: \url{https://doi.org/10.1101/2022.04.07.487572}.
+
+\bibitem[\citeproctext]{ref-london2012}
 London JM, Ver Hoef JM, Jeffries SJ, Lance MM, Boveng PL. 2012. Haul-out behavior of harbor seals (\emph{Phoca vitulina}) in Hood Canal, Washington. \emph{PLoS ONE} 7:e38180. DOI: \href{https://doi.org/10.1371/journal.pone.0038180}{10.1371/journal.pone.0038180}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-lonergan2013}{}}%
+\bibitem[\citeproctext]{ref-lonergan2013}
 Lonergan M, Duck C, Moss S, Morris C, Thompson D. 2013. Rescaling of aerial survey data with information from small numbers of telemetry tags to estimate the size of a declining harbour seal population. \emph{Aquatic Conservation-Marine and Freshwater Ecosystems} 23:135--144. DOI: \href{https://doi.org/Doi\%2010.1002/Aqc.2277}{Doi 10.1002/Aqc.2277}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-lopez2013}{}}%
+\bibitem[\citeproctext]{ref-lopez2013}
 Lopez R, Malardé JP, Royer F, Gaspar P. 2013. Improving Argos Doppler location using multiple-model Kalman filtering. \emph{Geoscience and Remote Sensing, IEEE Transactions on} PP:1--12. DOI: \href{https://doi.org/10.1109/tgrs.2013.2284293}{10.1109/tgrs.2013.2284293}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-mclaren1958a}{}}%
+\bibitem[\citeproctext]{ref-mclaren1958a}
 McLaren IA. 1958. Some aspects of growth and reproduction of the bearded seal, \emph{Erignathus barbartus} (Erxleben). \emph{Journal of the Fisheries Research Board of Canada} 15:219--227.
 
-\leavevmode\vadjust pre{\hypertarget{ref-meier2014}{}}%
+\bibitem[\citeproctext]{ref-meier2014}
 Meier WN, Hovelsrud GK, Oort BEH van, Key JR, Kovacs KM, Michel C, Haas C, Granskog MA, Gerland S, Perovich DK, Makshtas A, Reist JD. 2014. \href{https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1002/2013RG000431}{Arctic sea ice in transformation: A review of recent observed changes and impacts on biology and human activity}. \emph{Reviews of Geophysics} 52:185--217.
 
-\leavevmode\vadjust pre{\hypertarget{ref-mesinger2006a}{}}%
+\bibitem[\citeproctext]{ref-mesinger2006a}
 Mesinger F, DiMego G, Kalnay E, Mitchell K, Shafran PC, Ebisuzaki W, Jović D, Woollen J, Rogers E, Berbery EH, Ek MB, Fan Y, Grumbine R, Higgins W, Li H, Lin Y, Manikin G, Parrish D, Shi W. 2006. North American Regional Reanalysis. \emph{Bulletin of the American Meteorological Society} 87:343--360. DOI: \href{https://doi.org/10.1175/BAMS-87-3-343}{10.1175/BAMS-87-3-343}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-niemi2023}{}}%
+\bibitem[\citeproctext]{ref-niemi2023}
 Niemi M, Nykänen M, Biard V, Kunnasranta M. 2023. Seasonal changes in diel haul-out patterns of a lacustrine ringed seal (\emph{Pusa hispida saimensis}). \emph{Ecology and Evolution} 13:e10264. DOI: \href{https://doi.org/10.1002/ece3.10264}{10.1002/ece3.10264}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-olnes2020}{}}%
+\bibitem[\citeproctext]{ref-olnes2020}
 Olnes J, Crawford J, Citta JJ, Druckenmiller ML, Von Duyke AL, Quakenbush L. 2020. Movement, diving, and haul-out behaviors of juvenile bearded seals in the Bering, Chukchi and Beaufort seas, 2014--2018. \emph{Polar Biology}. DOI: \href{https://doi.org/10.1007/s00300-020-02710-6}{10.1007/s00300-020-02710-6}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-overland2021}{}}%
+\bibitem[\citeproctext]{ref-overland2021}
 Overland JE. 2021. Rare events in the Arctic. \emph{Climatic Change} 168:1--13.
 
-\leavevmode\vadjust pre{\hypertarget{ref-perpinan2012}{}}%
+\bibitem[\citeproctext]{ref-perpinan2012}
 Perpiñán O. 2012. \href{http://www.jstatsoft.org/v50/i09/}{solaR: Solar Radiation and Photovoltaic Systems with R}. \emph{Journal of Statistical Software} 50:1--32.
 
-\leavevmode\vadjust pre{\hypertarget{ref-perry2017}{}}%
+\bibitem[\citeproctext]{ref-perry2017}
 Perry EA, Stenson GB, Buren AD. 2017. Attendance and nursing patterns of harp seals in the harsh environment of the northwest Atlantic. \emph{Polar Biology} 40:151--160. DOI: \href{https://doi.org/10.1007/s00300-016-1938-6}{10.1007/s00300-016-1938-6}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-rcoreteam2021}{}}%
+\bibitem[\citeproctext]{ref-rcoreteam2021}
 R Core Team. 2021. \emph{\href{https://www.R-project.org/}{R: A language and environment for statistical computing}}. Vienna, Austria.
 
-\leavevmode\vadjust pre{\hypertarget{ref-reder2003}{}}%
+\bibitem[\citeproctext]{ref-reder2003}
 Reder S, Lydersen C, Arnold W, Kovacs KM. 2003. Haulout behaviour of High Arctic harbour seals (\emph{Phoca vitulina vitulina}) in Svalbard, Norway. \emph{Polar Biology} 27:6--16.
 
-\leavevmode\vadjust pre{\hypertarget{ref-southwell2008}{}}%
+\bibitem[\citeproctext]{ref-southwell2008}
 Southwell CJ, Paxton CGM, Borchers DL, Boveng PL, Nordøy ES, Blix AS, De La Mare WK. 2008. Estimating population status under conditions of uncertainty: the Ross seal in East Antarctica. \emph{Antarctic Science} 20:123--133.
 
-\leavevmode\vadjust pre{\hypertarget{ref-temte1994}{}}%
+\bibitem[\citeproctext]{ref-temte1994}
 Temte JL. 1994. Photoperiod control of birth timing in the harbour seal (\emph{Phoca vitulina}). \emph{J. Zool.} 233:369--384.
 
-\leavevmode\vadjust pre{\hypertarget{ref-teneyck2018}{}}%
+\bibitem[\citeproctext]{ref-teneyck2018}
 Ten Eyck P, Cavanaugh JE. 2018. An Alternate Approach to Pseudo-Likelihood Model Selection in the Generalized Linear Mixed Modeling Framework. \emph{Sankhya B} 80:98--122. DOI: \href{https://doi.org/10.1007/s13571-017-0130-5}{10.1007/s13571-017-0130-5}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-thometz2021}{}}%
+\bibitem[\citeproctext]{ref-thometz2021}
 Thometz NM, Hermann-Sorensen H, Russell B, Rosen DAS, Reichmuth C. 2021. Molting strategies of Arctic seals drive annual patterns in metabolism. \emph{Conservation Physiology} 9:coaa112. DOI: \href{https://doi.org/10.1093/conphys/coaa112}{10.1093/conphys/coaa112}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-thompson1987}{}}%
+\bibitem[\citeproctext]{ref-thompson1987}
 Thompson P, Rothery P. 1987. Age and sex differences in the timing of moult in the common seal, \emph{Phoca vitulina}. \emph{Journal of Zoology} 212:597--603.
 
-\leavevmode\vadjust pre{\hypertarget{ref-udevitz2009}{}}%
+\bibitem[\citeproctext]{ref-udevitz2009}
 Udevitz MS, Jay CV, Fischback AS, Garlich-Miller JL. 2009. Modeling haul-out behavior of walruses in Bering Sea ice. \emph{Can. J. Zool} 87:1111--1128. DOI: \href{https://doi.org/10.1139/Z09-098}{10.1139/Z09-098}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-verhoef2014a}{}}%
+\bibitem[\citeproctext]{ref-verhoef2014a}
 Ver Hoef JM, Cameron MF, Boveng PL, London JM, Moreland EE. 2014. A spatial hierarchical model for abundance of three ice-associated seal species in the eastern Bering Sea. \emph{Statistical Methodology} 17:46--66. DOI: \url{http://dx.doi.org/10.1016/j.stamet.2013.03.001}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-verhoef2010a}{}}%
+\bibitem[\citeproctext]{ref-verhoef2010a}
 Ver Hoef JM, London JM, Boveng PL. 2010. Fast computing of some generalized linear mixed pseudo-models with temporal autocorrelation. \emph{Computational Statistics} 25:39--55. DOI: \href{https://doi.org/10.1007/s00180-009-0160-1}{10.1007/s00180-009-0160-1}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-vonduyke2020}{}}%
+\bibitem[\citeproctext]{ref-vonduyke2020}
 Von Duyke AL, Douglas DC, Herreman JK, Crawford JA. 2020. Ringed seal (\emph{Pusa hispida}) seasonal movements, diving, and haul-out behavior in the Beaufort, Chukchi, and Bering Seas (2011--2017). \emph{Ecology and Evolution} 10:5595--5616. DOI: \href{https://doi.org/10.1002/ece3.6302}{10.1002/ece3.6302}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-wang2018}{}}%
+\bibitem[\citeproctext]{ref-wang2018}
 Wang M, Yang Q, Overland JE, Stabeno P. 2018. Sea-ice cover timing in the Pacific Arctic: The present and projections to mid-century by selected CMIP5 models. \emph{Deep Sea Research Part II: Topical Studies in Oceanography} 152:22--34. DOI: \url{https://doi.org/10.1016/j.dsr2.2017.11.017}.
 
 \end{CSLReferences}
@@ -1547,18 +1539,16 @@ Wang M, Yang Q, Overland JE, Stabeno P. 2018. Sea-ice cover timing in the Pacifi
 \setcounter{table}{0}\renewcommand{\thetable}{S\arabic{table}}\setcounter{figure}{0}\renewcommand{\thefigure}{S\arabic{figure}}
 \begin{landscape}
 
-\hypertarget{supplemental-material}{%
-\section*{Supplemental Material}\label{supplemental-material}}
+\section*{Supplemental Material}\label{supplemental-material}
 \addcontentsline{toc}{section}{Supplemental Material}
 
-\hypertarget{additional-bio-logger-deployment-details}{%
-\subsection{Additional Bio-logger Deployment Details}\label{additional-bio-logger-deployment-details}}
+\subsection{Additional Bio-logger Deployment Details}\label{additional-bio-logger-deployment-details}
 
 \global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
 
 \global\setlength{\Oldtabcolsep}{\tabcolsep}
 
-\setlength{\tabcolsep}{0pt}
+\setlength{\tabcolsep}{2pt}
 
 \renewcommand*{\arraystretch}{1.5}
 
@@ -1586,7 +1576,7 @@ Wang M, Yang Q, Overland JE, Stabeno P. 2018. Sea-ice cover timing in the Pacifi
 
 \multicolumn{8}{>{\raggedright}m{\dimexpr 8.7in+14\tabcolsep}}{\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{ADFG}}}\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{=Alaska\ Department\ of\ Fish\ and\ Game;\ }}\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{NSB}}}\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{=North\ Slope\ Borough;\ }}\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{NMFS}}}\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{=NOAA\ National\ Marine\ Fisheries\ Service;\ }}\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{\textbf{NPWC}}}\textcolor[HTML]{000000}{\fontsize{8}{8}\selectfont{=North\ Pacific\ Wildlife\ Consortium}}} \\
 
-\endfoot
+\endlastfoot
 
 
 
@@ -1918,8 +1908,7 @@ Wang M, Yang Q, Overland JE, Stabeno P. 2018. Sea-ice cover timing in the Pacifi
 
 \clearpage
 
-\hypertarget{supplemental-figures-showing-confidence-intervals-associated-with-predictions}{%
-\subsection{Supplemental Figures Showing Confidence Intervals Associated with Predictions}\label{supplemental-figures-showing-confidence-intervals-associated-with-predictions}}
+\subsection{Supplemental Figures Showing Confidence Intervals Associated with Predictions}\label{supplemental-figures-showing-confidence-intervals-associated-with-predictions}
 
 The following series of figures (\ref{fig:beardedPredSE}, \ref{fig:ribbonPredSE},
 and \ref{fig:spottedPredSE}) show the seasonal variability in predicted haul-out
@@ -1932,28 +1921,26 @@ confidence intervals can also be shown and comparisons can be made.
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/beardedPredSE-1} \caption{\textbf{Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for bearded seals.} \linebreak Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00). Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Age and sex classes are combined into a single `all ages' category.}\label{fig:beardedPredSE}
+\includegraphics[width=1\linewidth]{../figures/Figure-013} \caption{\textbf{Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for bearded seals.} \linebreak Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00). Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Age and sex classes are combined into a single `all ages' category.}\label{fig:beardedPredSE}
 \end{figure}
 
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/ribbonPredSE-1} \caption{\textbf{Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for ribbon seals.} \linebreak Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00). Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Age and sex classes are separated to allow comparisons.}\label{fig:ribbonPredSE}
+\includegraphics[width=1\linewidth]{../figures/Figure-014} \caption{\textbf{Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for ribbon seals.} \linebreak Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00). Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Age and sex classes are separated to allow comparisons.}\label{fig:ribbonPredSE}
 \end{figure}
 
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/spottedPredSE-1} \caption{\textbf{Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for spotted seals.} \linebreak Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00). Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Age and sex classes are separated to allow comparisons.}\label{fig:spottedPredSE}
+\includegraphics[width=1\linewidth]{../figures/Figure-015} \caption{\textbf{Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for spotted seals.} \linebreak Model predictions are shown for three local solar hours (07:00, 12:00, and 17:00). Weather covariate values in the prediction were based on a simple generalized additive model for each weather covariate with smooth terms for day-of-year and solar hour to account for anticipated variability within a day over the season. Age and sex classes are separated to allow comparisons.}\label{fig:spottedPredSE}
 \end{figure}
 
 \clearpage
 
-\hypertarget{exploring-insolation-solar-radiation-as-a-model-covariate}{%
-\subsection{Exploring Insolation (Solar Radiation) as a Model Covariate}\label{exploring-insolation-solar-radiation-as-a-model-covariate}}
+\subsection{Exploring Insolation (Solar Radiation) as a Model Covariate}\label{exploring-insolation-solar-radiation-as-a-model-covariate}
 
-\hypertarget{introduction-1}{%
-\subsubsection{Introduction}\label{introduction-1}}
+\subsubsection{Introduction}\label{introduction-1}
 
 During the peer review process for this manuscript, Anthony Fischbach suggested
 the possibility of using predicted insolation (or solar radiation) values from
@@ -1995,8 +1982,7 @@ detailed exploration of this as a component in pinniped haul-out analysis. To
 provide some inspiration, we present some initial efforts and examples for
 comparison.
 
-\hypertarget{methods-1}{%
-\subsubsection{Methods}\label{methods-1}}
+\subsubsection{Methods}\label{methods-1}
 
 In this manuscript, we rely on the NARR reanalysis model as the source for our
 weather covariates. However, since our initiation of this analysis, the ERA5
@@ -2188,8 +2174,7 @@ used with 100\% representing the maximum observed solar radiation value. This
 allowed similar data visualizations and easier comparisons to those
 predictions in the manuscript that include hour of day.
 
-\hypertarget{results-1}{%
-\subsubsection{Results}\label{results-1}}
+\subsubsection{Results}\label{results-1}
 
 To evaluate whether the solar radiation parameter matched our expectations and
 compared well with hour of the day, we visualized the variability of the
@@ -2204,22 +2189,22 @@ behavior.
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/era5-ssrd-plot-1} \caption{\textbf{Diel Pattern of Solar Radiation Values from ERA5 Reanalysis.} \linebreak Downward surface solar radiation estimates from the ERA5 climate reanalysis for 5000 random points within the study area between 2005 and 2021. Solar radiation values are presented in Watts per square-meter and the smoothed line highlights the strong diel pattern.}\label{fig:era5-ssrd-plot}
+\includegraphics[width=1\linewidth]{../figures/Figure-016} \caption{\textbf{Diel Pattern of Solar Radiation Values from ERA5 Reanalysis.} \linebreak Downward surface solar radiation estimates from the ERA5 climate reanalysis for 5000 random points within the study area between 2005 and 2021. Solar radiation values are presented in Watts per square-meter and the smoothed line highlights the strong diel pattern.}\label{fig:era5-ssrd-plot}
 \end{figure}
 
 The bearded seal model matching the specification from the manuscript resulted in
 126.13 degrees of freedom and an AIC value of
 -7428.929. The model with solar radiation resulted in
-39.829 degrees of freedom and an AIC value of
--6874.298. The ribbon seal model matching the specification from the manuscript resulted in
+39.619 degrees of freedom and an AIC value of
+-6797.378. The ribbon seal model matching the specification from the manuscript resulted in
 131.478 degrees of freedom and an AIC value of
 -16372.29. The model with solar radiation resulted in
-114.72 degrees of freedom and an AIC value of
--15223.346. The spotted seal model matching the specification from the manuscript resulted in
-125.54 degrees of freedom and an AIC value of
--23482.051. The model with solar radiation resulted in
-108.985 degrees of freedom and an AIC value of
--22917.167. Despite the additional terms, the
+115.126 degrees of freedom and an AIC value of
+-16038.175. The spotted seal model matching the specification from the manuscript resulted in
+125.506 degrees of freedom and an AIC value of
+-23584.373. The model with solar radiation resulted in
+109.163 degrees of freedom and an AIC value of
+-23302.772. Despite the additional terms, the
 models with the Fourier series representation of hour of day resulted in a
 lower AIC value and were still preferred models for each of the species.
 
@@ -2240,17 +2225,16 @@ differences in the shape and extent of confidence limits were present.
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/ssrd-prediction-heatmap-1} \caption{\textbf{Solar radiation as a predictor of ribbon seal haul-out probability.} \linebreak Predicted haul-out probability of ribbon seals from 15 March to 30 June for each age and sex class used in the model. In this model, solar radiation was used in lieu of hour of day. The apparent seasonal progression with subadults hauling out earlier in the season followed by adult males and, then, adult females is still notable although maybe not as clear. Predictions for young of the year still show their transition from newly weaned pups resting on the ice to more in-water activities. The overall pattern is in agreement with a one-sided view of Figure 7 where maximum solar radiation is equivalent to local solar noon.}\label{fig:ssrd-prediction-heatmap}
+\includegraphics[width=1\linewidth]{../figures/Figure-017} \caption{\textbf{Solar radiation as a predictor of ribbon seal haul-out probability.} \linebreak Predicted haul-out probability of ribbon seals from 15 March to 30 June for each age and sex class used in the model. In this model, solar radiation was used in lieu of hour of day. The apparent seasonal progression with subadults hauling out earlier in the season followed by adult males and, then, adult females is still notable although maybe not as clear. Predictions for young of the year still show their transition from newly weaned pups resting on the ice to more in-water activities. The overall pattern is in agreement with a one-sided view of Figure 7 where maximum solar radiation is equivalent to local solar noon.}\label{fig:ssrd-prediction-heatmap}
 \end{figure}
 
 
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{../figures/ssrd-ribbonPredSE-1} \caption{\textbf{Solar radiation as a predictor of ribbon seal haul-out probability (with uncertainty).} \linebreak Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for ribbon seals. In this model predictions are shown for low, medium, and high values of solar radiation (as percentages of the maximum value observed) in lieu of local solar hour. There's general agreement in the overall seasonal patterns between the two approaches but sublte differences in shape and extent of the confidence limits were present (see Figure S2 for comparisons).}\label{fig:ssrd-ribbonPredSE}
+\includegraphics[width=1\linewidth]{../figures/Figure-018} \caption{\textbf{Solar radiation as a predictor of ribbon seal haul-out probability (with uncertainty).} \linebreak Seasonal variability in haul-out probability and the associated 95\% confidence intervals (shaded area) for ribbon seals. In this model predictions are shown for low, medium, and high values of solar radiation (as percentages of the maximum value observed) in lieu of local solar hour. There's general agreement in the overall seasonal patterns between the two approaches but sublte differences in shape and extent of the confidence limits were present (see Figure S2 for comparisons).}\label{fig:ssrd-ribbonPredSE}
 \end{figure}
 
-\hypertarget{discussion-1}{%
-\subsubsection{Discussion}\label{discussion-1}}
+\subsubsection{Discussion}\label{discussion-1}
 
 Solar radiation has potential as an informative covariate in pinniped haul-out
 models that can be directly linked to seal physiology and expected behavioral
