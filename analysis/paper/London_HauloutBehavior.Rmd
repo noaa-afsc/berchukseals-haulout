@@ -151,6 +151,8 @@ make_plot_namer <- function(prefix="Figure-", fig_n=1L, width=2){
 
 knitr::opts_chunk$set(fig.process = make_plot_namer(width=3))
 
+options(tinytex.verbose = TRUE)
+
 options(scipen = 3, digits = 3)
 
 theme_set(theme_minimal(base_family = 'Spline Sans',
@@ -447,12 +449,12 @@ _subadults_, and mature _adults_) were estimated at the time of deployment by
 various combinations of length, claw growth ridges [@mclaren1958a], and pelage
 characteristics. Seals determined to be less than one year were classified as
 young-of-the-year. For those bio-loggers deployed on young-of-the-year and
-transmitting into the next year, the age class was advanced to subadult on 1
-March of the following year -- the assumed anniversary of their birth. Subadults
-are those seals likely greater than one year of age but less than four years.
-Adults are individuals that are likely older than four years. Table
-\@ref(tab:tblDeploy) provides a summary of these deployments and data received
-from them.
+transmitting into the next year (6 ribbon seals; 3 spotted seals), the age class
+was advanced to subadult on 1 March of the following year -- the assumed
+anniversary of their birth. Subadults are those seals likely greater than one
+year of age but less than four years. Adults are individuals that are likely
+older than four years. Table \@ref(tab:tblDeploy) provides a summary of these
+deployments and data received from them.
 
 (ref:deployTblCaption) **Summary of bio-logger data by seal species and age classification from 1 March to 15 July 2005-2021.** \linebreak Seal hours represents the sum of hourly observations across all seals used in the analysis. Because young-of-the-year are advanced to subadult on 1 March of the following year, some individual seals are represented in both columns in this table
 
@@ -1797,16 +1799,19 @@ project administration, writing: review and editing
 # Data Availability {-}
 
 This manuscript was developed as a reproducible research compendium and was
-originally published as a pre-print (https://doi.org/10.1101/2022.04.07.487572).
-All data and code are available on GitHub
-(https://github.com/noaa-afsc/berchukseals-haulout) and major versions archived
-at Zenodo (https://doi.org/10.5281/zenodo.4638221). Original data sources for
-telemetry are archived at the United States Animal Telemetry Network, archived
-at Movebank, or associated with other published manuscripts (see supplemental
-material \@ref(tab:deploymentTable)). Collated and cleaned data products needed
-to replicate the analysis along with the results of all model fits are also
+originally published as a pre-print at bioRxiv (@london2022;
+https://doi.org/10.1101/2022.04.07.487572). All data used in the study and code
+are available on GitHub (https://github.com/noaa-afsc/berchukseals-haulout) and
+major versions archived at Zenodo (https://doi.org/10.5281/zenodo.4638221).
+Original data sources for telemetry are archived as part of datasets at
+the United States Animal Telemetry Network (https://portal.atn.ioos.us/), archived at Movebank (see
+Movebank ID	732321226), or associated
+with other published manuscripts (see supplemental material
+\@ref(tab:deploymentTable)). Collated and cleaned data products needed to
+replicate the analysis along with the results of all model fits are also
 available and versioned as an R package on GitHub
-(https://github.com/noaa-afsc/berchuksealsHauloutFits) and archived at Zenodo.
+(https://github.com/noaa-afsc/berchuksealsHauloutFits) and archived at Zenodo
+(https://doi.org/10.5281/zenodo.10056308).
 
 # Acknowledgments {-}
 
