@@ -341,7 +341,7 @@ Use Committee (IACUC). ADF&G and NSB field work was covered by Research Permits
 Nos. 358-1585, 358-1787, 15324, and 20466 and by ADF&G IACUC permits Nos. 06-16,
 09-21, 2014-03, 2015-25, 2016-23, 0027-2017-27, 0027-2018-29, 0027-2019-041.
 
-(ref:deployMapCaption) **Initial bio-logger deployment areas for bearded, ribbon, and spotted seals in the study between 2005 and 2020 across multiple regions within the Bering, Chukchi, and western Beaufort seas.** \linebreak Solid regions shown for each species are minimum concave polygons buffered by 60 km for enhanced visibility. The larger, shaded region indicates the spatial extent of aerial survey effort to date in the Bering, Chukchi, and Beaufort seas. Deployments were initiated across a range of months but only haul-out data from 1 March to 15 July were included in the analysis. See Figure \@ref(fig:dataMap) for the spatial distribution of observed data used in the study and Supplemental Materials \@ref(tab:deploymentTable) for additional deployment details.
+(ref:deployMapCaption) **Initial bio-logger deployment areas for bearded, ribbon, and spotted seals in the study between 2005 and 2020 across multiple regions within the Bering, Chukchi, and western Beaufort seas.** \linebreak Solid regions shown for each species are minimum concave polygons buffered by 60 km for enhanced visibility. The larger, shaded region indicates the spatial extent of aerial survey effort to date in the Bering, Chukchi, and Beaufort seas. Deployments were initiated across a range of months but only haul-out data from 1 March to 15 July were included in the analysis. See Figure \@ref(fig:dataMap) for the spatial distribution of observed data used in the study and Supplemental Materials \@ref(tab:deploymentTable) for additional deployment details. World land vector data from https://naturalearthdata.com.
 
 ```{r deployplot, include=TRUE, fig.asp = 0.42, fig.cap = "(ref:deployMapCaption)"}
 targets::tar_load(deploy_details, store = here::here("_targets"))
@@ -920,7 +920,7 @@ locs_count <- hexgrid %>%
   ) %>% drop_na()
 ```
 
-(ref:mapCaption) **Spatial distribution of haul-out records from 1 March through July 15 for bearded, ribbon, and spotted seal.** \linebreak Linking location estimates with haul-out records in space and time allows for inclusion of weather covariates in the final model. For this visualization, data were collated across all years between 2005 and 2020 and each hexagonal cell represents an area of 50 km^2^
+(ref:mapCaption) **Spatial distribution of haul-out records from 1 March through July 15 for bearded, ribbon, and spotted seal.** \linebreak Linking location estimates with haul-out records in space and time allows for inclusion of weather covariates in the final model. For this visualization, data were collated across all years between 2005 and 2020 and each hexagonal cell represents an area of 50 km^2^. World land vector data from https://naturalearthdata.com.
 
 ```{r dataMap, include=TRUE, fig.asp = 0.5, fig.cap="(ref:mapCaption)"}
 
@@ -1419,9 +1419,10 @@ peak_ho_df <- peak_ho_df %>%
   mutate(year_shape = if_else(as.numeric(paste(year)) < 2015,"a","b"))
 
 
-# pal <- c(rcartocolor::carto_pal(12,'Bold')[1:11],
-#          rcartocolor::carto_pal(12,'Antique')[1:3])
-pal <- c("#A6CEE3","#3385BB","#84BF96","#6DBD57","#F3E587","#F57C7C","#E42622",
+# see https://davidmathlogic.com/colorblind/#%23A6CEE3-%233385BB-%2384BF96-%23004D40-%23F3E587-%23F57C7C-%23D81B60-%23FBB268-%23FE8D19-%23DE9E83-%239D7BBA-%23977899-%237F9D55-%23B15928
+# for simulation of colorblind scenarios
+
+pal <- c("#A6CEE3","#3385BB","#84BF96","#004D40","#F3E587","#F57C7C","#D81B60",
          "#FBB268","#FE8D19","#DE9E83","#9D7BBA", "#977899","#7F9D55","#B15928")
 names(pal) <- as.character(sort(unique(peak_ho_df$year)))
 
@@ -1804,7 +1805,8 @@ https://doi.org/10.1101/2022.04.07.487572). All data used in the study and code
 are available on GitHub (https://github.com/noaa-afsc/berchukseals-haulout) and
 major versions archived at Zenodo (https://doi.org/10.5281/zenodo.4638221).
 Original data sources for telemetry are archived as part of datasets at
-the United States Animal Telemetry Network (https://portal.atn.ioos.us/), archived at Movebank (see
+the United States Animal Telemetry Network (https://portal.atn.ioos.us/; 
+https://doi.org/10.24431/rw1k8er), archived at Movebank (see
 Movebank ID	732321226), or associated
 with other published manuscripts (see supplemental material
 \@ref(tab:deploymentTable)). Collated and cleaned data products needed to
