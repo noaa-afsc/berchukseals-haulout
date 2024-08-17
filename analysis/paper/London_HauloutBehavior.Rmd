@@ -37,38 +37,41 @@ abstract: >
   activities occur in spring (April -- June) as sea ice begins to melt and
   retreat northward. Rapid acceleration of climate change in Arctic ecosystems
   is therefore of concern as the quantity and quality of suitable habitat is
-  forecast to decrease. Improved estimates of seal population abundance are
-  needed to properly monitor the impacts of these changes over time. In this
-  paper, we use hourly percent-dry data from satellite-linked bio-loggers
-  deployed between 2005 and 2021 to quantify the proportion of seals hauled out
-  on ice. This information is needed to accurately estimate abundance from
-  aerial survey counts of ice-associated seals (i.e., to correct for the
-  proportion of animals that are in the water while surveys are conducted). In
-  addition to providing essential data for survey 'availability' calculations,
-  our analysis also provides insights into the seasonal timing and environmental
-  factors affecting haul-out behavior by ice-associated seals. We specifically
-  focused on bearded (_Erignathus barbatus_), ribbon (_Histriophoca fasciata_),
-  and spotted seals (_Phoca largha_) in the Bering and Chukchi seas. Because
-  ringed seals (_Phoca (pusa) hispida_) can be out of the water but hidden from view in
-  snow lairs analysis of their 'availability' to surveys requires special
-  consideration; therefore,they were not included in this analysis. Using
-  generalized linear mixed pseudo-models to properly account for temporal
-  autocorrelation, we fit models with covariates of interest (e.g., day-of-year,
-  solar hour, age-sex class, wind speed, barometric pressure, temperature,
-  precipitation) to examine their ability to explain variation in haul-out
-  probability. We found evidence for strong diel and within-season patterns in
-  haul-out behavior, as well as strong weather effects (particularly wind and
-  temperature). In general, seals were more likely to haul out on ice in the
-  middle of the day and when wind speed was low and temperatures were higher.
-  Haul-out probability increased through March and April, peaking in May and
-  early June before declining again. The timing and frequency of haul-out events
-  also varied based on species and age-sex class. For ribbon and spotted seals,
-  models with year effects were highly supported, indicating that the timing and
-  magnitude of haul-out behavior varied among years. However, we did not find
-  broad evidence that haul-out timing was linked to annual sea-ice extent. Our
-  analysis emphasizes the importance of accounting for seasonal and temporal
-  variation in haul-out behavior, as well as associated environmental
-  covariates, when interpreting the number of seals counted in aerial surveys.
+  forecast to decrease. Robust estimates of seal population abundance are needed
+  to properly monitor the impacts of these changes over time. Aerial surveys of
+  seals on ice are an efficient method for counting seals but must be paired
+  with estimates of the proportion of seals out of the water to derive
+  population abundance. In this paper, we use hourly percent-dry data from
+  satellite-linked bio-loggers deployed between 2005 and 2021 to quantify the
+  proportion of seals hauled out on ice. This information is needed to
+  accurately estimate abundance from aerial survey counts of ice-associated
+  seals (i.e., to correct for the proportion of animals that are in the water
+  while surveys are conducted). In addition to providing essential data for
+  survey 'availability' calculations, our analysis also provides insights into
+  the seasonal timing and environmental factors affecting haul-out behavior by
+  ice-associated seals. We specifically focused on bearded (_Erignathus
+  barbatus_), ribbon (_Histriophoca fasciata_), and spotted seals (_Phoca
+  largha_) in the Bering and Chukchi seas. Because ringed seals (_Phoca (pusa)
+  hispida_) can be out of the water but hidden from view in snow lairs analysis
+  of their 'availability' to surveys requires special consideration;
+  therefore,they were not included in this analysis. Using generalized linear
+  mixed pseudo-models to properly account for temporal autocorrelation, we fit
+  models with covariates of interest (e.g., day-of-year, solar hour, age-sex
+  class, wind speed, barometric pressure, temperature, precipitation) to examine
+  their ability to explain variation in haul-out probability. We found evidence
+  for strong diel and within-season patterns in haul-out behavior, as well as
+  strong weather effects (particularly wind and temperature). In general, seals
+  were more likely to haul out on ice in the middle of the day and when wind
+  speed was low and temperatures were higher. Haul-out probability increased
+  through March and April, peaking in May and early June before declining again.
+  The timing and frequency of haul-out events also varied based on species and
+  age-sex class. For ribbon and spotted seals, models with year effects were
+  highly supported, indicating that the timing and magnitude of haul-out
+  behavior varied among years. However, we did not find broad evidence that
+  haul-out timing was linked to annual sea-ice extent. Our analysis emphasizes
+  the importance of accounting for seasonal and temporal variation in haul-out
+  behavior, as well as associated environmental covariates, when interpreting
+  the number of seals counted in aerial surveys.
 output:
   bookdown::pdf_book:
     base_format: rticles::peerj_article # for using bookdown features like \@ref()
