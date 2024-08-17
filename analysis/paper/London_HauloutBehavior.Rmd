@@ -130,12 +130,28 @@ knitr::opts_chunk$set(
   echo = FALSE,
   include = FALSE,
   fig.path = "../figures/",
-  dpi = 600,
+  dpi = 500,
   fig.width = 6,
   fig.asp = 0.618,
   out.width = "100%",
   tab.topcaption = TRUE
 )
+
+make_plot_namer <- function(prefix="Figure-", fig_n=1L, width=2){
+  function(x){
+    x2 <- file.path(dirname(x), 
+                    paste0(prefix, 
+                           formatC(fig_n, width=width, flag="0"),
+                           ".", 
+                           tools::file_ext(x)))
+    fig_n <<- fig_n + 1L
+    if (file.rename(x, x2)) x2 else x
+  }
+}
+
+knitr::opts_chunk$set(fig.process = make_plot_namer(width=3))
+
+options(tinytex.verbose = TRUE)
 
 options(scipen = 3, digits = 3)
 
@@ -310,17 +326,24 @@ nets and bio-loggers were attached during studies based in coastal communities
 or on research ships. Ship-based capture events occurred during spring near the
 southern ice edge in the Bering Sea between 2005 and 2018. Land-based capture
 events occurred between 2005 and 2020 from May to October, generally between the
-Alaska coastal communities of Scammon Bay in the Bering Sea, Utqiaġvik
-in the Chukchi Sea, and Nuiqsut in the Beaufort Sea (Supplemental
-Material, [S1](#s1)). Data from additional
-deployments along the Kamchatka peninsula in the western Bering Sea are also
-included. We refer readers to Figure \@ref(fig:deployplot) and the primary literature
-for detailed capture and bio-logger attachment methods (see also Supplemental
-Material, [S1](#s1)).
+Alaska coastal communities of Scammon Bay in the Bering Sea, Utqiaġvik in the
+Chukchi Sea, and Nuiqsut in the Beaufort Sea (Supplemental Material, [S1](#s1)).
+Data from additional deployments along the Kamchatka peninsula in the western
+Bering Sea are also included. We refer readers to Figure \@ref(fig:deployplot)
+and the primary literature for detailed capture and bio-logger attachment
+methods (see also Supplemental Material, [S1](#s1)). NOAA-led research was
+conducted under the authority of Marine Mammal Protection Act Research Permits
+Nos. 782-1676, 782-1765, 15126, and 19309 issued by the National Marine
+Fisheries Service, and Letters of Assurance of Compliance with Animal Welfare
+Act regulations, Nos. A/NW 2010-3 and A/NW 2016-1 from the Alaska Fisheries
+Science Center/Northwest Fisheries Science Center Institutional Animal Care and
+Use Committee (IACUC). ADF&G and NSB field work was covered by Research Permits
+Nos. 358-1585, 358-1787, 15324, and 20466 and by ADF&G IACUC permits Nos. 06-16,
+09-21, 2014-03, 2015-25, 2016-23, 0027-2017-27, 0027-2018-29, 0027-2019-041.
 
-(ref:deployMapCaption) **Initial bio-logger deployment areas for bearded, ribbon, and spotted seals in the study between 2005 and 2020 across multiple regions within the Bering, Chukchi, and western Beaufort seas.** \linebreak Solid regions shown for each species are minimum concave polygons buffered by 60 km for enhanced visibility. The larger, shaded region indicates the spatial extent of aerial survey effort to date in the Bering, Chukchi, and Beaufort seas. Deployments were initiated across a range of months but only haul-out data from 1 March to 15 July were included in the analysis. See Figure \@ref(fig:dataMap) for the spatial distribution of observed data used in the study and Supplemental Materials \@ref(tab:deploymentTable) for additional deployment details.
+(ref:deployMapCaption) **Initial bio-logger deployment areas for bearded, ribbon, and spotted seals in the study between 2005 and 2020 across multiple regions within the Bering, Chukchi, and western Beaufort seas.** \linebreak Solid regions shown for each species are minimum concave polygons buffered by 60 km for enhanced visibility. The larger, shaded region indicates the spatial extent of aerial survey effort to date in the Bering, Chukchi, and Beaufort seas. Deployments were initiated across a range of months but only haul-out data from 1 March to 15 July were included in the analysis. See Figure \@ref(fig:dataMap) for the spatial distribution of observed data used in the study and Supplemental Materials \@ref(tab:deploymentTable) for additional deployment details. World land vector data from https://naturalearthdata.com.
 
-```{r deployplot, include=TRUE, fig.asp = 0.4, fig.cap = "(ref:deployMapCaption)"}
+```{r deployplot, include=TRUE, fig.asp = 0.42, fig.cap = "(ref:deployMapCaption)"}
 targets::tar_load(deploy_details, store = here::here("_targets"))
 targets::tar_load(survey_area, store = here::here("_targets"))
 
@@ -376,7 +399,7 @@ p <- ggplot() +
   scale_fill_manual(values = species_colors,
                     aesthetics = "fill", 
                     name = "species") + 
-  labs(caption = "<span style = 'color: #A26E7C;'><span style = 'font-family: \"Font Awesome 6 Free Regular\";'>&#xf0c8;</span> spatial extent of aerial survey effort in US and Russian waters</span>") +
+  labs(caption = "<span style = 'color: #A26E7C;'><span style = 'font-family: \"Font Awesome 6 Free Regular\";'>&#xf0c8;</span> spatial extent of aerial survey effort in US and Russian waters</span><br />world land vector data from naturalearthdata.com") +
   theme(legend.position = "none",
         axis.title = element_blank(),
         strip.background = element_blank(),
@@ -426,12 +449,12 @@ _subadults_, and mature _adults_) were estimated at the time of deployment by
 various combinations of length, claw growth ridges [@mclaren1958a], and pelage
 characteristics. Seals determined to be less than one year were classified as
 young-of-the-year. For those bio-loggers deployed on young-of-the-year and
-transmitting into the next year, the age class was advanced to subadult on 1
-March of the following year -- the assumed anniversary of their birth. Subadults
-are those seals likely greater than one year of age but less than four years.
-Adults are individuals that are likely older than four years. Table
-\@ref(tab:tblDeploy) provides a summary of these deployments and data received
-from them.
+transmitting into the next year (6 ribbon seals; 3 spotted seals), the age class
+was advanced to subadult on 1 March of the following year -- the assumed
+anniversary of their birth. Subadults are those seals likely greater than one
+year of age but less than four years. Adults are individuals that are likely
+older than four years. Table \@ref(tab:tblDeploy) provides a summary of these
+deployments and data received from them.
 
 (ref:deployTblCaption) **Summary of bio-logger data by seal species and age classification from 1 March to 15 July 2005-2021.** \linebreak Seal hours represents the sum of hourly observations across all seals used in the analysis. Because young-of-the-year are advanced to subadult on 1 March of the following year, some individual seals are represented in both columns in this table
 
@@ -897,7 +920,7 @@ locs_count <- hexgrid %>%
   ) %>% drop_na()
 ```
 
-(ref:mapCaption) **Spatial distribution of haul-out records from 1 March through July 15 for bearded, ribbon, and spotted seal.** \linebreak Linking location estimates with haul-out records in space and time allows for inclusion of weather covariates in the final model. For this visualization, data were collated across all years between 2005 and 2020 and each hexagonal cell represents an area of 50 km^2^
+(ref:mapCaption) **Spatial distribution of haul-out records from 1 March through July 15 for bearded, ribbon, and spotted seal.** \linebreak Linking location estimates with haul-out records in space and time allows for inclusion of weather covariates in the final model. For this visualization, data were collated across all years between 2005 and 2020 and each hexagonal cell represents an area of 50 km^2^. World land vector data from https://naturalearthdata.com.
 
 ```{r dataMap, include=TRUE, fig.asp = 0.5, fig.cap="(ref:mapCaption)"}
 
@@ -928,7 +951,7 @@ ggplot() +
   ) +
   facet_grid( ~ species) +
   labs(
-    caption = "One hexagonal cell represents 50 km^2^"
+    caption = "One hexagonal cell represents 50 km^2^<br />world land vector data from naturalearthdata.com"
   ) +
   theme(
     legend.position = "bottom"
@@ -1017,8 +1040,8 @@ instance of unrealistic values were censored from this analysis. In addition to
 a peak around local solar noon, the bearded seal model predicted additional
 haul-out activity around local midnight. In concert with the lower magnitude of
 haul-out probability, bearded seal haul-out behavior was also more protracted
-throughout the spring season compared to ribbon (Figure \@ref(fig:ribbonHOCal))
-and spotted seals (Figure \@ref(fig:spottedHOCal)). Overall, bearded seals were
+throughout the spring season compared to ribbon
+and spotted seals (see below). Overall, bearded seals were
 less likely to haul out and had a bi-modal distribution of haul-out probability
 across the day.
 
@@ -1396,8 +1419,11 @@ peak_ho_df <- peak_ho_df %>%
   mutate(year_shape = if_else(as.numeric(paste(year)) < 2015,"a","b"))
 
 
-pal <- c(rcartocolor::carto_pal(12,'Bold')[1:11],
-         rcartocolor::carto_pal(12,'Antique')[1:3])
+# see https://davidmathlogic.com/colorblind/#%23A6CEE3-%233385BB-%2384BF96-%23004D40-%23F3E587-%23F57C7C-%23D81B60-%23FBB268-%23FE8D19-%23DE9E83-%239D7BBA-%23977899-%237F9D55-%23B15928
+# for simulation of colorblind scenarios
+
+pal <- c("#A6CEE3","#3385BB","#84BF96","#004D40","#F3E587","#F57C7C","#D81B60",
+         "#FBB268","#FE8D19","#DE9E83","#9D7BBA", "#977899","#7F9D55","#B15928")
 names(pal) <- as.character(sort(unique(peak_ho_df$year)))
 
 shapes <- c(rep(15,7), rep(19,7))
@@ -1773,17 +1799,21 @@ project administration, writing: review and editing
 
 # Data Availability {-}
 
-This manuscript was developed as a reproducible research compendium. All data and
-code are available on GitHub (https://github.com/noaa-afsc/berchukseals-haulout) and
+This manuscript was developed as a reproducible research compendium and was
+originally published as a pre-print at bioRxiv (@london2022;
+https://doi.org/10.1101/2022.04.07.487572). All data used in the study and code
+are available on GitHub (https://github.com/noaa-afsc/berchukseals-haulout) and
 major versions archived at Zenodo (https://doi.org/10.5281/zenodo.4638221).
-Original data sources for telemetry are archived
-at the United States Animal Telemetry Network, archived at Movebank, or
-associated with other published manuscripts (see supplemental 
-material \@ref(tab:deploymentTable)). Collated and cleaned data products
-needed to replicate the analysis along with the results of all model fits are 
-also available and versioned as an R package on 
-GitHub (https://github.com/noaa-afsc/berchuksealsHauloutFits) and archived at 
-Zenodo.
+Original data sources for telemetry are archived as part of datasets at
+the United States Animal Telemetry Network (https://portal.atn.ioos.us/; 
+https://doi.org/10.24431/rw1k8er), archived at Movebank (see
+Movebank ID	732321226), or associated
+with other published manuscripts (see supplemental material
+\@ref(tab:deploymentTable)). Collated and cleaned data products needed to
+replicate the analysis along with the results of all model fits are also
+available and versioned as an R package on GitHub
+(https://github.com/noaa-afsc/berchuksealsHauloutFits) and archived at Zenodo
+(https://doi.org/10.5281/zenodo.10056308).
 
 # Acknowledgments {-}
 
@@ -1829,19 +1859,7 @@ Wildlife.
 The findings and conclusions in the paper are those of the author(s) and do not
 necessarily represent the views of the National Marine Fisheries Service, NOAA.
 Any use of trade, product, or firm names does not imply an endorsement by the
-U.S. Government. Funding for this study was provided by the U.S. National
-Oceanic and Atmospheric Administration. The field work was conducted under the
-authority of Marine Mammal Protection Act Research Permits Nos. 782-1676,
-782-1765, 15126, and 19309 issued by the National Marine Fisheries Service, and
-Letters of Assurance of Compliance with Animal Welfare Act regulations, Nos.
-A/NW 2010-3 and A/NW 2016-1 from the Alaska Fisheries Science Center/Northwest
-Fisheries Science Center Institutional Animal Care and Use Committee (IACUC). ).
-Funding to ADF&G for tagging seals was provided by the Bureau of Ocean Energy
-Management (No. M13PC0015 for work in Kotzebue, Alaska in 2009) and the Office
-of Naval Research (No. N00014-16-1-3019). ADF&G and NSB field work was covered by
-Research Permits Nos. 358-1585, 358-1787, 15324, and 20466 and by ADF&G IACUC
-permits Nos. 06-16, 09-21, 2014-03, 2015-25, 2016-23, 0027-2017-27,
-0027-2018-29, 0027-2019-041.
+U.S. Government. 
 
 # References {-}
 

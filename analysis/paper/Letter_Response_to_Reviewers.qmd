@@ -12,9 +12,12 @@ environments: [author-response]
 editor: visual
 ---
 
+```{=tex}
 \newenvironment{author-response}{\color{Bittersweet}}
 
-Josh M. London, PhD\newline
+J
+```
+osh M. London, PhD\newline
 7600 Sand Point Way NE\newline Seattle, Washington,
 98115\newline josh.london\@noaa.gov\newline
 
@@ -42,11 +45,13 @@ and code availability.
 
 Below, please find detailed responses to each of the reviewer comments. In
 addition to this letter, the full suite of updates are all contained and
-documented within a single pull request (see
-<https://github.com/noaa-afsc/berchukseals-haulout/pull/51>). We have also
-provided a pdf document (*\[Compare Report\] London_HauloutBehavior.pdf\]*) that
-indicates all changes between the compedium supporting this revised manuscript
-and the compendium supporting the originally submitted manuscript.
+documented within two pull requests (see
+<https://github.com/noaa-afsc/berchukseals-haulout/pull/51> (initial
+resubmission) and <https://github.com/noaa-afsc/berchukseals-haulout/pull/52>
+(additional suggestions from PeerJ staff). We have also provided a pdf document
+(*\[Compare Report\] London_HauloutBehavior.pdf\]*) that indicates all changes
+between the compendium supporting this revised manuscript and the compendium
+supporting the originally submitted manuscript.
 
 Thank you, again, for your time and consideration. And, additionally, thank you
 to the reviewers for their time. It is much appreciated and we feel the
