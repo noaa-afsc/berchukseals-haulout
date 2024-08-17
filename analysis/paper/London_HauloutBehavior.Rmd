@@ -220,7 +220,7 @@ declines in sea-ice habitat have had, or will have, on seal demography.
 
 Statutory requirements (e.g., United States Marine Mammal Protection Act (MMPA),
 United States Endangered Species Act (ESA)) for timely estimates of population
-abundance and trend mean improved aerial survey effort is needed for these
+abundance and trends mean improved aerial survey effort is needed for these
 species. Those survey efforts must also be paired with improved knowledge of
 haul-out behavior to ensure appropriate survey design, robust methods, and
 accurate estimates. Several studies have contributed estimates of the
@@ -289,10 +289,12 @@ logistical constraints on fieldwork and the attachment duration or operational
 life of bio-loggers. In this study, we addressed some of these limitations by
 deploying small bio-loggers designed for longer-term attachment on rear flippers
 of a subset of the study individuals. These devices are designed to collect data
-through the molt period (when those adhered to the hair would fall off) and, in
-some situations, provide multiple years of data.
+through the molt period (when those adhered to the hair -- a more conventional
+method -- would fall off) and, in some situations, provide multiple years of
+data.
 
-In this study, we used 16 years of bio-logging data to investigate the haul-out
+In this study, we used data collected from multiple bio-logging deployments
+spanning a 16-year period to investigate the haul-out
 behavior of bearded, ribbon, and spotted seals in the Bering and Chukchi seas.
 Our goals were threefold. First, we wished to establish baseline estimates for
 the chronology of haul-out behavior in the critical spring season for each
@@ -326,23 +328,23 @@ bio-loggers deployed on bearded, ribbon, and spotted seals in the Bering,
 Chukchi, and western Beaufort seas by multiple organizations as part of
 collaborative investigations from 2005 through 2021. Seals were captured using
 nets and bio-loggers were attached during studies based in coastal communities
-or on research ships. Ship-based capture events occurred during spring near the
-southern ice edge in the Bering Sea between 2005 and 2018. Land-based capture
-events occurred between 2005 and 2020 from May to October, generally between the
-Alaska coastal communities of Scammon Bay in the Bering Sea, Utqiaġvik in the
-Chukchi Sea, and Nuiqsut in the Beaufort Sea (Supplemental Material, [S1](#s1)).
-Data from additional deployments along the Kamchatka peninsula in the western
-Bering Sea are also included. We refer readers to Figure \@ref(fig:deployplot)
-and the primary literature for detailed capture and bio-logger attachment
-methods (see also Supplemental Material, [S1](#s1)). NOAA-led research was
-conducted under the authority of Marine Mammal Protection Act Research Permits
-Nos. 782-1676, 782-1765, 15126, and 19309 issued by the National Marine
-Fisheries Service, and Letters of Assurance of Compliance with Animal Welfare
-Act regulations, Nos. A/NW 2010-3 and A/NW 2016-1 from the Alaska Fisheries
-Science Center/Northwest Fisheries Science Center Institutional Animal Care and
-Use Committee (IACUC). ADF&G and NSB field work was covered by Research Permits
-Nos. 358-1585, 358-1787, 15324, and 20466 and by ADF&G IACUC permits Nos. 06-16,
-09-21, 2014-03, 2015-25, 2016-23, 0027-2017-27, 0027-2018-29, 0027-2019-041.
+or on research ships (Figure \@ref(fig:deployplot)). Ship-based capture events
+occurred during spring near the southern ice edge in the Bering Sea between 2005
+and 2018. Land-based capture events occurred between 2005 and 2020 from May to
+October, generally between the Alaska coastal communities of Scammon Bay in the
+Bering Sea, Utqiaġvik in the Chukchi Sea, and Nuiqsut in the Beaufort Sea. Data
+from additional deployments along the Kamchatka peninsula in the western Bering
+Sea are also included. We refer readers to the primary literature for detailed
+capture and bio-logger attachment methods (see publications listed in
+Supplemental Material, [S1](#s1)). NOAA-led research was conducted under the
+authority of Marine Mammal Protection Act Research Permits Nos. 782-1676,
+782-1765, 15126, and 19309 issued by the National Marine Fisheries Service, and
+Letters of Assurance of Compliance with Animal Welfare Act regulations, Nos.
+A/NW 2010-3 and A/NW 2016-1 from the Alaska Fisheries Science Center/Northwest
+Fisheries Science Center Institutional Animal Care and Use Committee (IACUC).
+ADF&G and NSB field work was covered by Research Permits Nos. 358-1585,
+358-1787, 15324, and 20466 and by ADF&G IACUC permits Nos. 06-16, 09-21,
+2014-03, 2015-25, 2016-23, 0027-2017-27, 0027-2018-29, 0027-2019-041.
 
 (ref:deployMapCaption) **Initial bio-logger deployment areas for bearded, ribbon, and spotted seals in the study between 2005 and 2020 across multiple regions within the Bering, Chukchi, and western Beaufort seas.** \linebreak Solid regions shown for each species are minimum concave polygons buffered by 60 km for enhanced visibility. The larger, shaded region indicates the spatial extent of aerial survey effort to date in the Bering, Chukchi, and Beaufort seas. Deployments were initiated across a range of months but only haul-out data from 1 March to 15 July were included in the analysis. See Figure \@ref(fig:dataMap) for the spatial distribution of observed data used in the study and Supplemental Materials \@ref(tab:deploymentTable) for additional deployment details. World land vector data from https://naturalearthdata.com.
 
