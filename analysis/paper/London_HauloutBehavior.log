@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.30)  7 JUN 2024 10:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.30)  19 AUG 2024 14:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1120,122 +1120,128 @@ LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/it' aliased to
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/it' will be
 (Font)              scaled to size 9.0pt on input line 187.
 
-Underfull \vbox (badness 2503) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [1
 
 {/Users/josh.london/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/josh.london/Library/TinyTeX/texmf-dist/fonts/enc/dvips/sourcesanspro/a_emkxm5.enc}{/Users/josh.london/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}{/Users/josh.london/Library/TinyTeX/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-t1.enc}{/Users/josh.london/Library/TinyTeX/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-mathrm.enc}]
+Underfull \vbox (badness 4582) has occurred while \output is active []
+
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/sb/n' aliased to
-(Font)              `T1/SourceSansPro-TLF/semibold/n' on input line 263.
+(Font)              `T1/SourceSansPro-TLF/semibold/n' on input line 212.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/semibold/n' will be
-(Font)              scaled to size 9.0pt on input line 263.
-[2] [3]
+(Font)              scaled to size 9.0pt on input line 212.
+[2]
+Underfull \vbox (badness 2644) has occurred while \output is active []
+
+[3]
 
 Package hyperref Warning: The anchor of a bookmark and its parent's must not
-(hyperref)                be the same. Added a new anchor on input line 310.
+(hyperref)                be the same. Added a new anchor on input line 312.
 
 
-LaTeX Warning: Hyper reference `s1' on page 4 undefined on input line 321.
+LaTeX Warning: Hyper reference `s1' on page 4 undefined on input line 327.
 
-
-LaTeX Warning: Hyper reference `s1' on page 4 undefined on input line 325.
-
-<../figures/Figure-001.png, id=115, 433.62pt x 182.1204pt>
+[4]
+<../figures/Figure-001.png, id=121, 433.62pt x 182.1204pt>
 File: ../figures/Figure-001.png Graphic file (type png)
 <use ../figures/Figure-001.png>
-Package pdftex.def Info: ../figures/Figure-001.png  used on input line 338.
+Package pdftex.def Info: ../figures/Figure-001.png  used on input line 340.
 (pdftex.def)             Requested size: 415.12572pt x 174.36118pt.
-[4 <../figures/Figure-001.png>] [5]
-<../figures/Figure-002.png, id=138, 433.62pt x 267.97716pt>
+[5 <../figures/Figure-001.png>] [6]
+<../figures/Figure-002.png, id=143, 433.62pt x 267.97716pt>
 File: ../figures/Figure-002.png Graphic file (type png)
 <use ../figures/Figure-002.png>
-Package pdftex.def Info: ../figures/Figure-002.png  used on input line 516.
+Package pdftex.def Info: ../figures/Figure-002.png  used on input line 518.
 (pdftex.def)             Requested size: 415.12572pt x 256.56pt.
-[6] [7 <../figures/Figure-002.png>]
+
+Underfull \vbox (badness 4120) has occurred while \output is active []
+
+[7 <../figures/Figure-002.png>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 640.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 642.
 [8] [9] [10{/Users/josh.london/Library/TinyTeX/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-mathit.enc}]
 <../figures/Figure-003.png, id=173, 433.62pt x 216.81pt>
 File: ../figures/Figure-003.png Graphic file (type png)
 <use ../figures/Figure-003.png>
-Package pdftex.def Info: ../figures/Figure-003.png  used on input line 826.
+Package pdftex.def Info: ../figures/Figure-003.png  used on input line 828.
 (pdftex.def)             Requested size: 415.12572pt x 207.57281pt.
 <../figures/Figure-004.png, id=176, 433.62pt x 267.97716pt>
 File: ../figures/Figure-004.png Graphic file (type png)
 <use ../figures/Figure-004.png>
-Package pdftex.def Info: ../figures/Figure-004.png  used on input line 832.
-(pdftex.def)             Requested size: 415.12572pt x 256.56pt.
-<../figures/Figure-005.png, id=179, 433.62pt x 267.97716pt>
-File: ../figures/Figure-005.png Graphic file (type png)
-<use ../figures/Figure-005.png>
-Package pdftex.def Info: ../figures/Figure-005.png  used on input line 866.
+Package pdftex.def Info: ../figures/Figure-004.png  used on input line 834.
 (pdftex.def)             Requested size: 415.12572pt x 256.56pt.
 [11]
+<../figures/Figure-005.png, id=186, 433.62pt x 267.97716pt>
+File: ../figures/Figure-005.png Graphic file (type png)
+<use ../figures/Figure-005.png>
+Package pdftex.def Info: ../figures/Figure-005.png  used on input line 868.
+(pdftex.def)             Requested size: 415.12572pt x 256.56pt.
 <../figures/Figure-006.png, id=189, 433.62pt x 433.62pt>
 File: ../figures/Figure-006.png Graphic file (type png)
 <use ../figures/Figure-006.png>
-Package pdftex.def Info: ../figures/Figure-006.png  used on input line 894.
+Package pdftex.def Info: ../figures/Figure-006.png  used on input line 896.
 (pdftex.def)             Requested size: 415.12572pt x 415.14566pt.
-<../figures/Figure-007.png, id=192, 433.62pt x 390.258pt>
+[12 <../figures/Figure-003.png>] [13 <../figures/Figure-004.png>] [14 <../figures/Figure-005.png>] [15 <../figures/Figure-006.png>]
+<../figures/Figure-007.png, id=215, 433.62pt x 390.258pt>
 File: ../figures/Figure-007.png Graphic file (type png)
 <use ../figures/Figure-007.png>
-Package pdftex.def Info: ../figures/Figure-007.png  used on input line 916.
+Package pdftex.def Info: ../figures/Figure-007.png  used on input line 919.
 (pdftex.def)             Requested size: 415.12572pt x 373.63109pt.
-[12 <../figures/Figure-003.png>] [13 <../figures/Figure-004.png>] [14 <../figures/Figure-005.png>] [15 <../figures/Figure-006.png>] [16 <../figures/Figure-007.png>]
-<../figures/Figure-008.png, id=223, 433.62pt x 390.258pt>
+<../figures/Figure-008.png, id=218, 433.62pt x 390.258pt>
 File: ../figures/Figure-008.png Graphic file (type png)
 <use ../figures/Figure-008.png>
-Package pdftex.def Info: ../figures/Figure-008.png  used on input line 946.
+Package pdftex.def Info: ../figures/Figure-008.png  used on input line 949.
 (pdftex.def)             Requested size: 415.12572pt x 373.63109pt.
-<../figures/Figure-009.png, id=227, 433.62pt x 390.258pt>
+<../figures/Figure-009.png, id=222, 433.62pt x 390.258pt>
 File: ../figures/Figure-009.png Graphic file (type png)
 <use ../figures/Figure-009.png>
-Package pdftex.def Info: ../figures/Figure-009.png  used on input line 966.
+Package pdftex.def Info: ../figures/Figure-009.png  used on input line 969.
 (pdftex.def)             Requested size: 415.12572pt x 373.63109pt.
-<../figures/Figure-010.png, id=229, 433.62pt x 390.258pt>
+<../figures/Figure-010.png, id=224, 433.62pt x 390.258pt>
 File: ../figures/Figure-010.png Graphic file (type png)
 <use ../figures/Figure-010.png>
-Package pdftex.def Info: ../figures/Figure-010.png  used on input line 1002.
+Package pdftex.def Info: ../figures/Figure-010.png  used on input line 1005.
 (pdftex.def)             Requested size: 415.12572pt x 373.63109pt.
-<../figures/Figure-011.png, id=231, 433.62pt x 325.215pt>
+[16] [17 <../figures/Figure-007.png>] [18 <../figures/Figure-008.png>] [19 <../figures/Figure-009.png>] [20 <../figures/Figure-010.png>]
+<../figures/Figure-011.png, id=254, 433.62pt x 325.215pt>
 File: ../figures/Figure-011.png Graphic file (type png)
 <use ../figures/Figure-011.png>
-Package pdftex.def Info: ../figures/Figure-011.png  used on input line 1036.
+Package pdftex.def Info: ../figures/Figure-011.png  used on input line 1039.
 (pdftex.def)             Requested size: 415.12572pt x 311.35924pt.
-[17] [18 <../figures/Figure-008.png>] [19 <../figures/Figure-009.png>] [20 <../figures/Figure-010.png>] [21 <../figures/Figure-011.png>]
-LaTeX Font Info:    Trying to load font information for TS1+stix2 on input line 1083.
+LaTeX Font Info:    Trying to load font information for TS1+stix2 on input line 1086.
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/stix2-type1/ts1stix2.fd
 File: ts1stix2.fd 2018/04/02 v2.0.0-latex stix2 TS1 font definitions
 )
 Package microtype Info: Character `textflorin ' is missing
 (microtype)             in font `TS1/stix2/m/n/10'.
 (microtype)             Ignoring protrusion settings for this character.
-[22{/Users/josh.london/Library/TinyTeX/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-ts1.enc}]
+
+Underfull \vbox (badness 7256) has occurred while \output is active []
+
+[21 <../figures/Figure-011.png>] [22{/Users/josh.london/Library/TinyTeX/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-ts1.enc}]
 Underfull \vbox (badness 6284) has occurred while \output is active []
 
 [23]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [24]
-Underfull \hbox (badness 2689) in paragraph at lines 1307--1322
+Underfull \hbox (badness 2689) in paragraph at lines 1314--1329
 \T1/pcr/m/n/10 2022 . 04 . 07 . 487572$[][]\T1/stix2/m/n/10 (+20) ). All data used in the study and code are avail-able on GitHub
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1307--1322
+Underfull \hbox (badness 10000) in paragraph at lines 1314--1329
 \T1/stix2/m/n/10 (+20) ([][]$\T1/pcr/m/n/10 https : / / github . com / noaa-[]afsc / berchukseals-[]haulout$[][]\T1/stix2/m/n/10 (+20) ) and ma-jor ver-sions
  []
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 1307--1322
+Underfull \hbox (badness 1237) in paragraph at lines 1314--1329
 \T1/stix2/m/n/10 (+20) ([][]$\T1/pcr/m/n/10 https : / / portal . atn . ioos . us/$[][]\T1/stix2/m/n/10 (+20) ; [][]$\T1/pcr/m/n/10 https : / / doi . org / 10 . 24431 / rw1k8er$[][]\T1/stix2/m/n/10 (+20) ), archived
  []
 
-[25]
-Underfull \vbox (badness 1769) has occurred while \output is active []
-
-[26]
-Underfull \hbox (badness 2080) in paragraph at lines 1406--1407
+[25] [26]
+Underfull \hbox (badness 2080) in paragraph at lines 1413--1414
 []\T1/stix2/m/n/10 (+20) Cameron MF, Bengt-son JL, Boveng PL, Jansen JK(JohnK, Kelly BP, Dahle SP, Loger-well
  []
 
@@ -1252,39 +1258,39 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1560 ...p{0.80in}|p{0.80in}|p{0.80in}|p{1.50in}}
+l.1567 ...p{0.80in}|p{0.80in}|p{0.80in}|p{1.50in}}
                                                    [31
 
 ] [32] [33] [34]
-<../figures/Figure-013.png, id=468, 433.62pt x 216.81pt>
+<../figures/Figure-013.png, id=470, 433.62pt x 216.81pt>
 File: ../figures/Figure-013.png Graphic file (type png)
 <use ../figures/Figure-013.png>
-Package pdftex.def Info: ../figures/Figure-013.png  used on input line 1925.
+Package pdftex.def Info: ../figures/Figure-013.png  used on input line 1932.
 (pdftex.def)             Requested size: 415.12572pt x 207.57281pt.
-<../figures/Figure-014.png, id=469, 433.62pt x 303.38947pt>
+<../figures/Figure-014.png, id=471, 433.62pt x 303.38947pt>
 File: ../figures/Figure-014.png Graphic file (type png)
 <use ../figures/Figure-014.png>
-Package pdftex.def Info: ../figures/Figure-014.png  used on input line 1931.
+Package pdftex.def Info: ../figures/Figure-014.png  used on input line 1938.
 (pdftex.def)             Requested size: 415.12572pt x 290.46358pt.
-<../figures/Figure-015.png, id=470, 433.62pt x 303.38947pt>
+<../figures/Figure-015.png, id=472, 433.62pt x 303.38947pt>
 File: ../figures/Figure-015.png Graphic file (type png)
 <use ../figures/Figure-015.png>
-Package pdftex.def Info: ../figures/Figure-015.png  used on input line 1937.
+Package pdftex.def Info: ../figures/Figure-015.png  used on input line 1944.
 (pdftex.def)             Requested size: 415.12572pt x 290.46358pt.
 [35
 
 
 ] [36 <../figures/Figure-013.png>] [37 <../figures/Figure-014.png>] [38 <../figures/Figure-015.png>]
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/sb/it' aliased to
-(Font)              `T1/SourceSansPro-TLF/semibold/it' on input line 1944.
+(Font)              `T1/SourceSansPro-TLF/semibold/it' on input line 1951.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/semibold/it' will be
-(Font)              scaled to size 9.0pt on input line 1944.
+(Font)              scaled to size 9.0pt on input line 1951.
 [39
 
 ]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 2024.
-LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 2025.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 2031.
+LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 2032.
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 )
@@ -1293,25 +1299,25 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Overfull \vbox (0.88728pt too high) detected at line 2072
+Overfull \vbox (0.88728pt too high) detected at line 2079
  []
 
 [40] [41] [42]
-<../figures/Figure-016.png, id=525, 433.62pt x 325.215pt>
+<../figures/Figure-016.png, id=527, 433.62pt x 325.215pt>
 File: ../figures/Figure-016.png Graphic file (type png)
 <use ../figures/Figure-016.png>
-Package pdftex.def Info: ../figures/Figure-016.png  used on input line 2193.
+Package pdftex.def Info: ../figures/Figure-016.png  used on input line 2200.
 (pdftex.def)             Requested size: 415.12572pt x 311.35924pt.
 [43 <../figures/Figure-016.png>]
-<../figures/Figure-017.png, id=537, 433.62pt x 390.258pt>
+<../figures/Figure-017.png, id=539, 433.62pt x 390.258pt>
 File: ../figures/Figure-017.png Graphic file (type png)
 <use ../figures/Figure-017.png>
-Package pdftex.def Info: ../figures/Figure-017.png  used on input line 2229.
+Package pdftex.def Info: ../figures/Figure-017.png  used on input line 2236.
 (pdftex.def)             Requested size: 415.12572pt x 373.63109pt.
-<../figures/Figure-018.png, id=538, 433.62pt x 303.38947pt>
+<../figures/Figure-018.png, id=540, 433.62pt x 303.38947pt>
 File: ../figures/Figure-018.png Graphic file (type png)
 <use ../figures/Figure-018.png>
-Package pdftex.def Info: ../figures/Figure-018.png  used on input line 2235.
+Package pdftex.def Info: ../figures/Figure-018.png  used on input line 2242.
 (pdftex.def)             Requested size: 415.12572pt x 290.46358pt.
 [44] [45 <../figures/Figure-017.png>] [46 <../figures/Figure-018.png>] 
 enddocument/afterlastpage: lastpage setting LastPage.
@@ -1330,18 +1336,18 @@ Package rerunfilecheck Info: File `London_HauloutBehavior.out' has not changed.
 (rerunfilecheck)             Checksum: 4481A9D432A9D0C75178743F35F2B9CD;3658.
  ) 
 Here is how much of TeX's memory you used:
- 22673 strings out of 475892
- 374089 string characters out of 5786975
- 2028904 words of memory out of 5000000
+ 22671 strings out of 475892
+ 374020 string characters out of 5786975
+ 2029904 words of memory out of 5000000
  44076 multiletter control sequences out of 15000+600000
- 834607 words of font info for 363 fonts, out of 8000000 for 9000
+ 834437 words of font info for 362 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 94i,12n,107p,2840b,715s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,11n,107p,3022b,715s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Math.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Bold.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Italic.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Regular.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Regular.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Semibold.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-SemiboldIt.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>
-Output written on London_HauloutBehavior.pdf (46 pages, 6522313 bytes).
+Output written on London_HauloutBehavior.pdf (46 pages, 6523475 bytes).
 PDF statistics:
- 648 PDF objects out of 1000 (max. 8388607)
- 547 compressed objects within 6 object streams
+ 650 PDF objects out of 1000 (max. 8388607)
+ 549 compressed objects within 6 object streams
  129 named destinations out of 1000 (max. 500000)
  79118 words of extra memory for PDF output out of 89155 (max. 10000000)
 
