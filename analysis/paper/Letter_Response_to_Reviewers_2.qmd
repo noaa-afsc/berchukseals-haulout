@@ -1,0 +1,132 @@
+---
+subject: "Additional Revisions to Maunscript 2022:04:72978"
+sender: |
+  Josh M. London, PhD \
+  7600 Sand Point Way NE . Seattle, Washington, 98115 . josh.london@noaa.gov"
+recipient: |
+  To: Suzanne Prange \ 
+  Academic Editor \ 
+  PeerJ Life & Environment
+sent: "19 August 2024"
+format:
+  letter-typst: default
+---
+
+Dr. Prange
+
+I sincerely appreciate the additional feedback from the reviewers and and
+pleased to hear you support publication of this article in *PeerJ*. I was,
+unfortunately, on leave for a portion of the past few weeks and thus was unable
+to make the initial 15 day deadline. I have revised the manuscript in response
+to feedback from reviewer M. Carter and have provided additional details below.
+I especially appreciated Matt's suggestion for a new title and some of this
+thoughts regarding the ordering of topics.
+
+I also want to take a moment and thank the *PeerJ* staff for their previous
+efforts and dedication ensuring the formatting details, accessibility, and data
+access were all finalized during the previous submission.
+
+Sincerely
+
+Josh M. London, PhD\
+Wildlife Biologist\
+Alaska Fisheries Science Center, NOAA Fisheries
+
+--------------------------------------------------------------------------------
+
+#### Response to Comments from M Carter
+
+The reviewer provided a useful suggestion regarding the manuscript title and the
+order in which particular topics are presented. We have re-titled the manuscript
+per their suggestion to *Spring haul-out behavior of seals in the Bering and
+Chukchi Seas: implications for abundance estimation*. Additionally we have made
+minor edits to the Abstract and Introduction in response to the reviewer's
+suggestions regarding topic order.
+
+*L59: Typo? “Trends” rather than “trend”?*
+
+Fixed
+
+*L111: Maybe outline for non-specialist readers that adhering bio-loggers to
+hair is the conventional approach for most devices on pinnipeds.*
+
+The text now reads:
+
+> These devices are designed to collect data through the molt period (when those
+> adhered to the hair -- a more conventional method -- would fall off) and, in
+> some situations, provide multiple years of data.
+
+*L113: Given the final sentence of the previous paragraph, I think it’s
+important to detail that you’re not using a continuous 16-year dataset from one
+device here, rather you have compiled data collected from multiple devices
+spanning a 16-year period.*
+
+The text now reads:
+
+> In this study, we used data collected from multiple bio-logging deployments
+> spanning a 16-year period to investigate the haul-out behavior of bearded,
+> ribbon, and spotted seals in the Bering and Chukchi seas.
+
+*L138: What is meant by “primary literature” here? I can’t see any references
+associated with the deployments.*
+
+The supplemental table lists primary literature associated with each study where
+additional details regarding the capture techniques, etc can be found. I've
+update the text for additional clarification:
+
+> We refer readers to the primary literature for detailed capture and bio-logger
+> attachment methods (see publications listed in Supplemental Material S1)
+
+*L156-157: Can you clarify this? Is it that you get erroneous haulout records
+where the animal is actually at sea and thus there is a bias introduced into the
+percentage time hauled out estimate that is used to scale the abundance
+estimates? In cases where flipper-mounted tags were not deployed, did you use
+any spatial cleaning method to identify and remove these (i.e. if they are
+clearly offshore according to the associated location data)? Or is this
+complicated by lack of knowledge about sea ice presence?*
+
+The text currently states *bio-loggers attached to the head or dorsal region are
+often dry while the seal is floating at the surface, inducing a slight positive
+bias in the hourly percent-dry values reported by the bio-logger*. We're not
+sure how we could efficiently improve the specifics of this statement. Because
+seals must put their heads out of the water to breath, tags attached to the head
+or dorsal region will naturally spend more time out of the water compared to the
+flipper. This results in a slight bias.
+
+*L365 and 383: Perhaps interesting to note from an ontogeny perspective that the
+diurnal pattern of haulout seems to develop in YOY from a very young age for
+both ribbon and spotted seals.*
+
+An additional sentence was added to highlight this
+
+*L430: Repetition of “higher latitudes”.*
+
+Fixed
+
+*L463: Can you comment on the ontogeny of haulout behaviour seen in pups for
+these species? It seems interesting that they adopt the diel pattern in haulout
+behaviour so soon after weaning as presumably they are not moulting? Can you
+unpack this in the context of existing knowledge, if any exists? If none exists,
+perhaps draw attention to its novelty?*
+
+Additional text was added to note this ontogeny.
+
+*L474: “Both of which provide” (not “provides”).*
+
+Fixed
+
+*L523-524: Can you give an idea of the magnitude of this bias?*
+
+The Conn & Trukhanova 2023 paper describes the bias in detail related to the
+inclusion of age and stage so the text was edited to more directly encourage the
+readers to see that paper for more details. We don't currently have the
+framework to measure the magnitude of the bias but it might be possible after
+we've completed updated abundance estimates from recent surveys.
+
+*L567-569: I think this statement would be much more impactful if we had some
+idea of the magnitude of bias in abundance estimates from not accounting for
+these factors.*
+
+Agreed. Unfortunately, including this and conducting the additional analysis
+would exceed the expectations of 'minor revisions' and delay publication. We
+will keep this in mind for future analyses and manuscripts.
