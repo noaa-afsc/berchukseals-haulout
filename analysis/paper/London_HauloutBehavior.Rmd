@@ -1,5 +1,5 @@
 ---
-title: Spring haul-out behaviour of seals in the Bering and Chukchi Seas: implications for abundance estimation
+title: "Spring haul-out behavior of seals in the Bering and Chukchi Seas: implications for abundance estimation"
 preprint: false
 author: 
   - name: Josh M. London
