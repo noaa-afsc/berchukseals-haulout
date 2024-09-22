@@ -23,19 +23,10 @@ Quakenbush<sup>2</sup>, and Peter L. Boveng<sup>1</sup>
 ✉ Correspondence: Josh M. London <josh.london@noaa.gov>
 
 This repository serves as the research compendium in support of the
-above titled paper. As the manuscript works its way through peer review
-and the publications process, additional reproducibility features
-(e.g. devcontainer) and documentation of key revisions and releases
+above titled paper which has been accepted for publication at _PeerJ_
 
 Major releases of the research compendium are published and archived
 with Zenodo <https://doi.org/10.5281/zenodo.4638221>
-
-## Draft Manuscript Under Active Development
-
-Please note this manuscript is still in peer review and not final.
-Changes to results, code, and the manuscript are still possible and,
-until, final publication the latest pre-print at bioRxiv should be
-cited.
 
 ## Contents
 
@@ -68,56 +59,55 @@ management of analysis pipelines and reproducibility.
 - [:page_facing_up: \_targets.R](/_targets.R): target pipeline
 - [:page_facing_up: renv.lock](/renv.lock): renv lockfile
 
-The dependency graph for our pipeline is shown below
-
-![](./tar_glimpse.png)
-
 ## Acknowledgements
 
-We recognize that the species and ecosystems we studied are within the
-ancestral and present-day environs of the Inpuiat and Yup’ik people who,
-through many uncredited contributions of traditional knowledge, provided
-early western naturalists and scientists with much of what gets
-described as the ‘basic biology’ of Arctic seals. The deployment of
-bio-logging devices used in this study were often done in collaboration
-with Alaska Native seal hunters and the approval of their communities.
-We would like to especially acknowledge the communities of Kotzebue,
-Koyuk, Nome, Nuiqsut, Scammon Bay, St. Michael, Utqiaġvik, and Ulguniq
-(Wainwright) and the following individuals: James Adams, Jeff Barger,
-David Barr, Wendell Booth, Cyrus Harris, Nereus ‘Doc’ Harris, Grover
-Harris, Lee Harris, Tom Jones, Frank Garfield, Brenda Goodwin, Henry
-Goodwin, John Goodwin, Pearl Goodwin, Willie Goodwin, Brett Kirk, Noah
-Naylor, Virgil Naylor Jr., Virgil Naylor Sr., Dan Savetilik, Chuck
-Schaeffer, Ross Schaeffer, Allen Stone, and Randy Toshavik from
-Kotzebue; Merlin Henry from Koyuk; Tom Gray from Nome; Vernon Long and
-Richard Tukle from Nuiqsuit; Morgan Simon, River Simon, and Al Smith
-from Scammon Bay; Alex Niksik Jr. from St. Michael; Billy Adams, James
-Aiken, Tim Aiken, Howard Kittick, Gilbert Leavitt, Isaac Leavitt, J.R.
-Leavitt, and Joe Skin from Utqiaġvik, Alaska; Mary Ellen Ahmaogak, Enoch
-Oktollik, Shawn Oktollik, Stacey Osborn, and Fred Rexford from Ulguniq.
+We recognize that the species and ecosystems we studied are within the ancestral
+and present-day environs of the Inupiat and Yup'ik people who, through many
+uncredited contributions of traditional knowledge, provided early western
+naturalists and scientists with much of what gets described as the ‘basic
+biology’ of Arctic seals. The deployment of bio-logging devices used in this
+study were often done in collaboration with Alaska Native seal hunters and wiht the
+approval of
+their communities. We would like to especially acknowledge the Alaska communities of
+Kotzebue, Koyuk, Nome, Nuiqsut, Scammon Bay, St. Michael, Utqiaġvik, and Ulguniq
+(Wainwright) and the following individuals: James Adams, Jeff Barger, David
+Barr, Wendell Booth, Cyrus Harris, Nereus 'Doc' Harris, Grover Harris, Lee
+Harris, Tom Jones, Frank Garfield, Brenda Goodwin, Henry Goodwin, John Goodwin,
+Pearl Goodwin, Willie Goodwin, Brett Kirk, Noah Naylor, Virgil Naylor Jr.,
+Virgil Naylor Sr., Dan Savetilik, Chuck Schaeffer, Ross Schaeffer, Allen Stone,
+and Randy Toshavik from Kotzebue; Merlin Henry from Koyuk; Tom
+Gray from Nome; Vernon Long and Richard Tukle from Nuiqsuit; Morgan
+Simon, River Simon, and Al Smith from Scammon Bay; Alex Niksik Jr. from
+St. Michael; Billy Adams, James Aiken, Tim Aiken, Howard Kittick,
+Gilbert Leavitt, Isaac Leavitt, J.R. Leavitt, Bobby Sarren, and Joe Skin from Utqiaġvik; 
+Mary Ellen Ahmaogak, Enoch Oktollik, Shawn Oktollik, Stacey Osborn, and
+Fred Rexford from Ulguniq. We would also like to acknowledge the support of the
+Ice Seal Committee.
 
-We are grateful for the assistance in catching and sampling seals by
-Ryan Adam, James Bailey, Michelle Barbieri, John Bengtson, Gavin Brady,
-Vladamir Burkanov, Cynthia Christman, Sarah Coburn, Shawn Dahle, Rob
-Delong, Stacy DiRocco, Deb Fauquier, Shannon Fitzgerald, Kathy Frost,
-Scott Gende, Tracey Goldstein, Jeff Harris, Jason Herreman, Markus
-Horning, John Jansen, Shawn Johnson, Charles Littnan, Lloyd Lowry, Brett
-McClintock, Erin Moreland, Mark Nelson, Justin Olnes, Lorrie Rea, Bob
-Shears, Gay Sheffield, Brent Stewart, Dave Withrow, and Heather Ziel. We
-also appreciate the commitment to science and safety by all officers and
-crew of the NOAA ship *Oscar Dyson*, the NOAA ship *MacArthur II*, and
-the RV *Thomas G. Thompson*.
+We are grateful for the assistance in catching and sampling seals by Ryan Adam,
+James Bailey, Michelle Barbieri, John Bengtson, Gavin Brady, Anna Bryan,
+Vladamir Burkanov, Cynthia Christman, Sarah Coburn, Shawn Dahle, Rob Delong,
+Stacy DiRocco, Deb Fauquier, Shannon Fitzgerald, Kathy Frost, Scott Gende, Craig
+George, Tracey Goldstein, Jeff Harris, Jason Herreman, Markus Horning, John
+Jansen, Shawn Johnson, Charles Littnan, Lloyd Lowry, Brett McClintock, Erin
+Moreland, Aaron Morris, Mark Nelson, Justin Olnes, Lorrie Rea, Bob Shears, Gay
+Sheffield, Kayla Scheimreif, Brent Stewart, Alexy Trukhin, Dave Withrow, and
+Heather Ziel. We also appreciate the commitment to science and safety by all
+officers and crew of the NOAA ship _Oscar Dyson_, the NOAA ship _MacArthur II_,
+the _MV Tayfun_, and the RV _Thomas G. Thompson_.
 
-Telemetry data from the Alaska Department of Fish and Game (ADF&G) and
-the North Slope Borough Department of Wildlife Management (NSB) were
-important contributions to the findings presented here. Deployments in
-the western Bering Sea were done in collaboration with Russian
-colleagues and North Pacific Wildlife.
+Telemetry data from the Alaska Department of Fish and Game (ADF&G) and the North
+Slope Borough Department of Wildlife Management (NSB) were important
+contributions to the findings presented here. Deployments in the western Bering
+Sea were done in collaboration with Russian colleagues and North Pacific
+Wildlife Consulting, LLC.
 
-The findings and conclusions in the paper are those of the author(s) and
-do not necessarily represent the views of the National Marine Fisheries
-Service, NOAA. Any use of trade, product, or firm names does not imply
-an endorsement by the U.S. Government. Funding for this study was
+The findings and conclusions in the paper are those of the author(s) and do not
+necessarily represent the views of the National Marine Fisheries Service, NOAA.
+Any use of trade, product, or firm names does not imply an endorsement by the
+U.S. Government. 
+
+Funding for this study was
 provided by the U.S. National Oceanic and Atmospheric Administration.
 The field work was conducted under the authority of Marine Mammal
 Protection Act Research Permits Nos. 782-1676, 782-1765, 15126, and
