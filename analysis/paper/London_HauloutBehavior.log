@@ -1,25 +1,25 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.30)  20 AUG 2024 09:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.9.4)  22 SEP 2024 13:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **London_HauloutBehavior.tex
 (./London_HauloutBehavior.tex
-LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-05-08>
+LaTeX2e <2024-06-01> patch level 2
+L3 programming layer <2024-08-16>
 (./wlpeerj.cls
 Document Class: wlpeerj 18/08/2016, v1.2
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty
-Package: inputenc 2021/02/14 v1.3d Input encoding file
+Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks17
 \inpenc@posthook=\toks18
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2024/05/18 v24.5 The Babel package
-\babel@savecnt=\count189
-\U@D=\dimen140
+Package: babel 2024/08/29 v24.9 The Babel package
+\babel@savecnt=\count194
+\U@D=\dimen141
 \l@unhyphenated=\language8
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
-\bbl@dirlevel=\count190
+\bbl@dirlevel=\count195
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: Hyphen rules for 'canadian' set to \l@english
@@ -32,24 +32,24 @@ Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
 Package babel Info: Importing font and identification data for english
 (babel)             from babel-en.ini. Reported on input line 11.
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/base/ifthen.sty
-Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count191
-\calc@Bcount=\count192
-\calc@Adimen=\dimen141
-\calc@Bdimen=\dimen142
-\calc@Askip=\skip48
-\calc@Bskip=\skip49
+\calc@Acount=\count196
+\calc@Bcount=\count197
+\calc@Adimen=\dimen142
+\calc@Bdimen=\dimen143
+\calc@Askip=\skip49
+\calc@Bskip=\skip50
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count193
-\calc@Cskip=\skip50
+\calc@Ccount=\count198
+\calc@Cskip=\skip51
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+Document Class: article 2024/02/08 v1.4n Standard LaTeX document class
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/base/fleqn.clo
 File: fleqn.clo 2016/12/29 v1.2b Standard LaTeX option (flush left equations)
-\mathindent=\skip51
+\mathindent=\skip52
 Applying: [2015/01/01] Make \[ robust on input line 50.
 LaTeX Info: Redefining \[ on input line 51.
 Already applied: [0000/00/00] Make \[ robust on input line 62.
@@ -57,19 +57,19 @@ Applying: [2015/01/01] Make \] robust on input line 74.
 LaTeX Info: Redefining \] on input line 75.
 Already applied: [0000/00/00] Make \] robust on input line 83.
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+File: size10.clo 2024/02/08 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count194
-\c@section=\count195
-\c@subsection=\count196
-\c@subsubsection=\count197
-\c@paragraph=\count198
-\c@subparagraph=\count199
-\c@figure=\count266
-\c@table=\count267
-\abovecaptionskip=\skip52
-\belowcaptionskip=\skip53
-\bibindent=\dimen143
+\c@part=\count199
+\c@section=\count266
+\c@subsection=\count267
+\c@subsubsection=\count268
+\c@paragraph=\count269
+\c@subparagraph=\count270
+\c@figure=\count271
+\c@table=\count272
+\abovecaptionskip=\skip53
+\belowcaptionskip=\skip54
+\bibindent=\dimen144
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/psnfss/times.sty
 Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/psnfss/mathptmx.sty
@@ -111,7 +111,7 @@ LaTeX Info: Redefining \hbar on input line 50.
 Package: lineno 2023/05/20 line numbers on paragraphs v5.3
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count268
+\etb@tempcnta=\count273
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
@@ -122,90 +122,90 @@ Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 ))
-\linenopenalty=\count269
+\linenopenalty=\count274
 \output=\toks20
-\linenoprevgraf=\count270
-\linenumbersep=\dimen144
-\linenumberwidth=\dimen145
-\c@linenumber=\count271
-\c@pagewiselinenumber=\count272
-\c@LN@truepage=\count273
-\c@internallinenumber=\count274
-\c@internallinenumbers=\count275
-\quotelinenumbersep=\dimen146
-\bframerule=\dimen147
-\bframesep=\dimen148
-\bframebox=\box51
+\linenoprevgraf=\count275
+\linenumbersep=\dimen145
+\linenumberwidth=\dimen146
+\c@linenumber=\count276
+\c@pagewiselinenumber=\count277
+\c@LN@truepage=\count278
+\c@internallinenumber=\count279
+\c@internallinenumbers=\count280
+\quotelinenumbersep=\dimen147
+\bframerule=\dimen148
+\bframesep=\dimen149
+\bframebox=\box52
 LaTeX Info: Redefining \\ on input line 3180.
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifpdf.sty
 Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 )) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2023/05/13 v2.17o AMS math features
-\@mathmargin=\skip54
+Package: amsmath 2024/05/23 v2.17q AMS math features
+\@mathmargin=\skip55
 For additional information on amsmath, use the `?' option.
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks21
-\ex@=\dimen149
+\ex@=\dimen150
 )) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen150
+\pmbraise@=\dimen151
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count276
-LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count277
-\leftroot@=\count278
-LaTeX Info: Redefining \overline on input line 399.
-LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count279
-\DOTSCASE@=\count280
-LaTeX Info: Redefining \ldots on input line 496.
-LaTeX Info: Redefining \dots on input line 499.
-LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box52
-\strutbox@=\box53
-LaTeX Info: Redefining \big on input line 722.
-LaTeX Info: Redefining \Big on input line 723.
-LaTeX Info: Redefining \bigg on input line 724.
-LaTeX Info: Redefining \Bigg on input line 725.
-\big@size=\dimen151
-LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count281
-LaTeX Info: Redefining \bmod on input line 905.
-LaTeX Info: Redefining \pmod on input line 910.
-LaTeX Info: Redefining \smash on input line 940.
-LaTeX Info: Redefining \relbar on input line 970.
-LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count282
-\dotsspace@=\muskip16
-\c@parentequation=\count283
-\dspbrk@lvl=\count284
+\inf@bad=\count281
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count282
+\leftroot@=\count283
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count284
+\DOTSCASE@=\count285
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen152
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count286
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count287
+\dotsspace@=\muskip17
+\c@parentequation=\count288
+\dspbrk@lvl=\count289
 \tag@help=\toks22
-\row@=\count285
-\column@=\count286
-\maxfields@=\count287
+\row@=\count290
+\column@=\count291
+\maxfields@=\count292
 \andhelp@=\toks23
-\eqnshift@=\dimen152
-\alignsep@=\dimen153
-\tagshift@=\dimen154
-\tagwidth@=\dimen155
-\totwidth@=\dimen156
-\lineht@=\dimen157
+\eqnshift@=\dimen153
+\alignsep@=\dimen154
+\tagshift@=\dimen155
+\tagwidth@=\dimen156
+\totwidth@=\dimen157
+\lineht@=\dimen158
 \@envbody=\toks24
-\multlinegap=\skip55
-\multlinetaggap=\skip56
+\multlinegap=\skip56
+\multlinetaggap=\skip57
 \mathdisplay@stack=\toks25
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )
-\linenoamsmath@ams@eqpen=\count288
+\linenoamsmath@ams@eqpen=\count293
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup6
@@ -217,18 +217,18 @@ Package: amssymb 2013/01/14 v3.01 AMS font symbols
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2024/05/23 v1.4g Standard LaTeX Graphics (DPC,SPQR)
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 107.
+Package graphics Info: Driver file: pdftex.def on input line 106.
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen158
-\Gin@req@width=\dimen159
+\Gin@req@height=\dimen159
+\Gin@req@width=\dimen160
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
@@ -247,143 +247,143 @@ Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen160
-\lightrulewidth=\dimen161
-\cmidrulewidth=\dimen162
-\belowrulesep=\dimen163
-\belowbottomsep=\dimen164
-\aboverulesep=\dimen165
-\abovetopsep=\dimen166
-\cmidrulesep=\dimen167
-\cmidrulekern=\dimen168
-\defaultaddspace=\dimen169
-\@cmidla=\count289
-\@cmidlb=\count290
-\@aboverulesep=\dimen170
-\@belowrulesep=\dimen171
-\@thisruleclass=\count291
-\@lastruleclass=\count292
-\@thisrulewidth=\dimen172
+\heavyrulewidth=\dimen161
+\lightrulewidth=\dimen162
+\cmidrulewidth=\dimen163
+\belowrulesep=\dimen164
+\belowbottomsep=\dimen165
+\aboverulesep=\dimen166
+\abovetopsep=\dimen167
+\cmidrulesep=\dimen168
+\cmidrulekern=\dimen169
+\defaultaddspace=\dimen170
+\@cmidla=\count294
+\@cmidlb=\count295
+\@aboverulesep=\dimen171
+\@belowrulesep=\dimen172
+\@thisruleclass=\count296
+\@lastruleclass=\count297
+\@thisrulewidth=\dimen173
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/preprint/authblk.sty
 Package: authblk 2001/02/27 1.3 (PWD)
-\affilsep=\skip57
-\@affilsep=\skip58
-\c@Maxaffil=\count293
-\c@authors=\count294
-\c@affil=\count295
+\affilsep=\skip58
+\@affilsep=\skip59
+\c@Maxaffil=\count298
+\c@authors=\count299
+\c@affil=\count300
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count296
-\Gm@cntv=\count297
-\c@Gm@tempcnt=\count298
-\Gm@bindingoffset=\dimen173
-\Gm@wd@mp=\dimen174
-\Gm@odd@mp=\dimen175
-\Gm@even@mp=\dimen176
-\Gm@layoutwidth=\dimen177
-\Gm@layoutheight=\dimen178
-\Gm@layouthoffset=\dimen179
-\Gm@layoutvoffset=\dimen180
+\Gm@cnth=\count301
+\Gm@cntv=\count302
+\c@Gm@tempcnt=\count303
+\Gm@bindingoffset=\dimen174
+\Gm@wd@mp=\dimen175
+\Gm@odd@mp=\dimen176
+\Gm@even@mp=\dimen177
+\Gm@layoutwidth=\dimen178
+\Gm@layoutheight=\dimen179
+\Gm@layouthoffset=\dimen180
+\Gm@layoutvoffset=\dimen181
 \Gm@dimlist=\toks26
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen181
-\captionmargin=\dimen182
-\caption@leftmargin=\dimen183
-\caption@rightmargin=\dimen184
-\caption@width=\dimen185
-\caption@indent=\dimen186
-\caption@parindent=\dimen187
-\caption@hangindent=\dimen188
+\caption@tempdima=\dimen182
+\captionmargin=\dimen183
+\caption@leftmargin=\dimen184
+\caption@rightmargin=\dimen185
+\caption@width=\dimen186
+\caption@indent=\dimen187
+\caption@parindent=\dimen188
+\caption@hangindent=\dimen189
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count299
-\c@continuedfloat=\count300
+\c@caption@flags=\count304
+\c@continuedfloat=\count305
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
-Package: fancyhdr 2024/04/23 v4.2 Extensive control of page headers and footers
-\f@nch@headwidth=\skip59
-\f@nch@O@elh=\skip60
-\f@nch@O@erh=\skip61
-\f@nch@O@olh=\skip62
-\f@nch@O@orh=\skip63
-\f@nch@O@elf=\skip64
-\f@nch@O@erf=\skip65
-\f@nch@O@olf=\skip66
-\f@nch@O@orf=\skip67
+Package: fancyhdr 2024/07/23 v4.3.1 Extensive control of page headers and footers
+\f@nch@headwidth=\skip60
+\f@nch@O@elh=\skip61
+\f@nch@O@erh=\skip62
+\f@nch@O@olh=\skip63
+\f@nch@O@orh=\skip64
+\f@nch@O@elf=\skip65
+\f@nch@O@erf=\skip66
+\f@nch@O@olf=\skip67
+\f@nch@O@orf=\skip68
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/lastpage/lastpage.sty
-Package: lastpage 2024/04/27 v2.1a lastpage: 2.09 or 2e? (HMM)
+Package: lastpage 2024/07/07 v2.1c lastpage: 2.09 or 2e? (HMM)
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/lastpage/lastpage2e.sty
-Package: lastpage2e 2024/04/27 v2.1a Decide which 2e lastpage version to use (HMM)
+Package: lastpage2e 2024/07/07 v2.1c Decide which 2e lastpage version to use (HMM)
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/lastpage/lastpagemodern.sty
-Package: lastpagemodern 2024-04-27 v2.1a Refers to last page's name (HMM; JPG)
-\c@lastpagecount=\count301
+Package: lastpagemodern 2024-07-07 v2.1c Refers to last page's name (HMM; JPG)
+\c@lastpagecount=\count306
 ) 
 )) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2023/10/27 v2.16 Sectioning titles
-\ttl@box=\box54
-\beforetitleunit=\skip68
-\aftertitleunit=\skip69
-\ttl@plus=\dimen189
-\ttl@minus=\dimen190
+\ttl@box=\box55
+\beforetitleunit=\skip69
+\aftertitleunit=\skip70
+\ttl@plus=\dimen190
+\ttl@minus=\dimen191
 \ttl@toksa=\toks27
-\titlewidth=\dimen191
-\titlewidthlast=\dimen192
-\titlewidthfirst=\dimen193
+\titlewidth=\dimen192
+\titlewidthlast=\dimen193
+\titlewidthfirst=\dimen194
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/titlesec/titletoc.sty
 Package: titletoc 2023/10/27 v2.16 TOC entries
-\ttl@leftsep=\dimen194
+\ttl@leftsep=\dimen195
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
-\labelindent=\skip70
-\enit@outerparindent=\dimen195
+\labelindent=\skip71
+\enit@outerparindent=\dimen196
 \enit@toks=\toks28
-\enit@inbox=\box55
-\enit@count@id=\count302
-\enitdp@description=\count303
+\enit@inbox=\box56
+\enit@count@id=\count307
+\enitdp@description=\count308
 )
-\tocsep=\skip71
+\tocsep=\skip72
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.sty (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2024-05-08 L3 programming layer (loader) 
+Package: expl3 2024-08-16 L3 programming layer (loader) 
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count304
-\l__pdf_internal_box=\box56
+\l__color_backend_stack_int=\count309
+\l__pdf_internal_box=\box57
 ))
-Package: l3keys2e 2024-05-08 LaTeX2e option processing using LaTeX3 keys
+Package: l3keys2e 2024-08-16 LaTeX2e option processing using LaTeX3 keys
 )
 Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
-\g__lipsum_par_int=\count305
-\l__lipsum_a_int=\count306
-\l__lipsum_b_int=\count307
+\g__lipsum_par_int=\count310
+\l__lipsum_a_int=\count311
+\l__lipsum_b_int=\count312
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex))) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2024/03/29 v3.1b Micro-typographical refinements (RS)
 \MT@toks=\toks29
-\MT@tempbox=\box57
-\MT@count=\count308
+\MT@tempbox=\box58
+\MT@count=\count313
 LaTeX Info: Redefining \noprotrusionifhmode on input line 1061.
 LaTeX Info: Redefining \leftprotrusion on input line 1062.
 \MT@prot@toks=\toks30
 LaTeX Info: Redefining \rightprotrusion on input line 1081.
 LaTeX Info: Redefining \textls on input line 1392.
-\MT@outer@kern=\dimen196
+\MT@outer@kern=\dimen197
 LaTeX Info: Redefining \textmicrotypecontext on input line 2013.
-\MT@listname@count=\count309
+\MT@listname@count=\count314
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2024/03/29 v3.1b Definitions specific to pdftex (RS)
 LaTeX Info: Redefining \lsstyle on input line 902.
 LaTeX Info: Redefining \lslig on input line 902.
-\MT@outer@space=\skip72
+\MT@outer@space=\skip73
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/microtype/microtype.cfg
 File: microtype.cfg 2024/03/29 v3.1b microtype main configuration file (RS)
 )) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2024-05-23 v7.01i Hypertext links for LaTeX
+Package: hyperref 2024-07-10 v7.01j Hypertext links for LaTeX
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
@@ -405,23 +405,23 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count310
+\c@section@level=\count315
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
-\@linkdim=\dimen197
-\Hy@linkcounter=\count311
-\Hy@pagecounter=\count312
+\@linkdim=\dimen198
+\Hy@linkcounter=\count316
+\Hy@pagecounter=\count317
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2024-05-23 v7.01i Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2024-07-10 v7.01j Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count313
+\Hy@SavedSpaceFactor=\count318
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2024-05-23 v7.01i Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2024-07-10 v7.01j Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
@@ -433,21 +433,21 @@ Package hyperref Info: Plain pages OFF on input line 4172.
 Package hyperref Info: Backreferencing OFF on input line 4177.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4424.
-\c@Hy@tempcnt=\count314
+\c@Hy@tempcnt=\count319
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
-\Urlmuskip=\muskip17
+\Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4763.
-\XeTeXLinkMargin=\dimen198
+\XeTeXLinkMargin=\dimen199
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count315
-\Field@Width=\dimen199
-\Fld@charsize=\dimen256
+\Fld@menulength=\count320
+\Field@Width=\dimen256
+\Fld@charsize=\dimen257
 Package hyperref Info: Hyper figures OFF on input line 6042.
 Package hyperref Info: Link nesting OFF on input line 6047.
 Package hyperref Info: Hyper index ON on input line 6050.
@@ -459,19 +459,19 @@ Package hyperref Info: PDF/A mode OFF on input line 6072.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count316
-\c@Item=\count317
-\c@Hfootnote=\count318
+\Hy@abspage=\count321
+\c@Item=\count322
+\c@Hfootnote=\count323
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2024-05-23 v7.01i Hyperref driver for pdfTeX
+File: hpdftex.def 2024-07-10 v7.01j Hyperref driver for pdfTeX
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
-\Fld@listcount=\count319
-\c@bookmark@seq@number=\count320
+\Fld@listcount=\count324
+\c@bookmark@seq@number=\count325
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -479,61 +479,61 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
-\Hy@SectionHShift=\skip73
+\Hy@SectionHShift=\skip74
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2024/01/20 4.5c verbatim text (tvz,hv)
-\FV@CodeLineNo=\count321
+\FV@CodeLineNo=\count326
 \FV@InFile=\read3
-\FV@TabBox=\box58
-\c@FancyVerbLine=\count322
-\FV@StepNumber=\count323
+\FV@TabBox=\box59
+\c@FancyVerbLine=\count327
+\FV@StepNumber=\count328
 \FV@OutFile=\write3
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip74
-\fb@frw=\dimen257
-\fb@frh=\dimen258
-\FrameRule=\dimen259
-\FrameSep=\dimen260
+\OuterFrameSep=\skip75
+\fb@frw=\dimen258
+\fb@frh=\dimen259
+\FrameRule=\dimen260
+\FrameSep=\dimen261
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
-Package: longtable 2023-11-01 v4.19 Multi-page Table package (DPC)
-\LTleft=\skip75
-\LTright=\skip76
-\LTpre=\skip77
-\LTpost=\skip78
-\LTchunksize=\count324
-\LTcapwidth=\dimen261
-\LT@head=\box59
-\LT@firsthead=\box60
-\LT@foot=\box61
-\LT@lastfoot=\box62
-\LT@gbox=\box63
-\LT@cols=\count325
-\LT@rows=\count326
-\c@LT@tables=\count327
-\c@LT@chunks=\count328
+Package: longtable 2024-04-26 v4.20 Multi-page Table package (DPC)
+\LTleft=\skip76
+\LTright=\skip77
+\LTpre=\skip78
+\LTpost=\skip79
+\LTchunksize=\count329
+\LTcapwidth=\dimen262
+\LT@head=\box60
+\LT@firsthead=\box61
+\LT@foot=\box62
+\LT@lastfoot=\box63
+\LT@gbox=\box64
+\LT@cols=\count330
+\LT@rows=\count331
+\c@LT@tables=\count332
+\c@LT@chunks=\count333
 \LT@p@ftn=\toks31
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/tools/array.sty
-Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
-\col@sep=\dimen262
-\ar@mcellbox=\box64
-\extrarowheight=\dimen263
+Package: array 2024/06/14 v2.6d Tabular extension package (FMi)
+\col@sep=\dimen263
+\ar@mcellbox=\box65
+\extrarowheight=\dimen264
 \NC@list=\toks32
-\extratabsurround=\skip79
-\backup@length=\skip80
-\ar@cellbox=\box65
+\extratabsurround=\skip80
+\backup@length=\skip81
+\ar@cellbox=\box66
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
-\fn@notes=\box66
-\fn@width=\dimen264
+\fn@notes=\box67
+\fn@width=\dimen265
 )
-\cslhangindent=\skip81
-\csllabelwidth=\skip82
+\cslhangindent=\skip82
+\csllabelwidth=\skip83
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/stix2-type1/stix2.sty
 Package: stix2 2021/01/14 v2.0.2-latex STIX Two fonts support package
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
-Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
-LaTeX Font Info:    Changing ? sub-encoding to TS1/0 on input line 78.
+Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
+LaTeX Font Info:    Changing ? sub-encoding to TS1/0 on input line 75.
 )
 Now handling font encoding LS1 ...
 ... no UTF-8 mapping file for font encoding LS1
@@ -635,7 +635,7 @@ LaTeX Info: Redefining \not on input line 2141.
 Package: setspace 2022/12/04 v6.7b set line spacing
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
-LaTeX Font Info:    Trying to load font information for T1+stix2 on input line 112.
+LaTeX Font Info:    Trying to load font information for T1+stix2 on input line 116.
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/stix2-type1/t1stix2.fd
 File: t1stix2.fd 2018/04/02 v2.0.0-latex stix2 T1 font definitions
 )) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/sourcesanspro/sourcesanspro.sty
@@ -650,7 +650,7 @@ Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
 \XKV@toks=\toks33
 \XKV@tempa@toks=\toks34
 )
-\XKV@depth=\count329
+\XKV@depth=\count334
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
@@ -797,35 +797,34 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
-\multirow@colwidth=\skip83
-\multirow@cntb=\count330
-\multirow@dima=\skip84
-\bigstrutjot=\dimen265
+\multirow@colwidth=\skip84
+\multirow@cntb=\count335
+\multirow@dima=\skip85
+\bigstrutjot=\dimen266
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/tools/multicol.sty
-Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
-\c@tracingmulticols=\count331
-\mult@box=\box67
-\multicol@leftmargin=\dimen266
-\c@unbalance=\count332
-\c@collectmore=\count333
-\doublecol@number=\count334
-\multicoltolerance=\count335
-\multicolpretolerance=\count336
-\full@width=\dimen267
-\page@free=\dimen268
-\premulticols=\dimen269
-\postmulticols=\dimen270
-\multicolsep=\skip85
-\multicolbaselineskip=\skip86
-\partial@page=\box68
-\last@line=\box69
-\mc@boxedresult=\box70
-\maxbalancingoverflow=\dimen271
-\mult@rightbox=\box71
-\mult@grightbox=\box72
-\mult@firstbox=\box73
-\mult@gfirstbox=\box74
-\@tempa=\box75
+Package: multicol 2024/05/23 v1.9h multicolumn formatting (FMi)
+\c@tracingmulticols=\count336
+\mult@box=\box68
+\multicol@leftmargin=\dimen267
+\c@unbalance=\count337
+\c@collectmore=\count338
+\doublecol@number=\count339
+\multicoltolerance=\count340
+\multicolpretolerance=\count341
+\full@width=\dimen268
+\page@free=\dimen269
+\premulticols=\dimen270
+\postmulticols=\dimen271
+\multicolsep=\skip86
+\multicolbaselineskip=\skip87
+\partial@page=\box69
+\last@line=\box70
+\mc@boxedresult=\box71
+\maxbalancingoverflow=\dimen272
+\mult@rightbox=\box72
+\mult@grightbox=\box73
+\mult@firstbox=\box74
+\mult@gfirstbox=\box75
 \@tempa=\box76
 \@tempa=\box77
 \@tempa=\box78
@@ -861,37 +860,38 @@ Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
 \@tempa=\box108
 \@tempa=\box109
 \@tempa=\box110
-\c@minrows=\count337
-\c@columnbadness=\count338
-\c@finalcolumnbadness=\count339
-\last@try=\dimen272
-\multicolovershoot=\dimen273
-\multicolundershoot=\dimen274
-\mult@nat@firstbox=\box111
-\colbreak@box=\box112
-\mc@col@check@num=\count340
+\@tempa=\box111
+\c@minrows=\count342
+\c@columnbadness=\count343
+\c@finalcolumnbadness=\count344
+\last@try=\dimen273
+\multicolovershoot=\dimen274
+\multicolundershoot=\dimen275
+\mult@nat@firstbox=\box112
+\colbreak@box=\box113
+\mc@col@check@num=\count345
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/colortbl/colortbl.sty
-Package: colortbl 2024/05/26 v1.0h Color table columns (DPC)
+Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
 \everycr=\toks35
-\minrowclearance=\skip87
-\rownum=\count341
+\minrowclearance=\skip88
+\rownum=\count346
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/tools/hhline.sty
 Package: hhline 2020/01/04 v2.04 Table rule package (DPC)
 )
-\Oldarrayrulewidth=\skip88
-\Oldtabcolsep=\skip89
+\Oldarrayrulewidth=\skip89
+\Oldtabcolsep=\skip90
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count342
+\c@float@type=\count347
 \float@exts=\toks36
-\float@box=\box113
+\float@box=\box114
 \@float@everytoks=\toks37
-\@floatcapt=\box114
+\@floatcapt=\box115
 ) (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/wrapfig/wrapfig.sty
-\wrapoverhang=\dimen275
-\WF@size=\dimen276
-\c@WF@wrappedlines=\count343
-\WF@box=\box115
+\wrapoverhang=\dimen276
+\WF@size=\dimen277
+\c@WF@wrappedlines=\count348
+\WF@box=\box116
 \WF@everypar=\toks38
 Package: wrapfig 2003/01/31  v 3.6
 ) (./London_HauloutBehavior.aux
@@ -1122,10 +1122,14 @@ LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/it' will be
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+
+
 [1
 
 {/Users/josh.london/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/josh.london/Library/TinyTeX/texmf-dist/fonts/enc/dvips/sourcesanspro/a_emkxm5.enc}{/Users/josh.london/Library/TinyTeX/texmf-dist/fonts/enc/dvips/base/8r.enc}{/Users/josh.london/Library/TinyTeX/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-t1.enc}{/Users/josh.london/Library/TinyTeX/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-mathrm.enc}]
 Underfull \vbox (badness 4582) has occurred while \output is active []
+
+
 
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/sb/n' aliased to
 (Font)              `T1/SourceSansPro-TLF/semibold/n' on input line 212.
@@ -1133,6 +1137,8 @@ LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/semibold/n' will be
 (Font)              scaled to size 9.0pt on input line 212.
 [2]
 Underfull \vbox (badness 2644) has occurred while \output is active []
+
+
 
 [3]
 
@@ -1142,13 +1148,19 @@ Package hyperref Warning: The anchor of a bookmark and its parent's must not
 
 LaTeX Warning: Hyper reference `s1' on page 4 undefined on input line 327.
 
+
+
 [4]
 <../figures/Figure-001.png, id=121, 433.62pt x 182.1204pt>
 File: ../figures/Figure-001.png Graphic file (type png)
 <use ../figures/Figure-001.png>
 Package pdftex.def Info: ../figures/Figure-001.png  used on input line 340.
 (pdftex.def)             Requested size: 415.12572pt x 174.36118pt.
-[5 <../figures/Figure-001.png>] [6]
+
+
+[5 <../figures/Figure-001.png>]
+
+[6]
 <../figures/Figure-002.png, id=143, 433.62pt x 267.97716pt>
 File: ../figures/Figure-002.png Graphic file (type png)
 <use ../figures/Figure-002.png>
@@ -1157,10 +1169,16 @@ Package pdftex.def Info: ../figures/Figure-002.png  used on input line 518.
 
 Underfull \vbox (badness 4120) has occurred while \output is active []
 
+
+
 [7 <../figures/Figure-002.png>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 642.
-[8] [9] [10{/Users/josh.london/Library/TinyTeX/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-mathit.enc}]
+[8]
+
+[9]
+
+[10{/Users/josh.london/Library/TinyTeX/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-mathit.enc}]
 <../figures/Figure-003.png, id=173, 433.62pt x 216.81pt>
 File: ../figures/Figure-003.png Graphic file (type png)
 <use ../figures/Figure-003.png>
@@ -1171,45 +1189,65 @@ File: ../figures/Figure-004.png Graphic file (type png)
 <use ../figures/Figure-004.png>
 Package pdftex.def Info: ../figures/Figure-004.png  used on input line 834.
 (pdftex.def)             Requested size: 415.12572pt x 256.56pt.
+
+
 [11]
-<../figures/Figure-005.png, id=186, 433.62pt x 267.97716pt>
+<../figures/Figure-005.png, id=185, 433.62pt x 267.97716pt>
 File: ../figures/Figure-005.png Graphic file (type png)
 <use ../figures/Figure-005.png>
 Package pdftex.def Info: ../figures/Figure-005.png  used on input line 868.
 (pdftex.def)             Requested size: 415.12572pt x 256.56pt.
-<../figures/Figure-006.png, id=189, 433.62pt x 433.62pt>
+<../figures/Figure-006.png, id=188, 433.62pt x 433.62pt>
 File: ../figures/Figure-006.png Graphic file (type png)
 <use ../figures/Figure-006.png>
 Package pdftex.def Info: ../figures/Figure-006.png  used on input line 896.
 (pdftex.def)             Requested size: 415.12572pt x 415.14566pt.
-[12 <../figures/Figure-003.png>] [13 <../figures/Figure-004.png>] [14 <../figures/Figure-005.png>] [15 <../figures/Figure-006.png>]
+
+
+[12 <../figures/Figure-003.png>]
+
+[13 <../figures/Figure-004.png>]
+
+[14 <../figures/Figure-005.png>]
+
+[15 <../figures/Figure-006.png>]
 <../figures/Figure-007.png, id=215, 433.62pt x 390.258pt>
 File: ../figures/Figure-007.png Graphic file (type png)
 <use ../figures/Figure-007.png>
-Package pdftex.def Info: ../figures/Figure-007.png  used on input line 919.
+Package pdftex.def Info: ../figures/Figure-007.png  used on input line 920.
 (pdftex.def)             Requested size: 415.12572pt x 373.63109pt.
 <../figures/Figure-008.png, id=218, 433.62pt x 390.258pt>
 File: ../figures/Figure-008.png Graphic file (type png)
 <use ../figures/Figure-008.png>
-Package pdftex.def Info: ../figures/Figure-008.png  used on input line 949.
+Package pdftex.def Info: ../figures/Figure-008.png  used on input line 950.
 (pdftex.def)             Requested size: 415.12572pt x 373.63109pt.
 <../figures/Figure-009.png, id=222, 433.62pt x 390.258pt>
 File: ../figures/Figure-009.png Graphic file (type png)
 <use ../figures/Figure-009.png>
-Package pdftex.def Info: ../figures/Figure-009.png  used on input line 969.
+Package pdftex.def Info: ../figures/Figure-009.png  used on input line 971.
 (pdftex.def)             Requested size: 415.12572pt x 373.63109pt.
 <../figures/Figure-010.png, id=224, 433.62pt x 390.258pt>
 File: ../figures/Figure-010.png Graphic file (type png)
 <use ../figures/Figure-010.png>
-Package pdftex.def Info: ../figures/Figure-010.png  used on input line 1005.
+Package pdftex.def Info: ../figures/Figure-010.png  used on input line 1007.
 (pdftex.def)             Requested size: 415.12572pt x 373.63109pt.
-[16] [17 <../figures/Figure-007.png>] [18 <../figures/Figure-008.png>] [19 <../figures/Figure-009.png>] [20 <../figures/Figure-010.png>]
+
+
+[16]
+
+[17 <../figures/Figure-007.png>]
+
+[18 <../figures/Figure-008.png>]
+
+[19 <../figures/Figure-009.png>]
+
+[20 <../figures/Figure-010.png>]
 <../figures/Figure-011.png, id=254, 433.62pt x 325.215pt>
 File: ../figures/Figure-011.png Graphic file (type png)
 <use ../figures/Figure-011.png>
-Package pdftex.def Info: ../figures/Figure-011.png  used on input line 1039.
+Package pdftex.def Info: ../figures/Figure-011.png  used on input line 1041.
 (pdftex.def)             Requested size: 415.12572pt x 311.35924pt.
-LaTeX Font Info:    Trying to load font information for TS1+stix2 on input line 1086.
+LaTeX Font Info:    Trying to load font information for TS1+stix2 on input line 1088.
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/stix2-type1/ts1stix2.fd
 File: ts1stix2.fd 2018/04/02 v2.0.0-latex stix2 TS1 font definitions
 )
@@ -1217,80 +1255,106 @@ Package microtype Info: Character `textflorin ' is missing
 (microtype)             in font `TS1/stix2/m/n/10'.
 (microtype)             Ignoring protrusion settings for this character.
 
-Underfull \vbox (badness 7256) has occurred while \output is active []
 
-[21 <../figures/Figure-011.png>] [22{/Users/josh.london/Library/TinyTeX/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-ts1.enc}]
+[21 <../figures/Figure-011.png>]
+
+[22{/Users/josh.london/Library/TinyTeX/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-ts1.enc}]
 Underfull \vbox (badness 6284) has occurred while \output is active []
+
+
 
 [23]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+
+
 [24]
-Underfull \hbox (badness 2689) in paragraph at lines 1314--1329
+Underfull \hbox (badness 2689) in paragraph at lines 1316--1331
 \T1/pcr/m/n/10 2022 . 04 . 07 . 487572$[][]\T1/stix2/m/n/10 (+20) ). All data used in the study and code are avail-able on GitHub
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1314--1329
+Underfull \hbox (badness 10000) in paragraph at lines 1316--1331
 \T1/stix2/m/n/10 (+20) ([][]$\T1/pcr/m/n/10 https : / / github . com / noaa-[]afsc / berchukseals-[]haulout$[][]\T1/stix2/m/n/10 (+20) ) and ma-jor ver-sions
  []
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 1314--1329
+Underfull \hbox (badness 1237) in paragraph at lines 1316--1331
 \T1/stix2/m/n/10 (+20) ([][]$\T1/pcr/m/n/10 https : / / portal . atn . ioos . us/$[][]\T1/stix2/m/n/10 (+20) ; [][]$\T1/pcr/m/n/10 https : / / doi . org / 10 . 24431 / rw1k8er$[][]\T1/stix2/m/n/10 (+20) ), archived
  []
 
-[25] [26]
-Underfull \hbox (badness 2080) in paragraph at lines 1413--1414
+
+
+[25]
+
+[26]
+Underfull \hbox (badness 2080) in paragraph at lines 1417--1418
 []\T1/stix2/m/n/10 (+20) Cameron MF, Bengt-son JL, Boveng PL, Jansen JK(JohnK, Kelly BP, Dahle SP, Loger-well
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [27]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+
+
 [28]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[29] [30]
+
+
+[29]
+
+[30]
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1567 ...p{0.80in}|p{0.80in}|p{0.80in}|p{1.50in}}
-                                                   [31
+l.1907 \end{longtable}
+                       [31
 
-] [32] [33] [34]
-<../figures/Figure-013.png, id=470, 433.62pt x 216.81pt>
+] [32] [33]
+
+[34]
+<../figures/Figure-013.png, id=468, 433.62pt x 216.81pt>
 File: ../figures/Figure-013.png Graphic file (type png)
 <use ../figures/Figure-013.png>
-Package pdftex.def Info: ../figures/Figure-013.png  used on input line 1932.
+Package pdftex.def Info: ../figures/Figure-013.png  used on input line 1936.
 (pdftex.def)             Requested size: 415.12572pt x 207.57281pt.
-<../figures/Figure-014.png, id=471, 433.62pt x 303.38947pt>
+<../figures/Figure-014.png, id=469, 433.62pt x 303.38947pt>
 File: ../figures/Figure-014.png Graphic file (type png)
 <use ../figures/Figure-014.png>
-Package pdftex.def Info: ../figures/Figure-014.png  used on input line 1938.
+Package pdftex.def Info: ../figures/Figure-014.png  used on input line 1942.
 (pdftex.def)             Requested size: 415.12572pt x 290.46358pt.
-<../figures/Figure-015.png, id=472, 433.62pt x 303.38947pt>
+<../figures/Figure-015.png, id=470, 433.62pt x 303.38947pt>
 File: ../figures/Figure-015.png Graphic file (type png)
 <use ../figures/Figure-015.png>
-Package pdftex.def Info: ../figures/Figure-015.png  used on input line 1944.
+Package pdftex.def Info: ../figures/Figure-015.png  used on input line 1948.
 (pdftex.def)             Requested size: 415.12572pt x 290.46358pt.
+
+
 [35
 
 
-] [36 <../figures/Figure-013.png>] [37 <../figures/Figure-014.png>] [38 <../figures/Figure-015.png>]
+]
+
+[36 <../figures/Figure-013.png>]
+
+[37 <../figures/Figure-014.png>]
+
+[38 <../figures/Figure-015.png>]
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/sb/it' aliased to
-(Font)              `T1/SourceSansPro-TLF/semibold/it' on input line 1951.
+(Font)              `T1/SourceSansPro-TLF/semibold/it' on input line 1955.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/semibold/it' will be
-(Font)              scaled to size 9.0pt on input line 1951.
+(Font)              scaled to size 9.0pt on input line 1955.
+
+
 [39
 
 ]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 2031.
-LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 2032.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 2035.
+LaTeX Font Info:    Trying to load font information for TS1+pcr on input line 2036.
 (/Users/josh.london/Library/TinyTeX/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 )
@@ -1299,32 +1363,46 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Overfull \vbox (0.88728pt too high) detected at line 2079
+Overfull \vbox (0.88728pt too high) detected at line 2083
  []
 
-[40] [41] [42]
-<../figures/Figure-016.png, id=527, 433.62pt x 325.215pt>
+
+
+[40]
+
+[41]
+
+[42]
+<../figures/Figure-016.png, id=525, 433.62pt x 325.215pt>
 File: ../figures/Figure-016.png Graphic file (type png)
 <use ../figures/Figure-016.png>
-Package pdftex.def Info: ../figures/Figure-016.png  used on input line 2200.
+Package pdftex.def Info: ../figures/Figure-016.png  used on input line 2204.
 (pdftex.def)             Requested size: 415.12572pt x 311.35924pt.
+
+
 [43 <../figures/Figure-016.png>]
-<../figures/Figure-017.png, id=539, 433.62pt x 390.258pt>
+<../figures/Figure-017.png, id=537, 433.62pt x 390.258pt>
 File: ../figures/Figure-017.png Graphic file (type png)
 <use ../figures/Figure-017.png>
-Package pdftex.def Info: ../figures/Figure-017.png  used on input line 2236.
+Package pdftex.def Info: ../figures/Figure-017.png  used on input line 2240.
 (pdftex.def)             Requested size: 415.12572pt x 373.63109pt.
-<../figures/Figure-018.png, id=540, 433.62pt x 303.38947pt>
+<../figures/Figure-018.png, id=538, 433.62pt x 303.38947pt>
 File: ../figures/Figure-018.png Graphic file (type png)
 <use ../figures/Figure-018.png>
-Package pdftex.def Info: ../figures/Figure-018.png  used on input line 2242.
+Package pdftex.def Info: ../figures/Figure-018.png  used on input line 2246.
 (pdftex.def)             Requested size: 415.12572pt x 290.46358pt.
-[44] [45 <../figures/Figure-017.png>] [46 <../figures/Figure-018.png>] 
+
+
+[44]
+
+[45 <../figures/Figure-017.png>]
+
+[46 <../figures/Figure-018.png>] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (./London_HauloutBehavior.aux)
  ***********
-LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-05-08>
+LaTeX2e <2024-06-01> patch level 2
+L3 programming layer <2024-08-16>
  ***********
 
 LaTeX Warning: There were undefined references.
@@ -1336,18 +1414,18 @@ Package rerunfilecheck Info: File `London_HauloutBehavior.out' has not changed.
 (rerunfilecheck)             Checksum: 4481A9D432A9D0C75178743F35F2B9CD;3658.
  ) 
 Here is how much of TeX's memory you used:
- 22671 strings out of 475892
- 374017 string characters out of 5786975
- 2029904 words of memory out of 5000000
- 44076 multiletter control sequences out of 15000+600000
- 834437 words of font info for 362 fonts, out of 8000000 for 9000
+ 22671 strings out of 475478
+ 373999 string characters out of 5774170
+ 2029957 words of memory out of 5000000
+ 44494 multiletter control sequences out of 15000+600000
+ 833983 words of font info for 359 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 94i,11n,107p,3028b,715s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,11n,107p,3057b,745s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Math.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Bold.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Italic.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Regular.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Regular.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Semibold.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-SemiboldIt.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></Users/josh.london/Library/TinyTeX/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>
-Output written on London_HauloutBehavior.pdf (46 pages, 6523398 bytes).
+Output written on London_HauloutBehavior.pdf (46 pages, 6523531 bytes).
 PDF statistics:
- 650 PDF objects out of 1000 (max. 8388607)
- 549 compressed objects within 6 object streams
+ 648 PDF objects out of 1000 (max. 8388607)
+ 547 compressed objects within 6 object streams
  129 named destinations out of 1000 (max. 500000)
  79118 words of extra memory for PDF output out of 89155 (max. 10000000)
 
