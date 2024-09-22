@@ -5,7 +5,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4638221.svg)](https://doi.org/10.5281/zenodo.4638221)
 <!-- badges: end -->
 
-## Spring haul-out behavior of seals in the Bering and Chukchi seas
+## Spring haul-out behavior of seals in the Bering and Chukchi Seas: implications for abundance estimation
 
 Josh M. London<sup>1</sup>,✉, Paul B. Conn<sup>1</sup>, Stacie M.
 Koslovsky<sup>1</sup>, Erin L. Richmond<sup>1</sup>, Jay M. Ver
