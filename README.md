@@ -39,8 +39,6 @@ The **analysis** directory contains:
   suitable for reading (the code is replaced by figures and tables in
   this file)
 - [:file_folder: figures](/analysis/figures): figures generated
-- [:file_folder: templates](/analysis/templates): template files and
-  scripts.
 
 The **data** directory contains
 
