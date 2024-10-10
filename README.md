@@ -25,6 +25,8 @@ Quakenbush<sup>2</sup>, and Peter L. Boveng<sup>1</sup>
 This repository serves as the research compendium in support of the
 above titled paper which has been accepted for publication at _PeerJ_
 
+[Spring haul-out behavior of seals in the Bering and Chukchi Seas: implications for abundance estimation](https://peerj.com/articles/18160/)
+
 Major releases of the research compendium are published and archived
 with Zenodo <https://doi.org/10.5281/zenodo.4638221>
 
